@@ -1,0 +1,582 @@
+{
+  "task": "AW2-006M",
+  "status": "FAIL",
+  "flavor": "compiled",
+  "phase": "motion-lantern-street",
+  "checks": [
+    "Fresh profile requests no NPC image and grants no save",
+    "Before intro one visual fallback has no owned party or XP",
+    "Only visited village NPC atlas loads initially",
+    "aw2-npc-giu-cho: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-giu-cho: idle frames keep canonical feet/depth/common scale",
+    "covenant-village: animated NPC replaces static sprite exactly once and idle never writes",
+    "covenant-village: reduced motion uses explicit neutral pose and freezes NPC clock without writes",
+    "covenant-village: motion resumes from frozen timeline",
+    "aw2-npc-giu-cho: native keyboard approach restores map focus and grants nothing",
+    "covenant-village: dialogue pauses all NPC clocks and disables native navigation",
+    "covenant-village: closing dialogue resumes animation without invoking an action",
+    "covenant-village: 320px animated scene labels/controls fit actual viewport",
+    "covenant-village: 390px animated scene labels/controls fit actual viewport",
+    "covenant-village: 768px animated scene labels/controls fit actual viewport",
+    "covenant-village: inverse scenic touch and animation preserve exact save",
+    "Animated Bà intro grants exactly five starters/30XP once and exact reload",
+    "aw2-npc-va-den: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-va-den: idle frames keep canonical feet/depth/common scale",
+    "aw2-npc-nguoi-ban: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-nguoi-ban: idle frames keep canonical feet/depth/common scale",
+    "aw2-npc-sua-ghe: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-sua-ghe: idle frames keep canonical feet/depth/common scale",
+    "aw2-npc-dem-nuoc: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-dem-nuoc: idle frames keep canonical feet/depth/common scale",
+    "aw2-npc-ban-bai: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-ban-bai: idle frames keep canonical feet/depth/common scale",
+    "aw2-npc-ban-co: all four authored poses actually advance in rendered sprite",
+    "aw2-npc-ban-co: idle frames keep canonical feet/depth/common scale",
+    "lantern-street: animated NPC replaces static sprite exactly once and idle never writes",
+    "lantern-street: reduced motion uses explicit neutral pose and freezes NPC clock without writes",
+    "lantern-street: motion resumes from frozen timeline",
+    "aw2-npc-va-den: native keyboard approach restores map focus and grants nothing",
+    "aw2-npc-nguoi-ban: native keyboard approach restores map focus and grants nothing",
+    "aw2-npc-sua-ghe: native keyboard approach restores map focus and grants nothing",
+    "aw2-npc-dem-nuoc: native keyboard approach restores map focus and grants nothing",
+    "aw2-npc-ban-bai: native keyboard approach restores map focus and grants nothing",
+    "aw2-npc-ban-co: native keyboard approach restores map focus and grants nothing",
+    "lantern-street: dialogue pauses all NPC clocks and disables native navigation",
+    "lantern-street: closing dialogue resumes animation without invoking an action",
+    "lantern-street: 320px animated scene labels/controls fit actual viewport",
+    "lantern-street: 390px animated scene labels/controls fit actual viewport",
+    "lantern-street: 768px animated scene labels/controls fit actual viewport",
+    "lantern-street: inverse scenic touch and animation preserve exact save",
+    "Street omits obsolete static NPC atlas and unvisited yard sheet",
+    "ban-bai: animated host opens actual practice and returns exact checkpoint without grants",
+    "ban-co: animated host opens actual practice and returns exact checkpoint without grants",
+    "dem-nuoc: explicit memory updates real sprite state without replacing authored animation"
+  ],
+  "errors": [],
+  "expectedErrors": [],
+  "motionEvidence": [
+    {
+      "entityId": "aw2-npc-giu-cho",
+      "frames": [
+        "neutral",
+        "breath",
+        "blink",
+        "gesture"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-giu-cho",
+          "frame": "neutral",
+          "assetId": "aw2-npc-giu-cho:idle-v1",
+          "x": 160,
+          "y": 240,
+          "depth": 240,
+          "scale": 0.084507042254,
+          "anchorX": 0.5061598947368421,
+          "anchorY": 0.9911971830985915,
+          "width": 20.873239436738,
+          "height": 48.000000000272,
+          "alpha": 1,
+          "elapsedMs": 133.29999999999995
+        },
+        {
+          "entityId": "aw2-npc-giu-cho",
+          "frame": "breath",
+          "assetId": "aw2-npc-giu-cho:idle-v1",
+          "x": 160,
+          "y": 240,
+          "depth": 240,
+          "scale": 0.084507042254,
+          "anchorX": 0.5086065120967742,
+          "anchorY": 0.9912280701754386,
+          "width": 20.957746478992,
+          "height": 48.16901408478,
+          "alpha": 1,
+          "elapsedMs": 450
+        },
+        {
+          "entityId": "aw2-npc-giu-cho",
+          "frame": "blink",
+          "assetId": "aw2-npc-giu-cho:idle-v1",
+          "x": 160,
+          "y": 240,
+          "depth": 240,
+          "scale": 0.084507042254,
+          "anchorX": 0.501188452,
+          "anchorY": 0.9911816578483245,
+          "width": 21.126760563500003,
+          "height": 47.91549295801801,
+          "alpha": 1,
+          "elapsedMs": 1016.6000000000001
+        },
+        {
+          "entityId": "aw2-npc-giu-cho",
+          "frame": "gesture",
+          "assetId": "aw2-npc-giu-cho:idle-v1",
+          "x": 160,
+          "y": 240,
+          "depth": 240,
+          "scale": 0.084507042254,
+          "anchorX": 0.39687284444444443,
+          "anchorY": 0.9911504424778761,
+          "width": 26.61971831001,
+          "height": 47.74647887351,
+          "alpha": 1,
+          "elapsedMs": 1766.6000000000001
+        }
+      ]
+    },
+    {
+      "entityId": "aw2-npc-va-den",
+      "frames": [
+        "neutral",
+        "breath",
+        "blink",
+        "gesture"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-va-den",
+          "frame": "neutral",
+          "assetId": "aw2-npc-va-den:idle-v1",
+          "x": 160,
+          "y": 112,
+          "depth": 112,
+          "scale": 0.077046548957,
+          "anchorX": 0.5691238546712803,
+          "anchorY": 0.9967897271268058,
+          "width": 22.266452648573,
+          "height": 48.000000000211,
+          "alpha": 1,
+          "elapsedMs": 166.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-va-den",
+          "frame": "breath",
+          "assetId": "aw2-npc-va-den:idle-v1",
+          "x": 160,
+          "y": 112,
+          "depth": 112,
+          "scale": 0.077046548957,
+          "anchorX": 0.5729081118881119,
+          "anchorY": 0.9967948717948718,
+          "width": 22.035313001702,
+          "height": 48.077046549168,
+          "alpha": 1,
+          "elapsedMs": 333.2999999999993
+        },
+        {
+          "entityId": "aw2-npc-va-den",
+          "frame": "blink",
+          "assetId": "aw2-npc-va-den:idle-v1",
+          "x": 160,
+          "y": 112,
+          "depth": 112,
+          "scale": 0.077046548957,
+          "anchorX": 0.5704323784722223,
+          "anchorY": 0.9951298701298701,
+          "width": 22.189406099616,
+          "height": 47.460674157512,
+          "alpha": 1,
+          "elapsedMs": 866.5999999999995
+        },
+        {
+          "entityId": "aw2-npc-va-den",
+          "frame": "gesture",
+          "assetId": "aw2-npc-va-den:idle-v1",
+          "x": 160,
+          "y": 112,
+          "depth": 112,
+          "scale": 0.077046548957,
+          "anchorX": 0.554849845890411,
+          "anchorY": 0.9919093851132686,
+          "width": 22.497592295444,
+          "height": 47.614767255426,
+          "alpha": 1,
+          "elapsedMs": 1633.2999999999993
+        }
+      ]
+    },
+    {
+      "entityId": "aw2-npc-nguoi-ban",
+      "frames": [
+        "neutral",
+        "breath",
+        "blink",
+        "gesture"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-nguoi-ban",
+          "frame": "neutral",
+          "assetId": "aw2-npc-nguoi-ban:idle-v1",
+          "x": 280,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.079470198675,
+          "anchorX": 0.4310806361607143,
+          "anchorY": 0.9966887417218543,
+          "width": 35.6026490064,
+          "height": 47.9999999997,
+          "alpha": 1,
+          "elapsedMs": 166.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-nguoi-ban",
+          "frame": "breath",
+          "assetId": "aw2-npc-nguoi-ban:idle-v1",
+          "x": 280,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.079470198675,
+          "anchorX": 0.42713459637188206,
+          "anchorY": 0.9966996699669967,
+          "width": 35.046357615675,
+          "height": 48.15894039705,
+          "alpha": 1,
+          "elapsedMs": 266.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-nguoi-ban",
+          "frame": "blink",
+          "assetId": "aw2-npc-nguoi-ban:idle-v1",
+          "x": 280,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.079470198675,
+          "anchorX": 0.4199165442176871,
+          "anchorY": 0.9915824915824916,
+          "width": 35.046357615675,
+          "height": 47.20529801295,
+          "alpha": 1,
+          "elapsedMs": 733.2999999999993
+        },
+        {
+          "entityId": "aw2-npc-nguoi-ban",
+          "frame": "gesture",
+          "assetId": "aw2-npc-nguoi-ban:idle-v1",
+          "x": 280,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.079470198675,
+          "anchorX": 0.42454405773672055,
+          "anchorY": 0.9915824915824916,
+          "width": 34.410596026275,
+          "height": 47.20529801295,
+          "alpha": 1,
+          "elapsedMs": 1516.5999999999995
+        }
+      ]
+    },
+    {
+      "entityId": "aw2-npc-sua-ghe",
+      "frames": [
+        "breath",
+        "neutral",
+        "blink",
+        "gesture"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-sua-ghe",
+          "frame": "breath",
+          "assetId": "aw2-npc-sua-ghe:idle-v1",
+          "x": 392,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.078559738134,
+          "anchorX": 0.4128291019955654,
+          "anchorY": 0.996742671009772,
+          "width": 35.430441898434,
+          "height": 48.235679214276,
+          "alpha": 1,
+          "elapsedMs": 166.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-sua-ghe",
+          "frame": "neutral",
+          "assetId": "aw2-npc-sua-ghe:idle-v1",
+          "x": 392,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.078559738134,
+          "anchorX": 0.4194461258278146,
+          "anchorY": 0.9967266775777414,
+          "width": 35.587561374702,
+          "height": 47.999999999874,
+          "alpha": 1,
+          "elapsedMs": 299.9999999999991
+        },
+        {
+          "entityId": "aw2-npc-sua-ghe",
+          "frame": "blink",
+          "assetId": "aw2-npc-sua-ghe:idle-v1",
+          "x": 392,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.078559738134,
+          "anchorX": 0.4115111327433628,
+          "anchorY": 0.9917081260364843,
+          "width": 35.509001636568,
+          "height": 47.371522094801996,
+          "alpha": 1,
+          "elapsedMs": 599.9999999999991
+        },
+        {
+          "entityId": "aw2-npc-sua-ghe",
+          "frame": "gesture",
+          "assetId": "aw2-npc-sua-ghe:idle-v1",
+          "x": 392,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.078559738134,
+          "anchorX": 0.412514134529148,
+          "anchorY": 0.9916943521594684,
+          "width": 35.037643207764,
+          "height": 47.292962356668,
+          "alpha": 1,
+          "elapsedMs": 1349.8999999999987
+        }
+      ]
+    },
+    {
+      "entityId": "aw2-npc-dem-nuoc",
+      "frames": [
+        "neutral",
+        "blink",
+        "gesture",
+        "breath"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-dem-nuoc",
+          "frame": "neutral",
+          "assetId": "aw2-npc-dem-nuoc:idle-v1",
+          "x": 504,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.068376068376,
+          "anchorX": 0.5259329596541787,
+          "anchorY": 0.9914529914529915,
+          "width": 23.726495726472,
+          "height": 39.999999999959996,
+          "alpha": 1,
+          "elapsedMs": 166.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-dem-nuoc",
+          "frame": "blink",
+          "assetId": "aw2-npc-dem-nuoc:idle-v1",
+          "x": 504,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.068376068376,
+          "anchorX": 0.49439651714285715,
+          "anchorY": 0.9913941480206541,
+          "width": 23.931623931599997,
+          "height": 39.726495726455994,
+          "alpha": 1,
+          "elapsedMs": 499.8999999999987
+        },
+        {
+          "entityId": "aw2-npc-dem-nuoc",
+          "frame": "gesture",
+          "assetId": "aw2-npc-dem-nuoc:idle-v1",
+          "x": 504,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.068376068376,
+          "anchorX": 0.5583758825136612,
+          "anchorY": 0.9915540540540541,
+          "width": 25.025641025615997,
+          "height": 40.478632478592,
+          "alpha": 1,
+          "elapsedMs": 1216.5999999999995
+        },
+        {
+          "entityId": "aw2-npc-dem-nuoc",
+          "frame": "breath",
+          "assetId": "aw2-npc-dem-nuoc:idle-v1",
+          "x": 504,
+          "y": 128,
+          "depth": 128,
+          "scale": 0.068376068376,
+          "anchorX": 0.5074608242074928,
+          "anchorY": 0.9913494809688581,
+          "width": 23.726495726472,
+          "height": 39.521367521327996,
+          "alpha": 1,
+          "elapsedMs": 1633.2999999999993
+        }
+      ]
+    },
+    {
+      "entityId": "aw2-npc-ban-bai",
+      "frames": [
+        "neutral",
+        "blink",
+        "gesture",
+        "breath"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-ban-bai",
+          "frame": "neutral",
+          "assetId": "aw2-npc-ban-bai:idle-v1",
+          "x": 240,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.109028960818,
+          "anchorX": 0.5170061891348088,
+          "anchorY": 0.9914821124361158,
+          "width": 54.187393526545996,
+          "height": 64.000000000166,
+          "alpha": 1,
+          "elapsedMs": 166.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-ban-bai",
+          "frame": "blink",
+          "assetId": "aw2-npc-ban-bai:idle-v1",
+          "x": 240,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.109028960818,
+          "anchorX": 0.5171478692152918,
+          "anchorY": 0.9914965986394558,
+          "width": 54.187393526545996,
+          "height": 64.10902896098399,
+          "alpha": 1,
+          "elapsedMs": 333.2999999999993
+        },
+        {
+          "entityId": "aw2-npc-ban-bai",
+          "frame": "gesture",
+          "assetId": "aw2-npc-ban-bai:idle-v1",
+          "x": 240,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.109028960818,
+          "anchorX": 0.517510366197183,
+          "anchorY": 0.9915110356536503,
+          "width": 54.187393526545996,
+          "height": 64.218057921802,
+          "alpha": 1,
+          "elapsedMs": 1099.8999999999987
+        },
+        {
+          "entityId": "aw2-npc-ban-bai",
+          "frame": "breath",
+          "assetId": "aw2-npc-ban-bai:idle-v1",
+          "x": 240,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.109028960818,
+          "anchorX": 0.5186361830985915,
+          "anchorY": 0.9914675767918089,
+          "width": 54.187393526545996,
+          "height": 63.890971039347995,
+          "alpha": 1,
+          "elapsedMs": 1483.199999999999
+        }
+      ]
+    },
+    {
+      "entityId": "aw2-npc-ban-co",
+      "frames": [
+        "neutral",
+        "blink",
+        "gesture",
+        "breath"
+      ],
+      "samples": [
+        {
+          "entityId": "aw2-npc-ban-co",
+          "frame": "neutral",
+          "assetId": "aw2-npc-ban-co:idle-v1",
+          "x": 432,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.118959107807,
+          "anchorX": 0.5000694534005038,
+          "anchorY": 0.9907063197026023,
+          "width": 47.226765799379,
+          "height": 64.000000000166,
+          "alpha": 1,
+          "elapsedMs": 166.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-ban-co",
+          "frame": "blink",
+          "assetId": "aw2-npc-ban-co:idle-v1",
+          "x": 432,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.118959107807,
+          "anchorX": 0.4949768786407767,
+          "anchorY": 0.9909747292418772,
+          "width": 49.011152416484,
+          "height": 65.903345725078,
+          "alpha": 1,
+          "elapsedMs": 266.59999999999945
+        },
+        {
+          "entityId": "aw2-npc-ban-co",
+          "frame": "gesture",
+          "assetId": "aw2-npc-ban-co:idle-v1",
+          "x": 432,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.118959107807,
+          "anchorX": 0.4985963389423077,
+          "anchorY": 0.9909747292418772,
+          "width": 49.486988847712,
+          "height": 65.903345725078,
+          "alpha": 1,
+          "elapsedMs": 949.8999999999987
+        },
+        {
+          "entityId": "aw2-npc-ban-co",
+          "frame": "breath",
+          "assetId": "aw2-npc-ban-co:idle-v1",
+          "x": 432,
+          "y": 272,
+          "depth": 272,
+          "scale": 0.118959107807,
+          "anchorX": 0.5027401955445544,
+          "anchorY": 0.9906890130353817,
+          "width": 48.059479554028,
+          "height": 63.881040892359,
+          "alpha": 1,
+          "elapsedMs": 1349.8999999999987
+        }
+      ]
+    }
+  ],
+  "origins": [],
+  "snapshots": [
+    {
+      "zone": "covenant-village",
+      "raw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"542ad2fd-6fc7-481e-963a-73e96759ba3e\",\"revision\":1,\"createdAt\":\"2026-10-24T08:59:00.652Z\",\"updatedAt\":\"2026-10-24T08:59:12.327Z\",\"progress\":{\"zoneId\":\"aw2-zone-covenant-village\",\"x\":160.00002471058957,\"y\":272,\"facing\":\"right\",\"questIndex\":0,\"accepted\":false,\"tableRead\":false,\"memories\":[],\"threadChoice\":null,\"hintRead\":false,\"puzzleStep\":0,\"partyIds\":[],\"bossDefeated\":false,\"tableNoteRead\":false,\"endingChoice\":null},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":0,\"herbs\":0,\"broth\":0,\"warm-bowl\":0},\"teamExperience\":0,\"receipts\":[],\"cooked\":0,\"shared\":0},\"collection\":{\"recruitedIds\":[],\"vanEmphasis\":\"protection\"}}",
+      "npcIds": [
+        "aw2-npc-giu-cho"
+      ],
+      "origin": "Current-task native travel/explicit position save; no fabricated flags/party/HP."
+    },
+    {
+      "zone": "lantern-street",
+      "raw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"542ad2fd-6fc7-481e-963a-73e96759ba3e\",\"revision\":6,\"createdAt\":\"2026-10-24T08:59:00.652Z\",\"updatedAt\":\"2026-10-24T08:59:41.157Z\",\"progress\":{\"zoneId\":\"aw2-zone-lantern-street\",\"x\":160.0000138379303,\"y\":143.99999794077337,\"facing\":\"up\",\"questIndex\":1,\"accepted\":false,\"tableRead\":true,\"memories\":[],\"threadChoice\":null,\"hintRead\":false,\"puzzleStep\":0,\"partyIds\":[\"aw2-than\",\"aw2-lua\",\"aw2-lam\",\"aw2-moc-non\",\"aw2-suong\"],\"bossDefeated\":false,\"tableNoteRead\":false,\"endingChoice\":null},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":2,\"herbs\":1,\"broth\":0,\"warm-bowl\":0},\"teamExperience\":30,\"receipts\":[\"aw2-grant-kept-seat\"],\"cooked\":0,\"shared\":0},\"collection\":{\"recruitedIds\":[],\"vanEmphasis\":\"protection\"}}",
+      "npcIds": [
+        "aw2-npc-va-den",
+        "aw2-npc-nguoi-ban",
+        "aw2-npc-sua-ghe",
+        "aw2-npc-dem-nuoc",
+        "aw2-npc-ban-bai",
+        "aw2-npc-ban-co"
+      ],
+      "origin": "Current-task native travel/explicit position save; no fabricated flags/party/HP."
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: nguoi-ban: explicit memory updates real sprite state without replacing authored animation",
+  "observedRaw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"542ad2fd-6fc7-481e-963a-73e96759ba3e\",\"revision\":11,\"createdAt\":\"2026-10-24T08:59:00.652Z\",\"updatedAt\":\"2026-10-24T08:59:53.138Z\",\"progress\":{\"zoneId\":\"aw2-zone-lantern-street\",\"x\":280,\"y\":160,\"facing\":\"left\",\"questIndex\":1,\"accepted\":true,\"tableRead\":true,\"memories\":[\"aw2-event-memory-bowl\",\"aw2-event-memory-vendor\"],\"threadChoice\":null,\"hintRead\":false,\"puzzleStep\":0,\"partyIds\":[\"aw2-than\",\"aw2-lua\",\"aw2-lam\",\"aw2-moc-non\",\"aw2-suong\"],\"bossDefeated\":false,\"tableNoteRead\":false,\"endingChoice\":null},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":2,\"herbs\":1,\"broth\":0,\"warm-bowl\":0},\"teamExperience\":30,\"receipts\":[\"aw2-grant-kept-seat\"],\"cooked\":0,\"shared\":0},\"collection\":{\"recruitedIds\":[],\"vanEmphasis\":\"protection\"}}"
+}

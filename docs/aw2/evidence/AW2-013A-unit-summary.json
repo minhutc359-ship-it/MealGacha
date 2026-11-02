@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "environment": {
+    "os": "Linux 7.0.0-38-generic",
+    "arch": "x86_64",
+    "node": "v22.23.2",
+    "pnpm": "10.34.3"
+  },
+  "command": "pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-013a-unit.json",
+  "files": 91,
+  "tests": 909,
+  "passed": 909,
+  "failed": 0,
+  "pending": 0,
+  "aw2Files": 11,
+  "aw2Tests": 116,
+  "rawReport": "/tmp/aw2-013a-unit.json (runner-local, not tracked)"
+}

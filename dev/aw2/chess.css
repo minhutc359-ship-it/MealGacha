@@ -1,0 +1,18 @@
+.chess-practice section { margin: 1rem 0; }
+.chess-shop, .chess-formation, .chess-battle-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.chess-bench { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: .5rem; }
+.chess-card, .chess-battle-cell { padding: .5rem; border: 1px solid #70856b; border-radius: .5rem; min-width: 0; }
+.chess-practice img { display: block; width: 64px; height: 76px; object-fit: contain; max-width: 100%; margin: auto; }
+.chess-practice button, .chess-practice article, .chess-battle-cell { overflow-wrap: anywhere; white-space: normal; }
+.chess-practice button { min-height: 44px; }
+.chess-formation button, .chess-bench button { display: flex; flex-direction: column; align-items: center; }
+.chess-practice [aria-pressed="true"] { outline: 3px solid #f5d68b; outline-offset: 2px; }
+.chess-battle-cell { min-height: 5rem; background: #243b31; }
+.chess-actor { display: flex; flex-direction: column; font-size: .8rem; }
+.chess-opponent { color: #ffd0ac; }
+.chess-player { color: #c2e9ff; }
+.chess-log { max-height: 13rem; overflow-y: auto; padding-left: 1.5rem; }
+.chess-card h3 { font-size: 1rem; }
+.chess-card button { width: 100%; }
+.chess-practice small { display: block; }
+@media(max-width: 420px) { .chess-shop, .chess-formation, .chess-battle-grid { gap: .3rem; } .chess-card { padding: .3rem; } .chess-card p, .chess-card small, .chess-formation button { font-size: .8rem; } .chess-practice img { width: 48px; height: 60px; } .chess-shop button, .chess-formation button { padding: .4rem; } }

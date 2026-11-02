@@ -1,0 +1,81 @@
+{
+  "task": "AW2-004L",
+  "spiritId": "aw2-hai",
+  "generator": "OpenAI built-in image_gen",
+  "calls": [
+    {
+      "callId": "AW2-004L-1",
+      "asset": "portrait",
+      "prompt": "Use case: stylized-concept. Asset type: original full-body RPG character identity portrait on genuinely transparent alpha background. Create Hải (aw2-hai), an original adult male guardian for Vietnamese food-memory fantasy Adventure World 2; Canh chua-inspired palette, no literal food mascot. Compact strong build, friendly alert mature face, short dark swept hair, practical teal/sea-green layered tunic with a few pale water-colored fabric accents, dark trousers and sturdy boots. He carries one original curved shield suggesting a calm water surface in his left arm; free right arm open to guide companions home. Entire body, both boots, shield and fingertips visible with generous empty margins. Polished clean HD anime game illustration, warm readable face, precise anatomy, restrained painterly shading, three-quarter view facing viewer-right. Neutral balanced ready stance; no FX obscuring identity. Outfit simple enough to reproduce in small sprite cels. This is his own new design, no borrowed named characters, logos, religious or historical insignia. No scene, floor, drop shadow, text, watermark, border, UI or extra characters. All space outside the subject genuinely transparent. One character only.",
+      "referenceInputs": [],
+      "selected": true,
+      "source": "portrait.png"
+    },
+    {
+      "callId": "AW2-004L-2",
+      "asset": "world",
+      "prompt": "Use case: identity-preserve. Transform the supplied original Hải identity portrait into a production sprite sheet for Adventure World 2. Preserve the exact friendly adult male face, short dark swept hair, teal/sea-green clothing, dark boots and single curved water-inspired shield. Original project character, no borrowed IP. Exactly FOUR columns and FOUR rows (16 cels), square canvas. Each cel independently centered in its quarter, entirely contained; generous fully transparent gutters at every quarter-grid boundary and all outer edges. Each figure at most 65% of its cell width and 72% cell height; all shield, hair, hands, cloth and boots fit well inside. Never cross cells, never crop or cut off feet/shield. NO TEXT, labels, grid lines, background, floor, shadows or watermark. Background alpha genuinely transparent. Equal logical character proportions through cels; no extra shields or limbs.  Pixel/chibi exploration sprite art with visible crisp pixel steps, small three-head-tall body, no HD painted edges. Every row is ONE separately authored facing direction: row1 down/front, row2 left, row3 right, row4 up/back. Four columns per row: idle with both feet planted; left foot forward; passing stance; right foot forward. Consistent shield ownership and readable dark teal silhouette in all four directions, real back view in last row. No effects.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "world.png"
+    },
+    {
+      "callId": "AW2-004L-3",
+      "asset": "battle-motion-a-v1",
+      "prompt": "Use case: identity-preserve. Transform the supplied original Hải identity portrait into a production sprite sheet for Adventure World 2. Preserve the exact friendly adult male face, short dark swept hair, teal/sea-green clothing, dark boots and single curved water-inspired shield. Original project character, no borrowed IP. Exactly FOUR columns and FOUR rows (16 cels), square canvas. Each cel independently centered in its quarter, entirely contained; generous fully transparent gutters at every quarter-grid boundary and all outer edges. Each figure at most 65% of its cell width and 72% cell height; all shield, hair, hands, cloth and boots fit well inside. Never cross cells, never crop or cut off feet/shield. NO TEXT, labels, grid lines, background, floor, shadows or watermark. Background alpha genuinely transparent. Equal logical character proportions through cels; no extra shields or limbs.  Clean HD anime cel sprites, three-quarter facing viewer-right. Four distinct motion cels per row. Row1 IDLE: neutral ready, inhale, small shield settling, exhale. Row2 MOVE: four actual alternating walking foot/body poses while keeping shield ready. Row3 ATTACK Gạt Sóng: anticipation, forward shield sweep contact, follow-through, ready recovery. Row4 CAST Giữ Lối: gather shield near torso, extend guiding free arm, plant shield facing forward, lower free arm recovery. Hands and shield remain anatomically coherent. No large VFX; subtle cloth motion only, figures same standing height, no fake mirrored duplicates.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": false,
+      "source": ".asset-work/aw2-004l/rejected-battle-motion-a-v1.png",
+      "reason": "No alpha-safe column cut",
+      "sha256": "12af9b3af37783c7c5e04e7ebd25efe37dd2b96c673c4e6e55ac4cdbb57d2153"
+    },
+    {
+      "callId": "AW2-004L-4",
+      "asset": "battle-motion-b-v1",
+      "prompt": "Use case: identity-preserve. Transform the supplied original Hải identity portrait into a production sprite sheet for Adventure World 2. Preserve the exact friendly adult male face, short dark swept hair, teal/sea-green clothing, dark boots and single curved water-inspired shield. Original project character, no borrowed IP. Exactly FOUR columns and FOUR rows (16 cels), square canvas. Each cel independently centered in its quarter, entirely contained; generous fully transparent gutters at every quarter-grid boundary and all outer edges. Each figure at most 65% of its cell width and 72% cell height; all shield, hair, hands, cloth and boots fit well inside. Never cross cells, never crop or cut off feet/shield. NO TEXT, labels, grid lines, background, floor, shadows or watermark. Background alpha genuinely transparent. Equal logical character proportions through cels; no extra shields or limbs.  Clean HD anime cel sprites, three-quarter facing viewer-right. Four distinct motion cels per row. Row1 HIT: small initial recoil, stronger safe backward recoil, regain balance, ready recovery. Row2 GUARD: shield raise, brace behind curved shield, settle knees, stable upright ready shield guard. Row3 ULTIMATE Bờ Đợi: gather weight, open guiding arm, broad planted protective shield extension, ready recovery. Row4 DEFEAT: stagger, lower shield, carefully sink onto one knee, hold a dignified one-knee resting pose; all feet and entire shield remain visible. Standing states equal stature; final kneeling deliberately shorter. No spectacular FX or copied figures. Each cel contains one whole character.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": false,
+      "source": ".asset-work/aw2-004l/rejected-battle-motion-b-v1.png",
+      "reason": "No alpha-safe column cut",
+      "sha256": "c94b2b118fb43422a593a25b5d753bc004471ce732598ab2dda0f26f009540ce"
+    },
+    {
+      "callId": "AW2-004L-5",
+      "asset": "fx",
+      "prompt": "Use case: stylized-concept. Asset type: original transparent game skill FX sprite atlas belonging to supplied Hải portrait. Preserve teal/water/soft ivory palette and curved-shield silhouette, but DRAW EFFECTS ONLY, NO CHARACTERS OR BODY PARTS. Exactly4 columns ×4 rows,16 independently centered isolated painted anime effects, square canvas. Very wide truly transparent gutters at all quarter boundaries and outer edges; each effect <=60% cell width/height, no glow bleed across cells. Row1 Gạt Sóng:4 stages of a short directional turquoise water-swipe impact (gather, clear crest, splash contact, dissipate). Row2 Giữ Lối:4 stages of a small curved shoreline barrier rooted in one short arc (appear, rise, settled, fade). Row3 Biết Đường Về:4 stages of a compact protective return-arc emblem, original open water curl (gather, bright crest, brace, fade). Row4 Bờ Đợi:4 stages of a broader layered curved protective wave/shield arc (gather, extend, shelter, fade), each contained wholly in its cell. Painted silhouettes and clean alpha; no generic geometry substitutes, letters, symbols of religions, text, grid, frame, background, watermark, character or equipment illustration. Genuinely transparent alpha outside each effect.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "fx.png"
+    },
+    {
+      "callId": "AW2-004L-6",
+      "asset": "battle-motion-a-v2",
+      "prompt": "Use case: precise-object-edit. Recompose this original sprite contact sheet to fix overlapping/crowded cells. Keep ALL sixteen existing distinct poses, their row/column order, the same Hải adult male face/short dark hair/teal tunic/curved shield identity, tool ownership and whole-body anatomy. CRITICAL CHANGE: make each whole figure a TINY THUMBNAIL, roughly HALF its present width and height, independently centered in its original cell, with VAST empty transparent space all around every sprite. This is a4column4row transparent square contact sheet. No sprite may exceed55% of the cell width or60% of its height, INCLUDING SHIELD AND FABRIC. Keep heads and feet well away from all cell and canvas edges. Full bodies/boots/entire shield present in every cel, including extended-arm/guard/kneeling poses. Do not enlarge a figure to fill its cell; empty space is required for safe sprite cropping. Preserve all16 poses, not 8. No new characters, effects, text, grid, labels, floor, background or shadows. Genuinely transparent alpha in every gutter and outside each body. Keep the original cels' clean anime style and all eight state identities. Image1=edit target grid, Image2=identity portrait.",
+      "referenceInputs": [
+        ".asset-work/aw2-004l/rejected-battle-motion-a-v1.png",
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "battle-motion-a-v2.png"
+    },
+    {
+      "callId": "AW2-004L-7",
+      "asset": "battle-motion-b-v2",
+      "prompt": "Use case: precise-object-edit. Recompose this original sprite contact sheet to fix overlapping/crowded cells. Keep ALL sixteen existing distinct poses, their row/column order, the same Hải adult male face/short dark hair/teal tunic/curved shield identity, tool ownership and whole-body anatomy. CRITICAL CHANGE: make each whole figure a TINY THUMBNAIL, roughly HALF its present width and height, independently centered in its original cell, with VAST empty transparent space all around every sprite. This is a4column4row transparent square contact sheet. No sprite may exceed55% of the cell width or60% of its height, INCLUDING SHIELD AND FABRIC. Keep heads and feet well away from all cell and canvas edges. Full bodies/boots/entire shield present in every cel, including extended-arm/guard/kneeling poses. Do not enlarge a figure to fill its cell; empty space is required for safe sprite cropping. Preserve all16 poses, not 8. No new characters, effects, text, grid, labels, floor, background or shadows. Genuinely transparent alpha in every gutter and outside each body. Keep the original cels' clean anime style and all eight state identities. Image1=edit target grid, Image2=identity portrait.",
+      "referenceInputs": [
+        ".asset-work/aw2-004l/rejected-battle-motion-b-v1.png",
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "battle-motion-b-v2.png"
+    }
+  ]
+}

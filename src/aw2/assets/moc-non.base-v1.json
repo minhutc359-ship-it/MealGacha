@@ -3,7 +3,7 @@
   "spiritId": "aw2-moc-non",
   "displayName": "Mộc Non",
   "artVariantId": "base-v1",
-  "status": "REFERENCE_ASSETS_REVIEWED",
+  "status": "MOTION_REFERENCE_IMPLEMENTED",
   "fullCharacterComplete": false,
   "assets": {
     "world": {
@@ -70,6 +70,32 @@
         "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005"
       },
       "transparentFraction": 0.436507
+    },
+    "battle-motion-a-v1": {
+      "id": "aw2-moc-non:battle-motion-a-v1:base-v1",
+      "url": "/dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ab779aba6c4d96684f46da1e2c9fbfafd2309ad71df6bb0d7db01e1aa50b20b3",
+      "bytes": 1181920,
+      "source": {
+        "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.png",
+        "sha256": "e30bedd9b9b0c70e8583b18d33725e930ddaac0f509c128aceb11954e7d19d69"
+      },
+      "transparentFraction": 0.588166
+    },
+    "battle-motion-b-v1": {
+      "id": "aw2-moc-non:battle-motion-b-v1:base-v1",
+      "url": "/dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.webp",
+      "width": 1263,
+      "height": 1246,
+      "sha256": "f54f30247f25681e7a8202d18d11babe449c0872146a3ba73e52b395c48c639a",
+      "bytes": 1154062,
+      "source": {
+        "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.png",
+        "sha256": "92e62f88098eae9211ca13f089a8f843605f81cbe1d3e892a3b46f612870bd21"
+      },
+      "transparentFraction": 0.629519
     }
   },
   "frames": {
@@ -712,6 +738,550 @@
         211
       ],
       "maxEdgeAlpha": 1
+    },
+    "battle.idle.0": {
+      "asset": "battle-motion-a-v1",
+      "x": 0,
+      "y": 0,
+      "width": 322,
+      "height": 338,
+      "anchorX": 187.0,
+      "anchorY": 331,
+      "visibleBounds": [
+        116,
+        41,
+        258,
+        331
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.idle.1": {
+      "asset": "battle-motion-a-v1",
+      "x": 322,
+      "y": 0,
+      "width": 323,
+      "height": 338,
+      "anchorX": 152.0,
+      "anchorY": 329,
+      "visibleBounds": [
+        80,
+        43,
+        224,
+        329
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.idle.2": {
+      "asset": "battle-motion-a-v1",
+      "x": 645,
+      "y": 0,
+      "width": 320,
+      "height": 338,
+      "anchorX": 123.0,
+      "anchorY": 330,
+      "visibleBounds": [
+        44,
+        44,
+        202,
+        330
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.idle.3": {
+      "asset": "battle-motion-a-v1",
+      "x": 965,
+      "y": 0,
+      "width": 289,
+      "height": 338,
+      "anchorX": 111.5,
+      "anchorY": 331,
+      "visibleBounds": [
+        20,
+        38,
+        203,
+        331
+      ],
+      "maxEdgeAlpha": 2,
+      "renderScale": 1.45
+    },
+    "battle.move.0": {
+      "asset": "battle-motion-a-v1",
+      "x": 0,
+      "y": 338,
+      "width": 322,
+      "height": 311,
+      "anchorX": 188.0,
+      "anchorY": 305,
+      "visibleBounds": [
+        110,
+        18,
+        266,
+        305
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.move.1": {
+      "asset": "battle-motion-a-v1",
+      "x": 322,
+      "y": 338,
+      "width": 323,
+      "height": 311,
+      "anchorX": 156.5,
+      "anchorY": 305,
+      "visibleBounds": [
+        57,
+        18,
+        256,
+        305
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.move.2": {
+      "asset": "battle-motion-a-v1",
+      "x": 645,
+      "y": 338,
+      "width": 320,
+      "height": 311,
+      "anchorX": 119.5,
+      "anchorY": 308,
+      "visibleBounds": [
+        25,
+        20,
+        214,
+        308
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.move.3": {
+      "asset": "battle-motion-a-v1",
+      "x": 965,
+      "y": 338,
+      "width": 289,
+      "height": 311,
+      "anchorX": 113.0,
+      "anchorY": 308,
+      "visibleBounds": [
+        18,
+        15,
+        208,
+        308
+      ],
+      "maxEdgeAlpha": 2,
+      "renderScale": 1.45
+    },
+    "battle.attack.0": {
+      "asset": "battle-motion-a-v1",
+      "x": 0,
+      "y": 649,
+      "width": 322,
+      "height": 299,
+      "anchorX": 180.5,
+      "anchorY": 290,
+      "visibleBounds": [
+        71,
+        14,
+        290,
+        290
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.attack.1": {
+      "asset": "battle-motion-a-v1",
+      "x": 322,
+      "y": 649,
+      "width": 323,
+      "height": 299,
+      "anchorX": 168.5,
+      "anchorY": 286,
+      "visibleBounds": [
+        26,
+        24,
+        311,
+        286
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.attack.2": {
+      "asset": "battle-motion-a-v1",
+      "x": 645,
+      "y": 649,
+      "width": 320,
+      "height": 299,
+      "anchorX": 168.0,
+      "anchorY": 289,
+      "visibleBounds": [
+        24,
+        20,
+        312,
+        289
+      ],
+      "maxEdgeAlpha": 2,
+      "renderScale": 1.45
+    },
+    "battle.attack.3": {
+      "asset": "battle-motion-a-v1",
+      "x": 965,
+      "y": 649,
+      "width": 289,
+      "height": 299,
+      "anchorX": 129.5,
+      "anchorY": 288,
+      "visibleBounds": [
+        36,
+        25,
+        223,
+        288
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.cast.0": {
+      "asset": "battle-motion-a-v1",
+      "x": 0,
+      "y": 948,
+      "width": 322,
+      "height": 306,
+      "anchorX": 182.5,
+      "anchorY": 278,
+      "visibleBounds": [
+        83,
+        18,
+        282,
+        278
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.cast.1": {
+      "asset": "battle-motion-a-v1",
+      "x": 322,
+      "y": 948,
+      "width": 323,
+      "height": 306,
+      "anchorX": 152.0,
+      "anchorY": 282,
+      "visibleBounds": [
+        61,
+        13,
+        243,
+        282
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.cast.2": {
+      "asset": "battle-motion-a-v1",
+      "x": 645,
+      "y": 948,
+      "width": 320,
+      "height": 306,
+      "anchorX": 151.0,
+      "anchorY": 284,
+      "visibleBounds": [
+        24,
+        11,
+        278,
+        284
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.cast.3": {
+      "asset": "battle-motion-a-v1",
+      "x": 965,
+      "y": 948,
+      "width": 289,
+      "height": 306,
+      "anchorX": 123.0,
+      "anchorY": 287,
+      "visibleBounds": [
+        36,
+        9,
+        210,
+        287
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.hit.0": {
+      "asset": "battle-motion-b-v1",
+      "x": 0,
+      "y": 0,
+      "width": 330,
+      "height": 341,
+      "anchorX": 182.5,
+      "anchorY": 328,
+      "visibleBounds": [
+        79,
+        50,
+        286,
+        328
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.guard.0": {
+      "asset": "battle-motion-b-v1",
+      "x": 0,
+      "y": 341,
+      "width": 330,
+      "height": 321,
+      "anchorX": 189.5,
+      "anchorY": 303,
+      "visibleBounds": [
+        82,
+        17,
+        297,
+        303
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
+    },
+    "battle.ultimate.0": {
+      "asset": "battle-motion-b-v1",
+      "x": 0,
+      "y": 662,
+      "width": 330,
+      "height": 296,
+      "anchorX": 188.5,
+      "anchorY": 293,
+      "visibleBounds": [
+        64,
+        28,
+        313,
+        293
+      ],
+      "maxEdgeAlpha": 4,
+      "renderScale": 1.45
+    },
+    "battle.defeat.0": {
+      "asset": "battle-motion-b-v1",
+      "x": 0,
+      "y": 958,
+      "width": 330,
+      "height": 288,
+      "anchorX": 183.0,
+      "anchorY": 262,
+      "visibleBounds": [
+        88,
+        5,
+        278,
+        262
+      ],
+      "maxEdgeAlpha": 2,
+      "renderScale": 1.45
+    },
+    "battle.hit.1": {
+      "asset": "battle-motion-b-v1",
+      "x": 330,
+      "y": 0,
+      "width": 324,
+      "height": 341,
+      "anchorX": 178.5,
+      "anchorY": 322,
+      "visibleBounds": [
+        70,
+        67,
+        287,
+        322
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
+    },
+    "battle.guard.1": {
+      "asset": "battle-motion-b-v1",
+      "x": 330,
+      "y": 341,
+      "width": 324,
+      "height": 321,
+      "anchorX": 177.5,
+      "anchorY": 303,
+      "visibleBounds": [
+        58,
+        47,
+        297,
+        303
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
+    },
+    "battle.ultimate.1": {
+      "asset": "battle-motion-b-v1",
+      "x": 330,
+      "y": 662,
+      "width": 324,
+      "height": 314,
+      "anchorX": 181.0,
+      "anchorY": 291,
+      "visibleBounds": [
+        60,
+        22,
+        302,
+        291
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.defeat.1": {
+      "asset": "battle-motion-b-v1",
+      "x": 330,
+      "y": 976,
+      "width": 324,
+      "height": 270,
+      "anchorX": 182.5,
+      "anchorY": 241,
+      "visibleBounds": [
+        59,
+        40,
+        306,
+        241
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.hit.2": {
+      "asset": "battle-motion-b-v1",
+      "x": 654,
+      "y": 0,
+      "width": 322,
+      "height": 341,
+      "anchorX": 152.0,
+      "anchorY": 326,
+      "visibleBounds": [
+        53,
+        81,
+        251,
+        326
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
+    },
+    "battle.guard.2": {
+      "asset": "battle-motion-b-v1",
+      "x": 654,
+      "y": 341,
+      "width": 322,
+      "height": 320,
+      "anchorX": 167.5,
+      "anchorY": 310,
+      "visibleBounds": [
+        51,
+        31,
+        284,
+        310
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.ultimate.2": {
+      "asset": "battle-motion-b-v1",
+      "x": 654,
+      "y": 661,
+      "width": 322,
+      "height": 318,
+      "anchorX": 177.5,
+      "anchorY": 312,
+      "visibleBounds": [
+        41,
+        13,
+        314,
+        312
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.defeat.2": {
+      "asset": "battle-motion-b-v1",
+      "x": 654,
+      "y": 979,
+      "width": 322,
+      "height": 267,
+      "anchorX": 151.5,
+      "anchorY": 240,
+      "visibleBounds": [
+        11,
+        33,
+        292,
+        240
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.hit.3": {
+      "asset": "battle-motion-b-v1",
+      "x": 976,
+      "y": 0,
+      "width": 287,
+      "height": 344,
+      "anchorX": 145.5,
+      "anchorY": 340,
+      "visibleBounds": [
+        56,
+        44,
+        235,
+        340
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.45
+    },
+    "battle.guard.3": {
+      "asset": "battle-motion-b-v1",
+      "x": 976,
+      "y": 344,
+      "width": 287,
+      "height": 317,
+      "anchorX": 146.0,
+      "anchorY": 307,
+      "visibleBounds": [
+        54,
+        14,
+        238,
+        307
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
+    },
+    "battle.ultimate.3": {
+      "asset": "battle-motion-b-v1",
+      "x": 976,
+      "y": 661,
+      "width": 287,
+      "height": 315,
+      "anchorX": 146.0,
+      "anchorY": 299,
+      "visibleBounds": [
+        54,
+        5,
+        238,
+        299
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
+    },
+    "battle.defeat.3": {
+      "asset": "battle-motion-b-v1",
+      "x": 976,
+      "y": 976,
+      "width": 287,
+      "height": 270,
+      "anchorX": 143.5,
+      "anchorY": 247,
+      "visibleBounds": [
+        25,
+        27,
+        262,
+        247
+      ],
+      "maxEdgeAlpha": 0,
+      "renderScale": 1.45
     }
   },
   "battle": {
@@ -722,7 +1292,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.idle"
+          "frame": "battle.idle.0"
+        },
+        {
+          "atMs": 300,
+          "frame": "battle.idle.1"
+        },
+        {
+          "atMs": 600,
+          "frame": "battle.idle.2"
+        },
+        {
+          "atMs": 900,
+          "frame": "battle.idle.3"
         }
       ],
       "motion": [
@@ -752,7 +1334,8 @@
         }
       ],
       "markers": [],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.idle"
     },
     "move": {
       "id": "aw2-moc-non:battle:move:base-v1",
@@ -761,7 +1344,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.move"
+          "frame": "battle.move.0"
+        },
+        {
+          "atMs": 170,
+          "frame": "battle.move.1"
+        },
+        {
+          "atMs": 340,
+          "frame": "battle.move.2"
+        },
+        {
+          "atMs": 510,
+          "frame": "battle.move.3"
         }
       ],
       "motion": [
@@ -791,7 +1386,8 @@
         }
       ],
       "markers": [],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.move"
     },
     "attack": {
       "id": "aw2-moc-non:battle:attack:base-v1",
@@ -800,15 +1396,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.idle"
+          "frame": "battle.attack.0"
         },
         {
-          "atMs": 120,
-          "frame": "battle.attack"
+          "atMs": 260,
+          "frame": "battle.attack.1"
+        },
+        {
+          "atMs": 700,
+          "frame": "battle.attack.2"
         },
         {
           "atMs": 820,
-          "frame": "battle.idle"
+          "frame": "battle.attack.3"
         }
       ],
       "motion": [
@@ -849,7 +1449,8 @@
           "skill": "basic"
         }
       ],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.attack"
     },
     "cast": {
       "id": "aw2-moc-non:battle:cast:base-v1",
@@ -858,7 +1459,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.cast"
+          "frame": "battle.cast.0"
+        },
+        {
+          "atMs": 210,
+          "frame": "battle.cast.1"
+        },
+        {
+          "atMs": 420,
+          "frame": "battle.cast.2"
+        },
+        {
+          "atMs": 740,
+          "frame": "battle.cast.3"
         }
       ],
       "motion": [
@@ -894,7 +1507,8 @@
           "skill": "auto"
         }
       ],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.cast"
     },
     "hit": {
       "id": "aw2-moc-non:battle:hit:base-v1",
@@ -903,7 +1517,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.hit"
+          "frame": "battle.hit.0"
+        },
+        {
+          "atMs": 80,
+          "frame": "battle.hit.1"
+        },
+        {
+          "atMs": 180,
+          "frame": "battle.hit.2"
+        },
+        {
+          "atMs": 340,
+          "frame": "battle.hit.3"
         }
       ],
       "motion": [
@@ -933,7 +1559,8 @@
         }
       ],
       "markers": [],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.hit"
     },
     "guard": {
       "id": "aw2-moc-non:battle:guard:base-v1",
@@ -942,7 +1569,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.guard"
+          "frame": "battle.guard.0"
+        },
+        {
+          "atMs": 180,
+          "frame": "battle.guard.1"
+        },
+        {
+          "atMs": 400,
+          "frame": "battle.guard.2"
+        },
+        {
+          "atMs": 700,
+          "frame": "battle.guard.3"
         }
       ],
       "motion": [
@@ -972,7 +1611,8 @@
         }
       ],
       "markers": [],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.guard"
     },
     "ultimate": {
       "id": "aw2-moc-non:battle:ultimate:base-v1",
@@ -981,7 +1621,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.ultimate"
+          "frame": "battle.ultimate.0"
+        },
+        {
+          "atMs": 280,
+          "frame": "battle.ultimate.1"
+        },
+        {
+          "atMs": 560,
+          "frame": "battle.ultimate.2"
+        },
+        {
+          "atMs": 960,
+          "frame": "battle.ultimate.3"
         }
       ],
       "motion": [
@@ -1017,7 +1669,8 @@
           "skill": "ultimate"
         }
       ],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.ultimate"
     },
     "defeat": {
       "id": "aw2-moc-non:battle:defeat:base-v1",
@@ -1026,7 +1679,19 @@
       "frames": [
         {
           "atMs": 0,
-          "frame": "battle.defeat"
+          "frame": "battle.defeat.0"
+        },
+        {
+          "atMs": 220,
+          "frame": "battle.defeat.1"
+        },
+        {
+          "atMs": 480,
+          "frame": "battle.defeat.2"
+        },
+        {
+          "atMs": 760,
+          "frame": "battle.defeat.3"
         }
       ],
       "motion": [
@@ -1048,7 +1713,8 @@
         }
       ],
       "markers": [],
-      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+      "method": "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending",
+      "reducedMotionFrame": "battle.defeat"
     }
   },
   "world": {
@@ -1140,7 +1806,7 @@
         },
         "scale": 0.75
       },
-      "scope": "animation reference; actual combat not implemented",
+      "scope": "reference presentation used by development combat; final balance/full-character QA pending",
       "fxCueAtMs": [
         700
       ]
@@ -1174,7 +1840,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "animation reference; actual combat not implemented",
+      "scope": "reference presentation used by development combat; final balance/full-character QA pending",
       "fxCueAtMs": [
         420
       ]
@@ -1208,7 +1874,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "animation reference; actual combat not implemented",
+      "scope": "reference presentation used by development combat; final balance/full-character QA pending",
       "fxCueAtMs": [
         180
       ]
@@ -1242,7 +1908,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "animation reference; actual combat not implemented",
+      "scope": "reference presentation used by development combat; final balance/full-character QA pending",
       "fxCueAtMs": [
         560
       ]
@@ -1258,7 +1924,7 @@
     "licenseStatus": "REVIEW_REQUIRED",
     "commercialRelease": "NOT_CLEARED",
     "audio": "original deterministic synthesis, no external recordings",
-    "processing": "unchanged source PNGs; lossless WebP encoding with real alpha; measured cell rectangles/visible pivots; portrait also used as identity reference; no repaint/masking/mirroring/resizing",
+    "processing": "unchanged source PNGs; lossless WebP encoding with real alpha; measured cell rectangles/visible pivots; portrait also used as identity reference; no repaint/masking/mirroring/resizing; motion RGBA unchanged, calibrated per-column rectangles/anchors and logical renderScale metadata only",
     "alphaEdgeTolerance": 9
   }
 }

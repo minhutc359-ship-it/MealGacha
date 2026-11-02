@@ -1,0 +1,98 @@
+{
+  "task": "AW2-004K",
+  "spiritId": "aw2-nhien",
+  "date": "2026-10-22",
+  "generator": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "externalReferences": [],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "fullCharacterComplete": false,
+  "promptFile": "prompts.json",
+  "history": [
+    {
+      "callId": "AW2-004K-1",
+      "workspacePath": ".asset-work/aw2-004k/rejected-portrait.png",
+      "selected": false,
+      "reason": "Superseded by targeted transparent-background portrait refinement",
+      "sha256": "06110aeb3bd59d23f44bbb87496d073e8221aa7a5c7c10e25b19c2523051816e",
+      "referenceInputs": []
+    },
+    {
+      "callId": "AW2-004K-2",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/portrait.png",
+      "selected": true,
+      "reason": "Selected full-body identity reference; alpha outside subject checked",
+      "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13",
+      "referenceInputs": [
+        {
+          "path": ".asset-work/aw2-004k/rejected-portrait.png",
+          "sha256": "06110aeb3bd59d23f44bbb87496d073e8221aa7a5c7c10e25b19c2523051816e"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-3",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/world.png",
+      "selected": true,
+      "reason": "Four authored directions;16 measured safe cells",
+      "sha256": "e672817665d88c05efedc39f88b674cdcc11374c8b84d2426fea34faa8580ad3",
+      "referenceInputs": [
+        {
+          "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+          "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-4",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/battle-motion-a-v1.png",
+      "selected": true,
+      "reason": "Four states/16 safe measured cels; max edge alpha6/255",
+      "sha256": "0faa90be9f0e105a0354701be01124b66d580620406906d9f0ec23bc78864139",
+      "referenceInputs": [
+        {
+          "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+          "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-5",
+      "workspacePath": ".asset-work/aw2-004k/rejected-battle-motion-b-v1.png",
+      "selected": false,
+      "reason": "Rejected: no safe row cut, minimum edge214/255; outer top9/255",
+      "sha256": "e5990d38b6ae062c24b888a014e44835efa94174c134acf436291b455450755b",
+      "referenceInputs": [
+        {
+          "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+          "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-6",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/battle-motion-b-v2.png",
+      "selected": true,
+      "reason": "Selected compact recompose;16 safe cels, edge1/255",
+      "sha256": "b18775405ae54941ad470f1ba63002ab68dd43e59cccb75a83b3cd740781fea1",
+      "referenceInputs": [
+        {
+          "path": ".asset-work/aw2-004k/rejected-battle-motion-b-v1.png",
+          "sha256": "e5990d38b6ae062c24b888a014e44835efa94174c134acf436291b455450755b"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-7",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/fx.png",
+      "selected": true,
+      "reason": "16 finite own contact/sweep/rhythm/ultimate cells; alpha-safe",
+      "sha256": "b019e165489c445e55f4fa5ada98adef7aae7e12a392775fb6c77d9e115e388d",
+      "referenceInputs": []
+    }
+  ],
+  "processing": "Preserve selected tool output PNG bytes; measure per-column alpha-safe rectangles and foot anchors; logical renderScale only; lossless visible RGBA+alpha WebPs. No pixel repaint, mask, mirror, resize or borrowed character art.",
+  "audio": "Four original deterministic synthesized cues using preserved build-aw2-than-assets.py helper; not recordings/music, human listening pending",
+  "independentReview": "NOT_RUN: anatomy/face/hands/tools/cloth/turn/contact/loops/full art, devices, human listening and rights"
+}

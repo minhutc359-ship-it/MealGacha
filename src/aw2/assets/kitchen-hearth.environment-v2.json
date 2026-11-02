@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "id": "aw2-environment-kitchen-hearth-v2",
+  "zoneId": "aw2-zone-kitchen-hearth",
+  "status": "REFERENCE_ENVIRONMENT",
+  "fullEnvironmentComplete": false,
+  "canvas": {
+    "width": 640,
+    "height": 384
+  },
+  "landscape": {
+    "x": -448,
+    "y": -320,
+    "width": 1536,
+    "height": 1024
+  },
+  "camera": {
+    "centerX": 320,
+    "centerY": 192,
+    "followZoom": 0.8,
+    "overviewZoom": 0.42
+  },
+  "safeSourcePlayfield": {
+    "x": 464,
+    "y": 336,
+    "width": 608,
+    "height": 352
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-kitchen-hearth-v2:landscape",
+      "url": "/dev/aw2/assets/environments/kitchen-hearth/v2/landscape.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2517370,
+      "sha256": "2b5cabcdfad4832931d1fe7f26f745b2f2a0b121938a236fa3750af715accf86",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-hearth/v2/landscape-source.png",
+        "bytes": 3216117,
+        "sha256": "ce1849afd03ddb4237ce240489562c3bce7e7da429c4887fe7559b1b8c7740eb"
+      }
+    },
+    "puzzles": {
+      "id": "aw2-environment-kitchen-hearth-v1:puzzles",
+      "url": "/dev/aw2/assets/environments/kitchen-hearth/v1/puzzles.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 680906,
+      "sha256": "350bf9270245ecc6c2c798beeacb180fefa75b24d620d460af3089d278061906",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-hearth/v1/puzzles-source.png",
+        "bytes": 970827,
+        "sha256": "9dbcf7535f738f4064b6d3d084f4806665045ad2bdb8da4f38afd460e327039a"
+      }
+    },
+    "sideboard": {
+      "id": "aw2-environment-kitchen-table-v1:sideboard",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/sideboard.webp",
+      "width": 1322,
+      "height": 1190,
+      "bytes": 733646,
+      "sha256": "5f1939c67f0342e46e4b018c011f7adcd3a3a2d3471ed665b4f735f96c83a5ef",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png",
+        "bytes": 1049015,
+        "sha256": "71d9d181ec16826c51bf039ec00f723c9334fd595e3dbfdb7a443543c4abfdd4"
+      },
+      "frame": {
+        "x": 69,
+        "y": 278,
+        "width": 1187,
+        "height": 686
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    }
+  },
+  "budget": {
+    "compressedBytes": 4858990,
+    "decodedRgbaBytes": 25165744,
+    "maxCompressedBytes": 7000000,
+    "maxDecodedRgbaBytes": 40000000
+  },
+  "provenance": {
+    "task": "AW2-006L",
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v2/prompts.json",
+      "sha256": "318b0a1b124086cc40ebc80ee6a0d844c4cf482b3575f9e9aeaec094efb362bf"
+    },
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png",
+        "role": "edit target",
+        "sha256": "c630b749e4f918e709126da49b3692f0d97e2d1f7bff239fbf814acf71c7db86",
+        "commit": "4d463302f95a33788ac9cb9c8274f12b18d86281",
+        "blob": "c9e8b9902f7874825f19fca476725fa6f2816195"
+      },
+      {
+        "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+        "role": "own style reference",
+        "sha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27",
+        "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+        "blob": "ab97b6ef05b562e644625617480557517ec47d44"
+      },
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "own style reference",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected opaque PNG; exact RGBA lossless WebP. No pixel painting/masking/cropping/resizing. Existing v1 props and own four-facing boss reused unchanged. Uniform 1:1 scene placement; native640x384 gameplay region unchanged.",
+    "builder": "dev/tools/build-aw2-interior-landscapes.py",
+    "pillow": "10.2.0"
+  }
+}

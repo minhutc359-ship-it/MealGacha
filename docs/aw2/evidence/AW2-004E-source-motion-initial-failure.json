@@ -1,0 +1,93 @@
+{
+  "task": "AW2-004E",
+  "spiritId": "aw2-lam",
+  "status": "FAIL",
+  "flavor": "source",
+  "checks": [
+    "Lam Lam preview declares four-cel reference motion without full-character approval",
+    "idle: browser draws all four declared distinct cels",
+    "idle: preview pause freezes authored timeline",
+    "move: browser draws all four declared distinct cels",
+    "move: preview pause freezes authored timeline",
+    "attack: browser draws all four declared distinct cels",
+    "attack: preview pause freezes authored timeline",
+    "cast: browser draws all four declared distinct cels",
+    "cast: preview pause freezes authored timeline",
+    "hit: browser draws all four declared distinct cels",
+    "hit: preview pause freezes authored timeline",
+    "guard: browser draws all four declared distinct cels",
+    "guard: preview pause freezes authored timeline",
+    "ultimate: browser draws all four declared distinct cels",
+    "ultimate: preview pause freezes authored timeline",
+    "defeat: browser draws all four declared distinct cels",
+    "defeat: preview pause freezes authored timeline",
+    "Lam reference flight stays between launch260 and impact700; separate impact art follows",
+    "Lam reference ultimate crosses exactly two markers/cues at520/1040",
+    "Reduced motion holds the preserved authored attack pose",
+    "Four existing authored WAV cues decode; audio remains opt-in",
+    "Preserved down world sprite resolves",
+    "Preserved left world sprite resolves",
+    "Preserved right world sprite resolves",
+    "Preserved up world sprite resolves",
+    "Preview controls fit 320px",
+    "Preview controls fit 390px",
+    "Preview controls fit 768px",
+    "Actual five-unit combat draws Lam Lam motion atlas",
+    "Combat pause freezes presentation clock across RAFs",
+    "Explicit paused step advances rules once while presentation remains frozen",
+    "Resume continues presentation time"
+  ],
+  "errors": [],
+  "timelines": {
+    "idle": [
+      "battle.idle.0",
+      "battle.idle.1",
+      "battle.idle.2",
+      "battle.idle.3"
+    ],
+    "move": [
+      "battle.move.0",
+      "battle.move.1",
+      "battle.move.2",
+      "battle.move.3"
+    ],
+    "attack": [
+      "battle.attack.0",
+      "battle.attack.1",
+      "battle.attack.2",
+      "battle.attack.3"
+    ],
+    "cast": [
+      "battle.cast.0",
+      "battle.cast.1",
+      "battle.cast.2",
+      "battle.cast.3"
+    ],
+    "hit": [
+      "battle.hit.0",
+      "battle.hit.1",
+      "battle.hit.2",
+      "battle.hit.3"
+    ],
+    "guard": [
+      "battle.guard.0",
+      "battle.guard.1",
+      "battle.guard.2",
+      "battle.guard.3"
+    ],
+    "ultimate": [
+      "battle.ultimate.0",
+      "battle.ultimate.1",
+      "battle.ultimate.2",
+      "battle.ultimate.3"
+    ],
+    "defeat": [
+      "battle.defeat.0",
+      "battle.defeat.1",
+      "battle.defeat.2",
+      "battle.defeat.3"
+    ]
+  },
+  "confirmedContacts": [],
+  "failure": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

@@ -88,14 +88,8 @@ def track(*keys):
             for t, x, y, rotation, scale, opacity in keys]
 
 
-def main():
-    sources = {name: encode(name) for name in ["reference", "world", "battle", "portrait", "fx"]}
-    all_frames = frames("world", [0, 313, 627, 940, 1254], [0, 318, 626, 930, 1254],
-                        [[f"world.{direction}.{i}" for i in range(4)] for direction in ["down", "left", "right", "up"]])
-    all_frames.update(frames("battle", [0, 384, 768, 1152, 1536], [0, 546, 1024],
-                             [[f"battle.{state}" for state in STATES[:4]], [f"battle.{state}" for state in STATES[4:]]]))
-    all_frames.update(frames("fx", [0, 313, 627, 940, 1254], [0, 313, 627, 940, 1254],
-                             [[f"fx.{skill}.{i}" for i in range(4)] for skill in ["basic", "auto", "passive", "ultimate"]]))
+def reference_battle_clips(identity="aw2-than"):
+    """Reference timelines are explicit inputs, independent of mutable manifests."""
     durations = dict(zip(STATES, [1200, 680, 620, 1080, 520, 1000, 1320, 1000]))
     contacts = {"attack": (240, "basic"), "cast": (420, "auto"), "ultimate": (560, "ultimate")}
     clips = {}
@@ -111,9 +105,48 @@ def main():
         if state == "ultimate": keys = track((0, 0, 0, 0, 0.96, 1), (560, 0, -4, 0, 1.03, 1), (1320, 0, 0, 0, 1, 1))
         if state == "defeat": keys = track((0, 0, 0, 0, 1, 1), (1000, 0, 0, 0, 1, 0.8))
         markers = [{"atMs": contacts[state][0], "kind": "contact", "skill": contacts[state][1]}] if state in contacts else []
-        clips[state] = {"id": f"aw2-than:battle:{state}:base-v1", "durationMs": duration, "loop": loop,
+        clips[state] = {"id": f"{identity}:battle:{state}:base-v1", "durationMs": duration, "loop": loop,
                         "frames": cells, "motion": keys, "markers": markers,
                         "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"}
+    return clips
+
+
+def apply_motion(data):
+    """Calibrate unchanged generated sheets; no pixel edits or resizing."""
+    sheets = [
+        ("battle-motion-a-v2", STATES[:4], [0, 334, 649, 955, 1254], [0, 375, 655, 940, 1254]),
+        ("battle-motion-b-v2", STATES[4:], [0, 324, 614, 951, 1254], [0, 350, 680, 950, 1254]),
+    ]
+    timing = {"idle": [0, 300, 600, 900], "move": [0, 170, 340, 510],
+              "attack": [0, 120, 240, 420], "cast": [0, 210, 420, 740],
+              "hit": [0, 80, 180, 340], "guard": [0, 180, 400, 700],
+              "ultimate": [0, 280, 560, 960], "defeat": [0, 220, 480, 760]}
+    for name, states, xs, ys in sheets:
+        data["assets"][name] = encode(name)
+        cells = frames(name, xs, ys, [[f"battle.{state}.{i}" for i in range(4)] for state in states])
+        for frame in cells.values():
+            frame["renderScale"] = 1.6
+        data["frames"].update(cells)
+        for state in states:
+            clip = data["battle"][state]
+            clip["frames"] = [{"atMs": at, "frame": f"battle.{state}.{i}"} for i, at in enumerate(timing[state])]
+            clip["reducedMotionFrame"] = f"battle.{state}"
+            clip["method"] = "four distinct image_gen cels with authored frame timing and interpolated transforms; reference animation, independent review pending"
+    data["status"] = "MOTION_REFERENCE_IMPLEMENTED"
+    data["provenance"]["processing"] += "; motion sheets preserved unchanged, calibrated cells and logical renderScale metadata only"
+    for skill in data["skills"].values():
+        skill["scope"] = "presentation reference used by development combat; final balance/full-character QA pending"
+
+
+def main():
+    sources = {name: encode(name) for name in ["reference", "world", "battle", "portrait", "fx"]}
+    all_frames = frames("world", [0, 313, 627, 940, 1254], [0, 318, 626, 930, 1254],
+                        [[f"world.{direction}.{i}" for i in range(4)] for direction in ["down", "left", "right", "up"]])
+    all_frames.update(frames("battle", [0, 384, 768, 1152, 1536], [0, 546, 1024],
+                             [[f"battle.{state}" for state in STATES[:4]], [f"battle.{state}" for state in STATES[4:]]]))
+    all_frames.update(frames("fx", [0, 313, 627, 940, 1254], [0, 313, 627, 940, 1254],
+                             [[f"fx.{skill}.{i}" for i in range(4)] for skill in ["basic", "auto", "passive", "ultimate"]]))
+    clips = reference_battle_clips()
     sounds = {
         "basic": cue("basic", .18, [(160, -300, .28), (740, -1200, .12)], .12),
         "auto": cue("auto", .42, [(294, 180, .16), (440, 120, .12), (660, 50, .08)]),
@@ -133,7 +166,7 @@ def main():
                       for direction in ["down", "left", "right", "up"]},
             "skills": {slot: {"id": f"aw2-than:skill:{slot}", "displayName": name,
                               "battleState": state, "fx": [f"fx.{slot}.{i}" for i in range(4)],
-                              "fxTriggerAtMs": 180 if slot == "passive" else contacts[state][0],
+                              "fxTriggerAtMs": 180 if slot == "passive" else clips[state]["markers"][0]["atMs"],
                               "fxPlacement": placements[slot],
                               "trigger": "shield-expired event from combat" if slot == "passive" else "animation contact marker; combat still owns gameplay",
                               "fxFrameMs": 100 if slot != "ultimate" else 160, "audio": sounds[slot],
@@ -145,6 +178,7 @@ def main():
                            "commercialRelease": "NOT_CLEARED", "audio": "original deterministic synthesis, no external recordings",
                            "processing": "lossless WebP encoding; source RGBA retained; explicit measured cell rectangles and visible-foot anchors; no painting/mirroring/resizing",
                            "alphaEdgeTolerance": 8}}
+    apply_motion(data)
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"status": "PASS", "frames": len(all_frames), "battleStates": len(clips),

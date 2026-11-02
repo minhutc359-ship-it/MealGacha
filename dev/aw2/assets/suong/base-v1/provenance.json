@@ -56,5 +56,46 @@
   "fullCharacterComplete": false,
   "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
   "python": "3.12.3",
-  "Pillow": "10.2.0"
+  "Pillow": "10.2.0",
+  "motionUpdate": {
+    "task": "AW2-004G",
+    "spiritId": "aw2-suong",
+    "generator": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "externalInputs": [],
+    "references": [
+      "dev/aw2/assets/suong/base-v1/portrait.png",
+      "dev/aw2/assets/suong/base-v1/battle.png"
+    ],
+    "outputs": [
+      {
+        "callId": "AW2-004G-1",
+        "prompt": "Create an ORIGINAL production HD anime game motion sprite sheet for Sương Lành, matching ONLY the supplied project-owned identity references. Reference1 portrait defines face/hair/costume; reference2 defines full body costume and stance. Young adult woman, violet eyes, shoulder-length dark plum hair half tied with small ivory petal clip, ivory scarf, wide pale lavender robe with white steam embroidery and dark purple trim, dark plum ankle-length trousers/skirt, ivory flat shoes, small rolled ivory parchment in left hand. Calm mist mage, right-facing three-quarter view. Exactly 4 columns by 4 rows, 16 independent full-body cels, equal cell spacing, transparent RGBA background. Row1 idle breathing sequence; row2 walking right sequence with distinct alternating feet; row3 basic attack sequence: gather, right-hand launch, right-hand contact extension, recover; row4 zone spell sequence: prepare scroll, unfurl, guide mist with open hand, settle. Preserve costume/face/proportions/hand ownership across all cels. Each character occupies only central45% of cell width and55% of cell height; leave at least50px fully transparent clear gutters around ALL sides, including flowing sleeves/hair/scarf and feet. Keep feet visible and near consistent baselines. Distinct sequential poses, no repeated identical cels. No magic particles or FX, no glow, no floor/shadow, no background, no text/labels/grid/watermarks, no weapons except parchment. Do not copy characters or styles of existing commercial games.",
+        "selected": true,
+        "attempt": 1,
+        "workspacePath": "dev/aw2/assets/suong/base-v1/battle-motion-a-v1.png",
+        "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-ad089561-c926-470d-be90-72ff7641cc76.png",
+        "sha256": "1e0aa25456b915cf18a12d6c734e59626ca0083cd05f741167f6e47a240bda27"
+      },
+      {
+        "callId": "AW2-004G-2",
+        "prompt": "Create an ORIGINAL production HD anime game motion sprite sheet for Sương Lành, matching ONLY the supplied project-owned identity references. Reference1 portrait defines face/hair/costume; reference2 defines full body costume and stance. Young adult woman, violet eyes, shoulder-length dark plum hair half tied with small ivory petal clip, ivory scarf, wide pale lavender robe with white steam embroidery and dark purple trim, dark plum ankle-length trousers/skirt, ivory flat shoes, small rolled ivory parchment in left hand. Calm mist mage, right-facing three-quarter view. STRICT evenly spaced 4 columns by 4 rows, 16 independent full-body cels, equal cell spacing, transparent RGBA background. Row1 hit reaction: startle, recoil, regain balance, settle; row2 guard: lift sleeve, brace behind sleeve, hold, lower sleeve; row3 ultimate: ready parchment, raise open right hand, extend palm out, recover; row4 defeat: stagger, kneel, lower body, seated exhausted with eyes closed. Not gore. Preserve costume/face/proportions/hand ownership across all cels. Each character occupies only central40% of cell width and50% of cell height; leave at least50px fully transparent clear gutters around ALL sides, including flowing sleeves/hair/scarf and feet. Keep feet visible and near consistent baselines. Distinct sequential poses, no repeated identical cels. All drawn pixels including shoes must remain far inside each cell. Solid clean edges, no stray colored or translucent specks. No magic particles or FX, no glow, no floor/shadow, no background, no text/labels/grid/watermarks, no weapons except parchment. Do not copy characters or styles of existing commercial games.",
+        "selected": true,
+        "attempt": 1,
+        "workspacePath": "dev/aw2/assets/suong/base-v1/battle-motion-b-v1.png",
+        "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-49389c79-2960-4a1f-83df-a0a0669781e8.png",
+        "sha256": "2b27053234303eea9b505a20bb60af3a47d50550b976e7addd92f2384f5ce916"
+      }
+    ],
+    "referenceSha256": {
+      "dev/aw2/assets/suong/base-v1/portrait.png": "84659cbd7d4be062a18a8eaaec2a93c3c679bf9163e7d45644f6a78aae7493fd",
+      "dev/aw2/assets/suong/base-v1/battle.png": "243ec6912c587b60a4dbb78681ffdde9ca946d7a0a1f668154c25135bebf0f5f"
+    },
+    "date": "2026-10-21",
+    "processing": "source RGBA unchanged; lossless WebP; measured per-column rectangles/anchors and logical renderScale1.45; no repaint/masking/mirroring/resizing",
+    "rejections": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "fullCharacterComplete": false
+  }
 }

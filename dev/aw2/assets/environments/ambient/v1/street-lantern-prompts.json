@@ -1,0 +1,22 @@
+{
+  "task": "AW2-006N",
+  "tool": "OpenAI built-in image_gen",
+  "calls": 1,
+  "prompt": "Create a transparent PNG sprite atlas for a cozy Vietnamese-inspired lantern street in a chibi RPG. Exactly four clearly separated frames in one horizontal row: calm, lift, bright, settle. Each frame is the same small soft amber-gold lantern light bloom/halo, subtle and non-flashing, painterly pixel-like edges, designed to overlay an existing shop lantern at 24x24 world units. No lantern object, no flame, no characters, no text, no labels, no background, no buildings, no border. Generous fully transparent gutters between frames and around every outer edge. Avoid cropping. Preserve alpha transparency.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "role": "own project style reference",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "27893fcdb294368a46db5448531743544cf6a8d8",
+      "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/shops-source.png",
+      "role": "own project lantern placement reference",
+      "commit": "f7a51673061d5fb1017c3da78d7109cf649ea48b",
+      "blob": "1bda5e53e87230f0401596955d1dd128e15dba5b",
+      "sha256": "33113f1dab1cb6afd9723846543e0606107880bb0d593445963a2303e7a73a09"
+    }
+  ]
+}

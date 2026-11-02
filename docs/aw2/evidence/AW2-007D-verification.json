@@ -1,0 +1,369 @@
+{
+  "task": "AW2-007D",
+  "date": "2026-10-22",
+  "status": "PASS development subset",
+  "branch": "game/adventure-world-2",
+  "base": "c56367a5836bc70efa7dbc92680ae567b7fb7bee",
+  "source": "910b55bf977557f11be03111afa40283df0fbcf1",
+  "environment": {
+    "os": "Windows 10.0.26200 x64",
+    "node": "25.2.0",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "playwright": "1.64.1",
+    "chrome": "155.0.8059.85"
+  },
+  "unit": {
+    "status": "PASS",
+    "total": 1036,
+    "passed": 1036,
+    "failed": 0,
+    "skipped": 0,
+    "files": 102,
+    "aw2Tests": 243,
+    "newBossTests": 10,
+    "nodeOptions": "--no-experimental-webstorage",
+    "raw": ".asset-work/aw2-007d/unit.json"
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS after final UI refinement"
+  },
+  "formatSyntaxWhitespace": "PASS",
+  "builds": {
+    "stable": {
+      "files": 851,
+      "textArtifacts": 76,
+      "aw2Leaks": 0
+    },
+    "review": {
+      "files": 107,
+      "bytes": 34718397,
+      "sourceExclusion": "PASS"
+    }
+  },
+  "simulation": {
+    "profile": "aw2-forgotten-host-development-v2",
+    "seed": {
+      "id": "aw2-enemy-forgotten-host",
+      "spiritId": "aw2-enemy-forgotten-host",
+      "boss": true,
+      "bossProfile": "aw2-forgotten-host-development-v2",
+      "hp": 1000,
+      "maxHp": 1000,
+      "attack": 135,
+      "defense": 14,
+      "position": 82,
+      "range": 8,
+      "nextBasicTick": 2
+    },
+    "status": "PASS development fixture, not final balance",
+    "outcomes": [
+      {
+        "experience": 0,
+        "strategy": "auto-only",
+        "result": "enemy-win",
+        "tick": 51,
+        "survivingPlayers": 0
+      },
+      {
+        "experience": 0,
+        "strategy": "ultimates-from-tick5",
+        "result": "player-win",
+        "tick": 48,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 0,
+        "strategy": "hold-damage-ultimates-for-barrier",
+        "result": "player-win",
+        "tick": 43,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 160,
+        "strategy": "auto-only",
+        "result": "player-win",
+        "tick": 50,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 160,
+        "strategy": "ultimates-from-tick5",
+        "result": "player-win",
+        "tick": 45,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 160,
+        "strategy": "hold-damage-ultimates-for-barrier",
+        "result": "player-win",
+        "tick": 42,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 205,
+        "strategy": "auto-only",
+        "result": "player-win",
+        "tick": 50,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 205,
+        "strategy": "ultimates-from-tick5",
+        "result": "player-win",
+        "tick": 45,
+        "survivingPlayers": 3
+      },
+      {
+        "experience": 205,
+        "strategy": "hold-damage-ultimates-for-barrier",
+        "result": "player-win",
+        "tick": 42,
+        "survivingPlayers": 3
+      }
+    ]
+  },
+  "browser": {
+    "total": 95,
+    "flavor": "compiled",
+    "boss": {
+      "task": "AW2-007D",
+      "status": "PASS",
+      "flavor": "compiled",
+      "checks": [
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Pause freezes the authoritative boss countdown/protection",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "Mời hụt displays real remaining beat 3",
+        "Mời hụt displays real remaining beat 2",
+        "Mời hụt displays real remaining beat 1",
+        "Sweep warning ends after its actual scheduled resolution",
+        "Tắt bếp exposes countdown 3 with audio off",
+        "Tắt bếp exposes countdown 2 with audio off",
+        "Tắt bếp exposes countdown 1 with audio off",
+        "Live combat progress cannot write boss victory before explicit settlement",
+        "Retreat suppresses outstanding warning/protection display",
+        "Retreat returns to the safe yard with accepted objectives and no boss grant",
+        "auto-only reaches its real enemy-win result",
+        "auto-only terminal clears telegraph/protection without writing results",
+        "auto-only commits only its actual result and correct safe return",
+        "auto-only reload preserves exact committed bytes and seeded legacy",
+        "hold-damage-ultimates-for-barrier reaches its real player-win result",
+        "hold-damage-ultimates-for-barrier terminal clears telegraph/protection without writing results",
+        "Failed win settlement retains checkpoint bytes and authentic live terminal for retry",
+        "hold-damage-ultimates-for-barrier commits only its actual result and correct safe return",
+        "hold-damage-ultimates-for-barrier reload preserves exact committed bytes and seeded legacy",
+        "No browser/page/asset errors"
+      ],
+      "errors": [],
+      "runs": [
+        {
+          "strategy": "auto-only",
+          "result": "enemy-win",
+          "tick": 51
+        },
+        {
+          "strategy": "hold-damage-ultimates-for-barrier",
+          "result": "player-win",
+          "tick": 43
+        }
+      ],
+      "browser": "155.0.8059.85",
+      "fixture": "Isolated v3 ready quest, no injected combat result; not a full earned quest journey."
+    },
+    "earnedDemo": {
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "155.0.8059.85",
+      "checks": [
+        "Fresh demo opens without creating a save or granting progression",
+        "Initial goal precedes the map and names the first NPC",
+        "Keyboard opens optional help with save/mode return guidance and no writes",
+        "Native summary keeps browser arrows and interaction letters",
+        "Goal/help/world controls fit 320px",
+        "Goal/help/world controls fit 390px",
+        "Goal/help/world controls fit 768px",
+        "Save button keeps native key ownership",
+        "Direction button Enter moves right exactly through world rules without save writes",
+        "Focusing native UI stops held exploration movement",
+        "Reread restores initial unsaved movement without writing",
+        "Closing the first dialogue accepts nothing",
+        "Closing dialogue from body focus restores the keyboard map target",
+        "One earned intro unlocks five starters and exactly 30XP",
+        "Fresh intro reload is byte-identical and retains next objective",
+        "TCG/quick-entry leaves browser reading arrows available",
+        "Actual browser arrow scroll works inside the long TCG page",
+        "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "Chess/quick-entry leaves browser reading arrows available",
+        "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "TCG/portal leaves browser reading arrows available",
+        "tcg/portal real result returns exact RPG position/objective/economy without writes",
+        "Chess/portal leaves browser reading arrows available",
+        "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+        "Both real practices and both entry routes fit one legitimately earned journey",
+        "Three memories hand-in grants only its actual quest reward",
+        "Reading and closing chest grants nothing in the combined journey",
+        "Chest can be claimed only once with an actual receipt",
+        "Wrong puzzle attempt is retryable and spends no ingredients",
+        "Solved puzzle reload preserves earned state and exact bytes",
+        "Kitchen guidance explains an opened but distant kitchen",
+        "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+        "Fresh earned team enters real boss with reduced motion and audio opt-in",
+        "Earned world encounter draws Than's new motion atlas through the shared renderer",
+        "Earned world encounter also draws Lua's authored motion atlas",
+        "Earned world encounter also draws Lam's authored motion atlas",
+        "Paused world encounter freezes visual time as well as core ticks",
+        "Same earned journey wins the actual boss without renderer-supplied outcome",
+        "Explicit boss commit survives reload before note and ending",
+        "Ending branch is captured at the explicitly saved NPC position",
+        "Closing the earned final choice grants no final quest reward",
+        "One fresh journey completes all four quests with exact once-only rewards",
+        "Completed ending and reload cannot repeat quest grants",
+        "Earned ending opens the reciprocal return shortcut",
+        "Alternate ending branches from exact earned checkpoint and gets same final reward",
+        "All five legacy keys remain byte-identical throughout the combined journey",
+        "No unexpected combined console/page/resource errors"
+      ],
+      "errors": [],
+      "modes": [
+        {
+          "mode": "tcg",
+          "entry": "quick-entry",
+          "result": "player-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "auto-chess",
+          "entry": "quick-entry",
+          "result": "player-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "tcg",
+          "entry": "portal",
+          "result": "opponent-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "auto-chess",
+          "entry": "portal",
+          "result": "opponent-win",
+          "questIndex": 1
+        }
+      ],
+      "bossTick": 45,
+      "final": {
+        "experience": 345,
+        "receipts": [
+          "aw2-grant-kept-seat",
+          "aw2-grant-three-memories",
+          "aw2-grant-chest-pantry",
+          "aw2-grant-open-hearth",
+          "aw2-grant-one-more-bowl"
+        ],
+        "ending": "wait"
+      },
+      "scope": "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval"
+    },
+    "standalone": {
+      "status": "PASS",
+      "engine": "Chromium 155.0.8059.85",
+      "checks": [
+        "Five starter ultimate cards render",
+        "Canvas draws all five decoded authored battle atlases",
+        "Auto combat advances core ticks",
+        "Pause freezes core ticks",
+        "Manual step advances exactly one tick",
+        "Selecting a pending level preserves the active battle cards",
+        "Level reset applies development stats without persistence",
+        "Manual ultimate emits core cast event and spends energy",
+        "Projectile remains visible after authoritative launch",
+        "Authoritative hit settles projectile presentation",
+        "Reduced motion reaches renderer while outcomes remain readable",
+        "Mobile viewport has no horizontal overflow",
+        "Combat reaches one authoritative terminal result without presentation gaps",
+        "Terminal battle disables stepping and all manual ultimates",
+        "Terminal event cancels unfinished visual projectiles",
+        "Resuming a terminal battle cannot advance ticks",
+        "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+        "Reset after terminal clears events and restores a playable level-one team",
+        "Battle preview leaves stable and AW2 save bytes unchanged",
+        "No primary-context browser errors or failed requests",
+        "Missing authored atlas reports a visible error",
+        "System reduced-motion preference initializes the control"
+      ],
+      "errors": [],
+      "failed": []
+    }
+  },
+  "visual": {
+    "openedFinal": [
+      "compiled-controls-320.png",
+      "compiled-controls-390.png",
+      "compiled-sweep.png",
+      "compiled-snuff.png"
+    ],
+    "directory": ".asset-work/aw2-007d",
+    "scope": "Reference presentation, no physical device/art approval"
+  },
+  "timing": "Full units and 47 earned journey assertions used final core/seed/transactions before UI-only opaque background and ResizeObserver scroll-margin refinement. Final dev types/build/26 boss assertions cover the UI delta. Core whitespace cleanup preserved all nonblank lines. Initial 24 boss checks are superseded, not added.",
+  "failures": [
+    "Initial focused run 14 PASS/5 FAIL at retained180ATK; simulation selected135; failing world file reran11 PASS, then full1036 PASS.",
+    "Exploratory Vite dependency warning; final simulator disables discovery.",
+    "CRLF formatter spacing noise removed with nonblank-line identity proof.",
+    "Initial warning-panel transparency/first-button occlusion risk fixed; final26 includes uncovered-control checks."
+  ],
+  "unchanged": [
+    "save schema/store",
+    "economy",
+    "world objective/map data",
+    "authored assets/manifests/audio",
+    "standalone renderer/layout",
+    "stable config/public",
+    "dependencies"
+  ],
+  "playerFeedback": {
+    "quote": "Đã chơi, chưa thấy lỗi chặn",
+    "source": "Owner in conversation2026-10-22",
+    "status": "Partial player smoke observation",
+    "unknown": [
+      "version",
+      "device",
+      "quest coverage",
+      "both endings"
+    ],
+    "fullPlaytestGate": "NOT_RUN pending recorded coverage"
+  },
+  "notRunOrOpen": [
+    "authored boss art/signature VFX/audio",
+    "final balance",
+    "independent full-journey player coverage",
+    "physical devices",
+    "performance/offline",
+    "listening",
+    "rights",
+    "active battle resume/native",
+    "production saves/release"
+  ],
+  "progress": {
+    "demoPercent": 90,
+    "groups": "9/10",
+    "productPercent": 40,
+    "productRoughRange": [
+      35,
+      45
+    ],
+    "unchanged": true,
+    "fullCharacterDoD": "0/12",
+    "starterReferenceMotion": "5/5;160 cels",
+    "absentSpiritSets": 7
+  },
+  "next": "AW2-004I original boss reference presentation; BA/tester full recorded playtest",
+  "publication": "Source commit plus completion docs to authorized AW2 branch; final Git SHA/remote equality reported after actual push."
+}

@@ -24,6 +24,14 @@ dialog::backdrop { background: rgb(0 0 0 / 75%); }
 dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 @media (max-width: 480px) { .aw2-save { margin-top: 1.5rem; } section, dialog { padding: 1rem; } dl > div { grid-template-columns: 1fr; gap: 0; } }
 .aw2-world { width: min(100% - 2rem, 62rem); }
+.aw2-journey-guide { margin: 1rem 0; padding: 1rem; }
+.aw2-journey-guide h2 { margin-top: 0; }
+.aw2-journey-destinations { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap: .75rem; margin-bottom: 1rem; }
+.aw2-journey-destinations article { min-width: 0; border: 1px solid #60756b; border-radius: .75rem; padding: .75rem; }
+.aw2-journey-destinations h3 { font-size: 1rem; margin: 0; }
+.aw2-journey-destinations p { overflow-wrap: anywhere; }
+.aw2-journey-destinations button { width: 100%; white-space: normal; }
+.aw2-journey-guide summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
 .aw2-world-map { position: relative; width: 100%; background: #203c35; aspect-ratio: 5 / 3; }
 .aw2-world-map canvas { display: block; width: 100%; height: auto; }
 .aw2-world-label { position: absolute; transform: translate(-50%, -125%); font-size: clamp(.65rem, 1.2vw, .8rem); width: 20%; text-align: center; line-height: 1.2; pointer-events: none; color: #fff5dc; text-shadow: 1px 1px #000; }
@@ -40,7 +48,7 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-asset-details img { object-fit: contain; flex-shrink: 0; }
 @media (max-width: 600px) { .aw2-asset-details { flex-direction: column; } }
 .aw2-battle { width: min(100% - 2rem, 76rem); }
-.aw2-battle-stage { width: 100%; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
+.aw2-battle-stage { width: 100%; max-width: 962px; margin-inline: auto; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
 .aw2-battle-stage canvas { display: block; width: 100%; height: auto; }
 .aw2-battle-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin-bottom: 1rem; }
 .aw2-battle-controls label { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; }
@@ -59,3 +67,153 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
   .aw2-ultimate-grid article { grid-template-columns: 3.5rem minmax(0, 1fr); }
   .aw2-ultimate-grid img { width: 56px; height: 56px; }
 }
+
+/* RPG progression and responsive party controls */
+.aw2-world-map { border-radius: 1rem; overflow: hidden; touch-action: pan-y; border: 2px solid #a08c5b; }
+.aw2-map-loading { position: absolute; inset: 35% 1rem auto; text-align: center; padding: 1rem; background: #122b25ed; }
+.aw2-world-label { font-size: clamp(.65rem, 1.2vw, .85rem); color: #fff7db; background: #10251cbb; border-radius: .3rem; padding: 3px; }
+.aw2-inventory { margin: 1rem 0; background: linear-gradient(145deg,#243b30,#162a26); }
+.aw2-party-header { display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.aw2-inventory progress { width: 100%; height: .7rem; accent-color: #efd080; }
+.aw2-inventory p { font-size: .9rem; color: #cdd6c7; }
+.aw2-party-portraits { display: flex; flex-wrap: wrap; gap: .5rem; }
+.aw2-party-portraits figure { margin: 0; flex: 1; min-width: 65px; text-align: center; }
+.aw2-party-portraits img { object-fit: cover; border-radius: 50%; background: #435541; }
+.aw2-party-portraits figcaption { font-size: .8rem; }
+.aw2-item-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .5rem; }
+.aw2-item-grid > div { display: block; background: #10251b; padding: .6rem; border-radius: .5rem; text-align: center; }
+.aw2-item-grid dt { font-size: .85rem; }
+.aw2-item-grid dd { font-size: 1.4rem; color: #f2d59a; }
+.aw2-inventory summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
+.aw2-scene-loading { min-height: 384px; display: grid; place-items: center; color: #f4dfac; background: #182b27; }
+.aw2-ultimate-grid article { grid-template-columns: 64px minmax(0,1fr); }
+.aw2-ultimate-grid button { grid-column: 2; width: 100%; justify-self: stretch; }
+@media (max-width: 600px) {
+ .aw2-world, .aw2-battle { width: calc(100% - 1rem); margin: .75rem auto; }
+ .aw2-world h1 { font-size: 1.75rem; }
+ .aw2-item-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .aw2-ultimate-grid article { grid-template-columns: 56px minmax(0,1fr); }
+ .aw2-ultimate-grid strong { font-size: 1rem; }
+ .aw2-ultimate-grid { padding: .65rem; }
+}
+
+.aw2-bag-panel { margin-top: 1rem; border: 1px solid #60756b; border-radius: .75rem; padding: .5rem 1rem; }
+.aw2-mode-menu { margin: .75rem 0 1.25rem; }
+.aw2-mode-lobby a { color: #f0d797; }
+.aw2-mode-lobby h1 { font-size: clamp(1.7rem, 5vw, 2.6rem); }
+.aw2-bag-panel > summary, .aw2-combat-help > summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
+.aw2-combat-help p { color: #bdcec4; }
+@media (max-width:600px) {
+ [data-testid="world-battle"] h1 { font-size: 1.45rem; }
+ [data-testid="world-battle"] .eyebrow { margin: .4rem 0; }
+ [data-testid="world-battle"] .aw2-battle-controls { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: .6rem; margin: .5rem 0; gap: .4rem; }
+ [data-testid="world-battle"] .aw2-battle-controls > * { width: auto; font-size: .8rem; }
+ [data-testid="world-battle"] .aw2-battle-controls button { padding: .4rem; }
+ [data-testid="world-battle"] .aw2-ultimate-grid { grid-template-columns: 1fr; gap: .5rem; padding: .65rem; margin: .5rem 0; }
+ [data-testid="world-battle"] .aw2-ultimate-grid article { min-width: 0; }
+ [data-testid="world-battle"] .aw2-ultimate-grid strong { font-size: 1rem; }
+ [data-testid="world-battle"] .aw2-ultimate-grid small { font-size: .875rem; }
+ [data-testid="world-battle"] .aw2-ultimate-grid button { min-height: 48px; }
+ [data-testid="world-battle"] [data-testid="encounter-status"] { margin: .4rem 0; font-size: .9rem; }
+}
+
+.aw2-battle-roster { margin: 1rem 0; border: 1px solid #60756b; border-radius: .75rem; padding: .75rem; }
+.aw2-battle-roster summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
+.aw2-battle-roster ul { list-style: none; padding: 0; margin: .5rem 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap: .5rem; }
+.aw2-battle-roster li { padding: .6rem; background: #12231f; border-radius: .5rem; overflow-wrap: anywhere; }
+.aw2-battle-roster strong, .aw2-battle-roster span { display: block; }
+.aw2-battle-roster span { font-size: .875rem; color: #d5e4d9; }
+.aw2-battle-jumps { display: flex; flex-wrap: wrap; gap: .75rem; margin: .75rem 0; }
+.aw2-battle-jumps a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: #f2d799; border: 1px solid #60756b; border-radius: .5rem; }
+#battle-arena, #battle-ultimates { scroll-margin-top: 1rem; }
+.aw2-boss-telegraph { position: sticky; top: .5rem; z-index: 2; margin: .75rem 0; padding: 1rem; border-color: #d8b573; background: #1b2a27; }
+.aw2-boss-telegraph h2 { margin: 0 0 .5rem; }
+.aw2-boss-telegraph p { margin: .4rem 0; overflow-wrap: anywhere; }
+.aw2-boss-telegraph progress { display: block; width: 100%; height: 1rem; accent-color: #ebc477; }
+.aw2-battle #battle-arena, .aw2-battle #battle-ultimates, .aw2-battle .aw2-ultimate-grid button { scroll-margin-top: calc(var(--boss-telegraph-height, 0px) + 1rem); }
+.aw2-demo-complete { margin: 1.25rem 0; padding: 1rem; border: 1px solid #d8b573; border-radius: .75rem; background: #26352c; overflow-wrap: anywhere; }
+.aw2-demo-complete h2 { margin-top: .35rem; color: #ffe1a4; }
+.aw2-demo-complete button { min-height: 48px; }
+.aw2-demo-note { font-size: .875rem; color: #d5e4d9; }
+
+.aw2-collection-grid {list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.aw2-collection-grid li {border:1px solid #4b6257;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.aw2-collection-grid img {object-fit:contain}
+.aw2-collection-grid small {color:#c0d1c7}
+.aw2-team-slots {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px;margin:12px 0}
+.aw2-team-slots label {display:flex;flex-direction:column;gap:6px}
+.aw2-team-slots select {width:100%;min-width:0;min-height:44px}
+
+.aw2-room-waypoints { margin-top: .75rem; border: 1px solid #60756b; border-radius: .75rem; padding: .75rem; background: #193129; }
+.aw2-room-waypoints p { margin-top: 0; }
+.aw2-room-waypoint-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+.aw2-room-waypoint-grid button { min-width: 0; min-height: 44px; text-align: left; white-space: normal; }
+.aw2-room-waypoint-grid small { display: block; margin-top: .25rem; font-weight: 400; }
+
+.aw2-playtest-feedback { margin: 1rem 0; padding: 1rem; border: 1px solid #60756b; border-radius: .75rem; background: #193129; overflow-wrap: anywhere; }
+.aw2-playtest-feedback summary { min-height: 44px; cursor: pointer; }
+.aw2-playtest-feedback label { display: flex; flex-direction: column; gap: .5rem; margin: .75rem 0; }
+.aw2-playtest-feedback input, .aw2-playtest-feedback textarea { box-sizing: border-box; width: 100%; min-width: 0; min-height: 44px; padding: .65rem; font: inherit; font-size: 16px; color: #f2ead9; background: #12221b; border: 1px solid #60756b; border-radius: .5rem; }
+.aw2-playtest-feedback textarea { resize: vertical; }
+.aw2-playtest-feedback code { overflow-wrap: anywhere; }
+.aw2-playtest-feedback a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: #f2d799; border: 1px solid #60756b; border-radius: .5rem; }
+
+.aw2-village-map .aw2-world-label { width: max-content; max-width: 28%; white-space: nowrap; }
+.aw2-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .75rem 0; }
+.aw2-map-toolbar button[aria-pressed="true"] { outline: 2px solid #efd497; outline-offset: 2px; }
+.aw2-map-toolbar span { flex-basis: 100%; font-size: .875rem; color: #c5d6c5; }
+
+.aw2-travel-progress { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .35rem .5rem; margin-top: .6rem; min-width: 0; }
+.aw2-travel-progress p { grid-column: 1 / -1; margin: 0; font-size: .9rem; overflow-wrap: anywhere; }
+.aw2-travel-progress progress { width: 100%; min-width: 0; align-self: center; }
+.aw2-travel-progress button { grid-column: 1 / -1; min-height: 44px; }
+.aw2-scene-slot[data-world-scene-state="active"] { display: contents; }
+.aw2-scene-slot[data-world-scene-state="preparing"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 384px;
+  max-width: 100vw;
+  max-height: 100dvh;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: clip;
+  contain: layout style;
+}
+.aw2-pantry-inspection { display: grid; gap: .5rem; }
+.aw2-pantry-inspection .aw2-panel-tabs { margin: 0; }
+.aw2-pantry-inspection .aw2-panel-tabs button { min-width: 0; padding: .3rem; font-size: max(.75rem,14px); line-height: 1.3; white-space: normal; }
+.aw2-pantry-card { border: 1px solid #60756b; border-radius: .6rem; padding: .5rem; overflow-wrap: anywhere; }
+.aw2-pantry-card strong { display: block; font-size: .95rem; }
+.aw2-pantry-card p { margin: .3rem 0; }
+.aw2-pantry-card small { display: block; font-size: .8rem; }
+.aw2-pantry-card button { width: 100%; padding: .35rem; font-size: .9rem; }
+.aw2-pantry-inspection .aw2-page-controls { margin: 0; font-size: .8rem; }
+.aw2-pantry-inspection .aw2-page-controls button { padding: .3rem; font-size: max(.75rem,14px); white-space: nowrap; }
+
+.aw2-walk-status { position: absolute; top: .4rem; left: .4rem; right: .4rem; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .25rem .4rem; border: 1px solid #a08c5b; border-radius: .5rem; background: #f9f0dcf5; color: #17382e; }
+.aw2-walk-status p { margin: 0; min-width: 0; font-size: .8rem; line-height: 1.3; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+.aw2-walk-status button { flex-shrink: 0; min-width: 64px; min-height: 44px; padding: .3rem .5rem; font-size: .85rem; }
+.aw2-walk-marker { position: absolute; width: 30px; height: 30px; transform: translate(-50%,-50%); pointer-events: none; z-index: 2; filter: drop-shadow(0 1px 2px #102c23); }
+.aw2-walk-marker svg { position: absolute; inset: 0; fill: #ffe394; stroke: #17382e; stroke-width: 2; }
+.aw2-walk-ring circle:first-child { fill: #203d3266; stroke: #ffe394; stroke-width: 3; }
+.aw2-walk-arrow { display: none; transform: rotate(var(--walk-angle,0deg)); }
+.aw2-walk-marker[data-offscreen="true"] .aw2-walk-ring { display: none; }
+.aw2-walk-marker[data-offscreen="true"] .aw2-walk-arrow { display: block; }
+
+.aw2-place-cue { display: flex; align-items: center; justify-content: center; gap: .2rem; color: #e2f6da; font-size: max(.65rem, 13px); line-height: 1.25; }
+.aw2-place-cue svg { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.aw2-place-cue[data-place-state="locked"], .aw2-place-cue[data-place-state="unavailable"] { color: #ffe0ac; }
+.aw2-place-cue[data-place-state="claimed"] { color: #d3dce6; }
+.aw2-place-cue[data-place-state="quest-available"], .aw2-place-cue[data-place-state="quest-ready"] { color: #ffe394; }
+.aw2-place-cue[data-place-state="quest-active"] { color: #c7eeff; }
+.aw2-world-label .aw2-place-name { display: block; }
+.aw2-world-label:has(.aw2-place-cue) { width: max-content; max-width: 28%; white-space: normal; overflow-wrap: anywhere; }
+.aw2-world-map[data-view-mode="overview"] .aw2-world-label:has(.aw2-place-cue) { width: 28px; max-width: none; padding: 2px; border: 1px solid #f2dfb3; border-radius: 50%; background: #10251cf0; }
+.aw2-world-map[data-view-mode="overview"] .aw2-world-label .aw2-place-name,
+.aw2-world-map[data-view-mode="overview"] .aw2-world-label .aw2-place-cue-text { display: none; }
+.aw2-world-map[data-view-mode="overview"] .aw2-place-cue svg { width: 24px; height: 24px; }
+.aw2-place-explanation { border: 1px solid #8d7950; border-radius: .5rem; padding: .4rem; background: #17382e; color: #fff5dc; }
+.aw2-place-explanation .aw2-place-cue { justify-content: flex-start; font-size: .85rem; }
+.aw2-place-explanation p { margin: .3rem 0 0; font-size: .85rem; line-height: 1.35; }

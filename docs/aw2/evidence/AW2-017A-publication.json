@@ -1,0 +1,19 @@
+{
+  "task": "AW2-017A",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "base": "b8fc6e990a3398591e7b3a68840d114279e7728f",
+  "sourceCommit": "1f3b2221c58339d38d3748dc9028b1168706f3be",
+  "sourceTree": "873360b5be97233b0f84f66ad3fa08aaec863e59",
+  "branch": "game/adventure-world-2",
+  "expectedHead": "b8fc6e990a3398591e7b3a68840d114279e7728f",
+  "force": false,
+  "directParent": true,
+  "baseAncestry": true,
+  "independentPublicFetch": true,
+  "allChangedBlobsVerified": 58,
+  "indexTreeMatch": true,
+  "workingFilesMatch": true,
+  "localHeadEqualsRemote": true,
+  "trackedStatusClean": true,
+  "runtimeFingerprint": "f6ab7ae05c3ef85aa85b8b83bb2c9b25e27b7326a0f0c6248d33b589221bd956"
+}

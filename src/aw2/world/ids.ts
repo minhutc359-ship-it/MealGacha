@@ -1,4 +1,4 @@
-import { STARTER_ASSETS } from "../assets/starters"
+import { ROSTER_ASSETS } from "../assets/roster"
 
 export const ZONE_IDS = [
   "aw2-zone-covenant-village",
@@ -102,12 +102,12 @@ export const ROSTER = SPIRIT_IDS.map((spiritId, index) => ({
     "Tank",
     "Hybrid",
   ][index],
-  assets: STARTER_ASSETS[spiritId]
+  assets: ROSTER_ASSETS[spiritId]
     ? {
         status: "REFERENCE_ASSETS_REVIEWED" as const,
-        world: STARTER_ASSETS[spiritId].assets.world.id,
-        battle: STARTER_ASSETS[spiritId].assets.battle.id,
-        portrait: STARTER_ASSETS[spiritId].assets.portrait.id,
+        world: ROSTER_ASSETS[spiritId].assets.world.id,
+        battle: ROSTER_ASSETS[spiritId].assets.battle.id,
+        portrait: ROSTER_ASSETS[spiritId].assets.portrait.id,
       }
     : {
         status: "NOT_CREATED" as const,

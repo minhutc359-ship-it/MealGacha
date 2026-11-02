@@ -1,0 +1,35 @@
+{
+  "task": "AW2-016E",
+  "status": "PASS",
+  "base": "ec74c99c095ce139b07bd1d1bec85d655a615c9d",
+  "codeFingerprint": "19f40b33d99c1e81cd6835cb446c51e6f753d96329d5fa426a39c06e435764d1",
+  "inputFiles": 414,
+  "compiledFingerprintMatch": true,
+  "aw2Files": 305,
+  "aw2Bytes": 121753962,
+  "runtimeParity": 259,
+  "sourceTempExclusion": true,
+  "stableFiles": 851,
+  "stableBytes": 177450422,
+  "stableTextIsolation": 49,
+  "unchangedAuthorities": [
+    "src/aw2/world/model.ts",
+    "src/aw2/save/schema.ts",
+    "src/aw2/save/store.ts",
+    "src/aw2/world/encounter.ts",
+    "src/aw2/modes/session.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "vite.config.ts",
+    "dev/vite.aw2.config.ts"
+  ],
+  "stableBuildBeforePackaging": {
+    "files": 852,
+    "bytes": 177974710
+  },
+  "stablePrunedTransientInputCopies": [
+    {
+      "bytes": 524288
+    }
+  ]
+}

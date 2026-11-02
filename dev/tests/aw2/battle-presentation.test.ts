@@ -38,7 +38,7 @@ describe("BATTLE-01 AW2 event-driven presentation", () => {
     const second = reduceCombatPresentation(first, events)
     expect(second).toBe(first)
     expect(first.lastSerial).toBe(3)
-    expect(first.actors.source.state).toBe("attack")
+    expect(first.actors.source.state).toBe("ultimate")
     expect(first.actors.target.state).toBe("hit")
     expect(first.floating.at(-1)?.text).toBe("-42")
     expect(JSON.stringify(first)).toBe(
@@ -46,6 +46,51 @@ describe("BATTLE-01 AW2 event-driven presentation", () => {
         reduceCombatPresentation(createCombatPresentation(), events),
       ),
     )
+  })
+
+  it("retains the caster's auto/ultimate identity and never transfers skill FX to recipients", () => {
+    const self = reduceCombatPresentation(createCombatPresentation(), [
+      event(1, "shield", {
+        skillId: "aw2-than:skill:auto",
+        targetIds: ["source"],
+      }),
+    ])
+    expect(self.actors.source).toMatchObject({
+      state: "cast",
+      skillId: "aw2-than:skill:auto",
+    })
+    const team = reduceCombatPresentation(self, [
+      event(2, "shield", {
+        skillId: "aw2-than:skill:ultimate",
+        targetIds: ["source", "target"],
+      }),
+    ])
+    expect(team.actors.source).toMatchObject({
+      state: "ultimate",
+      skillId: "aw2-than:skill:ultimate",
+    })
+    expect(team.actors.target).toMatchObject({ state: "guard" })
+    expect(team.actors.target.skillId).toBeUndefined()
+    const hit = reduceCombatPresentation(team, [
+      event(3, "hit", { skillId: "aw2-lua:skill:ultimate" }),
+    ])
+    expect(hit.actors.source.state).toBe("ultimate")
+    expect(hit.actors.target.skillId).toBeUndefined()
+  })
+
+  it("presents confirmed passive arming without inventing an attack or effect on another unit", () => {
+    const state = reduceCombatPresentation(createCombatPresentation(), [
+      event(1, "status", {
+        skillId: "aw2-than:skill:passive",
+        targetIds: ["source"],
+      }),
+    ])
+    expect(state.actors.source).toMatchObject({
+      state: "guard",
+      skillId: "aw2-than:skill:passive",
+    })
+    expect(state.actors.target).toBeUndefined()
+    expect("hp" in state).toBe(false)
   })
 
   it("keeps a launched projectile until an authoritative hit or miss settles it", () => {

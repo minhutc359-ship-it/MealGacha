@@ -1,3 +1,5 @@
+import { sceneObjects } from "@/aw2/world/scene"
+import { atEntity } from "./entity-fixture"
 import { describe, expect, it } from "vitest"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
 import { AW2_DEV_SAVE_KEY } from "@/aw2/save/schema"
@@ -21,9 +23,9 @@ function at(
   id: string,
   zoneId = state.zoneId,
 ): WorldProgress {
-  const object = zoneById(zoneId).objects.find((object) => object.id === id)!
-  return { ...state, zoneId, x: object.x, y: object.y }
+  return atEntity(state, id)
 }
+
 function act(
   state: WorldProgress,
   id: string,
@@ -170,8 +172,14 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
       ["aw2-npc-ban-co", ZONE_IDS[1]],
     ] as const) {
       const placed = at(state, id, zone)
-      const object = zoneById(zone).objects.find((object) => object.id === id)!
-      expect(describeObject(placed, object).actions).toEqual([])
+      const object = sceneObjects(placed).find((object) => object.id === id)!
+      expect(describeObject(placed, object).actions).toEqual(
+        object.kind === "mode" ? [{ id: "visit-mode", label: "Ghé bàn" }] : [],
+      )
+      if (object.kind === "mode")
+        expect(() => applyWorldAction(placed, id, "visit-mode")).toThrow(
+          /bộ chuyển mode/,
+        )
       expect(() => applyWorldAction(placed, id, "win")).toThrow()
     }
   })
@@ -223,7 +231,11 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
     const f = fixture(),
       first = await f.store.save(null)
     const raw = JSON.stringify({
-      ...first.save,
+      ...Object.fromEntries(
+        Object.entries(first.save).filter(
+          ([key]) => !["economy", "collection"].includes(key),
+        ),
+      ),
       schemaVersion: 1,
       revision: 7,
       progress: {},
@@ -232,14 +244,14 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
     const loaded = f.store.load()
     expect(loaded).toMatchObject({
       status: "ready",
-      save: { schemaVersion: 3, revision: 7, progress: newWorldProgress() },
+      save: { schemaVersion: 8, revision: 7, progress: newWorldProgress() },
     })
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     const saved = await f.store.save(raw)
     expect(saved.save).toMatchObject({
       saveId: first.save.saveId,
       createdAt: first.save.createdAt,
-      schemaVersion: 3,
+      schemaVersion: 8,
       revision: 8,
     })
     expect(f.memory.get("foodchest.tcg.v1")).toBe("stable original")
@@ -247,18 +259,37 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
   it("preserves original progression on failed starter unlock, and retries exactly once", async () => {
     const f = fixture(),
       initial = await f.store.save(null)
-    let active = act(newWorldProgress(), "aw2-npc-giu-cho", "accept")
-    active = act(active, "aw2-object-village-table", "inspect")
-    const before = await f.store.save(initial.raw, active)
+    const accepted = await f.store.act(
+      initial.raw,
+      at(initial.save.progress, "aw2-npc-giu-cho"),
+      "aw2-npc-giu-cho",
+      "accept",
+    )
+    const before = await f.store.act(
+      accepted.raw,
+      at(accepted.save.progress, "aw2-object-village-table"),
+      "aw2-object-village-table",
+      "inspect",
+    )
+    const approach = at(before.save.progress, "aw2-npc-giu-cho")
     f.fail()
-    await expect(f.store.save(before.raw, intro())).rejects.toThrow()
+    await expect(
+      f.store.act(before.raw, approach, "aw2-npc-giu-cho", "turn-in"),
+    ).rejects.toMatchObject({ code: "write-failed" })
     expect(f.store.load()).toMatchObject({
       save: { progress: { questIndex: 0, partyIds: [] } },
     })
     f.recover()
-    const after = await f.store.save(before.raw, intro())
+    const after = await f.store.act(
+      before.raw,
+      approach,
+      "aw2-npc-giu-cho",
+      "turn-in",
+    )
     expect(after.save.progress.partyIds).toEqual(STARTER_TEAM)
-    await expect(f.store.save(before.raw, intro())).rejects.toMatchObject({
+    await expect(
+      f.store.act(before.raw, approach, "aw2-npc-giu-cho", "turn-in"),
+    ).rejects.toMatchObject({
       code: "conflict",
     })
     await expect(f.store.save(after.raw, newWorldProgress())).rejects.toThrow(

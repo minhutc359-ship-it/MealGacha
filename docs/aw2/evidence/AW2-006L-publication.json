@@ -1,0 +1,34 @@
+{
+  "phase": "source",
+  "base": "8e2dae03e2631de9800db70ffc5e12d874169b10",
+  "head": "36c2231bafb9de8778f380183780af242cfa9281",
+  "tree": "51798249d483bf50fa177c2096104fd37eb8c7ac",
+  "verifiedBlobs": 40,
+  "verifiedBinaryBlobs": 4,
+  "independentFetch": true,
+  "indexTreeEqualsRemote": true,
+  "ancestor": true,
+  "expectedHeadGuard": true,
+  "workingTreeClean": true,
+  "task": "AW2-006L",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "method": "GitHub connected API exact staged tree, expected-head non-force ref update, independent Git HTTPS fetch and blob/tree/index/ancestry/guarded local sync",
+  "source": "36c2231bafb9de8778f380183780af242cfa9281",
+  "sourceBase": "8e2dae03e2631de9800db70ffc5e12d874169b10",
+  "apiUpdate": {
+    "branch": "game/adventure-world-2",
+    "expected_sha": "8e2dae03e2631de9800db70ffc5e12d874169b10",
+    "sha": "36c2231bafb9de8778f380183780af242cfa9281",
+    "force": false,
+    "success": true
+  },
+  "cleanSourceIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "36c2231bafb9de8778f380183780af242cfa9281",
+    "sourceDirty": false,
+    "codeFingerprint": "c24de0805c292c6dd84f1201712ef7ffe401b4f25925ea567a7f9e4084d8af66",
+    "inputFiles": 326
+  },
+  "finalCompletion": "Documentation-only source stamps/publication record. Final fresh remote=clean local verified after completion push; self SHA kept in ignored final proof to avoid recursion."
+}

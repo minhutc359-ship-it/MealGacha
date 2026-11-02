@@ -1,3 +1,4 @@
+import { legacyProgress } from "./legacy-fixtures"
 import { describe, expect, it, vi } from "vitest"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
 import {
@@ -50,7 +51,7 @@ function fixture() {
     revision: 8,
     createdAt: "2026-10-20T08:00:00.000Z",
     updatedAt: "2026-10-20T08:00:00.000Z",
-    progress: readyProgress(),
+    progress: legacyProgress(readyProgress()),
   })
   const memory = new Map([
     [AW2_DEV_SAVE_KEY, raw],
@@ -112,6 +113,15 @@ function interact(
     id,
     action,
   ).state
+}
+
+function approach(
+  progress: WorldProgress,
+  id: string,
+  zoneId = progress.zoneId,
+): WorldProgress {
+  const object = zoneById(zoneId).objects.find((object) => object.id === id)!
+  return { ...progress, zoneId, x: object.x, y: object.y }
 }
 
 describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
@@ -290,13 +300,21 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
       expect(() =>
         interact(won.save.progress, "aw2-npc-giu-cho", choice, ZONE_IDS[0]),
       ).toThrow()
-      const note = await f.store.save(
+      const note = await f.store.act(
         won.raw,
-        interact(won.save.progress, TABLE_NOTE_ID, "read-note"),
+        approach(won.save.progress, TABLE_NOTE_ID),
+        TABLE_NOTE_ID,
+        "read-note",
       )
-      const complete = await f.store.save(
+      const returned = await f.store.save(
         note.raw,
-        interact(note.save.progress, "aw2-npc-giu-cho", choice, ZONE_IDS[0]),
+        approach(note.save.progress, "aw2-npc-giu-cho", ZONE_IDS[0]),
+      )
+      const complete = await f.store.act(
+        returned.raw,
+        returned.save.progress,
+        "aw2-npc-giu-cho",
+        choice,
       )
       expect(complete.save.progress).toMatchObject({
         questIndex: 4,
@@ -354,7 +372,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
       status: "ready",
       raw,
       save: {
-        schemaVersion: 3,
+        schemaVersion: 8,
         saveId: value.saveId,
         revision: 8,
         progress: readyProgress(),
@@ -364,7 +382,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     const upgraded = await f.store.save(raw)
     expect(upgraded.save).toMatchObject({
-      schemaVersion: 3,
+      schemaVersion: 8,
       createdAt: value.createdAt,
       saveId: value.saveId,
       revision: 9,
@@ -389,28 +407,28 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
     ).toHaveLength(1)
     if (!winner || winner.status !== "fulfilled")
       throw Error("Expected one committed victory")
-    const note = await f.store.save(
+    const note = await f.store.act(
       winner.value.raw,
-      interact(winner.value.save.progress, TABLE_NOTE_ID, "read-note"),
+      approach(winner.value.save.progress, TABLE_NOTE_ID),
+      TABLE_NOTE_ID,
+      "read-note",
+    )
+    const returned = await f.store.save(
+      note.raw,
+      approach(note.save.progress, "aw2-npc-giu-cho", ZONE_IDS[0]),
     )
     const endings = await Promise.allSettled([
-      f.store.save(
-        note.raw,
-        interact(
-          note.save.progress,
-          "aw2-npc-giu-cho",
-          "seat-wait",
-          ZONE_IDS[0],
-        ),
+      f.store.act(
+        returned.raw,
+        returned.save.progress,
+        "aw2-npc-giu-cho",
+        "seat-wait",
       ),
-      other.save(
-        note.raw,
-        interact(
-          note.save.progress,
-          "aw2-npc-giu-cho",
-          "seat-share",
-          ZONE_IDS[0],
-        ),
+      other.act(
+        returned.raw,
+        returned.save.progress,
+        "aw2-npc-giu-cho",
+        "seat-share",
       ),
     ])
     expect(
@@ -418,7 +436,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
     ).toHaveLength(1)
     const loaded = f.store.load()
     if (loaded.status !== "ready") throw Error("Expected committed ending")
-    expect(loaded.save.revision).toBe(snapshot.save.revision + 3)
+    expect(loaded.save.revision).toBe(snapshot.save.revision + 4)
     expect(loaded.save.progress.questIndex).toBe(4)
     expect(new Set(completedReceipts(loaded.save.progress)).size).toBe(4)
   })
@@ -431,7 +449,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
       { ...readyProgress(), bossDefeated: true, accepted: false },
     ])
       expect(worldProgressSchema.safeParse(progress).success).toBe(false)
-    const raw = JSON.stringify({ schemaVersion: 4, future: "retain" })
+    const raw = JSON.stringify({ schemaVersion: 9, future: "retain" })
     expect(decodeAw2Save(raw)).toEqual({ status: "unsupported", raw })
     const boss = zoneById(ZONE_IDS[5]).objects.find(
       (object) => object.id === KITCHEN_BOSS_ID,

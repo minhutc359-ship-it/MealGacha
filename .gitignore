@@ -89,3 +89,6 @@ dev/docs/**/evidence/*.png
 dev/docs/**/evidence/*.jpg
 dev/docs/**/evidence/*.jpeg
 dev/docs/**/evidence/*.webp
+
+# Independent AW2 review build
+dist-aw2/

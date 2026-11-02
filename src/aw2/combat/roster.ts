@@ -7,11 +7,28 @@ export const STARTER_SPIRIT_IDS = [
   "aw2-moc-non",
   "aw2-suong",
 ] as const
-export type StarterSpiritId = typeof STARTER_SPIRIT_IDS[number]
+export type StarterSpiritId = (typeof STARTER_SPIRIT_IDS)[number]
+
+export type CombatSpiritId =
+  | StarterSpiritId
+  | "aw2-muoi"
+  | "aw2-nhien"
+  | "aw2-hai"
+  | "aw2-lien"
+  | "aw2-moc"
+  | "aw2-bach"
+  | "aw2-van"
 
 export interface CombatKit {
-  spiritId: StarterSpiritId
-  role: "tank" | "striker" | "healer" | "support" | "mage"
+  spiritId: CombatSpiritId
+  role:
+    | "tank"
+    | "striker"
+    | "healer"
+    | "support"
+    | "mage"
+    | "debuffer"
+    | "hybrid"
   hp: number
   attack: number
   defense: number
@@ -104,8 +121,114 @@ export function isStarterSpiritId(value: string): value is StarterSpiritId {
 }
 
 export function combatSkillId(
-  spiritId: StarterSpiritId,
+  spiritId: CombatSpiritId,
   slot: CombatSkillSlot,
 ): string {
   return `${spiritId}:skill:${slot}`
+}
+
+export const COMBAT_KITS: Record<CombatSpiritId, CombatKit> = {
+  ...STARTER_COMBAT_KITS,
+  "aw2-van": {
+    spiritId: "aw2-van",
+    role: "hybrid",
+    hp: 155,
+    attack: 26,
+    defense: 11,
+    range: 38,
+    moveSpeed: 5,
+    projectileTicks: 2,
+    basicCooldown: 5,
+    autoCooldown: 9,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-bach": {
+    spiritId: "aw2-bach",
+    role: "tank",
+    hp: 250,
+    attack: 28,
+    defense: 28,
+    range: 8,
+    moveSpeed: 4,
+    projectileTicks: 0,
+    basicCooldown: 6,
+    autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-moc": {
+    spiritId: "aw2-moc",
+    role: "mage",
+    hp: 150,
+    attack: 36,
+    defense: 9,
+    range: 42,
+    moveSpeed: 5,
+    projectileTicks: 2,
+    basicCooldown: 5,
+    autoCooldown: 5,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-lien": {
+    spiritId: "aw2-lien",
+    role: "healer",
+    hp: 145,
+    attack: 28,
+    defense: 10,
+    range: 40,
+    moveSpeed: 5,
+    projectileTicks: 2,
+    basicCooldown: 5,
+    autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-hai": {
+    spiritId: "aw2-hai",
+    role: "tank",
+    hp: 240,
+    attack: 26,
+    defense: 28,
+    range: 8,
+    moveSpeed: 6,
+    projectileTicks: 0,
+    basicCooldown: 5,
+    autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-muoi": {
+    spiritId: "aw2-muoi",
+    role: "debuffer",
+    hp: 150,
+    attack: 27,
+    defense: 10,
+    range: 40,
+    moveSpeed: 5,
+    projectileTicks: 2,
+    basicCooldown: 5,
+    autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-nhien": {
+    spiritId: "aw2-nhien",
+    role: "striker",
+    hp: 170,
+    attack: 34,
+    defense: 11,
+    range: 9,
+    moveSpeed: 7,
+    projectileTicks: 0,
+    basicCooldown: 5,
+    autoCooldown: 9,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+}
+
+export function isCombatSpiritId(value: string): value is CombatSpiritId {
+  return Object.prototype.hasOwnProperty.call(COMBAT_KITS, value)
 }

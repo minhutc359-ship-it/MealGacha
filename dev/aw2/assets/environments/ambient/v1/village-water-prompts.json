@@ -1,0 +1,15 @@
+{
+  "task": "AW2-006N",
+  "tool": "OpenAI built-in image_gen",
+  "calls": 1,
+  "prompt": "Create a transparent PNG sprite atlas for a cozy Vietnamese-inspired chibi RPG environment. Exactly four clearly separated frames in one horizontal row: calm, lift, bright, settle. Each frame is the same small quiet turquoise/cyan pond ripple ring with subtle cyclic variation, painterly pixel-like edges and soft highlights, designed to render at 76x38 world units. No characters, no text, no labels, no lanterns, no background, no ground plane, no border, no shadows outside each ripple. Generous fully transparent gutters between frames and around every outer edge. Avoid cropping. Preserve alpha transparency.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own project style reference",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+    }
+  ]
+}

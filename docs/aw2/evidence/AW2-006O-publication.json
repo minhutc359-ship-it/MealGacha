@@ -1,0 +1,62 @@
+{
+  "task": "AW2-006O",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "source": "f7a51673061d5fb1017c3da78d7109cf649ea48b",
+  "sourceTree": "b570275f0f76801a1d94a1d538857e247d897abe",
+  "expectedOldHead": "734cab6086b4ddddf7a8da8e6adf9a5a90af9099",
+  "apiRefUpdate": {
+    "success": true,
+    "force": false,
+    "expectedSha": "734cab6086b4ddddf7a8da8e6adf9a5a90af9099",
+    "newSha": "f7a51673061d5fb1017c3da78d7109cf649ea48b"
+  },
+  "independentFetch": {
+    "phase": "source",
+    "base": "734cab6086b4ddddf7a8da8e6adf9a5a90af9099",
+    "head": "f7a51673061d5fb1017c3da78d7109cf649ea48b",
+    "tree": "b570275f0f76801a1d94a1d538857e247d897abe",
+    "verifiedBlobs": 39,
+    "verifiedBinaryBlobs": 4,
+    "independentFetch": true,
+    "indexTreeEqualsRemote": true,
+    "ancestor": true,
+    "expectedHeadGuard": true,
+    "workingTreeClean": true
+  },
+  "postcommitCleanRuntimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "f7a51673061d5fb1017c3da78d7109cf649ea48b",
+    "sourceDirty": false,
+    "codeFingerprint": "5b84f39cb4879e9216c22b9bcc886ae66bde4d2bd30d3fc4cbbf51aa59922b18",
+    "inputFiles": 371
+  },
+  "stampedDocuments": [
+    "docs/aw2/DELIVERY_PLAN.md",
+    "docs/aw2/CANON.md",
+    "docs/aw2/HANDOFF.md",
+    "docs/aw2/REPORT.md",
+    "docs/aw2/BACKLOG.md",
+    "docs/aw2/CHANGELOG.md",
+    "docs/aw2/STATUS.md",
+    "docs/aw2/TEST_LEDGER.md",
+    "docs/aw2/README.md",
+    "docs/aw2/PROGRESS.md",
+    "docs/aw2/tasks/AW2-006O.md",
+    "docs/aw2/evidence/AW2-006O.md",
+    "docs/aw2/evidence/AW2-006O-verification.json",
+    "docs/aw2/evidence/AW2-006O-reused-evidence.json",
+    "docs/aw2/evidence/AW2-006O-review-build.json"
+  ],
+  "browserReportSha256": {
+    "source": "b8ef137b113162de67159c3bb26d4070420124cfacd017d230e2f24193146524",
+    "compiled": "89ee9b411185ae69a0f61083be2930875f0715565eb731c138877fefe40dd0eb"
+  },
+  "completion": "Documentation-only source stamp and proof follows this source commit; independently fetch and verify clean local=freshremote after completion update. Final completion SHA recorded in ignored .asset-work proof to avoid self-reference.",
+  "protectedRefs": {
+    "master": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+    "rpg": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f"
+  },
+  "deployed": false,
+  "released": false
+}

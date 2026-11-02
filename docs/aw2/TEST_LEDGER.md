@@ -1,31 +1,1012 @@
 # Test ledger / change impact
+
+## AW2-018L technical release candidate /2026-11-02
+
+Base remote `acde4789db8dc2ed3e2e769815bf12caad2cc773`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không deploy/promote/rollback,không auth/secret,không đổi gameplay/save/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| RC/performance/UAT focused | PASS |3files/29tests;decision/CLI/overflow/missing-output/disclosure |
+| Full Vitest | PASS |159files/2.207tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |1.003modules/7HTML entry |
+| Production build/package | PASS |1.142modules;141.472.277bytes/376files |
+| Offline/package graph | PASS |24URL/1.473.753bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS704.593/CSS38.083;0leaks |
+| Candidate CLI | PASS/BLOCKED |12/12technical;0/7external;normal exit0;require-ready exit2 |
+| Fresh browser/external | NOT_RUN/BLOCKED |Thiếu Playwright;character/rights/human/device/owner evidence mở |
+| React review | PASS |Static decision/disclosure; no state/effect/network/waterfall |
+
+[Evidence](evidence/AW2-018L.md).
+
+## AW2-018K UAT matrix/evidence /2026-11-02
+
+Base remote `a628163b989e4f5e0430697a696cad86be96beae`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không tạo human/device evidence, không PII/raw save/URL, không đổi gameplay/save/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| UAT/feedback focused | PASS |2files/29tests;matrix/privacy/evidence/blockers/aggregation/disclosure |
+| Full Vitest | PASS |158files/2.197tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |1.001modules/7HTML entry |
+| Production build/package | PASS |1.140modules;141.470.404bytes/376files |
+| Offline/package graph | PASS |24URL/1.471.880bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS703.903/CSS38.083;0leaks |
+| Fresh browser/human UAT | NOT_RUN |Thiếu `playwright`;0PASS/0FAIL/7NOT_RUN external lanes |
+| React review | PASS |Static disclosure/public summary; no state/effect/network/waterfall |
+
+[Evidence](evidence/AW2-018K.md).
+
+## AW2-018J performance/resilience /2026-11-02
+
+Base remote `e1b87c396cd9827f80ec0d961f7eb4b97ba0abb9`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi save/gameplay/art/dependency; không analytics/network sink.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Performance/resilience focused | PASS | 4files /90tests; budget/evaluator/privacy/boundary/package/cutover |
+| Full Vitest | PASS | 157files /2.187tests |
+| Root/dev typecheck | PASS | Both exit0 on final source |
+| AW2 review build | PASS | 999modules /7HTML entry |
+| Production build/package | PASS | 1.138modules;141.468.122bytes/376files |
+| Offline/package graph | PASS | 24URL/1.469.598bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS | 137assets;32deps/774assets/3policies;4/4budget;JS703.222/CSS38.083;0leaks |
+| Fresh browser/device | NOT_RUN | Thiếu package `playwright`; không có thiết bị thật |
+| React/performance review | PASS | Dynamic AW2 boundary after route; static disclosure; no effect/network/storage/waterfall |
+
+[Evidence](evidence/AW2-018J.md).
+
+## AW2-018I content acceptance /2026-11-02
+
+Base remote `d0143049289c7c2d1d6945568ded2aa1cb87c11c`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi save/gameplay/reward/asset/balance/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Content/world focused | PASS | 2 files / 26 tests; canon, entity, routes, drift, disclosure, registry |
+| Full Vitest | PASS | 156 files / 2.178 tests |
+| Root/dev typecheck | PASS | Both exit0 on final source |
+| AW2 review build | PASS | 997 modules / 7 HTML entry |
+| Production build/package | PASS | 1.135 modules;141.465.237bytes/375files |
+| Offline/package graph | PASS | 24URL/1.466.864bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS | 137assets;32deps/774assets/3policies;4/4budget;JS702.058/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN | Workspace không có package `playwright`; verifier dừng trước browser launch |
+| Human story/content/device | BLOCKED/NOT_RUN | Không suy diễn từ automated contract |
+| React review | PASS | Static disclosure; no state/effect/network/waterfall |
+
+[Evidence](evidence/AW2-018I.md).
+
+## AW2-018H character readiness /2026-11-02
+
+Base remote `bbcc292a15bbe587e634c2785b2ffb23cae5ce11`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi asset/identity/rarity/skill/balance/save/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Character/roster focused | PASS |3files /42tests;12 identity/packages, drift, disclosure, existing asset contracts |
+| Full Vitest | PASS |155files /2.172tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |995modules /7HTML entry |
+| Production build/package | PASS |1.133modules;141.464.300bytes/375files |
+| Offline/package graph | PASS |24URL/1.465.927bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS701.798/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| Independent art/device/audio/rights | BLOCKED/NOT_RUN |0/12 fullDoD,rights,release; không suy diễn từ automated tests |
+| React review | PASS |Static inventory/disclosure/direct imports; no state/effect/network/waterfall |
+
+Workspace clone lại từ remote sau automatic scratch pruning;018G được giữ nguyên trên GitHub. [Evidence](evidence/AW2-018H.md).
+
+## AW2-018G balance freeze/disclosure /2026-10-29
+
+Base remote `627a591a542af6ccea3ab2441c363ad00a87ed90`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay output/art/dependency; D11 vẫn proposal.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Balance/gacha focused | PASS |3files /19tests; snapshot/drift/disclosure/simulator |
+| Full Vitest | PASS |154files /2.167tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |993modules /7HTML entry |
+| Production build/package | PASS |1.130modules;141.460.868bytes/375files |
+| Offline/package graph | PASS |24URL/1.462.495bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS700.484/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| React review | PASS |Pure disclosure/direct imports; no hook/effect/network/simulator import |
+
+Diagnostics excluded: hai lượt build va vào rsync workspace và thấy stale chunk/`.rsync-tmp`; nguyên lệnh `pnpm build` final PASS sau sync, đúng3scene chunk. [Evidence](evidence/AW2-018G.md).
+
+## AW2-018F onboarding/accessibility/mobile /2026-10-29
+
+Base remote `bfdc2060620ae66e23fff2b0eaec89bf8544343a`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay/quest/economy/art/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Accessibility/package focused | PASS |5files /86tests; onboarding/preferences/shortcuts/static contract |
+| Full Vitest | PASS |153files /2.163tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |990modules /7HTML entry |
+| Production build/package | PASS |1.127modules;141.459.568bytes/375files |
+| Offline/package graph | PASS |24URL/1.461.195bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS699.990/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| React review | PASS |Direct imports/static config/lazy state/listener cleanup/pure shortcuts; no inline component/waterfall |
+
+Diagnostic excluded: first focused run85/86 do static literal assertion không nhận dock config động; sửa assertion rồi final86/86. Browser dependency thiếu ghi NOT_RUN. [Evidence](evidence/AW2-018F.md).
+
+## AW2-018E save durability/recovery /2026-10-28
+
+Base remote `f33f3a355cb2d2fa3a0b6a2cd70ca1bfd2a0909c`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay/quest/economy/art/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Save/package focused | PASS |2files /79tests;15new save cases |
+| Full Vitest | PASS |150files /2.119tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |985modules /7HTML entry |
+| Production build/package | PASS |1.122modules;141.446.573bytes/375files |
+| Offline/package graph | PASS |24URL/1.448.200bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS697.829/CSS37.148;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| React review | PASS |Direct imports/lazy state; shared listener key list; accessible explicit recovery; no inline component/waterfall |
+
+Diagnostics excluded: formatter separator được sửa bằng type `Record`; browser dependency thiếu được ghi NOT_RUN. Final focused/types/full/build/package chạy trên source cuối. [Evidence](evidence/AW2-018E.md).
+
+## AW2-018D PWA recovery /2026-10-28
+
+Base remote `09041839dcd772b9740a4ed04ddd2c9edf6a3285`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi gameplay/save/schema/quest/economy/art/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| PWA/update/worker/package focused | PASS |3files /50tests;10new |
+| Full Vitest | PASS |150files /2.104tests |
+| Root/dev typecheck | PASS |Both exit0 |
+| AW2 review build | PASS |985modules /7HTML entry |
+| Production build/package | PASS |1.122modules;141.442.314bytes/375files |
+| Offline/package graph | PASS |24URL/1.443.941bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS696.570/CSS37.148;0leaks |
+| Fresh browser | NOT_RUN |Playwright resolves nhưng Chromium binary path không tồn tại |
+| React review | PASS |Parallel imports, singleton listeners/store, direct imports, accessible status/buttons, no render waterfall |
+
+Diagnostics excluded: formatter làm mất hai dấu phân cách type và typecheck bắt ngay; test MessageChannel đầu phụ thuộc scheduling dưới fake timer, fixture được chuyển sang channel xác định. Final types/focused/full/build đều chạy lại trên source cuối. [Evidence](evidence/AW2-018D.md).
+
+## AW2-018C scene delivery / 2026-10-28
+
+Base remote `570d0490dcfbe0962eeaa56ba1ee2d9bb9d9f778`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi gameplay/save/schema/quest/economy/media/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Focused scene/package/offline | PASS |4files /77tests |
+| Full Vitest | PASS |150files /2.094tests |
+| Root/dev typecheck | PASS |Both exit0 |
+| AW2 review build | PASS |982modules /7HTML entry |
+| Production build/package | PASS |1.121modules;141.435.007bytes/373files;183public+153AW2runtime |
+| Offline/scene graph | PASS |23URL/1.436.750bytes;12groups;3scene chunks;1lazy chest portrait; no scene/Pixi/chest in core |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS gzip694.053/CSS36.709;0leaks |
+| Fresh browser | NOT_RUN |Playwright resolves but bundled Chromium path is missing; no Chromium/Chrome executable |
+| React review | PASS |Module-level lazy/Suspense; deterministic family; direct dynamic imports; parallel renderer/Pixi/media preload |
+
+Diagnostic failures are excluded: old offline fixture expected media-only warming; initial675k JS budget exposed newly emitted required lazy chest portrait graph; two rejected chunk experiments increased core. Final source uses the stable broad AW2 group with scene renderers outside that group. [Evidence](evidence/AW2-018C.md).
+
+## AW2-017F world polish / 2026-10-28
+
+Base remote `aea1a99c5c2481e4b0a5ff25aa8a63768f773ad9`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.7/Vite8.0.5/Vitest5.0.1. Presentation-only change; no save/schema/collider/quest/economy/media/dependency change.
+
+| Gate | Result | Observed |
+|---|---|---|
+| New world-polish contract | PASS |46 tests:6 profiles,4 phases, bounds/exit gaps/non-overlap, collider parity, light limits, pause/reduced/determinism/telemetry/no-mutation |
+| Focused impact final | PASS |10 files /163 tests; world/navigation/journey/interior/NPC-life/village/street/yard |
+| Full Vitest | PASS |150 files /2.091 tests |
+| Root/dev typecheck | PASS |Both exit0 after final side-exit correction |
+| Review build | PASS |981 modules/7 QA HTML; world chunk308,10kB |
+| Production build/package | PASS |1.120 modules;141.114.279bytes/370files;183public+153AW2runtime; offline1.460.353bytes/23URL |
+| Release/asset/budget | PASS |0leaks;137/137 assets;4/4 guard/budget; JS gzip598.171/CSS36.684 |
+| Fresh browser source+compiled | NOT_RUN |No `playwright` package and no Chromium/Chrome executable in workspace; not counted PASS. Retained browser evidence is historical only. |
+| React/Pixi review | PASS |Direct imports, one shared layer, stable refs/effect dependencies, O(1) light lookup, no network/listener/component allocation per frame; pointer-disabled graphics and bounded ticker delta. |
+
+Lượt đầu phát hiện hai lỗi trước khi đóng gate: cú pháp type `readonly` sai được typecheck bắt; self-review sau build bắt anchor cổng ngang thật là24/616 thay vì16/624. Contract và test đều sửa, sau đó focused/full/type/build được chạy lại trên source cuối. [Evidence](evidence/AW2-017F.md).
+
+## AW2-018B production package / 2026-10-28
+
+Base remote `3a7eebf6de3a03bd64b2aa591e2d022d26c32f80`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. No gameplay/save contract changed; chest-only rules were extracted from legacy shared CSS without intended visual change.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Focused production/offline contract | PASS | 3 files /63 tests; 27 new018B cases |
+| Full Vitest | PASS |149 files /2.045 tests |
+| Root/dev typecheck | PASS | Both exit0 |
+| `pnpm build` | PASS | 1.118 modules; package verifier then release guard |
+| Package verifier | PASS |141.108.610bytes/370files;183public/15.572.485bytes;153AW2/123.201.422bytes; all SHA-256/size/path/static-CSS-URL checks |
+| Offline shell | PASS |1.454.684bytes/23URL; no chest chunk/media; below8/12MB target/limit |
+| Review build | PASS |979 modules/7 QA HTML; production allowlist isolated |
+| Release size/guard | PASS | JS gzip596.107; CSS gzip36.684;0leaks; static target/hard limit PASS |
+| Asset validation / web budget tests | PASS |137checked/0missing;4/4 budget/guard tests |
+| Fresh browser018B | NOT_RUN | Playwright present but Chromium absent; CDN returned0-byte archives; cloud browser localhost refused. Neither attempt counted PASS. |
+| Retained browser018A | HISTORICAL/UNCHANGED |236 checks remain relevant to unchanged route/UI/gameplay/save surface; not added to018B fresh totals |
+
+Selective packaging owns new behavior:137 food catalog IDs and all resolved spirit portraits exist; only `mode-chest.mp3` from legacy soundtrack ships; manifest/icons/brand/fonts/legal exist; old Auto Chess/events/manga/loading/v4/map/character atlases and non-chest music are rejected. Service worker hashes selected bundle plus AW2 inventory, accepts WAV warming and never touches player storage. Initial failed build correctly exposed chest CSS/JS in core; split policy repaired and final verifier proves absence. A transient hidden copy filename was never present in final artifact; both plugin and verifier now guard it. [Evidence](evidence/AW2-018B.md).
+
+## AW2-018A — 2026-10-28
+
+Full Vitest **2.018/2.018,148files**; contract018A32ca nằm trong tổng. Root/dev typecheck, production/review builds, release guard, hard size/offline budgets PASS. Fresh production browser23source+23compiled; retained verifier hiện hành190compiled qua4quest/boss45tick/ending300XP; tổng236,0unexpectederrors. 153runtime WebP/WAV source↔dist byte parity,0dev URL/authoring/source/map. Artifact300.366.505bytes/984files vượt warning target300MB nhưng dưới hard limit320MB. Hai harness lịch sử dừng do assumption cổng `Đi qua` trước step-room và không được tính; verifier017E hiện hành thay thế. [Evidence](evidence/AW2-018A.md).
+
+## AW2-017E — 2026-10-28
+
+Full Vitest mặc định **1.986/1.986,147files**; focused165/7files gồm28ca lịch mới. Root/dev typecheck, AW2/stable build và release guard PASS. Fresh browser **190source+190compiled=380**, Chromium153; đủ tám activity snapshot/Places/HUD, reduced-motion neutral+raw-save no-write, bốn quest, step/manual portal, ba prop, boss tick45, ending/reload300XP,0unexpected errors. 262asset byte parity/0media mới. Hai lỗi focused đầu là test assumption/fixture và đã sửa trước các lượt cuối; không phải lỗi sản phẩm. [Evidence](evidence/AW2-017E.md).
+
+## AW2-017D — 2026-10-28
+
+Full Vitest mặc định1.958/1.958,146files;12ca mới trong tổng. Hai typecheck/build PASS. Fresh browser165source+165compiled=330, Chromium153, step/manual portal thật, ba field prop raw-no-write, boss tick45,300XP,0unexpected errors. 262asset byte parity/0media mới. [Evidence](evidence/AW2-017D.md).
+
+## AW2-017C — 2026-10-28
+
+Full Vitest mặc định1.946/1.946,144files; hai typecheck và hai build PASS. Fresh browser159source+159compiled=318, Chromium153, boss tick45,300XP,0unexpected errors; kiểm tra Sân↔Kho và shortcut Sân↔Bàn hai chiều. Không cộng lịch sử. [Evidence](evidence/AW2-017C.md).
+
+017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
+
+## AW2-017B — functional Phố /2026-10-28
+
+Base `7b676ae29398ff4f6be4785e8a876bfb92cf3aed`;434frozen inputs `0b5cb7d474d5dbf805e709980349ebb8ead62eba0b2c38ee77d07215a0a9910e` equal compiled. Full1943/143files PASS (18new included, default timeout); root/dev types and AW2+stable builds PASS. Fresh498browser checks=95+95Phố and154+154whole-story,0unexpectederrors. Both fresh stories enter actual rooms before original memories, all4quests/boss45tick/300XP-reload; classic restores the same run’s earned pending-intro checkpoint, so finalRaw0XP is a deliberate QA fixture restoration, not lost rewards. Phố validates actual route→door, no auto-entry, correct resident sprites/names, per-room quota/retry/double-click/reload/own-door exit, both native mode portal/return and old7 no-write. Four viewport20px/native44px/focus and bounded room service menus. [Evidence](evidence/AW2-017B.md).
+
+AW2308files/125220565bytes, stable851files/177450422bytes,262asset byte parity/49stabletext exclusion/517protected originals.22explicit runtime changes; no new media, dependency or activity/combat/economy-engine tuning. Actual new terminal mode matches, physical device/FPS/independent human/rights NOT_RUN. Runtime label diagnostic fixed from hardcoded team text to actual entity names, fresh Phố names asserted. Demo90/product≈40%(35–45%) unchanged. Next017C Sân/bếp doors/collision contract. Direct expected-head AW2 source publication/readback verified.
+
+017A source `1f3b2221c58339d38d3748dc9028b1168706f3be` / exact staged+independently fetched tree `873360b5be97233b0f84f66ad3fa08aaec863e59` published on AW2; all58changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-017A-publication.json). This completion stamp is documentation/evidence only.
+
+## AW2-017A — functional village /2026-10-28
+
+Base `b8fc6e990a3398591e7b3a68840d114279e7728f`; frozen432inputs `f6ab7ae05c3ef85aa85b8b83bb2c9b25e27b7326a0f0c6248d33b589221bd956` equals compiled. Full1925/142files at default timeout PASS (11new included),28.69s; root/dev types and both builds PASS. Fresh414browser checks=59+59village and148+148whole-story, all source/compiled exit0 and0unexpectederrors. Per-room roof/door/services/quota–retry/double click/exact return/reload; actual4quests/boss45tick/300XP;4viewport20px/native44px/labels/focus/legacy/classic verified. No new terminal guild match claim. [Full evidence and diagnostics](evidence/AW2-017A.md).
+
+AW2308files/125216171bytes, stable851files/177450422bytes,262runtimebyte parity,49stabletext exclusion,516protected original hashes.21explicit runtime changes include save/schema/rules/adapter/room registry/presentation; no media/dependencies/outdoor collider/story actor relocation or engine tuning. Source390home/overview and compiled1280village captures inspected; final garden/room art and22other-zone decorative facades remain open. Strict old6/tea read/no-write and reject new IDs under6; explicit write7 tested. Current outdoor6 browser fixture is version-relabelled earned data, identified in evidence. Demo90/product≈40%(35–45%) unchanged. Independent/device/FPS/rights NOT_RUN. Next017B Phố layout/scene-aware directions before moving NPCs. Direct expected-head AW2 publication/readback verified; no product/master/deploy/release/reset.
+
+016K source `c62500841351e6e8b68089ce89fca5f6641b74c2` / exact staged+independently fetched tree `ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28` published on AW2; all31changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016K-publication.json). This stamp is documentation/evidence only.
+
+## AW2-016K — room practice service /2026-10-28
+
+Base `01480f61c706c8ead346499f39666648487ecf8b`; frozen431runtimeinputs `7199f1883206ae806f2db0f9dc0f94906ef507c60b0ada67470feb53cc9f60bd` matches compiled bundle. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0. Fresh142units/6files PASS in2.33s,13new included, serial120s allowance; modes, tea-room, save and cue consumers covered. Root/dev typechecks and both builds PASS. No failed diagnostic runs or retained partial counts in this task.
+
+Fresh156browser=78source+78compiled, both exit0/0unexpected errors. Each new isolated save earns actual five/30XP through intro, enters tea room and walks to actual journal desk. Reading/mode-tab/viewport changes retain exactraw/canvas/actor; one blocking panel and explicit entry. Real quota failure keeps menu/raw and focus; retry double-click commits exactlyonce. Both actual TCG games reach opponent-win through legal actions with a manual target; Chess recruits/places/fights to round-result then round2. These are not claims of TCG victory or allfive Chess rounds. Mode play and return leave checkpoint unchanged; room-service stores inside432,160 plus exact outside checkpoint. Reload lobby abandons visit, actual second tab disables stale entry, explicit reread and classic service return/exit keep current save/30XP/fiveparty and stableTCGsentinel.
+
+Selector/desk matrix320×568/390×844/844×390/1280×720 at20px: native44px/no scroll/clipping, TabShiftTab/Escape/focus, samecanvas/no drift. Actual mode games run390×844/16px; existing mode-layout/engine evidence reused only where byte-unchanged. Classic checks bounded panel, not its debug document's no-scroll status. Source390selector/Chess formation captures opened in-session, images ignored.
+
+AW2308files/125196205bytes, stable851files/177450422bytes/49text exclusion;262packaged asset byte parity,0newmedia. Audit hashes529original files unchanged; approved7runtime changes are listed explicitly, including modified adapter/rules, not falsely classed unchanged. Save store/schema, mode engines/economy/art/geometry/deps remain unchanged. No fresh full-suite, physical device, independent player, FPS/listening/rights/release acceptance. Historical1781/016F and296/016J counts not added. [Evidence](evidence/AW2-016K.md). In-session BA/story/mechanic/animation/tester/scretary review, no subagents. Demo90/product≈40%(35–45%) unchanged; direct expected-head AW2 publication follows.
+
+016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
+
+## AW2-016J — quest cues /2026-10-28
+
+Base `9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf`; frozen runtime429inputs `f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997` equals compiled fingerprint. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0. Fresh173units/6files PASS (16new included); serial120s allowance. Pure modules unchanged after that run; final presentation priority is verified in both browser runs. Root/dev typechecks, AW2/stable builds and asset/isolation audit PASS.
+
+Fresh296browser checks=148source+148compiled, both final processes exit0,0unexpectederrors,0retained diagnostic prefixes. Both independently create a new save; actual accept-write failure preserves old marker/raw/party, retry changes only after commit. Cloth/intro grants5/30XP/one receipt; all three memories earn80XP; hint/wrong puzzle reset/correct three-step puzzle/return/next acceptance; real boss wins tick45; explicit settlement unlocks note; note then return to Bà; ending/reload300XP. No fabricated flags/HP/items or fixture victory. Classic uses the exact pending-return checkpoint earned earlier in the same run. One stable TCG sentinel preserved. Four viewports320×568/390×844/844×390/1280×720 at20px: follow/overview/native44px/no clipping/no scroll, Places shares cue, Tab/ShiftTab/Escape/focus, samecanvas/exactraw on viewing/walking. Source available and compiled return390captures inspected, ignored QA images not committed.
+
+AW2308files/125193871bytes, stable851files/177450422bytes/49text isolation,262runtimeasset byte parity,0newmedia. Stable/save/combat/economy/collection/modes/rules/geometry/patrol/navigation/art/dependencies are guarded byte-unchanged. Prior016Ffull1781is historical scope only, not a current full run or added to fresh counts. Fresh mode matches, physical phone/independenthuman/FPS/listening/rights/release NOT_RUN.
+
+Diagnostics excluded: one new unit expectation incorrectly assumed cooking opened before reporting to Dì; corrected to existing Bếp khóa authority. Initial browser harness sampled follow CSS before the owning renderer tick; it now waits for actual camera mode while retaining bounds assertions. Duplicate legitimate storage alerts required `.first()` in the harness. Original Playwright browser download/automatic npm browser extraction failed; standard npm Chromium bytes extracted without ownership restoration, no game/browser binary changes. Final source/compiled are fresh complete runs after fixes, no failed-prefix counts retained. [Evidence](evidence/AW2-016J.md).
+
+Backlog conflicts resolved explicitly against existing task/evidence records for008B/015B/016F; no new canon/decision/schema/asset/reward approval. In-session BA/mechanic/animation/tester/scretary review; no subagents or independent acceptance. Demo90/product≈40%(35–45%) unchanged; D16expected-head non-force AW2 publication follows, no product/master/deploy/release/reset.
+
+016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
+
+## AW2-016I — map door/service cues and focus /2026-10-27
+
+Base `6250c8d0d1703c6ef8bf66344e23b04d8c0246d6`, tested runtime429inputs `35563866a2e6087fdcdae526d4f674e7d572a6a7e9bcd458828a6b9f431ba709`, compiled match. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0/Python3.12.14. Fresh191units/7files PASS in2.93s,39new included; serial120s allowance, no assertion/seed/loop/config changes. UI-only focus fix after the unit run leaves those imported pure modules unchanged; affected browser checks rerun freshly. Root/dev types and AW2/stable builds PASS. Full1781units016F are historical reuse only for the byte-unchanged protected engine/save/art boundaries; never added to this fresh total.
+
+Final fresh browser source397+compiled397=794PASS, both processes exit0/complete,0unexpectederrors,0diagnostic-prefix retained. Actual new intro5/30XP→memory80XP→yard acceptance opens gate→three puzzle steps open inner door. Actual TCG service return; chest write failure retains exactraw/unclaimed cue and retry grants once. Real cooking/sharing until one ingredient depleted changes cue correctly and adds exactly45XP/share on the same canvas. Four viewports20px/44px/nonoverlap/wholelabels/no-scroll, native status/explanation/paging first+last enabledfocus/Tab/Shift+Tab/Escape; room exactoutside/Stop/marker/cameras, realWebGL loss, actual secondtab stale guard and classic panel. Authentic completed6/historical5 retained; allfour renderers/six zones/shortcuts and300XP/fiveparty,5legacykeys unchanged. No fabricated quest/HP/items/reward bypass.
+
+Build308files/125,192,206bytes/262asset byte parity/0new media; original Lam prompt metadata exact. Stable851files/177,450,422bytes/49text isolation/releaseguard PASS. Two original local inputs preserved; source art/provenance/deps/config untouched. Visuals opened:390village follow,390street overview,320native long-title panel,390compiled room target. QA images remain ignored.
+
+Excluded diagnostics: autoextract chown/environment workaround; stale pantry test filename/incomplete quest unit fixture corrected; valid empty320follow crop tested at actual door approach; title/pagination focus fixed; strict save sample waits two real frames after pause; in-flight stale-build fingerprint rejected before final frozen audit. No earlier partial counts retained. BA/mechanic/animation/tester/scretary/React review in-session, no subagents/independent acceptance. D18/D20/D11 open; full current boss/mode match/device/human/FPS/totalGPUmemory/listening/rights/release NOT_RUN. Demo90/product≈40% unchanged. [Evidence](evidence/AW2-016I.md).
+
+016H source `50b842e100cce3a81e66d26d1d600ca3a5e9d48b` / exact staged+independently fetched tree `cf931b44adba16002914dc4349f9206af01e8b3a` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016H-publication.json). Following completion stamp is documentation/evidence only.
+
+## AW2-016H — ephemeral walking target /2026-10-27
+
+Base `bc7e31dc2c8e3322ccb56244233b94be0f38549f`,427runtimeinputs `819a17e39d16bb035e5733fa56486d76b5a468a39f9c47f1ac392fbe6f934fa2` equal compiled fingerprint. Fresh152units/7files/2.38s serial120sallowance,39newwalking/projection cases included, exact per-file counts in machine report. Six-region and tea local plans, semantic/floor labels, foreignID/malformed/wall rejection, detached/no mutation/currentpatrolpin, actualscene arrival; actual camera projection/CSSscale/crop/status exclusion/edge clamp/tiny-invalid bounds. Root/devtypes PASS. Save/combat/economy/collection/modes/rules/geometry/pathfinding/controls/oldguidance/authoredassets/deps are byte-unchanged and reuse016Ffull1781/136files; that is not a fresh016Hfull run. Changed controller/renderers are freshly checked below; default20s/concurrency remainsOPEN.
+
+Final fresh browser328=164source+164compiled, bothprocess exit0/0unexpectederrors/0retaineddiagnosticchecks. Floor start/retarget/wall reject, pointerStop/keyboardEnter/Escape/manualWASD/Dpad, menu and simulatedblur/visibility cancellation/no auto resume, mapfocus, exactraw/samecanvas. Fourviewports320x568/390x844/768x1024/1280x900/root20px/44px, bothcamera modes while moving, actual marker alignment/offscreen arrows and whole visible labels, long namedroomtarget,4rendererfamilies/sixregions+room. Realintro via namedpoints still5/30XP/onereceipt, arrivals do not inspect/save, explicit save stores current actor not intent; bothquickmodesreturn/reread cancel oldroute. Exactroomoutsidecheckpoint onexplicitexit; realactiveWebGLcontextloss removes intent/readiness and recoversbyreread; actualsecondtabwrite prevents stale walk. Authentic016Fcompleted6opensunchanged and traverses6zones withending300XP/fiveparty retained; actualEmĐemNướcclicktimepinsnapshot; authentic016Dv5walk/stop no implicit migration. Classic1280village+room marker/Stop/mapfocus/no clickthrough;5stablekeys unchanged. Captures local/ignored; final390edge androom screenshots reviewed in-session.
+
+Excluded diagnostics:2pxmapborder offset fixed usingclientLeft/Top; harness strict520floatroundtrip corrected to.1px tolerance; visual review added samecrop labelclipping; authentic5starts576,192 so40pxwalk couldfinish before automatedStop, final targets32,192 without alteringprogress/assertions. All earlier profiles, including145-check passes and failed154/26prefixes, are excluded. Intermediate chunks removed by final serialized build; source/compiled final run the frozen final code. No fabricatedquest/HP/items.
+
+AW2308files/125,186,602bytes; stable851files/177,450,422bytes/49textisolation.262packagedassets byte-match,0newraster/audio, originalLammetadata9ee35ef and all authoredart unchanged. Pure staticSVG/camera-ownedDOMprojection only; no extra worldtextures or Pixi app recreation for walking. [Build audit](evidence/AW2-016H-review-build.json), [evidence](evidence/AW2-016H.md).
+
+BA/mechanic/animation/tester/scretary andReactreview in-session; no subagents/independentacceptance. Demo90/product≈40%(35–45%),D18/D20human-device/FPS/rights remainopen; no master/rpg/deploy/release/reset. Next016Iin-worldgate/service status, separate scoped contract. Prior ledger below historical.
+
+016G source `4d145e4fdab39cabe116b78049d1bd0c7faa12ee` / exact staged+independently fetched tree `01aa80868bc0170362dbb4cfee2c45fec5e293c5` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016G-publication.json). Following completion stamp is documentation/evidence only.
+
+## AW2-016G — scene-aware place/door guidance
+
+Base `bd67e271209cc94cc02dbe7a08589de263bfbeaf`;424runtimeinputs `483ac9d86e32c69e765c3c4f27e8cc2f250036dd05de0d5db5437206ba7f979f` match compiled bundle. Fresh124units/6files in3.62s serial120sallowance;27newplace-guidance cases included, exact per-file counts in report. Range48boundary/selected-vs-nearest, foreign scene isolation, current patrol snapshot, all six region safe approaches/openreturnports/blockedgate/no permissions, room paths/desks/exit from3origins, detached projections and scenic manifest preservation. Root/devtypes PASS. Full1781/136files016F at86de613 is reused for byte-unchanged save/combat/economy/collection/mode/rule/geometry/navigation/asset/dependency boundaries; not a fresh016Gfull count. Changed UI/controller consumers fresh below; default20s/concurrency remainsopen.
+
+510fresh browser assertions=255source+255compiled, bothfinalprocess exit0/0unexpectederrors, no retained diagnostic prefixes. Fresh actual intro through selected-place walking/inspection grants5/30XP/1receipt; selected table dialog, authoreddoorcue/Edescription, atlasvillageTea300/80walk-only, floor404retainraw/canvas/inputdisabled→explicitretryonce. Roomcurrent-scene label/exit-first route, Places3points and atlasroute/doors on4viewports320x568/390x844/768x1024/1280x900/root20px/allnative44px/no document scroll/clipping.12TabShiftTab/focus/Wpause/Escape/mapfocus, both existing services/no writes; actualsecondtabwrite disables staleinspection/reread no queued autoopen; exit-firstwalk never leavesuntil explicitaction and exactoutsidecheckpointrestored. StreetTeadirectionlocaldoor/no teleport, pantry lockedgatecannotwalkbybutton/far but nearbyinspection explains no travel. Authenticcompleted016Fv6fixture loads withoutwrites, read-only atlasall6regions/fourviewports and actualsix-zone travel retains ending/300XP/fiveparty; authentic016Dv5reads/browses unchangeduntil explicitentrywrite6. Classic1280x900newsharedmenus/uniqueTeaDoor/nativefocus/enterexit and5stablekeys preserved.
+
+Diagnostics excluded: midpoint float outside48radius corrected only in browser fixture (unit exactedge retained);320pxlarge-fontatlas clipping fixed with scoped layout/55char pages/compactvisiblecounters but retained accessible names; EscapeMorefocus fixed to map for navigation panels. Optional fixture type corrected. Final frozen rebuild removed intermediate duplicate chunk generations; no old output used in final compiled run. Source door cue and390room map screenshots inspected; four captures remain local/ignored.
+
+AW2308files/125,180,809bytes, stable851files/177,450,422bytes/49textisolation. All262packagedassetfiles byte-match;0newraster/audio, originalLammetadata9ee35ef and all authoredassets unchanged. Durable audit `dev/tools/verify-aw2-place-package.mjs` writes only its fixed diagnostic output, checks exact protected source boundaries and fingerprint. [Evidence/report](evidence/AW2-016G.md).
+
+BA/mechanic/tester/scretary +Reactreview in-session, no subagents/independentacceptance. Schema6/real rewards/gacha/canon/scene lifecycle remainunchanged. Demo90/product≈40%(35–45%),D18/D20human-device/rights held. Next016Hactive-destination/stop-walking UX, separate scope. Prior ledger below historical.
+
+Corrected final source `86de61389e5b64e1e6a9fbab4851bd9204251dfc` / exact independently fetched tree `61e1ab0be9b0b22c66bba62c14af4bb33ff110a8` restores original Lam prompt metadata and matches tested runtime fingerprint. All262packaged assets byte-match;32focused asset/room cases pass (overlap full). This supersedes the earlier016Fsource/stamp proof; gameplay/art unchanged. [Publication proof](evidence/AW2-016F-publication.json).
+
+Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately.
+
+016F source `7a83d2c3c4e225982edba288f60322a37e5633bd` / exact staged+independently fetched tree `316697d2d52b488a05fdc03d3aaccb0d2d07f34c` published on `game/adventure-world-2`; expected-head/non-force, direct parent/ancestry/index-tree/clean tracked local sync PASS. [Publication proof](evidence/AW2-016F-publication.json). This completion stamp changes documentation/evidence only.
+
+## AW2-016F — persistent optional tea-room /2026-10-27
+
+Base `d459b30bf884778576065a95a713304ea71e65c0`, 423runtimeinputs fingerprint `ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843` equals compiled bundle. Fresh full1,781/1,781units/136files PASS in115.47s, serial120sallowance;24new cases included, no fail/skip. Focused24+33/core191 runs overlap the full, not added. An initial full found8historical boss-rematch fixtures that still embedded the new interior field under old strict schemas; fixed fixture construction/default current version, preserving economic/story assertions, seeds and loops. Type diagnostics/formatter syntax issues corrected before final types/builds. Default20s/concurrency reliability remains open.
+
+142fresh room checks=71source+71compiled: real intro/five30XP, unique floor404, actual load cancellation, quota failure, source raw/position/canvas retention; real first-frame token captured before setItem and same canvas promoted; two-tab stale write rejected; room walk/explicitsave/reload preserve outside; desks readonly/12TabShiftTab/Escape/focus/Wpause; cancelparty draft and ownedleaderLua commit preservesfive; recipe3pages×4viewports/root20px/all44px/no-clipping; journal, bothquickmodes exactroomreturn; exitexactoutside/facing. Actual WebGL context lost on staged room while another tab holds Web Lock rejects commit and preserves source. Authentic016Dv5raw loads without writes, explicitroomentry upgrades6 preserving identity/economy; classic sharedentry/nativewaypoint/recipe/focus/exit;5legacykeysunchanged. Bothfinal process exit0,0unexpectederrors. Diagnostic selector/float/hidden-candidate wait fixes excluded; initial compiled full-story timed out at a15s walking wait (no browser errors), final fresh isolated retry of the unchanged scenario/assertions passed; its365prefix checks are not retained or counted. Root cause unproven, timing reliability remains open; no fabricated flags/HP/items.
+
+1002additional fresh full-story regression checks=501source+501compiled, not historical counts: freshintro→oneTCGgame/manualtarget→Chessrealplacement/combat/nextround→all six regions/realgates→bosswin ticks[45, 45]→quota/retry→note/ending/reload. Full-story ending XP[300, 300]. Reducedmotion and4viewport16/20px matrices. Harness only adds browser-specific library path and ignores generated output; no scenario/assertion changes.
+
+Root/devtypes, AW2/stablebuild/releaseguard and262asset byteparity PASS. New original floor/transparentatlas lossless exactRGBA;3,403,990runtimebytes,12,582,912decoded+leader<24MB; sourcePNG/prompts/hash retained, rightsREVIEW_REQUIRED. AW2308files/125,176,257bytes; stable851files/177,450,422bytes/49textisolation. Untracked source temp retained and absent from packages; no derived prune performed. QA captures remain ignored; source room and compiled390recipe visually reviewed. [Evidence](evidence/AW2-016F.md).
+
+In-session BA/story/mechanic/animation/tester/scretary and React/imagegen workflows; no subagents/independentacceptance. Demo90/product≈40%(35–45%), D18/D20/D11 held. No master/rpg/deploy/release/reset. Next BA/UX/tester: scoped doorway/place guidance and full-route accessibility. Prior ledger below historical.
+
+016E source `bc60accb91b303bf2c34d66aed3a73ec2d042504` / exact staged+fetched tree `1ddca1fcc2a06773b5d7379d69ebf003a27bb1a0` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016E-publication.json). Completion stamp changes documents only.
+
+## AW2-016E — optional pantry stock inspection /2026-10-27
+
+Base `ec74c99c095ce139b07bd1d1bec85d655a615c9d`, runtime414inputs `19f40b33d99c1e81cd6835cb446c51e6f753d96329d5fa426a39c06e435764d1` equals compiled fingerprint. Fresh full1,757/1,757units/135files PASS in76.63s using `--maxWorkers=1 --testTimeout=120000`,0fail/skip.24new pantry cases included; initial188focused/9files overlaps full. Pure detached inventory/missing costs/batch/receipt/hint projection, guarded location/proximity/safe path from3origins, oneoptionalstock/eightNPC/sixmaps/originalwalls/anchors, rejection of stock world actions, actual1/1/1cook+45XPshare and historical016Dsave5decode/no-write covered. Full default20s/concurrency NOT_RUN, historical timeout reliability not silently closed. Root/dev types and AW2/stable build/release guard PASS.259runtimeasset byte parity/no new images/audio/deps, no new collision or save fields; build record lists unchanged schema/model/store/encounter/mode/dependency boundaries. No historical units added to fresh counts.
+
+Final fresh source147+compiled147=294PASS,0unexpected page/console/HTTP errors,0diagnostic prefix assertions retained. New empty save earns intro5starters30XP, three memories80XP, real Dì gate/entry to Kho; missing unique pantry floor404→source raw/canvas/position/no-write→retry. Native Places stock approach320,256/E to same authored crate, exact3/1/1/0projection and shared recipe. Every11pages at320×568/390×844/768×1024/1280×900, root20px,44pxallcontrols/no document scroll/modal clipping. Tabs/pages retain raw/canvas;16Tab/ShiftTab, Escape/mapfocus and W pause; walks never claim/read/travel automatically. Chest real write failure/retry one grant→7/4/3, explicit hint, puzzle3steps/return/Dì80XP/cook1/1/1/share45XP→205XP/6/5/3/0; inspection shows cooked/shared1/1. Both doors explicit, exactschema5reload, genuine second tab96/192save blocks stale direction/reread, classic native waypoint and queued direction, claimed chest remains disabled,5legacy sentinels andoneleader/fiveparty. Four QA images local/ignored; actual source390recipe/compiled cooked snapshot inspected.
+
+Excluded diagnostics: initial fault selected shared pantry props already cached by outdoor scenes, changed harness to unique floor; initial native-menu label expected Địa điểm trong vùng instead of actual Địa điểm, corrected. First320px/20px view exposed tight title/tab/pagination layout; shortened title, bounded tab text and page label before final full/types/build. Authentic earned diagnostic pantry raw used only for local layout diagnosis, not final runs. A later diagnostic source observed a generated-build HTML reload; final source/compiled restart after frozen build with generated directories ignored. Final reports are fresh complete runs; no synthetic quest/HP/items/flags/reward bypass.
+
+Build305files/121,753,962bytes/259asset parity; packaged stable851files/177,450,422bytes/49text isolation. Root build initially copied one transient untracked input; removed only that derived output copy, source preserved, reran release guard; original stable authored bytes unchanged. No release/deploy. [Build audit](evidence/AW2-016E-review-build.json).
+
+BA/story/mechanic/animation/tester/scretary/React review in-session: modal shares controller, stable renderer refs/callbacks, onelayoutanchor/approach and originalcrate, no duplicate texture/load, native paged controls/samecanvas and error/readiness guards before queued walk. Full boss/TCG/Chess matches, physical phone/independent human/FPS/totalGPUmemory/listening/rights/release NOT_RUN/OPEN; immutable art/boss/mode implementation keeps016D evidence only within unchanged boundaries. Demo90/product≈40% unchanged.016Fproposal is separate unimplemented room/schema6 plan. [Evidence](evidence/AW2-016E.md).
+
+016D source `32afa6dd6564ced989eb4433b12a61392b1f81e6` / exact staged+fetched tree `49e3a471932637f981f3c593a7d3c10cf04e856b` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016D-publication.json). Completion stamp changes documents only.
+
+## AW2-016D — actual renderer preflight /2026-10-27
+
+Base `6f1c0abecb68cf79b1d6d8cae4e2dc714e7e6970`, runtime411inputs `f989329abbc7f0ac3d53aac3126f8e734305e1e428d8b6dabe6f57a70c1a4bb3`, compiled match. Fresh full1,733/1,733units/134files PASS in62.44s using explicit `--maxWorkers=1 --testTimeout=120000`, zero fail/skip. Includes26new (20preflight/lifetime +6inside-lock save guards); the initial54focused cases overlap this total. No assertions/seeds/loops or default configuration changed. This is a serial QA-allowance run, not a new default20s/concurrency result; historical016Bdefault-timeout reliability remains open. Both root/dev types, AW2305files/121,748,807bytes/259runtimeasset parity, stable851files/177,450,422bytes/49HTML-JS-CSS isolation + release guard PASS. Unchanged rules/maps/schema/economy/modes/art/dependency boundaries remain explicit in the build record; full units freshly run, no historical unit totals reused.
+
+Final uninterrupted fresh browser source131+compiled131=262PASS,0unexpected page/console/HTTP errors. Both start empty and earn intro5starters30XP, then real memories80XP and puzzle/gates; all six outward/return destinations and shared classic entry. Each successful route asserts required-image completion and actual first frame before setItem, exact canvas/first-frame identity promoted, one remaining slot/one representative. Delayed asset/cancel/late404/404retry, injected init/draw failures, canceled staged renderer and actual30s stalled-frame timeout retain exact source/raw. Native WEBGL_lose_context after successful commit preserves durable destination and recovers via reread; same extension on a staged ready canvas while holding a real Web Lock is rejected by the inside-lock guard with0setItem attempts. Genuine second tab walks/saves; stale first tab cannot overwrite; source NPC frozen, duplicate actions blocked, candidate inert/hidden,4viewport20px/44px/no-scroll/dialog fits, exact reload/5stable legacy sentinels. Four local QA images ignored, progress390/source and completed compiled capture inspected in-session.
+
+Excluded diagnostics: formatter changed function-array type grouping/definite-assignment annotations; explicit types/initializers corrected before final full/types/build runs. Initial source browser had HMR during a type correction and failed canvas identity; later diagnostic failed because the harness expected Đi qua after a retained error changed the label to Thử lại. Final harness explicitly rereads after that separate fault before continuing, uses real UI only, and both final runs start fresh.0diagnostic/prefix assertions retained in fresh counts.
+
+In-session BA/mechanic/animation/tester/scretary and React quality review; no independent acceptance. No new raster/media/dependency/canon/schema or reward changes. Post-durable-write rollback, full fresh boss/mode match, physical phone, independent human, totalGPUmemory/FPS/listening/rights/release NOT_RUN/OPEN. Demo90/product≈40% unchanged. [Evidence](evidence/AW2-016D.md).
+
+## AW2-016C — destination preparation / 2026-10-27
+
+Base `7d157f1a5ca665db297f3093d491f2598830511b`, runtime fingerprint `524f4a81706fc1198f1a8c537e079bcccf3d5686c2cc4bb487374b4ba0a81c55`,408inputs/compiled match.186unique impacted unit cases/10files PASS, includes18new preparation tests. Final18rerun replaces earlier18 after test-fixture typing/default-cleanup correction; remaining168assertions/implementation unchanged, not added to baseline totals. Types root+dev exit0; AW2build305files/121,743,389bytes/259exact runtime parity/source-temp exclusion PASS. Stable build851files/177,450,422bytes/76text isolation/release guard PASS. Full current suite NOT_RUN: store/schema/rules/maps/encounter/economy/mode authorities and dependency files byte-identical to7d157f1; reuse016B only for those unchanged boundaries. Its two default20s legacy simulation timeouts remain open, not newly passed here.
+
+Final fresh browser source60+compiled60=120PASS,0unexpected errors. Fresh intro5starters30XP; delayed destination source canvas identity/position/raw retain, disabled movement/once-only request,4viewport20px44px/dialog fits, cancel/late404 cleanup, real404/retry, simulated write failure/exactsave, one successful commit, moving sourceNPCfreeze, second real tab walks/saves then first stale request is rejected, reread external checkpoint, real three-memory80XP/puzzle and all6outward+return gates, requests finish before commit, one representative, exact reload and sharedclassic entry,5legacy sentinels. Four QA captures remain ignored local only. Bootstrap browser EACCES/noexec and two harness expectations (localized write message/floating-point position) excluded; corrected harness does not fabricate progress/HP/flags or weaken raw comparisons. Browser executable/libraries copied to /tmp for executable permissions; repo dependencies unchanged.
+
+No new art/assets. In-session BA/mechanic/animation/tester/scretary/React review; actual progress390capture inspected. Timeout/late ownership behavior unit tested; no browser30s timeout claim. Post-commit GPU/renderer-init rollback, device/human/FPS/totalGPUmemory/freshboss/fullmode match/rights/release OPEN or NOT_RUN. Demo90/product≈40% unchanged. [Evidence](evidence/AW2-016C.md).
+
+## AW2-016B — NPC patrol, 2026-10-27
+
+Base `eb70cdcfa9f0bc3619934885a9de0507aa7f1bce`; runtime fingerprint `e3d3522031b88f6eb090d2e5570f483a2831e6a19f6489cc4e8393685b132951`,405 inputs; sourceDirty=true/base recorded honestly.22 focused NPC tests PASS. Full serial run132files/1,689cases:1,687PASS/2FAIL_TIMEOUT_ONLY at explicit20s. Both named simulations passed under QA-only120s transformation,31,235ms and34,372ms;33 filtered-out cases in that rerun were already covered by the full run and are not counted again. Default full-suite status remains FAIL_TIMEOUT_ONLY, not PASS. All1,689 unique cases have passing functional assertions across these runs; a speed-budget result is separate.
+
+Late change only tightens JourneyLandscape labels to visible stage bounds. Substituting the pre-fix version of that one file exactly reproduces the full-unit basis fingerprint `77eaeee77a1ecfb66268ebdd616cd49f0450bcf83032ca68682998154d6bac7f`; other inputs/logic/tests unchanged. Final dev types/build plus complete55source+55compiled browser runs rerun after the label fix; root typecheck (src/vite.config.ts scope) and stable build remain applicable. No extra full run or historical assertion counts added.
+
+110fresh final browser checks PASS, six local captures,0unexpected errors; actual intro, moved NPC interaction, canonical memory anchor/failed write/retry/once-only80XP, modes entry-return, reload, atlas404/recovery, blur/reduced, visible labels and44pxcontrols at320/390/768/1280/chữ20px. Earlier timing/selector/harness diagnostics are excluded.16safe frames, exactRGBA/source hashes/pinned own-project reference, repeat5paths,13street textures16,109,916compressed/78,916,656decoded bytes≤18MB/80MB, leader separate; not totalGPUmemory. Build305files/121,738,941bytes/259asset parity; stable852files/177,450,422bytes/76textisolation and release guard PASS.
+
+Original PNG recovered from uploaded Git blob after workspace loss; exact prompt unavailable, reconstructed brief explicitly labeled, rights/fullNpcComplete open. In-session BA/story/character/mechanic/animation/tester/scretary/React review; actual selected source and final browser captures inspected. Physical phone/independent human/FPS/full fresh boss/full mode round/rights/release NOT_RUN or OPEN. Demo90/product≈40% unchanged. [Detailed evidence](evidence/AW2-016B.md).
+
+## AW2-015B /016A /008B —2026-10-26
+
+**AW2-015B /016A /008B VERIFIED — trận và bản đồ trong khung chơi cố định.** Sảnh/TCG/Auto Chess/boss trên `game.html` đã phân trang cùng44pxcontrols; giữ ghim/trang nhật ký/vùng đang xem qua lượt chơi. Quầy cờ đánh dấu và đếm bản đang có. **Thêm → Bản đồ hành trình** có sáu vùng, vị trí/mục tiêu, cửa mở/khóa và đi bộ tới cửa kế; tự E/Đi qua, không tự dịch chuyển. Registry typed/runtime-validation chiếu sáu map/támNPC/portal/spawn hiện hành, không đổi luật/save/geometry; preload/rollback/nội thất mới vẫn là hợp đồng kế tiếp.
+
+**205ca unit riêng biệt/11files, hai typecheck, AW2+stable builds PASS. 1,016fresh browser checks=508source+508compiled**, gồm501main+7faults mỗi flavor; thêm276source exploration regression tách riêng. Bốn viewport/font16–20px, ván TCG thật có nhắm đích thủ công, cờ xếp quân/giao tranh/sang vòng, hành trình mới đủ sáu vùng→boss45tick→ghi lỗi/thử lại→ghi chép/kết thúc/reload300XP. Tab cũ/atlas404/khôi phục/rút lui đấu lại giữ dữ liệu; không lỗi browser bất ngờ. Fingerprint399inputs `34a7e3e6b138fa00afabf7b768e77faa1bf81c6f2459e32991e0d7dd97a32ad3`; build302files/120,602,933bytes/256runtimeparity, stable851files/177,450,422bytes/72textisolation. [Bằng chứng](evidence/AW2-COMPLETION.md) · [Cách chơi](ACTIVITY_SHELL.md) · [Bản đồ/contract](WORLD_REGISTRY.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên**; D20gác nghiệm thu độc lập/điện thoại, D18milestone chưa đóng. D11PROPOSED; không thêm gacha/quyền phát hành/save field/ảnh/nhạc/dependency. Next016B: một NPC tuần tra bằng sprite nguyên bản và vị trí tương tác sống; sau đó preload/rollback và một nội thất có canon/migration riêng. Phát triển/push trực tiếp AW2 theoD16; không master/rpg/deploy/release. Các mục phía dưới là lịch sử; ưu tiên mới theo đoạn này.
+
+## AW2-015A v1.1reference integration +first exploration/menu shell —2026-10-26
+
+Source `0936b948db633c66e5539f631e3f8aaf7920fda1`, base `601fed31d9965c883afc14774b123c56f4b272ef` includes concurrent design commits73ef962..601fed3preserved in history. Imported duplicateD13→D23and UI-only012→015normalized explicitly, six importedUI-QUEST cases mapped toUI-V11-01..10without claiming implementation. Exact22file1,980,952byte reference archive and23untracked originals/ZIPhashes PASS;0rastergeneration/edits, rightsREVIEW_REQUIRED. [Matrix](WORLD_V1_1_INTEGRATION.md), [provenance](evidence/AW2-015A-spec-provenance.json).
+
+Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chrome153.0.8010.36/Playwright1.58.2.88unique unitcases/4files PASS in one affected run:31newreadonlyjournal/paging +57guide/world/control,0fail/skip.4canonicalquestIDs/rewards/receiptstatus, migration-style pendingreceipt fixture/no backfill/detachedrewards,30/100itemgenericpaging and longUnicodecopyexactness. Actual runtime has4mainquests/oneactive, not100authoredquests. Root/finaldevtypes PASS. [Commands/results](evidence/AW2-015A-verification.json).
+
+552fresh focused browser assertions=276source+276compiled, both finalexit0/no unexpectederrors/0retainedassertions.320×568/390×844/844×390/1280×720: no document/core-paneloverflow,44pxtouchbuttons, representative visible within clipped render viewport, samecanvas acrossmenuopens, localpage/pinstate retained, nativeTabtrap/J/Escape/openerfocus, modalno clickthrough/worldkeydrift/NPCclockpause/resumeheldkeysafety, exact inversetouch/no save on walking/menus. Actualintro5starters30XP; arbitrarymemoryselection and Journal/HUDsameprogress; pagedpartycommit firstslotLam preserves5combat/oneactor/economy; remoteKitchenbuttonsdisabled. Both real mode entry-return preserve exactcontext; current scenes remain legacy layout, no full mode-round/no-scroll acceptance claim. Actualclassic/world entry reads same checkpoint, explicit secondmemory writes sharedstate, gameHUD updates withoutbackfill. Requiredstreetfloor404→error/directionsdisabled/exactsave→recovery. Fivelegacy sentinels exact. Historical008Acompleted raw only seeds completedreceipt/345XP/party/bag projection, originreport/rawSHA and0retainedcounts recorded; no newbosswin claim.
+
+Initialsource diagnostic found nativeTab could focusoutside modal: explicit visible/enabled focus cycle added. Nextsource+compiled diagnostics exposed implicit grid track expanding to covercanvaswidth, clipping leader outside visible viewport and failingtouch; constrained minmax track/forefront UI z-order before frozen finalruns. All failed/prefixcounts excluded, no composite/historical sums. Source/compiled both final276PASS. Calibration used an authentic old30XPcheckpoint only for layout; final runs startnewsave before historicalcompleted UI projection. Selected actual source844party and compiled320quest captures opened; ownerdesktop/mobile wireframes inspected as designreferences, not gameacceptance screenshots.
+
+395frozeninputsd508dae2732de764ef96e9b0c361770665687a6e1efc76c0714fc79cd2b9714a; AW2build302files/120,562,756bytes/256runtimeassetparity/sourceandreference-archiveexclusion PASS. Stable851files/177,450,422bytes reused at006Q/15c0cd2;49freshtextAW2exclusion/stableentryconfigdeps equality PASS. AW2configonly adds game.html plus formatter whitespace/trailingcomma.541unchangedtrackedhashes retain historical1588unit006Q only unchangedauthority/deps/assets/renderers; sharedworldUIcontroller/AW2config excluded/freshlychecked. Currentfullsuite NOT_RUN. [Artifact](evidence/AW2-015A-review-build.json), [reuse](evidence/AW2-015A-reused-evidence.json).
+
+UI-V11-01/02/03/04/05/07/08/09 have technical first-exploration/menu subsets only. FullcoreUI-V11-01andUI-V11-10battle/modescene migration,100authoredquests/3simultaneousactivepins,gamepad/physicalphone/independentplayer/FPS/totalGPUmemory/listening/offline/native/rights/production-save/release remainNOT_RUN/OPEN. D20acceptance deferred; D18gate notclosed. Demo90/product≈40%(35–45%)/0fullcharacterDoD unchanged. Next015BUI and016Aworldcontract;016BNPCpatrol depends on live-position registry. No reset/master/rpg/deploy/release.
+
+## AW2-008A objective directions and renderer readiness —2026-10-26
+
+Source `45a54471750961d382c807c338e75248ee261783`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chrome153.0.8010.36/temporaryPlaywright1.58.2.57unique units/3files PASS in one affected run:27new guide +18world +12controls,0fail/skip. Every legal stage/zone/property checked for open reciprocal routes, collision-safe approach/path segments from4origins, within48px/correct nearest E target, locked shortcuts and detached/nonmutating objects. Boss unit states are explicit legal fixtures; browser evidence below is earned. Root types and final dev types/build PASS. [Commands/results](evidence/AW2-008A-verification.json).
+
+335browser instances=167source+168compiled, both final process exit0/no unexpected errors.305fresh+30current-task prefix already included; no historical counts added. Source167fresh native new-save journey across6zones, intro5starters30XP, arbitrary-order memories/An80XP, hint/chest/three puzzle steps+partialreload, Dì160XP/explicit cook+share205XP, actual45tickboss win+explicit commit/note/return, both345XP/5receipt endings from same fresh earned preending raw, exactreload/legacy. No invented HP/flags/party/reward bypass. Direction walks grant/write/travel nothing; crossing doors/actions remain native explicit, dialogue disables controls, keyboard/touch focus returns,320390768/nooverflow/44px/18captures total. Native TCG/Chess entry-return preserves checkpoint, no full new rounds claimed. Actual committed leader swap with held real texture proves old leader readiness cannot enable new one; one mapactor/fiveparty/economy preserved. Delayed required scene loads and each of three renderer floor404→error/allguidebuttonsdisabled/exactsave→recovery, actual storage-failure and stale-tab write/reread covered.
+
+Initial diagnostics waited injected storage exception text while UI correctly showed friendly Vietnamese message; selector fixed, initial9prefix attempts perflavor excluded. Compiled next run passed30then read original-team restore before asynchronous save/render committed; source complete167PASS. Corrected harness wait; exact native checkpoint already contained original committed team. Final compiled retains30passed prefix by report/rawSHA +138fresh continuation; failed assertion excluded, no runtime edit across correction. [Prefix intentionallyFAILoverall](evidence/AW2-008A-compiled-prefix.json), [final compiled/origin](evidence/AW2-008A-compiled-browser.json). Not a single uninterrupted compiled final run. Both actual boss wins tick45 freshly observed.
+
+390frozen inputs0cdf990a4096cfea7f4747a47f6460668ebbd1b8b9595dfb211d84062001509d; build300files/120,536,069bytes/256runtimeassetparity/sourceexclusion PASS. Stable851files/177,450,422bytes reused at006Q/15c0cd2,49freshtextAW2exclusion/entry/config/deps equality PASS.534unchanged tracked paths retain full1588unit006Q only unchanged authorities/dependencies;7changed UI/type/style paths excluded, new pure helper covered freshly. Current full suite NOT_RUN. No new raster/audio generation; source/runtime/manifests/clock/lease drawing unchanged. [Artifact](evidence/AW2-008A-review-build.json), [reuse](evidence/AW2-008A-reused-evidence.json).
+
+In-session BA/story/mechanic/tester/scretary +React/verification review. Actual source320memory/390return and compiled390intro captures opened. Independent human/device/listening/FPS/totalGPUmemory/offline/native/rights/production-save/release OPEN/NOT_RUN. D20priority conflict with006Qnext-human/phone explicitly resolved before editing. Demo90/product≈40%(35–45%)/0full-characterDoD unchanged; next008B overview,010C/011Adeferred. No reset/master/rpg/deploy/release.
+
+## AW2-006Q authored kitchen-yard ambient motion —2026-10-26
+
+Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`, exact tree `315e92b50d30886c8f11a75aa5328c2d70b83af0`, base `c2e868394ef2bb8547989aecb37bf025f5f98391`. PASS:141fresh source +141fresh compiled browser assertions,18captures mỗi flavor,0unexpected page/console/resource errors và14expected fault observations mỗi flavor. Bao phủ exact3steam+3water anchors/sizes/depths, đủ4frames, pause/reduced/resume/no-write, two-sheet yard lazy lifecycle/no interior requests,320/390/768 follow/overview, reciprocal six-zone route và từng4ambient atlas404→recovery/exact save+legacy. Ảnh yard390/768 source+compiled đã được mở kiểm tra.
+
+Full1588/1588units/128files; focused6/6; root+dev typechecks; exactRGBA/8new safe frames/pinned own-project reference/repeat10paths; AW2build300files/120,532,716bytes; stable851files/177,450,422bytes + release guard đều PASS.2imagegen calls/2selected/0rejected; selected source PNG unchanged, lossless WebP exact RGBA. Diagnostic fontconfig failure excluded before final clean reruns. Independent human, physical phone, uninterrupted boss route, FPS/GPU memory, listening/offline/native, rights/production/release NOT_RUN/OPEN. [Evidence](evidence/AW2-006Q.md).
+
+## AW2-006P final ambient browser acceptance —2026-10-26
+
+Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`, base `1bdf5b1af5a5fece53a13390b4113b88ddf7c9ca`. PASS:135fresh source +135fresh compiled browser assertions,18captures mỗi flavor,0unexpected page/console/resource errors và12expected fault observations mỗi flavor. Bao phủ exact2ripple+4lantern anchors/sizes/depths, đủ4frames, pause/reduced/resume/no-write, zone-lazy/no-yard,320/390/768 follow/overview,404/recovery/exact save/legacy, inherited NPC/settlement/route/endings. Hai ảnh390px đại diện được mở kiểm tra.
+
+Diagnostic source đầu tiên bị loại khỏi PASS: harness so snapshot trước khi ambient về `calm`; sau khi sửa wait, run đã phát hiện cảnh báo Pixi thật về destroy/cache. Runtime chuyển từ `Texture.destroy` sang lease-aware `Assets.unload`, serialize unload→reload; verifier coi hai cảnh báo này là lỗi. Final source/compiled đều sạch. Full1587/1587units/128files; focused5/5; root+dev typechecks; exactRGBA/8safe frames/pinned refs/repeat10paths; AW2build295files/120,778,461bytes; stable851files/177,450,422bytes + release guard đều PASS. Independent human, physical phone, full uninterrupted boss route, FPS/GPU memory, listening/offline/native, rights/production/release NOT_RUN/OPEN. [Evidence](evidence/AW2-006P.md).
+
+## AW2-006N authored ambient motion —2026-10-25
+
+Source local `3fc7d536a9a00d0be3b6eade1168470f279d9307`, base/freshremote `7388f47f3b0f0272f3eb2ef40edf062dcf472b28`. Full1587/1587unit cases/128files PASS with `--maxWorkers=1 --testTimeout=60000`;0fail/skip. Initial default-concurrency run timed out4unchanged long simulations while1580 passed; isolated reruns and final serial full run passed. Both typechecks PASS.
+
+Five focused tests cover deterministic4-frame/reduced pose/invalid time, exact6anchors/sizes/depth/no geometry authority, concurrent shared lease disposal and no requests outside Làng/Phố. Asset audit PASS:2imagegen calls/2selected/0rejected, unchanged sources, transparent-margin crop only, exact-losslessRGBA runtime,8safe frames/max edgeα7, pinned refs/repeat10paths. Budgets including NPC+settlement: village10,291,040compressed/45,961,648decoded;street15,851,872/78,916,656, both≤18MB/80MB.
+
+AW2 build293files/119,756,454bytes/148runtime assets PASS; stable build/release guard PASS. Final restored-source browser, independent player, physical phone, FPS/totalGPUmemory/listening/offline/native, rights, production-save and release NOT_RUN/OPEN. Demo90/product≈40%(35–45%) unchanged; remote publication pending. [Evidence](evidence/AW2-006N.md).
+
+## AW2-006O architectural density —2026-10-24
+
+Final structural checks PASS:11changedJSON,16localMarkdown link sets,2PythonAST,1NodeMJSsyntax,6oxfmtfiles,gitdiff whitespace; runtime371inputfingerprint unchanged after docs.
+
+Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chrome153.0.8010.36/Playwright1.58.2. **39unique unit cases/3files PASS**:25unchanged view/controls from initial run plus final complete14settlement rerun. Initial3failures were landmark endpoint metadata comparisons in tests; corrected x/y input, no runtime bug, no failed or duplicate cases added. Both final typechecks/review build PASS after named-type formatter repair before build/browser. [Exact commands](evidence/AW2-006O-verification.json).
+
+**248fresh focused browser assertions=124source+124compiled**, both process exit0/no unexpected errors,371inputfingerprint5b84f39cb4879e9216c22b9bcc886ae66bde4d2bd30d3fc4cbbf51aa59922b18.32actual architecture sprites/9native walk-only landmarks/keyboard+focus/no writes; follow0.65+overview320390768labels/native44px; actual roof-overlap fade0.25/restoration. All8NPC/32poses, feet/depth/scale, no duplicate or idle writes, pause/reducedneutral/freeze/resume. Fresh intro5starters30XP/exactreload, memories/An80XP/two practice entry-return, Dìlocked/acceptance/reciprocalpantry. Each8NPC+2architectureatlas404→error/no fallback/allpointsdisabled/exactsave→recovery. Both actual ending actions345XP/5receipts/completedBà from hashed historical earned boss+note checkpoint, retainedAssertions0. Fresh completed outward5+return5 native transitions across6zones preserve economy/ending/correct architecture/no phantom NPC. All5legacy sentinels exact. No uninterrupted intro-to-boss or new boss-win/full mode-round claim.
+
+3built-in imagegen calls/2selected/1rejected homes repaired for missing safe gutter; selected1254×1254PNG originals unchanged.8frames/fullalpha coverage/edge≤3/exactRGBA/pinnedrefs/repeat10paths PASS.32conservative lower28%solid bases outside old legal walkfield; no blocker/save-schema changes. Texture compressed/decodedRGBA: village9,900,218/44,033,328;street15,377,130/75,483,648;yard11,134,486/50,327,480;≤18MB/80MB each, chosenleader separate. Not measured totalGPU/device memory. [Guide/provenance](KHU_PHO.md).
+
+Review286files/118,853,221bytes/242runtimeassetparity/sourceexclusion/fingerprint PASS. Stable851files/177,450,422bytes reused at4165b1e; fresh49textAW2exclusion/entry/config/deps equality PASS.503unchanged tracked hashes retain1471fullunit013B only unchanged authorities/deps and006Linterior/boss scope; both outdoor canvases excluded and freshly checked. Historical totals never added. [Artifact](evidence/AW2-006O-review-build.json), [reuse](evidence/AW2-006O-reused-evidence.json).
+
+In-session BA/story/animation/mechanic/tester/scretary/React review and actual source/compiled390map captures opened. Current full suite/fresh uninterrupted boss route/independent human/physical phone/FPS/totalGPUmemory/listening/offline/native/rights/production-save/release NOT_RUN or OPEN; D20acceptance deferred. Demo90/product≈40%(35–45%) unchanged. Next006Nambient Làng/Phố. No reset/master/rpg/deploy/release.
+
+## AW2-006M all eight NPC idle cycles —2026-10-24
+
+Source `639609b986389cc7743d977679ca361c010911f8`, clean local/freshremote base `b7b4d1c8d83875aba69307ef31c15743049e156c`. Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.36/temporaryPlaywright1.58.2.83unit/5files PASS in one final run,28new NPC cases,0failed/skipped. Both final types exit0 after formatter inline object type semicolon was replaced with multiline form before frozen build/browser. [Exact commands/results](evidence/AW2-006M-verification.json).
+
+178developer browser assertion instances=89source+89compiled, same361runtimeinputs12638bb685907682a4194d2e6bb0dc2267c2de9c2e5eba2d42009754a86fac7f. Source89fresh focused checks; compiled47current-task prefix+42fresh continuation=89, both final process exit0/no unexpected errors. Total131fresh+47retained already included in178; no historical assertion counts or fresh uninterrupted boss route claim. Native source/compiled32actual poses/8NPCs, common feet/scale/depth, no duplicate static actor, idle/no write, pause/neutral reduced/resume, safe keyboard destination/focus, camera inverse/touch,320390768label bounds/native44px, exact5starter30XPintro, three memories/An80XP, both practice entry-return, Dì/east/shortcut gates and reciprocal pantry/no phantom NPC. Eight required atlases each404→error/no static or debug/disabled destinations/exactearnedbytes→recovery. Actual wait/share ending actions345XP/5receipts/completedBà from hashed historical earned boss+note checkpoint only; no altered flags/HP/rewards. All five legacy keys unchanged. [Final reports/prefix origins](evidence/AW2-006M-verification.json).
+
+Compiled original47PASS then failed an immediate read-state metadata assertion: save/dialog committed before next Pixi tick; source passed same boundary. Harness now waits actual read-state tick. Retain original47by report/raw hash, continue exact earned two-memory street save, finish remaining42; failed assertion not counted, no runtime mutation across correction. [Prefix](evidence/AW2-006M-compiled-prefix.json). Full source/compiled intro-to-boss uninterrupted/full current suite NOT_RUN.
+
+9built-in imagegen calls/8selected/1rejected chess edgeα23 repaired by tool,32safe frames edgeα≤4. All1254×1254sources untouched; original prompt requested1024, actual dimensions below8MBdecoded/sheet. Columns use measured safe row gutters rather than fixed627split; fullα>8content coverage/foot anchor/exactRGBA/source/runtime/prompt/pinned own refGitblob/SHA/repeat41paths PASS. Required region budgets compressed/decodedRGBA: village6,209,638/31,453,200;street11,686,550/62,903,520;yard7,443,906/37,747,352, each≤15MB/80MB, chosen leader separate; no device/GPU measurement. Original three static reference atlases preserved; street old NPC-only atlas not loaded. [World/art guide](THE_GIOI.md).
+
+Review279files/115,141,000bytes/235runtimeassetparity/sourceexclusion PASS; compiled fingerprint matches current frozen361inputs. Artifact honestlybaseb7b4d1c/dirtytrue. Stable851files/177,450,422bytes from4165b1e reused; fresh49text exclusion/entry/config/deps equality PASS.459unchanged tracked hashes retain1471fullunit013B only unchanged authority, plus006Linterior/boss scope, no historical totals added. [Artifact](evidence/AW2-006M-review-build.json), [reuse](evidence/AW2-006M-reused-evidence.json).
+
+In-session BA/story/character/animation/mechanic/tester/scretary/React review; selected sources and actual sourcevillage/yard/compiledstreet390maps/overviews opened. Full NPC locomotion/four-direction motion/fullenvironment/characterDoD/independentplayer/art/device/listening/FPS/totalmemory/offline/native/rights/production-save/release remainOPEN/NOT_RUN; D20deferred acceptance.6/6scenery/8NPCidle/12kits/12reference/0fullDoD, demo90/product≈40%(35–45%) unchanged. Next006Nambient village/street. No reset/product/master/deploy/release.
+
+## AW2-006L scenic interiors —2026-10-24
+
+Source `36c2231bafb9de8778f380183780af242cfa9281`, clean base/fresh remote `8e2dae03e2631de9800db70ffc5e12d874169b10`. Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.36/temporary Playwright1.58.2.85unique unit cases/7files PASS:78unchanged initial cases+7final interior cases replace original7 after test-only zone typing/nonempty collision-safe segment assertions. Final0fail/skip, both types exit0. Initial dev type failure was a JSONstring fixture narrowing, no runtime error. [Commands/results](evidence/AW2-006L-verification.json).
+
+100developer browser assertion instances=50source+50compiled, composite frozen326inputsc24de0805c292c6d:44current-task prefix+6fresh continuation perflavor, no historical count. Both final processes exit0/no unexpected errors. Native unsolved east gate/wrong puzzle/no spend/partial+solved exact reload/real cook/share205XP, canonical props and safe native approaches, follow/overview inverse touch/no save/out-of-playfield denial, furniture inverse-bounds fade/south depth,320390768labels+44pxcontrols, dialog pause, both new required floors404/error/no fallback/disabled destinations/exactsave/recovery. Own boss four-facing frames/feet/scale, actual45tickplayerwin with five saved combat members, explicit commit/reload/note, both once-only endings345XP/5receipts, real rematch retreat/no rewards and reciprocal rooms/shortcut/legacy sentinels. Failed selector Rút lui corrected to actual Rút lui về Phòng Bàn;44verified prefix assertions retained by committed report/raw hash perflavor, failure itself excluded. [Reports](evidence/AW2-006L-verification.json).
+
+Asset exactRGBA/opaque/source/runtime/pinned own reference Gitblob+SHA/prompt hashes/repeat12paths PASS;2generated/2selected/0rejected images, relative-path schema retries produced no images. Source PNG untouched, siblingv2 lossless WebP. Hearth4,858,990compressed/25,165,744decodedRGBA, table5,395,202/31,457,152, each≤7MB/40MB; leader atlas separate, not measured device/GPU memory. Existing v1props/puzzle/note/threshold/ownboss unchanged. Both selected images and actual source/compiled map captures opened; in-session role/React review only.
+
+Review247files/107,893,836bytes/203runtimeassetparity/sourceexclusion PASS;326input fingerprintc24de0805c292c6d matches compiled/current source. Build atbase8e2dae0/dirtytrue, exact content-bound candidate. Initial sandbox gitEPERM rerun authorized escalated exit0; missing former/tmp Playwright path replaced with pinned temp install, no dependency changes. Stable851files/177,450,422bytes from4165b1e reused; fresh49text exclusion/entry-config-deps equality PASS.445unchanged tracked hashes retain1471historical full-unit013B only within unchanged authorities, not added to fresh totals. Old flat006Fbrowser harness is historical; changed room evidence superseded here. [Artifact](evidence/AW2-006L-review-build.json), [reuse](evidence/AW2-006L-reused-evidence.json).
+
+Full current unit/fresh intro+uninterrupted journey/independent player/art/device/listening/FPS/totalmemory/offline/native/rights/production-save/release NOT_RUN or OPEN. D20deferred acceptance; full regression due on shared authority/save/engine change or milestone.6/6scenery/8staticNPC/12kits/12reference/0fullDoD, demo90/product≈40%(35–45%) unchanged; next006M Bà/Dì idle motion. No reset/product/master/deploy/release.
+
+## AW2-006H/J/K remaining three-zone art —2026-10-24
+
+Source `8543ad5c309d982ba0e7ae60753371aea384699e`, base/fresh remote `fd1513306ea6cc5052bd08a04eaba666ce07b6cf`. Linux x64/Chromium153.0.8010.36/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1.88unit/7files PASS,0fail/skip;16new journey state/receipt/frame/hash/budget/path/view/occlusion cases. Both final types exit0; initial copied foliage prop.alpha caught/fixed before frozen candidate. [Exact command/results](evidence/AW2-006HJK-verification.json).
+
+222unique developer browser assertion instances=111source+111compiled, verified in this session on identical315runtime/config/asset inputs. Composite exact earned checkpoint chain, not one uninterrupted full route: per flavor22intro/quick-entry→49three-scene previews/portal modes/memories/hint→13failed chest write/retry/puzzle/cook/boss→27endings/shortcuts/errors. Final processes freshly ran54instances and retained168earlier prefix instances, already included in222; overlapping prior22/71/84prefixes and excluded diagnostic probes are not added. Final both exit0, no unexpected errors,6expectedtexture404perflavor. Retained input reports/canonical raw/report SHA256 nested chains committed. Boss player-win observed; numeric tick omitted by original interrupted report =>finalnull, not invented. [Retained evidence](evidence/AW2-006HJK-verification.json).
+
+Actual story: once-only starter5/30XP, both real modes/portal+quick-entry checkpoint return, three memories/80XP, locked Dìeast/shortcut then explicit quest, hint read, neutral chest no grant on close, failed storage write exact raw/receipt/ready sprite/no writes then explicit retry once4/3/2, wrong/correct puzzle/no spend/reload, cook/share205XP, real boss victory/commit/reload/note, both endings345XP/5receipts/reload, reciprocal shortcut, completion modes. Each new region has all authored props, one committed leader, safe native approach/focus, correct inverse touch, out-of-bounds denial, native keyboard ownership, transformed crate overlap/collision detour, optional reduced-motion foreground,320390768real label/body bounds/native44px/no overflow/follow+overview captures. Each of6newfloor/atlas URLs404→error/no debug/disabled destinations/exact bytes→recovery/no writes. Legacy sentinels unchanged.
+
+Harness assumptions corrected without changing authority: actual camera-frame timing, low-crate right-edge overlap/safe364coordinate, follow mode before parallax, real wrapped Vietnamese storage error,≤1pxending-coordinate tolerance after camera inverse. Passed prefixes reused by hash after fixes; no fresh full-suite/uninterrupted/human/device claim. Selected6sources/repair and source390pantry/compiled390street/yard actual captures opened, in-session role/React review only.
+
+Asset audit PASS exactRGBA/source/runtime/reference hashes,11newframes/edgeα≤4/fullα>8coverage, sourcePNG unchanged and byte-identical repeat22paths before frozen build. Required environment budgets: pantry4,729,712compressed/18,873,024decodedRGBA; street7,390,156/31,454,592; yard6,631,264/31,457,288, within7/8MB and40MB limits, not device memory. Built-in7calls/6selected/1rejected; no code-painted sources. Review239files/102,922,929bytes/195source-runtimeasset parity/source exclusion PASS. Fingerprint315inputs30687d872185a808 matches compiled/current frozen source; artifact honestly basefd15133/dirtytrue. Stable851files/177,450,422bytes from4165b1e reused; fresh49HTMLJSCSSexclusion/entry-config-deps equality PASS. [Artifact](evidence/AW2-006HJK-review-build.json).
+
+412unchanged tracked inputs preserve1471full-unit013B only for unchanged authorities/dependencies; historical110demo011B not added. Full current unit/uninterrupted journey/independent player/physicalphone/listening/FPS/totalmemory/offline/native/rights/production-save/release NOT_RUN or OPEN. D20deferred acceptance. Art-reference3/6→6/6, expanded scenery4/6, static8NPCs; demo90/product≈40%(35–45%)/0fullDoD unchanged. Next006Ltwointeriors then NPCmotion. [Evidence](evidence/AW2-006HJK.md), [reuse](evidence/AW2-006HJK-reused-evidence.json).
+
+## AW2-006I mainline style landscape/camera —2026-10-24
+
+Source `f0c1be37cef1c83416c5eb76be2943d1e768f2bc`, clean base/fresh remote `5d3ec842afbeb8518f6da957b78ad04cc59d94da`. Chromium153.0.8010.36/Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1.72unique units/6files:49unchanged controls/table-interactions/hearth/village cases from initial run +13final pureview cases +10table-room. Final0fail/skip; view float-bound test corrected to10-digit tolerance. Both final typechecks exit0 after formatter inline-type correction; no runtime rounding. [Exact commands](evidence/AW2-006I-verification.json).
+
+82fresh final browser assertions=41source+41compiled, both exit0/no unexpected page/console/resource errors. Actual follow/overview switch, keyboard focus, inverse-projected touch, out-of-domain scenic tap denial, foreground fade/parallax/reduced-motion/no camera save writes;320390768labels/native44px/no overflow. Fresh actual intro/early cloth denial/accept/read/exact reload/once-only5starters30XP1receipt/oneleader; old well fade/collisiondetour and explicit reciprocal Phố. Exact earned011Bending from actual Sân checkpoint, native return completedBà/no extra reward, allsixzones/hearth/tableboss/reciprocalroom. Each newlandscape/foreground404→error/no fallback/disabledtargets/exactsave→recovery, legacysentinels exact. Initial source run had HMR; excluded, final frozen run replaces it without duplicate count. Captures and generated sources opened in-session.
+
+Asset audit exact source/runtimeRGBA/SHA256/alpha/refGitblob+commit/prompts/budget/repeat10paths PASS. Fourimagegen calls/two selected/two layout rejections; original PNG untouched, WebP lossless. Required5,550,286compressed/25,163,136decodedRGBA bytes (budget6MB/32MB, not device memory);3foreground edgealpha1/2/4≤8, original props3/2/1 retained. Build224files/90,503,566bytes/180source-runtimeasset parity PASS; fingerprint295inputs matches compiled. Stable851files/177,450,422bytes at4165b1e reused, fresh49HTMLJSCSSexclusion and entry/config/deps equality PASS. [Artifact](evidence/AW2-006I-review-build.json).
+
+402tracked original runtime/test/config inputs byte-identical retain historical1471unit013B/110demo011B only in unchanged scope. Changed/new wrapper/village/labels/camera boundary checked freshly; full current-head suite/fresh full-story NOT_RUN. D20independent/human/device acceptance deferred; rights/full environment/NPC motion/audio/FPS/memory/offline/native/production-save/release OPEN. Reference-zone coverage3/6/demo90/product40 unchanged. Next006HunderD21style. [Evidence](evidence/AW2-006I.md), [reuse](evidence/AW2-006I-reused-evidence.json).
+
+## AW2-006G village implementation —2026-10-24
+
+Source `42f36d7c55921e6d2df474640cdfc212151bc4c0`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`, Chromium153.0.8010.36/Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1.51unique unit cases/4files verified:37unchanged controls/hearth/table cases retained from initial run +14final village cases,0finalfail/skip. Initial guessed label-height assertion failed and was replaced by real browser geometry checks;14replaces the entire original village file, no50+14sum. Both final typechecks PASS exit0 after renderer-init/narrowing/point-union type fixes.
+
+60fresh source+compiled browser assertions=30each/exit0/no unexpected errors. Fresh actual intro/early cloth denial/accept/read/reload/exactonce-only5starters30XP1receipt, one map leader, native keyboard/touch/320390768real text/sprite bounds, wellfade/collisiondetour/no writes, explicit east/reciprocal return. Exact011Bearned ending checkpoint from actual Sân then native Phố→Làng return, completedBà/no reward changes; allsixzones/hearthfiveprops/tableownboss+threegroundprops/fournativetargets/reciprocalroom. Each new floor/atlas404→error/no debug/disabledtargets/exact bytes→recovery/no writes; legacy exact. Expected404separate. Wrong close label and mistaken checkpoint location were harness errors; actual320label wrapping/clipping fixed with village-only text width/placement. Final60replaces failed attempts, no duplicate assertions. Captures and generated outputs inspected in-session; independent/phone acceptance DEFERRED_NOT_RUN under ownerD20.
+
+Asset exactRGBA/source/runtime/prompt/reference SHA256/3safe frames with edges3/2/1≤8/repeat6paths PASS;2built-in imagegen outputs/2selected/no rejected, original006Cthreshold reuse. Required3,631,772compressed/18,869,764decodedRGBAbytes. Frozen review219files/86,470,059bytes/175runtimeassetparity/sourceexclusion PASS, fingerprint286inputs independently matches compiled. Stable851files/177,450,422bytes at4165b1e reused; fresh49text AW2exclusion PASS, stable entry/config/deps unchanged. Prettier5files/Node/twoPythonAST/JSON/doclinks/whitespace checked. [Machine evidence](evidence/AW2-006G-verification.json), [build](evidence/AW2-006G-review-build.json).
+
+557unchanged tracked hashes retain1471fullunit013B and110full-demo011B only within original unchanged authorities/dependencies. Changed WorldCanvas/native menu/styles/village helper freshly checked here; current full-suite/full-journey NOT_RUN. Full regression remains due after shared authority changes/milestone. No new canon/save writer/schema/rewards/IDs, no reset/product/master/deploy/release. Demo90/product40(35–45%) unchanged; art-reference coverage2/6→3/6separate. Next006HPhòngKho underD20. [Reuse](evidence/AW2-006G-reused-evidence.json), [evidence](evidence/AW2-006G.md).
+
+## AW2-011B feedback/build identity —2026-10-24
+
+Source `eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. Fresh31unit cases/2files PASS (19new privacy/snapshot/metrics/fingerprint +12controls),0fail/skip. Both types PASS exit0; review build214files/83,750,843bytes/170asset parity PASS; fresh49stable-text exclusions PASS,851file stable artifact at4165b1e reused. Source metadata and compiled metadata match independent SHA256 over279inputs; build baseccb/dirtytrue recorded honestly. [Verification](evidence/AW2-011B-verification.json), [artifact](evidence/AW2-011B-review-build.json).
+
+Fresh100native browser assertion instances=25each Chromium153.0.8010.36 and WebKit27.2 ×source/compiled, all exit0/no unexpected errors. Empty/ready/invalid/unavailable/no-lock reports, exact native download, deterministic clipboard-denial/selection+success branches, detached/regenerated snapshot+blob revocation,320390768/44px/16px forms,3second actual pageRAF/close/synthetic-hidden/unmount cleanup, native typing/arrows/E ownership, exact earned006Fraw/legacy preservation/no feedback writes or network. Source/compiled390captures inspected; physical iPhone NOT_RUN. Initial accessible-role closed-dialog count was a harness error; corrected branch assertions replace that failed attempt, no failed/double count. Sandbox first build git-spawnEPERM resolved by process permission, identical source.
+
+ Fresh earned demo110assertions=55source+55compiled PASS, both exit0/no unexpected errors: new save→five starters→both real modes/portal+quick-entry→three memories/chest/puzzle/cook+share→actual boss+audio opt-in/pause→both endings and reload. No checkpoint resume; alternate ending branches from exact earned checkpoint. Specialized stale/failed-write/collection/rematch/room regression retains scoped original refs, not a fresh claim.
+
+Full1471unit at013B/0e65fc3 retains unchanged authority/dependencies only, not a current full-suite claim.550tracked unchanged paths hashed; new builder/panel/config boundary checked freshly. [Reuse](evidence/AW2-011B-reused-evidence.json). Manual player/real-iPhone/actual audio listening/cold-warm/FPS/total-memory/offline/native/rights/production-save/release OPEN. Demo90/product40 unchanged; next010C/011A. [Evidence](evidence/AW2-011B.md), [iPhone instructions](IPHONE_PLAYTEST.md).
+
+## AW2-013B PR82 integration checkpoint —2026-10-24
+
+Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, first parent `9596f54b831a588f74d5eec7d08ab122b421a75f`, second parent `c34c6a20dc9755d622117bb594b80e4787b5bf6c`. Full unit **1471/1471cases/120files PASS**,0fail/skip,311nested suites (not311files). Command `pnpm test --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-013b-full-unit.json`, Node22.23.2/pnpm10.34.3/Vitest5.0.1/Linux x64. Exact final source/runtime/test/config/dependency bytes equal premerge AW2; fresh full-unit evidence binds to that unchanged tree. [Summary](evidence/AW2-013B-unit-summary.json).
+
+Fresh merge analysis47files/30conflicts,14identical/33evolved; all nonconflicting provisional results equal AW2. Explicit per-path resolutions preserve already-adopted013Afunctions/current updates.2583non-document path hashes unchanged; no runtime code/test/asset/config/dependency change. New types/build/browser/device NOT_RUN; existing006Ftypes/214file review hashes/72browser assertions and prior scoped authority evidence retain original refs. No originalPR907/120counts added to1471. [Audit](evidence/AW2-013B-merge-audit.json), [evidence](evidence/AW2-013B.md).
+
+PRretarget/non-force two-parent merge/publication readback PASS at0e65fc3. D19rpgfutureproduct confirmed; rpg/master refs unchanged, D18human/device/remaining integration gates OPEN, actual90%/40% unchanged. Next010C/011A; full unit milestone requirement now fresh for identical code, not a closed human/device/product gate.
+
+## AW2-006F historical verified development slice —2026-10-24
+
+Source `4d463302f95a33788ac9cb9c8274f12b18d86281`, base `e7dac41819b71ec881a3511b5aa842369ac5426b`.83unique units/6files PASS boundary:68cases in5unchanged files passed initial run; corrected hearth-room file15PASS rerun replaces its initial11PASS+4FAIL, no duplicate count. Initial path test compared all waypoint metadata against coordinates; test now supplies x/y, authority code unchanged. Cases cover actual hashes/budgets/provenance, three safe frames/uniform sizes, canonical wall/reuse/positions, real native permission parity/all step states/no-mutation/detached snapshots and paths from four safe origins. Both typechecks PASS, format5files/Node syntax/PythonAST/JSON/doc links/whitespace checked. Full current-headNOT_RUN; required at014Aclosure or shared authority change.
+
+72native browser assertions=36source+36compiled, both exit0, zero unexpected page/console errors. Exact historical earned intro input; fresh memory/quest/hint/puzzle/hand-in/cook/share and room route, no full-story/human/device claim. Wrong/reset/partial+solved reload, keyboard/touch/focus/obstacle/320390768/44pxcontrols, lock/text/state, reciprocal table scene/own world boss/no unauthorized note, one hand-in receipt/real ingredient consumption/+45XP, each newasset404→visible error/no debug fallback/all disabled points/exact bytes→recovery, legacy preserved. Asset exactRGBA/alpha/three inset cells/repeat6paths PASS. Review214files/83,743,241bytes/newWebPparity/authored-source exclusion PASS; stable851files build reused at4165b1e and fresh49text isolation PASS.399unchanged hashes retain old authority/art/mode evidence; changed two TSX consumers explicitly excluded.
+
+WORLD-SCENE-01/WORLD-01/02/QUEST-01/CONTROL-01 technical subset PASS. Independent world/UX route acceptance010C/physicalphone011A/art/rights/full environment/motion/releaseNOT_RUN. D18target100/45, actual90/40/12kits/12references/0fullDoD unchanged. [Evidence](evidence/AW2-006F.md), [JSON](evidence/AW2-006F-verification.json), [reuse](evidence/AW2-006F-reused-evidence.json), [review artifact](evidence/AW2-006F-review-build.json).
+
+## AW2-014A milestone target —2026-10-24
+
+Owner target recorded: next AW2→`rpg` PR requires demo100% / product45%. Current measured state remains demo90% / product40%; AW2-010C independent full route and AW2-011A physical-device baseline are NOT_RUN, AW2-006F technical slice is VERIFIED below; independent route acceptance remains NOT_RUN. This documentation update adds no runtime PASS. Before opening the milestone PR: full unit regression, source+compiled full demo/mode/boss/save/economy gates, both typechecks, review build, stable exclusion and observed human/device evidence are mandatory. [Task](tasks/AW2-014A.md).
+
+Planning source `a2afff5c65ee36474b1c7014452532406f9b1684`, tree `288a897d172d0c3018672239e22e1e93507b281a`: `git diff --check` PASS; all Markdown file links in19 changed/new files resolve; exact tree and remote expected-head readback PASS. Unit/type/build/browser/device NOT_RUN for this planning-only delta. [Evidence](evidence/AW2-014A.md).
+
+## AW2-006D historical verified scope
+
+Source `7124bed958ee5cfa537fa3a021b4f03836e19544`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5`. PASS59cases/5files=20new boss-world+10updated current-scene+8props+12controls+9rematch,0fail/skip. Actual source/runtime/reference/prompt hashes/budgets/rights, four safe frames/feet/common scale,11direction/tie/zero samples, real alpha states/detached nonmutation/canonical anchor. Full current-head NOT_RUN; unchanged pure world/save/combat/economy/modes retained at original refs, not counted fresh.
+
+PASS52focused native browser=26source+26compiled from exact006Bearned quest3/006Ecompleted raw, origin/hash recorded, no fresh full-story claim. Four directional idle textures/fixed measured feet,1map representative/5combat, keyboard/touch/reduced motion,320390768/frame-label controls fit, true205XPbosswin/note/reload, actual ending/rematchretreat/return/both exits/shortcut, newatlas404→visible error/disabled controls/exact bytes→recovery/no writes/new errors. Expected404separate, zero unexpected errors. File audit exactRGBA/alpha0..255/4safe frames/max edge2/reference-prompt hashes/repeat4paths PASS. Both types/final dev types/review209files/81,162,208bytes/newWebPparity/style/Node/PythonAST/JSON/links/whitespace/fresh49text stable exclusion PASS; original851file stable build reused.393unchanged hashes retain original HD/FX/art/pure authority/story/mode boundaries; old HD-static marker acceptance superseded by current composed scene. No failed/double counts. [Evidence](evidence/AW2-006D.md), [JSON](evidence/AW2-006D-verification.json), [reuse](evidence/AW2-006D-reused-evidence.json).
+
+Initial compiled browser completed26assertions/report but exited143 during preview cleanup; switched harness to Vite server.close, final compiled rerun26PASS/exit0 replaces it, source exit0; no double count or runtime change. Default oxfmt check reported wrapping differences in5files; established Prettier3.3.3 --no-semi check passes all6changed TS/TSX/MJS files without mutation.
+
+WORLD-BOSS-01/WORLD-SCENE-01/CONTROL-01/BATTLE-REMATCH-01 development subset PASS. One generated four-idle atlas, no motion/fullEnemyComplete claim. In-session React/visual review only; independent art/identity/continuity/player/device/listening/FPS/memory/offline/native/rights/production-save/release OPEN. Demo90/product40(35–45)/12reference/0fullDoD unchanged; next006F, full regression after shared authority/collision changes or release.
+
+## AW2-006E historical verified scope
+
+Source `d11708bfb316a128e4bb2df7b0104d81e8cabee2`, base `e6b87cf0dd2d0afc1b8237de4042a6868daf11b1`, D17 explicit owner one-map-leader request. PASS78cases/4files=10room+12controls+47collection+9rematch,0fail/skip. Existing meaningful navigation/visibility/collection/party/rematch rules unchanged; no tiny implementation-mirroring unit added. Full current-head NOT_RUN, mandatory on shared save/engine/world authority/collision changes or release.
+
+PASS102browser=47source+47compiled+8compiled build. Fresh pre-intro/no-unlock fallback, then exact006Bearned completed checkpoint with origin/hash. All12first-slot representatives/native draft/cancel/failed-save/retry/swap/reload/nonleader-only reorder+same canvas, four-direction real moving/idle frames, one-position metadata, six-zone reciprocal travel,320/390/768, furniture fade/front depth, actual saved-five battle order/retreat/return/no grants, unused nonleader atlas never requested and selected atlas404/recovery/exact legacy/ending/XP/ownership bytes. Expected404errors separated, zero unexpected errors. Compiled intro still grants exactlyfive starters/30XP/once-only receipt and reload. Both types/review206files/80,463,205bytes/style/MJS syntax/JSON/doc links/whitespace/fresh49text stable exclusion PASS. Stable851files/177,450,422bytes build reused at4165b1e.386unchanged hashes preserve historical pure authority/engine/art/story/mode evidence; original1401full units not counted fresh, old follower assertions superseded byD17. [Evidence](evidence/AW2-006E.md), [JSON](evidence/AW2-006E-verification.json), [reuse](evidence/AW2-006E-reused-evidence.json).
+
+WORLD-LEADER-01/CONTROL-01/COLLECTION-01/BATTLE-REMATCH-01 development subset PASS. Updated legacy harness selectors/assertions syntax-checked; full RPG/demo/advisory/collection/rematch flows NOT_RERUN in this task, changed display boundary checked by focused source+compiled QA. In-session React/visual review and selected captures opened; no physical-device/independent human acceptance. Demo90/product40(35–45)/0fullDoD unchanged; next006D. No reset/master/deploy/release.
+
+## AW2-006C historical verified scope
+
+Source `b350a11d777c1e8c94b5f2aadc6299b68f7e7722`, base `171ccd04efe7b5edc894a32ff5db14e15d54a111`. PASS30cases/3files=8new interaction-prop+10room+12controls,0fail/skip. Actual PNG/WebP hashes/frame/aspect/budget/rights, three map-sourced anchors/layer/label clearance, read-only live locked/won/read/completed state, real path/controls. Full current-head NOT_RUN; shared store/schema/collision/combat/world/economy/collection/mode authority unchanged.
+
+PASS102focused browser assertions=51source+51compiled from exact006Bearned quest3/completed checkpoints, origin/raw hashes recorded. All12atlases/furniture visibility retained through fresh room integration; native keyboard/touch/pre-win note denial/real boss win/note read/reload, west travel/shortcut/rematch retreat/ending-reward preservation,320/390/768actual label clearance and native44px controls. Each new asset deliberately404→visible error/disabled controls/exact byte preservation→resource recovery/reload/no writes/no new errors, expected404errors separated. Final runs replace initial failures; no failed/double counts or fresh full-story claim. Both types/final review206files/80,463,227bytes/asset parity/format/syntax/AST/JSON/doc links/whitespace/fresh49text stable exclusion PASS.381unchanged hashes retain original006Bfull earned quest/modes/both endings/stale/failed writes and1401pure regression at4165b1e within boundaries; stable851files build reused, no historical totals added. First lifecycleTypeError fixed by old-zone ticker guard; QA status wait and label clearance corrected before final source+compiled rerun. [Evidence](evidence/AW2-006C.md), [JSON](evidence/AW2-006C-verification.json), [reuse](evidence/AW2-006C-reused-evidence.json).
+
+WORLD-PROPS-01/WORLD-SCENE-01/CONTROL-01 development subset PASS. In-session visual/React review only; full environment/world boss4dir/motion/full-character/listening/independent player/device/FPS/memory/offline/native/rights/production-save/release OPEN. Demo90%/product≈40%/0fullDoD unchanged. Next006D; full regression if shared authority/collision changes or release.
+
+## AW2-006B historical verified scope
+
+Source `425aa16d94ea51decf7f43afb5986b13ad126dfc`, base `87aa38c2e79ba11adb1508b78b83370c089b3984`, branch `game/adventure-world-2`. PASS113unique affected cases/6files:74world/collection/rematch retained from first in-session invocation +22final room/controls +17readiness. Initial84had80PASS/4fixtureFAIL; final10room replace all initial10, not an overlapping80+22+17 sum. Nonexistent navigation.test.ts argument ran no cases; actual controls12 and room path checks passed. Full current-head NOT_RUN;1401full units remain historical source4165b1e on unchanged pure boundaries only.
+
+PASS286browser assertions=140source+140compiled+6compiled missing-floor/recovery. Composite earned run:59prefix assertions per flavor from fresh intro through modes/quests/recruits and failed-write/stale encounter checks, then exact current-task quest3raw restore and final room/boss/note/both endings/rematch continuation. No fabricated quest/HP/ownership or single uninterrupted full-story claim. New regression covers intro empty→five-starter advisory. All12followers, prop depth/fade/restoration,320/390/768px/native keyboard/touch, both room exits/gated shortcut, real once-only rewards, failed writes/reread/reload/tab conflicts and five legacy keys covered. Failed intro/visibility/early-tap attempts excluded/replaced, exact origins/hashes recorded. Missing-art6uses authentic completed checkpoint; expected404 errors recorded, no new errors after recovery. File decode/alpha/hash/repeat6paths PASS. Both types/final review build201files/78,917,249bytes and fresh49text stable exclusion PASS. Stable build851files reused at4165b1e;309unchanged hashes retain original art/PCM/pure authority/mode/dependency evidence. [Evidence](evidence/AW2-006B.md), [JSON](evidence/AW2-006B-verification.json), [reuse proof](evidence/AW2-006B-reused-evidence.json).
+
+ENVIRONMENT-01/WORLD-NAV-01/COLLECTION-INTRO-01 development subset PASS. In-session React review: existing awaited loading/disposal, separate Promise loads, native controls outside map hitbox, revision-keyed draft, no new event listener/store authority; texture sources preserved. Source+compiled runtime captures opened; no independent visual/device/FPS/memory/listening/rights acceptance. Full environment/world-boss/full-character/production-save/release OPEN. Demo90%/product≈40%/0fullDoD unchanged; next006C.
+
+## AW2-007N historical verified scope
+
+Source `6fc852872a008c08d2e9b2dd6a8983ba6f2617dc`, base `e855c8e87e45a3623aed09bd19cfab90ba9ff8d7`. PASS73targeted tests/3files =17new readiness+47collection+9rematch,0fail/skip. Exact seed-stat parity for all12kits at8XP points; canonical roles/Van emphasis/Mộc distinction, strict bad/duplicate/enemy selection, invalid XP, detached/nonmutating advisory. Full current-head suite NOT_RUN; original1401PASS from4165b1e retains unchanged boundary only, not counted fresh. No combat/save/world/economy/mode authority changes.
+
+PASS60final browser assertions=30source+30compiled from exact historical earned ending raw; no new full-story claim. Native role hints/stat preview, draft-only starter fallback/cancel/failed write/retry/save/reload,320/390/768px/keyboard, actual actor-stat parity, real win/loss/retreat summaries and no writes on render, stale-tab prevention/legacy/economy/ownership/ending invariants. PASS96fixture runs=16predeclared teams×205/345XP×3legal policies; every command/event (continuous serials, max381), per-tick replay/one terminal/authentic locked settlement/no reward retained. Outcomes are not random win rates or final balance acceptance. Root types/final dev types/review build/style/syntax/JSON/links/fresh49text stable isolation PASS. Stable build and deep art/engine/save/mode evidence reused at original source/hash scope309paths; no original count added. Final UI-only stat line refinement reran affected browser/type/build checks, final30+30replace initial30+30, no double count. Source+compiled captures opened. [Evidence](evidence/AW2-007N.md), [JSON](evidence/AW2-007N-verification.json), [all96summary](evidence/AW2-007N-balance-summary.json).
+
+PARTY-READINESS-01/COLLECTION-01/BATTLE-REMATCH-01 development subset PASS; independent full-route/player/balance/full-character/listening/physical device/FPS/offline/native/rights/production-save/release NOT_RUN/OPEN. Demo90%/product≈40% unchanged,0fullDoD. Next006B world/environment scope; full regression on next shared engine/save/world authority changes and release.
+
+## AW2-007M historical verified scope
+
+Source `4165b1e84cbd0181853611b324d85945c8e46001`, base `e658c97b9df52540445369e649f48da3a3e6a3ba`. PASS full1401tests/115files (9new rematch,1392existing),0fail/skip, one full final-runtime run; initial focused7PASS/2fixtureFAIL excluded, no overlap sum. PASS282fresh browser assertions =110source+110compiled earned complete journeys/rematch,29save/25RPG/8build.130private-controller simulations:5levels(1/3/5/10/20)×13party configurations×auto/ultimate;83player-win/47enemy-win, every-tick JSON replay/finite values/authentic terminal settlement/nonspatial invariants. Both types/review+stable builds/releaseguard/isolation/style/syntax PASS. Source and compiled rematch captures inspected. Each browser report composes79passed earned-journey checks from the initial attempt with the corrected hook continued from its exact authentic saved checkpoint; no single uninterrupted final full-browser run claimed.
+
+BATTLE-REMATCH-01/SAVE-05 cover private purpose, completion/proximity gates, forged snapshots/results/ordinary-action denial, repeated true win/loss/retreat for both endings, all reward/XP/items/cooking/receipt/collection/party invariants, failed entry+settlement/retry, reload/discard, locked concurrency/duplicate settlement, stale tab and v3/v4/v5 completed-save preservation without backfill. Existing strict v1/v2/future/invalid cases included in full/save browser. Fresh browser uses only earned ending/recruitment/XP and native controls, no HP/status injection.305unchanged hashes retain original art/PCM/manifests/purecombat/mode rules/collection/schema evidence at original refs; changed store/world/UI checked fresh. Independent fullDoD/playtest/listening/physical-device/FPS/offline/native/rights/production-save/release NOT_RUN/OPEN. Demo90%/product≈40% unchanged; [four-package proposal](NEXT_MILESTONES.md) is not accepted points. [Evidence](evidence/AW2-007M.md), [JSON](evidence/AW2-007M-verification.json). Next007N; full regression on shared save/world/core changes and before release.
+
+## AW2-007L historical verified scope
+
+Source `730bd97b81875489e87f5c0c96665157fb3b6bb4`, base `b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca`. PASS1392unique/114files: full1390PASS/0FAIL; final45collection after fixing negative-case parameter shape replaces previous45; two additional mode cases PASS =47collection+1345existing. Final single-full1392NOT_RUN; no overlap sum. PASS233fresh browser =81source+81compiled earned collection/story/modes/boss/endings,9reference links,29compiled save,25source progression,8compiled build. All reports newer than task card; failed harness partial15/51 totals excluded.104private-controller simulations with every-tick JSON replay/snapshot/collection/reward/settlement invariants PASS. Both types/review+stable builds/release/49text isolation/style/syntax/JSON/links PASS; two compiled captures opened.
+
+SAVE-04/COLLECTION-01/BATTLE-TEAM-01 cover v1–4→5 read-only migration, strict legacy/future6/invalid preservation, explicit gates/once-only/free recruitment, five owned unique party/order/Van choice, ordinary-save authority, failed writes/retry/Web Locks/tabs, real followers/boss snapshot/stale settlement, mode-return and both endings without extra grants. 300unchanged hashes retain original art/PCM/manifests/playback/pure engine/mode detail at original refs; old pending-collection copy superseded by fresh reference links. Final recruitment reward policy PROPOSED, D11PROPOSED/D12OPEN; no reset/stable changes. Independent fullDoD/playtest/listening/physical devices/FPS/offline/native/rights/production-save/release NOT_RUN/OPEN. [Evidence](evidence/AW2-007L.md), [JSON](evidence/AW2-007L-verification.json). Next007M rematch; full regression after next save/world/core changes or before release.
+
+## AW2-007K historical verified scope
+
+Source `3a77154bdbf1eb8a654833c3f5354889b5377a1c`, base `62d3e585213b65340d32c6566c810e384081bee2`. PASS1345unique/113files:1288unaffected cases plus57finalVân; initial full1344=1341PASS/3fixtureFAIL, three corrected fixtures PASS, Van-only rerun after area helper fix replaces prior56. Final single-full1345 NOT_RUN; no duplicated focused+full sum. PASS384fresh browser assertions/108simulations, both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Final source/compiled Vân both emphases, pending reset, actual support/cleanse/expiry/ult/audio/atlas/320390768/missing resources and byte isolation. Original/deep save/mode details retained at source refs within300unchanged hashes, not added to fresh totals. Incidents and exact scope [evidence](evidence/AW2-007K.md), [JSON](evidence/AW2-007K-verification.json). Independent human art/listening/playtest/physical devices/FPS/offline/native/rights/production migration/release NOT_RUN/OPEN. Next007L contract; full regression on shared save/world changes or release.
+
+Historical entries below retain their original refs/counts; their old NEXT/inventory statements are superseded by STATUS.
+
+## AW2-007J historical verified scope
+
+Source `efca3be173196b5c09c7d84be49e308d8a23fa31`, base `3bd893a143e4954125a6e39ec608ced4c738d210`. PASS1288unique/112files:1242 unchanged full cases plus46finalBách, full1287PASS before isolated pose fix; no overlapping sum. PASS351browser/84simulations, both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Own Bách source/compiled each retains20 initial PASS, remaining after corrected branch; only final composite report counted. Earlier fixture/type/pose/instrumentation failures explicitly recorded. Three compiled captures viewed. Bách64cell/hash/PCM/18repeat/301unchanged boundary PASS; unchanged original art/deep-save/reset/mode evidence retains original refs. [Evidence](evidence/AW2-007J.md), [JSON](evidence/AW2-007J-verification.json).11actualkits/12references/5savedstarters/0fullDoD;demo90%/product40% unchanged.
+
+## AW2-007I current verified scope
+
+Source `9b9c365a5dd4c01176bef59772967d64522685b0`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. PASS1242unique units/111files (41new Mộc; full1241PASS/1FAIL inventory fixture, corrected Hai/Lien69PASS deduplicated). PASS310browser/72simulations; both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Mộc64cells/hash/PCM/18repeat/299unchanged paths PASS. First focused fixture failures, count assertion, JSX boolean type correction/source-HMR invalidation and simulator advisory logged explicitly; final source33/compiled33PASS only counted. Three compiled captures viewed. Original art/deep-save/reset/mode detail kept at original source, no reused total added. [Evidence](evidence/AW2-007I.md), [JSON](evidence/AW2-007I-verification.json).10actualkits/12references/5savedstarters/0fullDoD;demo90%/product40% unchanged.
+
+## AW2-007H actual Liên —2026-10-23 current
+
+Source `5247fd0963f261f156f00d673b0961657182b4af`, base `b4d8d90d9ed6efb0be686bb4e49479cdcf51efab`. PASS1201full cases/110files,37new Liên included;0failed/skipped, no focused/historical duplicate counts. PASS278browser=34source+34compiledLiên/27Hải/30Nhiên/27Muối/41boss/55earnedjourney/22default/8build; all reports fresh after task card.60level/policy simulations with every-tick JSON replay PASS. Both types/review197files/76,405,393bytes/stable851files/177,450,422bytes/releaseguard/49text isolation/style/syntax/links PASS. Liên64cell/edge2/hash/PCM audit/18path repeat; image/PCM/frame/timing unchanged.299unchanged tracked paths bind original art/deep-save/mode-detail evidence to prior sources, not fresh counts. Initial focused fixture failure corrected before full; final UI-only pending-ultimate disabled state covered by final types/build/browsers. Three compiled captures viewed. [Evidence](evidence/AW2-007H.md), [JSON](evidence/AW2-007H-verification.json), [hashes](evidence/AW2-007H-reused-evidence.json).9actualkits/5savedstarters/12references/0fullDoD;demo≈90%/product≈40% unchanged. Independent art/listening/device/rights/release OPEN.
+
+## AW2-007G actual Hải —2026-10-23 current
+
+Source `3154df089761afc11552c66668f8890640a1d914`, base `92922b33167b81b84b7b382fd6b21a8375347a35`. PASS1164unique units/109files (1132retained full PASS +32corrected Nhien file;32new Hai included). Initial full1162PASS/2FAIL fixture/error-copy cases retained; final entire suite NOT_RERUN after narrow corrections per owner reuse preference. PASS237browser=27+27Hai/30Nhien/27Muoi/41boss/55earnedjourney/22default/8build;48level/policy simulations with every-tick JSON replay. Both types/review+stable builds, releaseguard/49text isolation/style/syntax/links PASS. Review197files/76,396,261bytes;stable851files/177,450,422bytes.300unchanged paths bind reused original12 art/PCM/manifests/playback/deep save/mode-detail evidence to prior sources; not fresh counts. Initial audio-harness/HMR/fixture/type failures resolved and excluded. Final Hai/default/build cover late error-copy-only refinement, other fresh journeys' engine/renderer unchanged across it. [Evidence](evidence/AW2-007G.md), [JSON](evidence/AW2-007G-verification.json), [hashes](evidence/AW2-007G-reused-evidence.json).8actualkits/5savedstarters/12references/0fullDoD;demo≈90%/product≈40% unchanged. Independent art/listening/device/rights/release OPEN.
+
+## AW2-004M–P —2026-10-23 current reference completion
+
+Source `8344fc0b05275a1d8e314100fcfa3263d9956c8e`, base `e0d6bb52584e84d047e0536d7c4525df0a64125e`. PASS focused105/7files plus overlapping full1132/108files (21.43s), not1237; full run triggered by literalCLI delimiter ignoring scoped arguments, observed stdout result retained, no JSON from that run. PASS390browser=191source+191compiled+8compiled onboarding. Liên48+48/Mộc48+48/Bách47+47/Vân48+48; no unexpected final errors. Initial Liên source HMR abort3checks excluded, all final source/compiled runs stable. Both types/final review build197files/76,388,695bytes/file audit/repeat/style/syntax PASS. Four sets64cells each/alpha edge≤2;90byte-identical rebuild paths acrossfive new sets. Eight compiled captures opened.236unchanged tracked original paths; stable851files/177,450,422bytes reused with fresh exclusion scan.007F205browser/36sim/deep-save/art source-bound, not fresh totals.12/12reference/0fullDoD/7actualcombat/5starters;demo≈90%/product≈40% unchanged. [Evidence](evidence/AW2-004M-P.md), [JSON](evidence/AW2-004M-P-verification.json), [hashes](evidence/AW2-004M-P-reused-evidence.json). Independent art/listening/device/rights/release OPEN; residual full-suite obligation before release/major save/engine changes.
+
+Historical entries below retain their original counts/status; current entry supersedes earlier missing-reference inventory only.
 Historical roster review preserved by AW2-012: source `4d8f1c516f55a0ffd4bad992624c465fe65a9146`, handoff `4b8553c21e191aa5ed964dca338fc243c2d0ebc6`; static structure checks PASS (twelve IDs, 48 skill slots, eight HD-state requirements, proposed tier distribution). [Original evidence](evidence/AW2-003.md). This is proposal-only historical evidence; current approval/asset status comes from CANON/D10/D13/D15 and subsequent records.
 
 Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020ac99076fad9e35d`, handoff `238708cba7bb1402ec38828aa8748e35aee01ad9`; static namespace/reference checks PASS (six zones/eight NPCs/four quests, acyclic prerequisites), `git diff --check` PASS. [Original evidence](evidence/AW2-002.md). This describes the original proposal-only branch; current approval/runtime status comes from CANON/D14 and later integration records below.
 
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
+Owner refinement after004E: reuse original-SHA PASS when implementation/dependencies are unchanged; run changed/dependent cases only. Historical004G ran69 affected cases only. Current007F changes shared core and ran1107 tests/107 files; see fresh record below. Earlier007E1068 remains historical. Earlier007D1036 remains historical. Do not relabel historical full1007/471 as fresh or add counts. Full regression before release/major save/shared-engine changes remains required.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —03b92e2; schema v3/full unit +29 save and 40 world/boss Chromium checks preserve seeded stable bytes |
-| SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | NOT_RUN as full item/chest/gacha case; boss flag/derived final-quest receipt subset PASS at 03b92e2, competing commits/choices included |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —03b92e2; v1/v2→v3 read-only migration, reset/conflicts/failures, bound boss checkpoint and competing tabs |
-| GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | NOT_RUN |
-| GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN |
-| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS —03b92e2 debug six zones/safe result returns +completed reciprocal shortcut; retest authored maps/assets |
-| WORLD-02 NPC, quest, followers and interact range | world/quest | NOT_RUN as full case: first 3 quests/range verified in QUEST-01; followers pending |
-| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —03b92e2; previous3 +boss/note/both endings, once-only receipt and close/reload flow in40 Chromium checks |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules +development renderer —03b92e2;98 AW2 /891 full tests,22 standalone +40 world/boss checks |
-| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development boss/checkpoint subset —03b92e2; pause, actual win/loss/retreat, retry/stale-tab, reload abort policy; persisted active-battle resume/production/native NOT_RUN |
-| ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
-| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
-| PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
-| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — integration source 0e8fb7a /133 Chromium checks; reference scope only |
-| PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
-| DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | NOT_RUN |
-| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS development —910b55b;1036 full units/47 fresh earned journey/26 boss gates preserve seeded stable bytes; deep unchanged reset cases retain original refs |
+| SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | PASS development quest/chest/cooking/XP/boss subset —910b55b;1036 units/47 earned journey/failed-win write retry and exact settlement; runtime gacha/spending NOT_RUN |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS full units +boss-write retry subset —910b55b; deeper unchanged browser reset/schema/concurrent-tab cases retain cf0b394/a40217a refs |
+| GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | PASS simulation-only proposed D11 —a40217a;2,000,000 seeded draws +boundary/pity tests; owner approval/runtime adoption pending |
+| GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN runtime; proposed counters have pure simulation tests only |
+| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —910b55b;47 fresh compiled earned all-zone journey; authored maps/physical devices pending |
+| WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development —910b55b;47 fresh earned journey with5 starters/portals/returns; authored art/device gates open |
+| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS development —910b55b;47 earned all4-quest/new boss/note/both-ending compiled checks,243 AW2 units |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS at 5ca3964a2cb46b60188d3192e32a2545740cda14;1107 full units/30+30 Nhiên/27 Muối/41 boss/22 starter browser, all current shared consumers |
+| BATTLE-NHIEN-01 melee/multi-contact/recovery/target/energy/interrupt/events | combat/asset | PASS at 5ca3964a2cb46b60188d3192e32a2545740cda14;32 new cases inside1107,36 simulations,30+30 actual-practice browser; collection/full DoD OPEN |
+| BATTLE-MUOI-01 targeting/mark cap/cleanse/ordinary shield immunity/events | combat/asset | PASS ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;19 new cases inside1068,24 simulations and actual27+27 practice gates; collection/final balance OPEN |
+| BATTLE-BACH-01 heavy contact/actual shield absorption/conserved ward/front impact | combat/asset | PASS at efca3be173196b5c09c7d84be49e308d8a23fa31;46new/own source+compiled/84sim; collection/fullDoD OPEN |
+| BATTLE-MOC-01 finite fixed mark/replacement shield/warned burst | combat/asset | PASS at 9b9c365a5dd4c01176bef59772967d64522685b0;41new,33+33 browser,72sim; collection/fullDoD OPEN |
+| BATTLE-LIEN-01 finite HoT/selective cleanse/guard/interrupt/expiry/events | combat/asset | PASS at 5247fd0963f261f156f00d673b0961657182b4af;37new in1201,34+34actual practice,60sim; collection/fullDoD OPEN |
+| BATTLE-HAI-01 directional field/line/passive/interrupt/expiry/events | combat/asset | PASS at 3154df089761afc11552c66668f8890640a1d914;32new cases inside1164unique,27+27 own practice; collection/full DoD OPEN |
+| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development at 5ca3964a2cb46b60188d3192e32a2545740cda14;1107 units/41 boss+55 earned-journey browser, authentic results/failure retry/exact writes; production/native resume NOT_RUN |
+| ART-MUOI-01 world4dir/HD8states/projectile/mark FX/preview | asset/roster | PASS reference at7643ec4cb4e1e56d0c1013f7135a065e5ad3af36;64 cells/32 HD,73 affected units/49+49 preview+8 compiled onboarding; actual Muối practice now VERIFIED007E; collection/full DoD OPEN |
+| ART-BOSS-01 original boss art/manifest/confirmed effects | asset/combat | PASS reference —2684954;17 safe cells/8 key poses/9 FX, hashes/repeat build, actual own left-facing/no recolor/cancel; full motion/world/audio/device/rights OPEN |
+| ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | PASS reference inventory12/12 at8344fc0; full-character art/device/rights acceptance OPEN |
+| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS reference motion —f85e1e7;72 rectangles/32 new cels,35+35 motion/32 Than previews/actual combat and world; independent full-DoD gates OPEN |
+| PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only —f85e1e7; selected/rejected motion prompt/output hashes,14 originals unchanged; legal NOT_RUN/commercial NOT_CLEARED |
+| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS affected Sương reference scope —489ce7162df7db11b1b1954d0b0a62b4d073fe17;41+42 motion/combat,5 starter motion packages; unchanged selector/original audio/world retained atcf0b394 |
+| ART-LUA-01 32 cels/eight states/reference and confirmed contacts | asset/combat | PASS reference scope —cef55c0;72 rectangles,38+38 motion/confirmed beats,7 new unit cases, actual world use; full DoD OPEN |
+| ART-LAM-01 32 cels/eight states/projectile/two healing pulses | asset/combat | PASS original inventory/motion atcf0b394;12 fresh compiled renderer checks at489ce7162df7db11b1b1954d0b0a62b4d073fe17; full DoD OPEN |
+| ART-MOC-NON-01 32 cels/eight states/projectile/confirmed support | asset/combat | PASS reference scope —1803347;72 rectangles,38+38 Moc motion/actual support/7 new cases, own-art recipients/finite FX; 14 affected compiled renderer checks at489ce7162df7db11b1b1954d0b0a62b4d073fe17; full DoD OPEN |
+| ART-SUONG-01 32 cels/eight states/ranged/confirmed zone | asset/combat | PASS reference subset —489ce7162df7db11b1b1954d0b0a62b4d073fe17;41+42 browser/7 new cases, three actual zone ticks/slow/pull/finite reduced/terminal; full DoD OPEN |
+| PROVENANCE-STARTERS original image/audio inventory | asset | PASS Sương changed inventory —489ce7162df7db11b1b1954d0b0a62b4d073fe17;72 rectangles/32 cels/source-prompt-reference hashes,124 unchanged boundaries/102 repeat identities; other inventory source-bound; rights NOT_RUN |
+| DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
+| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS embedded borrowed-practice/navigation subset —ff499a5;19 Chess/25 TCG cases,33+33 Chess/29+29 TCG/26+26 navigation browser checks; production mode balance/art/device/prizes/persistence NOT_RUN/out of scope |
+| CTRL-01 map shortcuts/native UI/focus/Enter direction | world/UI | PASS —cf0b394; unchanged12 policy cases in1007 full units and47+47 earned journeys |
+| DEMO-01 one fresh earned RPG/TCG/Chess journey/both endings | demo integration | PASS automated at 5ca3964a2cb46b60188d3192e32a2545740cda14;55 fresh compiled checks/all quests/both endings/summary/exact returns/once-only grants; full human acceptance NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-007C verifies the debug four-quest/world/boss/save v3 flow below. Gacha/numerical inventory grants, full authored art/device and vertical-slice gates have not run. Historical AW2-001/006A/007A/B records remain scoped to their original refs/schema/feature gates; latest entries supersede affected current rows.
+Retained shared-core baseline AW2-007D source `910b55bf977557f11be03111afa40283df0fbcf1`: PASS1036 unit tests/102 files (243 AW2,10 new), both typechecks/format/syntax/whitespace, review build107 files/34,718,397 bytes and stable build/release guard/isolation851 files/76 text artifacts.95 fresh compiled browser assertions:26 final boss +47 earned full journey/both endings +22 standalone battle. Nine actual-seed simulations PASS. Full units/47-case journey use final core before UI-only opacity/scroll-margin refinement; final dev types/build/26 boss gates cover the delta. Demo≈90% (9/10 groups), full product≈40% (rough35–45%) unchanged. Boss rules improve an already counted development group; full playtest/art/release gates remain open.5/5 starter reference-motion packages/160 cels,0/12 full DoD,7 absent sets. Owner feedback2026-10-22: “Đã chơi, chưa thấy lỗi chặn”. Record as a partial player smoke observation; version/device/covered quests/endings were not supplied. Full independent playtest gate remains NOT_RUN until coverage is recorded; do not infer complete acceptance from this response.
+
+## AW2-004L Hải reference —2026-10-22
+
+Source `57b160faefa4edca081e46680a45489bfa4d9e68`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. PASS85 unique units/7files (80 retained unchanged+5 corrected file); first84PASS/1FAIL reduced-sampler test assumption retained. PASS102 browser=47source+47compiled+8compiled onboarding, both types/review build/file audit/18path repeat, source/compiled captures opened.64cells/edge≤3,5WebPs5,733,020bytes,decoded31,451,712bytes.7 built-in calls/5selected/2HD unsafe rejects.217 tracked paths unchanged;007F full1107/205/36 and original art/deep save/mode evidence reused source-bound, not fresh. Independent fullDoD/art/listening/device/rights/release OPEN. Reference8/12≈67%,0fullDoD;demo≈90%/product≈40% unchanged. [Evidence](evidence/AW2-004L.md), [JSON](evidence/AW2-004L-verification.json).
+
+## AW2-007F actual Nhiên kit —2026-10-22
+
+VERIFIED development subset. Source `5ca3964a2cb46b60188d3192e32a2545740cda14`, base `29f60f1428b48c4409a3adeaf33b9e51ec576576`, branch game/adventure-world-2. Existing scoped WIP preserved and completed. Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36. No dependency changes; isolated profiles/no owner reset. Single-session BA/mechanic/character/animation/tester/scretary role reviews, no independent approvals.
+
+| Command/check | Status | Observed |
+|---|---|---|
+| Full unit JSON run, maxWorkers2 | PASS |1107 tests/107files;314 AW2/27files,32 new Nhiên cases;0fail/skip,33.78s |
+| Both typechecks/changed format/Python+MJS syntax/Git whitespace | PASS |Final source after cancellation-pose repair |
+| Actual simulation | PASS |36 runs:4 levels ×3 teams ×3 policies; finite energy/state/one result |
+| Nhiên source/compiled browser | PASS |30+30 indexed actual contacts/cues/targets/recovery/energy/audio/interrupt/reset/mobile/save bytes |
+| Compiled Muối/boss/default battle | PASS |27+41+22 directly affected shared-core/renderer consumers |
+| Compiled earned full journey | PASS |55 all-quest/modes/boss/note/both endings/summary/exact receipts/legacy preservation |
+| Review build/stable build/release guard/isolation | PASS |Review137files/46,419,961bytes;stable851files/177,450,422bytes, source/AW2 exclusions |
+| Original art/deep reset/concurrency/mode-detail browser | PASS reused |171 byte-identical paths; manifest scope wording only, original-SHA evidence not fresh |
+| Independent full DoD/playtest/listening/physical device/rights/release | NOT_RUN/OPEN |No acceptance inferred |
+
+205 fresh browser assertions,36 simulations; partial/focused/historical counts not added. Full1107 covers final runtime, later edits verifier/docs only. Two final captures opened plus one diagnostic. Sandbox Git DNS and Vite websocket EPERM resolved by elevated execution; simulation rerun not doubled. Initial source pose assertion failed on real hurt reaction; corrected counterplay assertion. Next attempt and diagnostic failed because unsupported Nhiên genuinely died before expected basic; final scenario uses legal ally ultimates and actual basic-index check. Final30+30PASS, no outcome injection/runtime weakening. [Commands/failures/paths](evidence/AW2-007F.md), [unit summary](evidence/AW2-007F-unit-summary.json), [JSON](evidence/AW2-007F-verification.json), [reuse proof](evidence/AW2-007F-reused-evidence.json).
+
+Seventh actual identity/level1–20/isolated max5practice verified; same five-starter world/save,7 references/0fullDoD. Collection/final balance/independent gates remain open. Demo≈90%/product≈40%/reference7/12≈58% unchanged. Next[004L Hải](tasks/AW2-004L.md); D16 commit/push/exact readback in[handoff](HANDOFF.md).
+
+## AW2-004K Nhiên reference package —2026-10-22 (historical)
+
+Source `22877ba16e52d70d5447a5870452e3acebe114af`, tree `a36a766f573ffbe921633d2e5bd372669d5e5fbe`, base `8797cc94006322db559ae56fcef05f36ef2990b7` trên `game/adventure-world-2`. D16 exact staged/remote tree và14 binary Git SHA matches PASS; expected-head/force=false publication, independent fetch/tree/index/ancestry/guarded local fast-forward PASS, clean source HEAD bằng fresh remote. Completion chỉ sửa tài liệu; final clean remote readback trước bàn giao. Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36/Python3.12.3/Pillow10.2.0; no dependencies changed.
+
+| Command/check | Status | Observed |
+|---|---|---|
+| Scoped build/file audit/provenance | PASS |64 safe cells/alpha≤6,5 WebPs4,685,032bytes,17 repeat byte identities,7 call/reference hashes |
+| `pnpm test <nhien-assets,muoi-assets,assets,starters,world,save>.test.ts --maxWorkers=2 ...` | PASS |80/6files,7 new,0fail/skip,890ms, JSON locally retained |
+| Root/dev typecheck,6-path format,Python/MJS syntax/whitespace | PASS | Root/dev exit0; verifier format/syntax after alias assertion fix |
+| `node dev/tools/verify-aw2-nhien.mjs ...` | PASS scoped source cases |44cases PASS before alias timeout; only remaining4 run with `--remaining-only`, no runtime mutation |
+| Same verifier `--compiled` | PASS |48 assertions on first run |
+| Existing `verify-aw2-build.mjs` | PASS |8 compiled changed-consumer onboarding/default preview/isolation cases; correct5starter grant/save bytes |
+| `pnpm build:aw2` | PASS |137files/44 HTML-JS-CSS/46,410,380bytes; noPNG/TS/TSX/maps/ZIP |
+| Stable artifact exclusion read-only scan | PASS reused build |851files/49 HTML-JS-CSS/177,450,422bytes, original007E build unchanged; includes76 total text files with JSON/TXT |
+| Full current-head suite/earned journey/boss/mode/deep reset/original assets | NOT_RUN fresh / PASS reused |171 byte-identical boundaries; full1068/174/24 at007E source retained, no fresh-count addition |
+| Independent full DoD/playtest/listening/physical devices/rights/release | NOT_RUN/OPEN | No acceptance inferred |
+
+Nhiên aw2-nhien/SR/Bún bò/Striker có full-body portrait riêng,16 world cels bốn hướng,32 HD cels/tám trạng thái,16 FX cells và4 cue âm thanh tổng hợp.64 ô đo thật, edge alpha tối đa6/255 (tolerance8);5 WebPs4,685,032bytes/decoded RGBA31,451,712bytes. Source PNG giữ nguyên byte, lossless visible RGBA+alpha; chỉ đo rectangle/foot anchor/logical scale A1.3/B1.8364, không repaint/mask/mirror/resize.17 tệp scoped build lại byte-identical. 7 lần built-in image_gen,5 output chọn,2 output không chọn: portrait đầu được thay bằng bản refine nền trong suốt; B đầu UNSAFE (không có row cut alpha-safe, minimum214/255, top9/255), bản compact recompose pass. Không cắt/xóa pixel để vượt audit. Initial source browser44PASS rồi timeout do alias battle/motion-a cùng URL: verifier ban đầu chờ một ID duy nhất nhưng race có thể trả alias khác. Sửa nhận đúng tập own canonical IDs của URL bị chặn và vẫn yêu cầu canvas rỗng; chỉ chạy4 case source chưa xong, không lặp44PASS. Compiled48PASS từ lần đầu, runtime không đổi. Formatter CLI lần đầu từ chối --write trước mutation; dùng cú pháp mặc định và check đúng bản0.2.0. Không có unit failure hoặc fake HP/hit/win.
+
+Fresh104=44source prior PASS+4source remaining+48compiled+8compiledconsumer; no overlapping/failure totals added. Runtime/assets/type inputs unchanged after final build and during browser checks; only verifier alias assertion/resume flag corrected.4 capture images opened; peak FX capture adds no assertion count. 171 đường dẫn byte-identical so với baseline: six-kit core/progression/presentation/audio, save/schema/store, world/economy/mode rules/maps, existing assets/manifests/audio/provenance/helpers và stable entry/config/dependencies. Chỉ registry thêm Nhiên làm ROSTER availability metadata thay đổi; consumer được80 units+8 compiled smoke mới kiểm tra. Giữ full1068/174/24 của007E tại e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd trong ranh giới không đổi; không chạy lại/cộng số. Stable build851files/49 HTML-JS-CSS/177,450,422bytes từ007E giữ nguyên, chỉ scan lại exclusion; không gọi đó là build mới. Full regression vẫn cần trước release/shared-core/save change.
+
+Demo **≈90% (9/10)** và sản phẩm **≈40% (ước lượng35–45%)**, giữ nguyên. Bộ tham chiếu **7/12≈58%**, tăng từ6/12; còn5 bộ Hải/Liên/Mộc/Bách/Vân chưa tạo.5/5 starter motion/160cels +Muối32 +Nhiên32 riêng; **0/12 full DoD**. Tham chiếu mới chưa đóng actual Nhiên kit/leveling/collection hoặc nghiệm thu art/playtest/thiết bị/rights/release. Next007F actual Nhiên rules; gachaD11 PROPOSED/D12 OPEN. [Evidence](evidence/AW2-004K.md), [JSON](evidence/AW2-004K-verification.json), [unchanged/repeat proof](evidence/AW2-004K-reused-evidence.json).
+
+## AW2-007E actual Muối practice —2026-10-22
+
+Source `e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd`, tree `905232b76ff275863452cb371ccfa5908eaef86d`, base `cef0db1fff89bbc0f8016f055732761da6c2ea31` trên `game/adventure-world-2`. D16 exact staged/remote tree PASS, expected-head/force=false publication, independent fetch/tree/index/ancestry và guarded local fast-forward PASS; clean HEAD/remote trùng source. Completion chỉ sửa tài liệu, final fresh readback trước bàn giao. Environment Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36/Python3.12.3. No dependency changes.
+
+| Check | Status | Observed |
+|---|---|---|
+| `pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-007e-full-unit.json` | PASS |1068/105 files,275 AW2/25 files,19 new Muối;0 fail/skip,32.42s |
+| `pnpm typecheck`, `pnpm typecheck:dev` | PASS | Final root/dev exit0; dev also after caption |
+|19-path formatter check /two MJS syntax /Git whitespace | PASS | No save/schema/store formatter mutation |
+| `node dev/tools/simulate-aw2-muoi.mjs` | PASS |24 actual runs: levels1/5/10/20 ×starter/Muối ×auto/ult/cleanse; finite cap/one terminal/all<=180ticks |
+| `node dev/tools/verify-aw2-muoi-combat.mjs [--compiled] --playwright <module> --chromium <exe>` | PASS |27 source+27 compiled, actual marks/refresh/cleanse/dispel29+hit50 at6, FX/cue560, audio opt-in/reduced/terminal/mobile/save bytes |
+| Existing `verify-aw2-boss.mjs --compiled` | PASS |41 own-boss consumers/real loss+win/failure retry/phase/events/save |
+| Existing `verify-aw2-demo.mjs --compiled` | PASS |55 earned all-quest/mode/boss/both-ending-summary checks |
+| Existing `verify-aw2-battle-browser.mjs` (compiled server8472) | PASS |22 default starter battle checks |
+| Final caption-only source+compiled delta | PASS |2 checks; same logic/rendering, final compiled review build;172+2=174 fresh assertions, not rerun counts |
+| `pnpm build:aw2` +artifact scan | PASS |126 files/44text/41,636,635bytes, no PNG/TS/TSX/map/ZIP |
+| `pnpm build` +release guard/stable exclusion | PASS |851 files/49text/177,450,422bytes; no AW2/Muối/save/entry markers; known chunk warning |
+| Existing art/audio/deep browser reset/concurrency/mode detail | PASS reused |157 unchanged paths +numeric/frame-preserving Muối wording-only diff; historical refs retained, not fresh counts |
+| Full character/independent playtest/human listening/physical device/rights/release | NOT_RUN/OPEN | No production acceptance inferred |
+
+Full unit chạy trên core/tests cuối; các sửa UI sau đó chỉ thêm bảng kết quả kỹ năng và caption.172 browser assertions bao phủ core/UI trước caption cuối;2 kiểm tra source+compiled chỉ xác minh caption cuối. Stable build chạy trước hai sửa practice-only này; stable entry/dependencies/exclusion không đổi. Review build và dev types cuối bao phủ caption. Không chạy lại toàn bộ PASS cho copy-only delta.
+
+Retained FAILs: initial focused16 cases had14PASS/2FAIL due test assumptions (projectile2tick travel and auto reapply12); fixed16PASS, then final19 included in1068. Formatter inline-type syntax and leftover readiness import caused dev typecheck FAIL before fixes. Source browser first expected shield later than its real lifetime; corrected actual wind-up4→resolve6. Next generic8-event log omitted old dispel29: added durable actual Muối outcome panel. Next collapsed details hid rosterstatus: verifier opens details. Final27+27 PASS; no fabricated HP/hit/win/no weakened assertions. Partial/focused/failure counts not added. Three actual captures opened; desktop320/390/768 viewports, no physical device or listening claim.
+
+157 đường dẫn byte-identical so với baseline: ảnh/âm thanh/provenance, save/schema/store, world/economy/mode rules/maps, starter/boss manifests, playback helpers và stable entry/config/dependencies. Muối manifest/builder chỉ sửa scope/trigger copy, asset/frame/timing/numeric data không đổi. Giữ PASS asset preview/deep reset/concurrency/mode detail tại SHA gốc; không chạy lại/cộng số. Combat core thay đổi nên full1068 và các consumer chịu ảnh hưởng được kiểm chứng mới; full1036 cũ không dùng làm bằng chứng core hiện tại.
+
+Demo **≈90% (9/10)**, sản phẩm **≈40% (ước lượng35–45%)**, giữ nguyên. Sáu bộ tham chiếu/12 (50%), sáu bộ còn thiếu;5/5 starter motion/160 cels, Muối32 cels riêng; **0/12 full DoD**. Kit phát triển mới chưa đóng thu thập nhân vật, cân bằng cuối, art/playtest độc lập hoặc gate phát hành. Next004K Nhiên; Muối collection/full DoD still pending. [Evidence/commands](evidence/AW2-007E.md), [JSON](evidence/AW2-007E-verification.json), [reuse proof](evidence/AW2-007E-reused-evidence.json).
+
+## AW2-004J Muối reference package —2026-10-22 (historical)
+
+Source `7643ec4cb4e1e56d0c1013f7135a065e5ad3af36`, tree `5a430329174506bd81ee49accaa5b5d5ab99113d`, base `c558faab1df548463abfe80e2cc4de4f7a67f479` on game/adventure-world-2. D16 exact staged/remote tree and14 binary Git SHA matches verified; expected-head/force=false publication, independent fetch/tree/index/ancestry and guarded local fast-forward PASS. Completion descendant changes docs only; final fresh clean local/remote comparison before handoff. 73 affected tests/5 files PASS on first run,7 new Muối cases,557ms; both types PASS (root once, dev after compatibility fix),9-file format/syntax/whitespace PASS.49 source+49 compiled Muối preview assertions and8 compiled changed-consumer onboarding/build assertions PASS,106 fresh browser assertions total. Full current-head suite NOT_RUN. Muối Đen aw2-muoi/R/Muối rang/Debuffer has an original full-body identity portrait,16 four-way world cels,32 HD motion cels/eight states,16 FX cells and four unit-owned synthesized audio cues.64 measured rectangles, new edge alpha≤2/255 (declared tolerance8). All selected PNG pixels preserved; lossless visible RGBA/alpha verified, measured per-column rectangles/foot anchors/logical scale1.5 only, no repaint/mask/mirror/pixel resize. Five unique WebPs4,622,842 bytes/decoded RGBA31,455,136 bytes;17 scoped files repeat-byte-identical. Separate ROSTER_ASSETS reference registry and roster.html preview expose six authored sets while STARTER_ASSETS/team/save contract stay fixed at five. ROSTER reflects Muối reference availability and six missing sets; collection is not inferred from art availability. Shared AssetPreview has an explicit combat-readiness prop: starters keep prior copy; Muối clearly says kit/collection pending. Original AssetCanvas/playback, starter/boss manifests/images/audio, combat engine, save schema/store, economy and mode rules unchanged. Muối basic flight260→700ms uses separate projectile0/1 and finite impact2/3; mark420/refresh180/burst560 are reference cues only. Preview never applies damage/marks/dispels, grants a unit or writes saves.
+
+Ten built-in image_gen calls: five selected outputs and five rejected intermediates. A initial and first edit lose the jar in a release cel; third A attempt crops last-row feet; final single-cel jar repair selected. B initial and first edit have unsafe row boundaries, independent compact replacement selected. World/portrait/FX initial outputs selected. Prompt/source/reference hashes include every selected/rejected attempt, no external art. Independent face/jar/hand/cloth/turn/foot-contact/loop/inbetween approval remains open; generated reference poses do not close full art DoD.
+
+Initial dev typecheck FAIL because Object.hasOwn is unavailable in its target lib; replaced with Object.prototype.hasOwnProperty.call, preserving prototype-query safety, then reran dev typecheck only PASS. Root typecheck/unit cases already passed and were not repeated. First unchanged-boundary audit referenced nonexistent world/engine.ts; corrected to tracked world rule paths and final143-path proof PASS. Five unsafe/continuity image attempts rejected as above; no failed asset enters runtime. No unit/browser assertion failure. Review build rerun after final UI compatibility fix, before final browser runs; no builder/source mutations during browser verification.
+
+Prior full1036-unit/core/save evidence at910b55bf977557f11be03111afa40283df0fbcf1,55 earned demo assertions atb836a82f3cb8babf1087e6ac32603de1f83336de and boss presentation at26849546825131a5c448645274880977caa9d230 retain source-bound PASS within unchanged implementation boundaries.143 paths match base, including core/save/world rules/economy/modes/original starter/boss assets/helpers and stable entry/dependencies; only roster availability metadata changes. Changed roster consumers are covered by world/save units and a narrow fresh onboarding/build browser smoke. No full quest/mode/boss journey or unrelated original asset suite rerun/counted fresh. Full regression remains due before release or shared-engine/save changes (including next007E). Six captures opened, three supplemental peak FX captures add no test counts; desktop320/390/768 viewport checks do not approve physical devices. Review125files/41,629,173bytes/source exclusions, stable851files/49text/release guard/exclusion PASS. [Commands/evidence](evidence/AW2-004J.md), [JSON](evidence/AW2-004J-verification.json), [unchanged hash proof](evidence/AW2-004J-reused-evidence.json). Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Authored spirit reference sets6/12=50% (was5/12), six absent; starter motion5/5=100%/160 cels unchanged; Muối adds32 cels separately.0/12 full DoD. One reference package does not close actual kit/leveling/collection/independent art/audio/device/rights/release gates or supply accepted-character production velocity. Next007E shared-core kit/full regression.
+
+## AW2-004I original boss reference —2026-10-22
+
+Base `97b9b27fc9f6d0d18873b0d97420f2031efc1092`, source `26849546825131a5c448645274880977caa9d230`; later completion docs only. Eight original HD key poses,9 three-skill effect cells and exact idle-crop portrait.17 actual alpha-safe frames, source/runtime hashes and visible RGBA+alpha verified;8 repeat-build files byte-identical. Three built-in image_gen calls: initial unsafe body rejected, repaired body and style-referenced FX selected; no external art. Runtime3 WebPs2,163,576 bytes/decoded RGBA12,922,920 bytes. Single-key-pose reference tracks, no full motion/world/audio/rights completion claim. 49 affected units/7 files PASS (6 new boss cases;43 unchanged in-session PASS retained, only6 rerun after a sampler bound). Both typechecks/8-file format/syntax/whitespace PASS.39 source+39 compiled full boss gates PASS before a final CSS-only arena-scroll-margin fix;12 source+12 compiled navigation-only delta checks PASS after that fix, plus22 compiled standalone battle checks. Do not add overlapping navigation/full-run checks into a unique total. Final review112 files/36,902,504 bytes/source exclusions PASS; stable851 files/72 text artifacts/release guard/AW2 isolation PASS.
+
+Windows10.0.26200/Node25.2.0/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chrome155.0.8059.85/Playwright1.64.1/sharp0.35.5 isolated QA. Actual loss51/win43/failed-write retry/retreat/terminal art cancellation/source bounds/no tint/flip all PASS; no outcome injection. Initial types FAIL missing portrait transparency metadata, measured builder fix and root/dev rerun PASS. No unit/browser FAIL. Final CSS-only arena margin fixed observed overlay; scoped navigation gate rerun only, no redundant full boss repeat. Prior39+39 reports predate CSS delta;12+12 final scoped reports validate it. Five captures opened,2 final mobile. Sources8470/8471/8472 closed.
+
+Core/store/schema/economy/world rules/maps/modes/original starter assets/playback/audio/config/dependencies unchanged. Historical full1036 at910b55b/earned55 atb836a82 retain original refs, not counted fresh. Owner tried TCG/Auto Chess but has not finished the journey; full end-to-end player acceptance remains NOT_RUN. Own boss motion/world object/audio, final balance, physical devices/FPS/offline/listening/rights/native/production-save/release gates remain open. fullEnemyComplete=false, no collectible identity/rarity change, no Vân identification. D11 PROPOSED/D12 OPEN. Demo9/10≈90%, product≈40% (rough35–45%) unchanged: this is one reference-presentation deliverable, not a closed independent-playtest/full-character/release gate.5/5 starter motion/160 cels,0/12 full DoD/7 absent spirit sets remain. Next004J. [Commands/evidence](evidence/AW2-004I.md), [JSON](evidence/AW2-004I-verification.json).
+
+## AW2-010B saved demo completion —2026-10-22
+
+Base `a8f8dfa206f5045cebcb4b43e5875c9f6344662f`, source `b836a82f3cb8babf1087e6ac32603de1f83336de`; later documentation only. 55 fresh compiled earned-journey browser assertions PASS, including saved wait/share summaries, no summary on incomplete save, exact reload/no extra grants,320/390px48px controls and safe post-ending TCG/Chess checkpoint/returns. Both typechecks/scoped format/syntax/whitespace/review build PASS (107 files/34,720,421 bytes); one final mobile capture opened. Unchanged full1036-unit/core/save/economy/stable evidence retains source910b55b; not rerun or counted fresh. Owner2026-10-22 confirms TCG/Auto Chess tried, full journey not finished. Record partial human mode smoke; end-to-end player acceptance remains NOT_RUN, not inferred from the request to move to product. Demo9/10≈90% and product≈40% (rough35–45%) unchanged; no new full-character/release gate closed.5/5 starter reference motion/160 cels,0/12 full DoD/7 absent sets.
+
+Commands: local pnpm typecheck/typecheck:dev; pnpm exec oxfmt then --check on DemoCompletion.tsx/verify-aw2-demo.mjs; node --check verifier; pnpm build:aw2; node dev/tools/verify-aw2-demo.mjs --compiled --playwright file:///D:/prj/MealGacha/.asset-work/aw2-tools/node_modules/playwright-core/index.mjs --chromium "C:/Program Files/Google/Chrome/Application/chrome.exe". Windows/Node25.2/Chrome155 isolated contexts. Errors0; no owner profile/reset/deployment. Source910b55b full1036/stable/provenance evidence reused within unchanged core/save/economy/modes/assets/config/dependencies, not fresh. Full current suite/physical devices/rights/playtest ending NOT_RUN. [Evidence](evidence/AW2-010B.md), [JSON](evidence/AW2-010B-verification.json). Next004I original boss presentation.
+
+## AW2-007D actual boss kit / telegraphs —2026-10-22
+
+Base `c56367a5836bc70efa7dbc92680ae567b7fb7bee`, source `910b55bf977557f11be03111afa40283df0fbcf1`; later docs only. Windows10.0.26200 x64/Node25.2.0/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chrome155.0.8059.85/Playwright1.64.1. Fresh isolated contexts; no owner saves. Required BA/mechanic/story/character/animation/tester/scretary reviews in-session.
+
+PASS1036 unit tests/102 files (243 AW2,10 new), both typechecks/format/syntax/whitespace, review build107 files/34,718,397 bytes and stable build/release guard/isolation851 files/76 text artifacts.95 fresh compiled browser assertions:26 final boss +47 earned full journey/both endings +22 standalone battle. Nine actual-seed simulations PASS. Full units use NODE_OPTIONS=--no-experimental-webstorage;10 new focused cases cover opt-in identity/targeting/sweep freeze/three beats/4 real contacts/expiry/passive block/source-death/terminal/JSON replay. Actual-seed simulation: XP0 auto loss51/manual48/hold43; XP160/205 wins50/45/42. Earned journey real win45,345XP/five receipts/either ending/reload/stable keys.26 targeted boss checks cover actual rule warnings/pause/reduced/audio-off320/390 controls/retreat/no live writes/loss/win/failed-win-write retry.22 standalone checks regress the other shared-engine consumer. Four final captures opened; errors0.
+
+Full units/47 earned cases ran on final core/seed/transaction logic before final UI-only opacity/ResizeObserver scroll-margin fix. Final types/build/26 boss gates cover that delta. Core whitespace cleanup preserved all nonblank lines. Initial24 boss gates superseded by26, not added; no sum with historical89/471 counts. First180ATK retained fixture failed5 of19 tests; simulation selected135, failed world file reran11 PASS, then full1036 PASS. Initial sticky panel visual issues repaired and uncovered-control assertions added.
+
+[Exact commands/results/limits](evidence/AW2-007D.md), [JSON](evidence/AW2-007D-verification.json). Save store/schema/economy/world maps/assets/manifests/audio/standalone canvas/config/dependencies match base; historical provenance/mode detail remains source-bound. Physical devices/FPS/offline/rights/listening/full art/final balance/production save/release NOT_RUN. Owner feedback2026-10-22: “Đã chơi, chưa thấy lỗi chặn”. Record as a partial player smoke observation; version/device/covered quests/endings were not supplied. Full independent playtest gate remains NOT_RUN until coverage is recorded; do not infer complete acceptance from this response.
+
+Demo≈90% (9/10 groups), full product≈40% (rough35–45%) unchanged. Boss rules improve an already counted development group; full playtest/art/release gates remain open.5/5 starter reference-motion packages/160 cels,0/12 full DoD,7 absent sets. Next004I boss reference presentation; BA/tester full recorded playtest. D11 PROPOSED/D12 OPEN; D16 direct checks/docs/commit/push/readback. Compiled QA servers8471/8463/8472 closed.
+
+## AW2-004H battle readability —2026-10-21
+
+VERIFIED presentation subset. Base `24dcf77846a71f9df63b6c2321e19c2a431f8c2d`, implementation `aa0a3a645f15035cb72e16650cc2fa77b440237a`; following docs only. Windows10.0.26200/Node25.2.0/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Playwright1.64.1/Chrome155.0.8059.85. 43 affected unit tests /6 files (5 new), both typechecks/6-file format/syntax/whitespace PASS. Review build107 files/34,712,894 bytes/source exclusions PASS.89 fresh compiled browser assertions:29 layout/boss/readability +60 affected five-starter combat (Than7/Lửa9/Lam12/Mộc14/Sương18). Two baseline/seven final captures opened.
+
+Commands: affected six explicit unit paths battle-layout/battle-presentation/battle-session/lam-motion/moc-motion/suong-motion with two workers and Node25 option; root/dev typechecks; six-file formatter; new runner syntax; build:aw2 and source-exclusion audit; verify-aw2-readability.mjs --compiled (29); verify-aw2-motion.mjs --compiled --combat-only for five starters (60). All PASS. Units1.08s,5 new cases. Source baseline/draft captures only; final assertions compiled.29 layout checks include a ready-quest v3 boss QA fixture, not a new earned quest journey. Source server8466 stopped; verifier-owned8469/8465 closed. [Exact commands/results/limits](evidence/AW2-004H.md), [JSON](evidence/AW2-004H-verification.json).
+
+Core/events/save/economy/world/modes/assets/audio inputs/canon/stable entry/config/dependencies unchanged from base. Historical full1007 units/471 browser/stable exclusion evidence atcf0b394 is reused within unchanged boundaries, not rerun or counted fresh. Current-head full suite/stable build/earned full journey/physical-device/playtest/performance/rights NOT_RUN. Projection/labels/target geometry checks were STALE during edits and are superseded by these fresh gates; original animation/asset/audio/world/save/mode results retain their original refs. Actual decoded draw bounds, both Lua contacts, Lam healing pulses/targets, Moc shields/recipients and Suong repeated zones/reduced/terminal/pause PASS. First baseline command Unicode-selector timeout fixed using CSS selectors; no product failure/weakening. BA/animation/mechanic/tester/scretary reviews in-session. Demo≈90% (9/10 groups) and full product≈40% (rough35–45%) unchanged: independent playtest and full-character/release gates remain open.5/5 starter reference motion packages/160 cels,0/12 full DoD,7 absent sets. Next BA/tester: independent demo playtest through LOCAL_TEST/DEMO, collect reproducible blockers and scope fixes. Animation/character still owe own boss/map/NPC/seven sets/full DoD; device/audio/listening/rights/production-save/release gates open. D11 PROPOSED/D12 OPEN; D16 direct AW2 checks/docs/commit/push/readback.
+
+## AW2-004G Sương motion / confirmed zones / local startup —2026-10-21
+
+Source `489ce7162df7db11b1b1954d0b0a62b4d073fe17`, tree `1ebf5fbaec245dbe986731f640e02df337db4d44`, base `d5fc1a8f146a31097d0f81fc2bb4055f91642141` on game/adventure-world-2. D16 exact staged/remote tree and four binary Git SHA matches verified; expected-head/force=false publication, independent fetch/SHA/tree/index/ancestry and guarded local fast-forward PASS. Completion descendant changes docs only; final clean local/fresh remote comparison before handoff. 69 affected tests/8 files PASS (62 unaffected cases retained from first in-session run; corrected7-case fixture file rerun alone), both typechecks/4-file formatting/syntax/whitespace PASS.113 fresh browser checks:41 source+42 compiled Sương,12 compiled Lam+14 compiled Moc affected renderer only,4 documented local-startup checks. Full current-head suite NOT_RUN. Sương Lành aw2-suong/R/Bánh cuốn/mage retains identity/four skill IDs and original12 image/audio files,16 world cels/eight reduced HD poses. Two built-in image_gen calls/two selected initial sheets/no repair or external artwork add32 cels/eight states. A1303×1207/B1278×1230 use measured per-column cuts/foot anchors and logical renderScale1.45; unchanged source RGBA/lossless WebP/no repaint/mask/mirror/pixel resize.72 rectangles; new motion edge≤8/255. New WebPs2,521,164 bytes/decoded RGBA12,578,644 bytes; scoped repeat-build102 files byte-identical. Preparation/flight emit no outcome FX. Basic confirmed hits use actual-target impact cels2/3. Each real same-tick zone pulse groups source gesture/clock and actual recipient IDs across partial batches; three real ticks trigger three finite effects. Passive needs actual eligible slow status; pull statuses add no damage contact. Each target retains its own reaction art. Renderer expands actual recipients without clock restart and suppresses actor/confirmed FX at terminal. Existing finite180/440ms expiry including reduced motion stays unchanged. Engine/numbers/save/quests/economy/gacha/canon/dependencies unchanged.
+
+Initial new fixture run67 PASS/2 FAIL: ultimate omitted required target and empty-zone fixture moved enemies before commit. Corrected fixtures only;7-case rerun PASS, other62 not repeated. Initial source-browser attempt raced the scoped builder manifest write and hot-reloaded (createRoot/startsWith/context destroyed); preserved failure record, final browser runs only after builder completion. No image repair/rejection or production behavior weakened.
+
+Unchanged full1007 units/471 browser/stable851-file78-text exclusion/earned world-quest-save-mode journeys retain original-SHA PASS at cf0b39469d1fb8f7d77e18feb5e16895d70565a1; not rerun or added to fresh totals.124 byte-identical paths prove unchanged core/save/world/economy/modes/helpers/other assets/stable entry/config/dependencies against base; other manifests and original12 Sương files unchanged. Release/major save/shared-engine work still requires full regression. Four captures opened; arena/status/actor crowding persists. [Evidence/commands](evidence/AW2-004G.md), [concise observed results](evidence/AW2-004G-verification.json), [unchanged hashes](evidence/AW2-004G-reused-evidence.json). Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Starter reference motion5/5=100%, up from4/5=80%,160 new cels total.0/12 full DoD,5 reference sets/7 absent; motion completion uses a separate denominator. Independent playtest/art/anatomy/cloth/loops/contact/readability/audio binding/listening/device/FPS/offline/native/rights/production-save/release gates remain open. Next004H arena/readability. Local guide startup4 gates is not a complete quest/save journey. No deployment/release/owner reset.
+
+## AW2-004F Moc motion / confirmed support / selective verification —2026-10-21
+
+VERIFIED reference subset, full character DoD OPEN. Source `1803347bcff73e1500ef1d6219968f599c155114`, tree `ebe9ae1737eb499fb0356a26d8e034f1b716f5a4`, base local/fresh remote `ff44ab28d5a30a5f63b52b55db25a594118042e3`, game/adventure-world-2. D16 exact staged/remote tree and four binary SHA matches, expected-head/force=false publication, independent fetch/SHA/tree/index/ancestry and guarded local fast-forward verified. Completion descendant docs only; final fresh clean local/remote comparison before handoff. Task/owner skills/impact plan preceded edits. In-session BA/character/animation/mechanic/tester/scretary and imagegen/verification guidance; no independent agent/art/device/listening/rights sign-off. Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. [Task](tasks/AW2-004F.md), [commands/raw evidence](evidence/AW2-004F.md), [Moc gates](MOC_NON_CHARACTER_GATES.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected units | PASS |62 tests/7 files,708ms,7 new Moc cases,0 failed/pending; existing direct combat/presentation/Lam/Lua/playback/manifest consumers only |
+| Types/4-file format/syntax/whitespace | PASS |Both TS configs/formatter/motion-runner syntax exit0 |
+| Moc-only asset/provenance/rebuild | PASS |72 rectangles/32 new cels/new edge≤4/255/original world9,12 originals/other4 manifests unchanged;97 hashed asset paths repeat-byte identity/90 unchanged original boundaries;2 selected image_gen outputs, no repair |
+| Changed review build/isolation | PASS |104 files/32,168,363 bytes, no PNG/code/maps/ZIP; new WebPs2,335,982 bytes/decoded RGBA12,584,856 |
+| Moc source/compiled with --reuse-originals | PASS reference scope |38+38 eight-state/new cels/reference flight/confirmed target impact-shield/passive/grouped ultimate/own-art recipients/pause/reduced expiry/widths/missing-new-atlas/save bytes; unchanged audio/world gates skipped |
+| Compiled Lam --combat-only | PASS affected renderer |12 confirmed pulses/target impacts/reduced expiry/pause/bounds/save/error checks; unrelated preview/atlas/audio/world skipped |
+| Full suite/stable build/earned-world-save-mode/unrelated previews | NOT_RUN fresh |Unchanged PASS retained atcf0b394, full1007/471 not relabeled/added; byte/path proof recorded |
+| Three captures opened | PASS reference scope |Source reduced battle/compiled new ultimate/768px preview; overlap/independent art/readability remain open |
+
+88 fresh browser assertions (38+38+12), after changed review build. No QA failures/repairs this task. Real Moc serial5/tick2 ultimate560ms, basic72/auto74 tick7 at enemy-lua/player-aw2-lua coexist; auto127/passive128 tick14 after another ally shield. Independent FX reused, grouped statuses retain every own-art recipient; preparation/interrupt/miss/terminal cannot fabricate grant. Engine/save/world/mode/core helpers unchanged. Last full1007 tests/471 browser and stable851-file/78-text/47+47 earned journeys remain atcf0b39469d1fb8f7d77e18feb5e16895d70565a1, not a full PASS for current head. No fresh full earned-world/Moc encounter visual claim.
+
+Owner asks to avoid redundant passing tests: reuse proven unchanged boundaries, rerun only affected dependencies/fixes/new concerns, retain mandatory types/changed-consumer builds and full regression before release/major save/shared-engine changes. All5 fullCharacterComplete=false;0/12 full DoD, independent art/anatomy/identity/fan/cloth/loop/contact/telegraph/audio-binding/listening/playtest/device/native/offline/FPS/rights/production-save/release obligation remains. Demo90%/product≈40% rough35–45% unchanged; starter motion4/5=80% separate denominator. Next004G Sương Lành.
+
+## AW2-004E Lam motion / confirmed impacts and healing — 2026-10-21
+
+VERIFIED scoped reference subset, full character DoD OPEN. D16 verified exact staged/remote tree and four binary SHA matches, expected-head/force=false publication, independent fetch/SHA/tree/index/ancestry and guarded local fast-forward. Source `cf0b39469d1fb8f7d77e18feb5e16895d70565a1`, tree `a31058eb72be8b420cb6dbde32e8c008a6e2ac04`, base local/fresh remote `4def09f18c201663846f1122cacba81947b9ed84`, game/adventure-world-2. Completion descendant docs only; final fresh local/remote comparison before handoff. Task/owner skills preceded edits. In-session BA/character/animation/mechanic/tester/scretary +imagegen/verification guidance; no independent human/agent/device/listening/rights sign-off. Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. [Task](tasks/AW2-004E.md), [full commands/failures/raw reports](evidence/AW2-004E.md), [Lam gates](LAM_CHARACTER_GATES.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Full units | PASS |1007 tests/98 files,71.46s;214 AW2/18 files,11 new;0 failed/pending; preceding compiled journey finishing in parallel, no performance inference |
+| Types/7-file format/whitespace | PASS |Root/dev TS and final formatting exit0 |
+| Source/asset/provenance/rebuild | PASS after harness repairs |All-five296 rectangles/alpha/RGBA/hash/PCM/prompt inventory; Lam72 rectangles/32 cels/max edge3/255,12 originals and other4 manifests/assets preserved;87-file repeat byte identity |
+| Stable/review build/isolation | PASS |Stable851 files/78 text artifacts exclude AW2; review101 files/29,817,175 bytes, no PNG/code/maps/ZIP |
+| Lam motion/confirmed FX source+compiled | PASS reference scope |42+42 all8 clips/32 cels/reference flight+two cues/real target impact+two pulses/finite reduced FX/no premature FX/pause/audio opt-in+decode/widths/world/missing atlas/save bytes |
+| Lua/Than/other starter previews | PASS regression |38+38 Lua,32 Than+133 starters |
+| Battle source+compiled | PASS development |22+22 five-unit/ultimate/projectile/terminal/pause/reset/assets/save |
+| Earned demo source+compiled / compiled smoke | PASS automated |47+47 combined RPG/TCG/Chess/all entries/quests/items/cook/share/actual boss/note/both endings/new Lam world motion;8 smoke |
+| Three final captures opened | PASS reference scope |Source reduced battle/compiled ultimate/768px world preview; arena actor/label overlap remains |
+
+471 fresh final browser assertions; all final reports postdate final review build. Actual Lam pulse serial5/tick2/index0→520ms and25/tick4/index1→1040ms; basic60/tick6 enemy-than impact art. Independent confirmed FX clocks survive simultaneous actions; finite180/440ms visual FX cannot revive under reduced motion. Core engine/numbers/save/canon unchanged. Actual boss tick36/either ending345XP/five receipts/stable bytes, no forged outcome/progress. New WebP1,758,940 bytes/decoded RGBA12,580,128; localhost timings/decode not PERF-01/listening/device approval.
+
+Initial simultaneous-cue browser timeout retained; independent clocks/same-tick gesture priority repaired it. Final reduced-motion expiry review adds finite guard/new pure/browser case. Two unsafe layouts repaired via image_gen; original comparison harness included TS helpers, then missing report directory failed an otherwise passing audit; final complete run passes. One diagnostic capture opened separately. Deeper unchanged standalone save/mode/boss-failure browser permutations not separately repeated; historical evidence source-bound. All5 fullCharacterComplete=false,0/12 full DoD; independent art/playtest/final balance/audio binding/listening/device/native/offline/FPS/rights/production-save/release/full-suite obligation remain. Demo≈90%, product≈40% rough35–45% unchanged; report both after each completed update. Next004F Mộc Non, independent Than/Lua/Lam acceptance still open.
+
+## AW2-004D Lua motion / confirmed contacts / builder reproducibility — 2026-10-21
+
+VERIFIED scoped reference subset; full character DoD OPEN. Base local/fresh remote `90e1f8c6d2b8645543b48b45a7a6e98be7beac0b`; source `cef55c00f8c4cf646a9d8952f6cbe02865b0225c`, tree `ff547302b1e45a3d8bfee602be162f6d7ff5f6ac`, game/adventure-world-2. Task/refined-contact contract preceded edits. D16 exact index/remote tree and four binary SHA matches, expected-head/force=false publication, independent fetch/SHA/tree/index/ancestry/local guarded fast-forward verified; completion docs only/final readback before handoff. No branch/PR/master/rpg/release/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. Six owner-role reviews and reused imagegen/React/verification skills, no independent agent/art/listening/device/legal review. [Task](tasks/AW2-004D.md), [commands/failures](evidence/AW2-004D.md), [per-state/full-DoD gaps](LUA_CHARACTER_GATES.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected/full units | PASS |203 AW2 /17 files,2.33s;996 full /97 files,37.46s,0 failed/pending,7 new motion/rules/confirmed-contact cases |
+| Types/9-file format/whitespace | PASS |Root/dev types and final formatting exit0 |
+| Asset/provenance/rebuild | PASS after repairs |72 Lua rectangles/32 new cels, alpha≤2/255,12 originals preserved; all5 source/runtime/PCM/prompt hashes, other4 manifests unchanged;87-file Than/Lua rebuild byte identity |
+| Stable/review build and exclusion | PASS |851 files/78 text artifacts exclude AW2; review98 files/28,038,187 bytes, no PNG/code/maps/ZIP |
+| Lua motion source/compiled | PASS reference scope |38+38 all8 states/32 cels, exactly2 preview contacts, actual confirmed serial72/76 using own220/380ms FX and first/second poses, pause/reduced/widths/missing atlas/audio decode |
+| Than/other starter previews | PASS reference compatibility |32+133 FX/contact/world/audio/selector/save checks |
+| Battle source/compiled | PASS development |22+22 five-unit/ultimate/terminal/projectile/pause/reset/assets/save bytes |
+| Earned combined demo source/compiled | PASS automated |46+46 all modes/entries/quests/items/cook/share/boss/note/both endings and actual new Lua world atlas |
+| Compiled smoke | PASS |8 intro/save/XP/runtime assets/isolation |
+| Three accepted captures opened | PASS reference scope |Source/compiled actual battle and768px preview; actor/label overlap remains |
+
+385 fresh final browser checks, not added to004C377. Boss tick36, either ending345XP/5 receipts, exact earned checkpoint/returns/reload/stable bytes; no outcome/progress forging or unexpected final primary errors. New runtime WebP2,029,834 bytes /decoded RGBA12,580,128; localhost timings/audio decode are not PERF-01/device/listening acceptance. New gameplay-save rules unchanged, presentation has no damage/reward authority.
+
+Failures retained: file checker counted recovery alias as extra cel; builder refactor left marker variable scope; first helper consumed stale prior elapsed; compiled reduced probe consumed stale same-frame skill FX. Repaired counting/reference-marker/synchronized observation; source38 before last compiled-only helper guard, unchanged runtime and compiled38 after it. One unsafe B image rejected/repaired by image_gen (3 calls/two selected sources);2 diagnostic images inspected separately. All raw notes/reports linked above; no failing run reclassified PASS.
+
+Residual: full DoD/independent art/anatomy/loop/contact/playtest/device/native/offline/FPS/listening/rights/final balance/production-save/release; basic-hit audio binding, ultimate telegraph/arena readability;7 absent sets and own map/NPC/boss art. All5 fullCharacterComplete=false, demo≈90%/product≈40% rough estimates unchanged. Next004E Lam Lam motion/projectile/two pulses. Repeat impact/full checks per tester cadence; historical deeper mode/save/boss-failure permutations not separately renewed.
+
+## AW2-004C Than motion / shared playback — 2026-10-21
+
+VERIFIED scoped reference-motion/integration; full character DoD OPEN. Base local/fresh remote `096fb7b3e6d4e7e83aef55f0d0f3e9fa9c9618b5`; source `f85e1e7cadb933bce0a7355abe8f244cab2c89b8`, tree `ea4f8df7cac8fee7239133d06726abb49f4c47c0`, branch game/adventure-world-2. Task card preceded edits; completion descendant docs only. D16 exact staged/remote tree and binary Git SHA matches, expected-head/force=false publication, independent fetch/SHA/tree/index/ancestry and guarded local fast-forward verified. Final completion readback before handoff; no PR/master/rpg/release/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/character/animation/mechanic/tester/scretary, React/verification reviews; no independent agent/art/listening/device/rights sign-off. [Task](tasks/AW2-004C.md), [evidence/commands](evidence/AW2-004C.md), [per-state/full-DoD inventory](THAN_CHARACTER_GATES.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected/final full units | PASS |196 AW2 /16 files;989 full /96 files,33.41s,0 failed/pending;5 playback/2 event-ownership new cases |
+| Root/dev types,16-file format/whitespace | PASS |After named-interface repair of formatter inline-type issue |
+| Actual asset hashes/alpha/PCM/preservation | PASS |72 Than rectangles/32 new distinct cels, edge alpha≤4/255;14 originals byte-identical, all five inventories checked |
+| Stable/review build and exclusion | PASS |Stable851 files/78 text artifacts exclude AW2; review95 files/25,990,939 bytes, no PNG/code/maps/ZIP |
+| Motion source/compiled | PASS reference scope |35+35 all8 clips/32 cels, pause/reduced, world4dir/audio decode/opt-in,320/390/768 widths, actual battle, two missing-motion errors/no fallback |
+| Than/other starter previews | PASS reference scope |32+133 canonical FX/contact/audio/world/selector/save bytes |
+| Actual battle source/compiled | PASS development |22+22 five-unit combat/ultimate/terminal/projectile/pause/reset/assets/save isolation |
+| Earned combined demo source/compiled | PASS automated |45+45 all modes/entries/quest/chest/cook/share/boss/note/both endings plus new world atlas/paused visual time |
+| Compiled smoke | PASS |8 intro/save/XP/assets/isolation |
+| Four accepted captures opened | PASS reference scope |Attack recovery, ultimate settle, actual battle,768px preview; arena overlap/small labels remain |
+
+377 fresh final browser assertions, no unexpected final primary errors. Actual boss tick36, either ending345XP/5 receipts, exact earned checkpoint/legacy bytes preserved. New runtime atlases2,139,636 bytes /decoded RGBA12,580,128 bytes; local resource timing observations do not satisfy PERF-01. Two unsafe image candidates rejected/repaired through built-in image_gen, exact prompt/hash/source records retained.32 new cels do not mean full animation polish or full DoD; fullCharacterComplete=false. No numerical rules/schema/store/economy/mode/canon/gacha change. Deeper unchanged mode/save/boss-failure permutations not separately repeated; old evidence stays source-bound.
+
+Residual: independent art/continuity/contact review, human demo playtest/listening, physical devices/native/offline/FPS/rights/final kit-level balance/production-save/release, remaining7 missing sets and map/NPC/boss own assets. Product≈40% rough/demo≈90% unchanged,0 full characters. Next004D Lửa Nhỏ motion/two-contact package; repeat impact/full checks per tester cadence, never inherit independent PASS.
+
+## AW2-010A automated fresh-player demo — 2026-10-21
+
+VERIFIED automated subset; independent human playtest NOT_RUN. Base local/remote `4dde53f9cdae36afa11814ddae62077963c59d3d`; source `e7aedacadcc5f7664695767196d9edaa77fe724b`, tree `e95629e68bb41744721cdb89f786960d657129be`, branch game/adventure-world-2. Existing task card updated before code; completion docs only. D16 matched index/remote tree and expected-head/force=false publication, independent fetch/SHA/index/ancestry and guarded local fast-forward; final docs descendant fetched before final handoff. No branch/PR/master/rpg/deployment/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/mechanic/tester/scretary +React/verification review; no independent agent/device/legal sign-off. [Task](tasks/AW2-010A.md), [full evidence/failures](evidence/AW2-010A.md), [demo](DEMO.md), [progress methodology](PROGRESS.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected / final full units | PASS |189 AW2 /15 files,2.00s;982 full /95 files,32.90s, zero failed/pending;12 new key-policy cases |
+| Root/dev types,7-file format/whitespace | PASS |Exit0 after final runtime focus fix |
+| Stable/review build and exclusion | PASS |851 files /77 text artifacts exclude AW2; review92 files /23,831,805 bytes, no PNG/code/maps/ZIP |
+| Fresh earned combined source / compiled | PASS |43+43 intro/5 starters/four mode games/both entries/quest/chest/cook/share/real boss/note/both endings, exact returns/reloads/rewards/legacy bytes |
+| Mode navigation source / compiled | PASS |26+26 checkpoint/failure/stale/portal/boss guard/mobile |
+| Unchanged RPG regression / compiled smoke | PASS |25+8 migration/inventory/economy/touch/follower/stale/audio/missing atlas/compiled assets |
+| Three accepted captures opened | PASS reference scope |Source/compiled390px guide and completed journey; two diagnostic failure images excluded |
+
+171 fresh final browser assertions total, zero unexpected final primary errors, five seeded stable keys unchanged. Earned205XP before final quest, real boss tick36, each ending345XP/5 receipts, exact saved NPC-position bytes for alternate branch.12 pure policy cases cover native/mode/modifier/repeat keyboard ownership; browsers prove direction Enter, native scrolling, focus restoration/held-key stop, touch/reduced motion/opt-in. [Unit summary](evidence/AW2-010A-unit-summary.json).
+
+Initial FAILs retained: RPG revealed hidden-close-button focus regression and passed unchanged after genuine map-focus fix; combined helper terminal/canvas lag, async meal assertion and unsaved branch position fixed with truth/commit synchronization and explicit UI save. First omitted-keyup probe direction result inconclusive; paired baseline preserved. Final full units/types/build follow runtime repair, final demo source/compiled follow harness fixes. No core rules/save/schema/asset changes. Standalone TCG/Chess/older40-world runner not repeated separately; deeper unchanged-engine evidence stays source-bound.
+
+Residual obligation: independent human demo playtest, full12 DoD/art/native/device/offline/FPS/listening/rights/production-save/release. [PROGRESS](PROGRESS.md) demo9/10≈90% and rough product≈40% are planning indicators, not QA results or date approval. Next AW2-004C character/animation gap closure/measurement; repeat impact/full checks per cadence before release.
+
+## AW2-009C Auto Chess practice / estimate — 2026-10-21
+
+VERIFIED development-practice subset. Base local/remote `99fa529ac196b3f0a06e286851d39d6c3971d45e`; implementation `ff499a52e471f9b07133bc80e9d32802dda92cb8`, tree `28e00e7d412b448d11095fc1c03dac16e1fc97a6`, branch game/adventure-world-2. Task card preceded code; completion docs only. D16 matched index/remote tree, expected-head/force=false GitHub connection delivery, independent Git fetch/SHA/index/ancestry and guarded local fast-forward; final docs descendant fetched before handoff. No feature branch/PR/master/rpg/deployment/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/mechanic/tester/scretary and React/verification reviews; no independent agent/human-device/legal sign-off. [Task](tasks/AW2-009C.md), [rules](AUTO_CHESS_PRACTICE.md), [commands/evidence](evidence/AW2-009C.md), [REPORT](REPORT.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected Chess / all AW2 | PASS |Initial18 Chess; hardened19 cases,177 AW2 /14 files,2.25s |
+| Full unit JSON run, maxWorkers2 | PASS |970 tests /94 files,35.44s, zero failed/pending; before build/browser |
+| Root/dev types,10-file format, Git whitespace | PASS |Exit0; dev types rechecked after UI public attributes |
+| Stable/review build and recursive scan | PASS |Stable851 files /77 text artifacts exclude AW2; review92 files /23,828,460 bytes, no PNG/TS/TSX/map/ZIP |
+| Actual Auto Chess source / compiled | PASS |33+33 shop/merge/formation/move/swap/bench/sell/keyboard/lock, genuine five-round win/combat defeat/surrender, pause/step/rematch/return/reload/stale reread/no world writes/mobile/missing portrait |
+| TCG source / compiled | PASS |29+29 fresh actual gameplay/return/byte-preservation regression |
+| Navigation source / compiled | PASS |26+26 portals/quick-entry/checkpoint/failure/stale/boss guard/mobile |
+| World/quest/boss/both endings / compiled smoke | PASS |40+8,8452 inspected for current ChessPractice first |
+| Three source/compiled captures opened | PASS reference scope |390px planning,768px battle/terminal; long scrolling pages, no physical-device/finished-animation claim |
+
+224 fresh browser assertions, zero unexpected primary errors; five seeded stable keys unchanged. Default seed legal recruitment wins all5 rounds at ticks5/5/4/5/9; weak legal unit loses4 rounds to0HP. Pure invariant coverage includes finite pool/reserved/owned/merged copy conservation across12 full legal seeds, gold/cap/phase/UID, simultaneous damage/heal/shield, formation/range/blocked movement, diversity, timeout/draw/once-only settlement and invalid-state preservation. No game-check failures observed in executed runs; source keyboard verifier rerun replaces prior run, not added again to counts. [Raw summaries](evidence/AW2-009C-unit-summary.json).
+
+Residual obligations: AW2-010A combined fresh-player demo/onboarding/playtest READY/NOT_RUN,12 full characters/art/mode-product design/balance, D11/D12 decisions, save-production migrations, physical devices/native/offline/FPS/listening/rights/release. [Delivery ranges](DELIVERY_PLAN.md) are conditional planning assumptions, not QA results, committed dates or approval. Repeat affected checks and full suite per impact/cadence; this does not turn untouched gates green.
+
+## AW2-009B playable TCG practice — 2026-10-21
+
+VERIFIED development subset. Base local/remote `0339f92f47f334c2497766ddb056b38164ed8a1f`; implementation `a0d24937f1450f8b4f8338780fee6a4cc0aa125c`, tested tree `d8ae48941c41c69b67e22f6772fa1f570ebb96e9`, branch game/adventure-world-2. Task card preceded implementation; completion descendants docs only. D16 delivery: verified index/remote tree equality, existing GitHub connection expected-head/force=false, independent fetch/index/ancestry and guarded local fast-forward; final docs descendant fetched before final handoff. No feature branch/PR/master/rpg/deployment/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/mechanic/tester/scretary and condensed React checklist; no independent agent/human-device/legal sign-off. [Task](tasks/AW2-009B.md), [rules](TCG_PRACTICE.md), [full commands/evidence](evidence/AW2-009B.md), [quick REPORT](REPORT.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected AW2 tests | PASS |158 tests /13 files,1.82s;25 new TCG rules/session cases |
+| Full `pnpm test --maxWorkers=2` with JSON reporter | PASS |951 tests /93 files,32.94s, zero failed/pending; before build/browser |
+| Root/dev typechecks,10-file format, Git whitespace | PASS |Exit0 on repaired final source |
+| Stable/review build, recursive exclusion | PASS |Stable851 files /77 text artifacts, no AW2; review92 files /23,807,730 bytes, no PNG/TS/TSX/map/ZIP |
+| Actual TCG browser source / compiled | PASS |29+29 manual play/target/attack, genuine win/loss/surrender, rematch, no save writes/grants, return/reload/stale reread, portrait error/mobile/keyboard checks |
+| Mode navigation browser source / compiled | PASS |26+26 portals/quick-entry/checkpoints/return/failures/stale/boss guard/mobile |
+| World/quest/boss/both endings / compiled smoke | PASS |40+8, existing8452 source inspected before world run |
+| Three source/compiled victory/mobile captures opened | PASS reference scope |Main controls fit320/390/768; long scrolling page, no physical-device claim |
+
+158 fresh browser assertions total; seeded stable bytes unchanged, no unexpected primary errors. Seed20261022 wins by real legal damage after29 recommended commands at turn17; seed20261021 loses to real opponent after6 passes. Card conservation/resource/guard/fatigue/turn-limit and both outcomes across40 legal seeds are pure-test coverage; optional browser guard observation false, not claimed. First targeted24PASS/1FAIL was a wrong default-coach-win expectation, preserved actual loss and verified next seed win; first dev typecheck narrowing/fixture-type errors repaired. Final full run/typechecks/build/browser follow repairs. [Tracked summaries](evidence/AW2-009B-unit-summary.json).
+
+Residual obligation: actual Auto Chess shop/formation/combat/results and full MODE-01 in AW2-009C; production balance/collected deck/prizes/persistence/art/device/native/offline/FPS/rights/full slice remain open. Repeat full regression on relevant changes/per tester cadence; this result does not turn untouched gates green. Next BA/mechanic implements009C, tester verifies, scretary updates REPORT.
+
+## AW2-009A mode transitions / quick REPORT — 2026-10-21
+
+VERIFIED transition/lobby subset. Base local/remote `339edaf80e2ee879455a09c484058470318d8493`; implementation `16f55afb7a1928e5eec1c49acdcb500a6c975554`, tested tree `d9b568da3b0f181b2dbff2f2145f9047625e2cfb`, branch game/adventure-world-2. Task card preceded implementation. D16 direct branch delivery uses existing authorized GitHub connection, matched index tree, expected-head/force=false and independent fetch/SHA/ancestry readback. No local duplicate commit/history rewrite or new branch. Completion changes are documentation only.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36, fresh isolated browser contexts. In-session BA/mechanic/tester/scretary and condensed React hooks/lifecycle/accessibility review; no independent agent/device/legal sign-off. [Task](tasks/AW2-009A.md), [full evidence](evidence/AW2-009A.md), [owner quick REPORT](REPORT.md).
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `pnpm test dev/tests/aw2 --maxWorkers=2` | PASS |12 files /133 cases; final full run includes all133 after named-type repair |
+| `pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-009a-unit.json` | PASS |92 files /926 tests,37.66s, no failures/skips;133 AW2 /17 new transition cases; before build/browser |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS |Both exit0 after formatter/named-interface correction |
+| Seven-file formatter / whitespace | PASS |`oxfmt --check`, `git diff --cached --check` |
+| `pnpm build` / `pnpm build:aw2` / recursive scan | PASS |Stable release guard +851 files/72 text exclusion; review91 files /23,790,245 bytes, no PNG/code/maps/ZIP |
+| `verify-aw2-modes.mjs` source / `--compiled` | PASS |26+26 actual portal/quick-entry/checkpoint/return/reload/failure/stale/corrupt/boss-guard/mobile assertions |
+| `verify-aw2-world.mjs --boss` / `verify-aw2-build.mjs` | PASS |40+8 all-quest/boss/endings and compiled intro/XP/save/assets regressions |
+| Two compiled desktop/mobile lobby captures opened | PASS reference scope |Readable wrapped controls; full authored art/device gates unaffected |
+| Relative links / live-report source+count consistency / docs-only runtime diff | PASS |REPORT/source/task/evidence agree; schema/store/economy/combat/legacy/dependencies/assets/config unchanged |
+| Actual playable TCG/Chess, mode cost/reward/resume, device/native/offline/FPS/rights/full slice | NOT_RUN |Parent AW2-009/full MODE-01 remain open; D11 still PROPOSED |
+
+**100 fresh Chromium assertions PASS** (26+26+40+8), zero primary unexpected console/page/resource errors, stable seeded bytes preserved. Initial affected132PASS/1FAIL was test timing: pending-abandon assertion ran after an await that completed the checkpoint; moved before await. Formatter removed inline-type separators and TS reported two syntax errors; named interfaces fixed it before final full/type/build/browser gates. Failed attempts stay FAIL. Current full-unit obligation satisfied; repeat impacted/shared-save/engine checks after future changes and full regression before release. Original save29/standalone battle22 browser scripts were not rerun separately; their unchanged source evidence remains scoped to AW2-013A.
+
+## AW2-013A persistent progression — 2026-10-21
+
+VERIFIED development scope. Baseline local/remote `075e141fabe90943246bae16eb3f3b3d48cba391`; published implementation `a40217afd4168fac854b8c482a3f0fef48809c26`. Reviewed/adapted pinned PR #82 c34c6a2 (original code a66188f), whose runtime base equals AW2; no PR/rpg/master change. Local tested96f8019 and published a40217a have exactly the same tree `e08b9a6b13f67917b0352a5b6a2a473576278a98`. CLI push lacked Linux credentials; authorized GitHub connection created the identical tree/commit and advanced AW2 from075e141 with expected-SHA guard, force=false. Fetch/readback and full tree diff matched. Original local commit retained in ignored incremental bundle. Following completion edits are documentation only.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36; fresh isolated contexts, no owner profile/reset. Task card preceded implementation; BA/mechanic/tester/scretary reviews in-session, no independent agent/device/legal sign-off. [Task](tasks/AW2-013A.md), [full commands/evidence](evidence/AW2-013A.md).
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-013a-unit.json` | PASS |91 files /909 cases,29.98s; no failures/skips; run without simultaneous build/browser |
+| `pnpm test dev/tests/aw2 --maxWorkers=2` | PASS |Final11 files /116 cases after formatting,1.03s |
+| `pnpm typecheck` / `pnpm typecheck:dev`, targeted formatter and whitespace | PASS |Both TS configs exit0; source/tests/verifiers reviewed and changed files whitespace clean |
+| `pnpm build` / `pnpm build:aw2` | PASS |Stable build/release guard and isolated91-file/23,785,828-byte review build; stable existing large-chunk warning |
+| Recursive stable output scan | PASS |851 files /72 text artifacts exclude AW2 entry/save/economy/combat markers |
+| `verify-aw2-save.mjs` / `verify-aw2-world.mjs --boss` / `verify-aw2-battle-browser.mjs` | PASS |29+40+22 fresh Chromium assertions; current save/full quests/real boss/both endings/preview |
+| `verify-aw2-rpg.mjs` / `verify-aw2-build.mjs` | PASS |25+8 Chromium assertions; migration/items/cook/share/stale/followers/tap/audio/missing-atlas/mobile and actual compiled intro/reload/assets |
+| `simulate-aw2-gacha.mjs` | PASS simulation only |D11 proposal,seed20261021,2,000,000 draws; no runtime draw/spend/save |
+| Four new captures opened | PASS reference scope |Desktop/mobile world, compiled mobile and boss mobile; small arena labels/restored follower overlap remain |
+| Full ART-01/RIGHTS-01/device/native/offline/FPS/listening/gacha/modes/slice | NOT_RUN |No release/full character/full dungeon/production-balance claim |
+
+Browser total124 PASS, zero primary unexpected errors, seeded stable bytes preserved. Initial authority regression2failed/9passed reproduced ordinary-save quest forgery/unsaved boss acceptance; fixed. Four legacy fixtures then failed because they bypassed world actions through position-save; corrected fixtures, not guards. Initial compiled run failed on actual404 `/favicon.ico`; diagnostic probe confirmed URL, explicit icon fixed it, final8 PASS. Added reread trail reset, finite-path rejection and same-level audio-reset checks. Earned-XP boss fixture now wins tick36; not a final balance approval. Original failed attempts remain FAIL, not silently counted as PASS.
+
+High-impact save/full-unit obligation satisfied at this source. Repeat impacted/full checks after future shared-save/engine changes and before release; full runtime gacha, authored art, device/native/offline/rights and vertical-slice obligations remain. Final completion-doc delivery uses the same authorized expected-SHA/fast-forward connection and independent remote/local readback.
+
+## AW2-012B direct-branch policy / cleanup — 2026-10-21
+
+VERIFIED. Baseline local/remote AW2 `ccddfd69404860e48829f79b588c65a7408054ef`; policy commit `3d0311084fd52a9ad618b0f5bebbe08110063e98`. Retained remote master `f9d39257d17b4dd378a2fbd2a9f936724754fc16`; local master98843584b5f747dbaaf8c52c0db2dab1c0f26996. Windows10.0.26200 /PowerShell /Git /Node25.2.0. Scope: documentation/process policy D16 and branch refs only. Task card preceded edits/deletion; no new feature branch created. [Task](tasks/AW2-012B.md), [full audit/results](evidence/AW2-012B-branches.json).
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `git fetch --prune MealGacha`, `ls-remote --symref ... HEAD`, open-PR query/metadata | PASS |79 remote refs, default master; only PR #79 open, Japan models→master; single AW2 worktree |
+| Per-head `git merge-base --is-ancestor <sha> <retained-ref>` audits | PASS |73 remote/3 local refs reachable from AW2/master; exact names/SHAs/retained ancestors recorded before deletion |
+| Direct-AW2 policy consistency + `git diff --cached --check` | PASS |Root AGENTS/WORKFLOW/README/status/handoff agree on D16; prior feature-only instructions explicitly superseded |
+| Policy commit/push + independent `ls-remote` | PASS |Remote AW2 matched3d0311084fd52a9ad618b0f5bebbe08110063e98 before any deletion |
+| Exact-head remote preflight + `git push --dry-run --porcelain --atomic <per-ref leases> MealGacha <explicit deletion refspecs>` | PASS |All73 heads match audited SHAs; six retained refs unchanged; dry-run accepted |
+| Same atomic push without `--dry-run` | PASS |73 refs reported deleted; leases guarded each expected SHA; no retained history rewritten |
+| `git branch -d -- <audited-local-name>` | PASS |Deleted3 local merged branches after exact-head/HEAD ancestry checks; no forced local deletion |
+| Refresh + `ls-remote --heads` / `git for-each-ref refs/heads` / inventory assertions | PASS |All selected refs absent;6 remote /2 local branches remain; four unmerged histories and master untouched; PR #79 rechecked open with original refs |
+| `git diff --exit-code ccddfd6 -- src dev public package.json pnpm-lock.yaml vite.config.ts tsconfig.json` | PASS |No runtime/assets/tests/build/dependency changes |
+| Final documentation/link/inventory checks + `git diff --check` | PASS |11 changed documentation files reviewed; relative links valid; all76 deleted local/remote heads still ancestors of AW2 HEAD; completed inventory agrees with actual ref lists |
+| Game unit/type/build/browser/device/rights | NOT_RUN this task |Documentation/ref-only change; prior891 unit/91 browser assertions remain source-bound historical evidence |
+
+Initial inventory generation using unavailable Python failed; staging stopped on the missing inventory file, with no commit or deletion. Reimplemented the inventory step with installed Node. A later Node child-process Git check hit sandbox EPERM; reran Git directly in PowerShell and kept Node for file/link checks, all PASS without changing permissions. The remote cleanup used explicit empty-source refspecs and per-ref expected-SHA leases, not a rewrite of retained branch history. Follow-up completion documentation is committed/pushed on the same AW2 branch; SHA readback and clean-tree checks are required at handoff.
 
 ## AW2-012A long-lived integration / push — 2026-10-21
 
@@ -231,3 +1212,24 @@ Target base `72ee9b4360299db4bab9b9b43dba552dd80b86cf`; verified merged source `
 | Physical devices / actual combat / all12 ART-01 / rights / release | NOT_RUN |Unimplemented/unverified gates retained; full unit regression is not full-game/device/legal QA |
 
 212 Chromium assertions PASS in fresh isolated profiles; zero unexpected primary errors and preserved seeded stable/AW2 bytes. Original source evidence remains scoped to original refs; current results are in [AW2-012 evidence](evidence/AW2-012.md). Eight document conflicts in each original proposal merge resolved explicitly, retaining approved/current text and old review evidence. Initial documentation whitespace check caught an extra trailing blank line, corrected; initial one-off canon checker assumed `APPROVED` without the recorded date, corrected to validate exact `APPROVED 2026-10-20` statuses. Neither issue required runtime changes. This merge's full-unit obligation is satisfied; repeat appropriate regression after future high-impact changes/before release, while device/art/combat/rights gates remain open.
+
+006L source publication PASS: `36c2231bafb9de8778f380183780af242cfa9281`, exact staged/fetched tree`51798249d483bf50fa177c2096104fd37eb8c7ac`; all40blobs/4binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean326input fingerprint remainsc24de0805c292c6d. [Publication proof](evidence/AW2-006L-publication.json). Completion changes documents only; final fresh remote=clean local required before reporting success.
+
+006M source publication PASS: `639609b986389cc7743d977679ca361c010911f8`, exact staged/fetched tree`ac7b7235a3f1908a6834c94ad7286f2b90bb7f1b`; all69blobs/16binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean361input fingerprint remains12638bb685907682. [Publication proof](evidence/AW2-006M-publication.json). Completion changes documents only; final fresh remote=clean local required before reporting success.
+
+006O publication PASS: source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, exact staged/independently fetched tree `b570275f0f76801a1d94a1d538857e247d897abe`;39blobs/4binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean371inputfingerprint remains5b84f39cb4879e921. [Publication proof](evidence/AW2-006O-publication.json). Completion changes documents only; final fresh remote=clean local checked after its push.
+
+Workspace note: phát hiện18tệp zip/spec/ảnh map–NPC mới chưa tracked trong lúc chốt task. Giữ nguyên ngoài commit; mới đọc README/đầu đặc tả, cần rà soát D14/D17 trước khi dùng làm canon. [Hash/preservation record](evidence/AW2-008A-workspace.json). Sau push xác minh tracked tree sạch/HEAD=remote;18tệp tham chiếu vẫn untracked có chủ đích.
+
+008A publication PASS: source `45a54471750961d382c807c338e75248ee261783`, exact staged/independently fetched tree `5730d74fc3ed37c8fa8fc75201c3b524bb35f78f`;33blobs/index/ancestry/expected-head guards verified, non-force update and clean tracked local sync PASS.390inputfingerprint stays0cdf990a4096cfea.18incoming reference files preserved untracked with exact SHA256. [Publication proof](evidence/AW2-008A-publication.json). Final docs-only completion independently verified before success.
+
+| UI-QUEST-01 | Single viewport no document scroll at 320×568, 390×844, 844×390, 1280×720 | UI shell responsive | NOT_RUN |
+| UI-QUEST-02 | Quest tabs, pagination, keyboard, gamepad and focus handling | Quest/UI overlay | NOT_RUN |
+| UI-QUEST-03 | Open/close submenu preserves world position and blocks click-through | World/UI bridge | NOT_RUN |
+| UI-QUEST-04 | Quest tracker/NPC/journal synchronous state | Quests/story | NOT_RUN |
+| UI-QUEST-05 | Atomic claim, no duplicated rewards after reload/double tap | Quest reward/save | NOT_RUN |
+| UI-QUEST-06 | TCG/AutoChess in-shell return without reset | Mode routing | NOT_RUN |
+
+015Astructural PASS:7formattedTS/TSX/MJSfiles,Nodesyntax,6JSON/24localMarkdownlinksets,23uniqueDecisionIDs and normalized taskaliases. Whole staged whitespace PASS with narrow archived-original Markdown policy; all22stagedreferenceblobs equal23preserved owner inputs/ZIP by hashes. Runtime395inputfingerprint unchanged after docs/attribute update.
+
+015A publication PASS: source `0936b948db633c66e5539f631e3f8aaf7920fda1`, exact staged/independently fetched tree `0a221d3d19357ebcc5598aa70469521d55cc8c75`;59blobs/12binarySHAs/index/ancestry/expected-head/nonforce update and clean tracked local sync verified.395inputfingerprint staysd508dae2732de764.22referencefiles archived exactly,23originals/ZIPkept untracked/hash-identical. [Publication proof](evidence/AW2-015A-publication.json). Final docs-only completion independently verified before success.

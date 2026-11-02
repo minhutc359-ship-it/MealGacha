@@ -56,5 +56,69 @@
   "fullCharacterComplete": false,
   "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
   "python": "3.12.3",
-  "Pillow": "10.2.0"
+  "Pillow": "10.2.0",
+  "motionUpdate": {
+    "task": "AW2-004E",
+    "date": "2026-10-21",
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "prompts": "motion-prompts.json",
+    "externalInputs": [],
+    "identityReferences": [
+      {
+        "path": "dev/aw2/assets/lam/base-v1/portrait.png",
+        "sha256": "52a93fffa7af754e89a3bb731ed120deac3e5ae87c24fa3ae57b843a62ab8a39"
+      },
+      {
+        "path": "dev/aw2/assets/lam/base-v1/battle.png",
+        "sha256": "6675f128c266d407f283396508b3e060e3adc93c8c97e1fe79c1ae0db93b86b7"
+      }
+    ],
+    "history": [
+      {
+        "promptKey": "AW2-004E-a",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-26bea19d-051f-4d13-8388-24ba4cd577d2.png",
+        "outputSha256": "5e066259f930a3f48f7b6d3817a97c0ea6af92b685dcb36e7be3891b4bd82ca1",
+        "selected": false,
+        "workspaceSource": null,
+        "reason": "rejected: large figures and near-boundary sleeves/steam; image_gen layout repair requested"
+      },
+      {
+        "promptKey": "AW2-004E-a2",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-184de420-6082-4f00-a6aa-d04e9904d23f.png",
+        "outputSha256": "4dcbce67127854fc7245ea3485427f610574da3946a345c2e9b9e2f8c674b3ec",
+        "selected": true,
+        "workspaceSource": "battle-motion-a-v2.png",
+        "reason": "selected: measured safe transparent gutters; identity and reference poses inspected"
+      },
+      {
+        "promptKey": "AW2-004E-b",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-e79a846a-b112-480d-a503-65f9e4df7604.png",
+        "outputSha256": "f62a70d28c5857013af2c2970e0b614a183c57b07878d17c27c27accad964925",
+        "selected": false,
+        "workspaceSource": null,
+        "reason": "rejected: large figures and near-boundary sleeves/steam; image_gen layout repair requested"
+      },
+      {
+        "promptKey": "AW2-004E-b2",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-3393f699-d215-40b1-9820-3e1fb974ac44.png",
+        "outputSha256": "e89f140f5f4d2c4e2fb6c68663405e05c9ebe7df8797193cbd5fb8d444a725d0",
+        "selected": true,
+        "workspaceSource": "battle-motion-b-v2.png",
+        "reason": "selected: measured safe transparent gutters; identity and reference poses inspected"
+      }
+    ],
+    "processing": "selected PNGs unchanged; lossless WebP encoding; measured rectangles/anchors and logical renderScale1.6/1.65 metadata; no painting/masking/mirroring/resizing",
+    "fullCharacterComplete": false,
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED"
+  }
 }

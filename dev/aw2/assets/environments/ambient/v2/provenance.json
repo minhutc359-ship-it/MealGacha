@@ -1,0 +1,38 @@
+{
+  "task": "AW2-006Q",
+  "extends": {
+    "manifest": "src/aw2/assets/ambient-motion-v1.json",
+    "sha256": "dab87f2787aa9171dfe8484a07fe7a926782f63c52085a5e704c9616197e34b1",
+    "task": "AW2-006N/006P"
+  },
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-26",
+  "calls": 2,
+  "selected": 2,
+  "rejected": 0,
+  "prompts": [
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-steam-prompts.json",
+      "sha256": "95ac20fa2625738648913914f26c8a0c803ea24207bd972d02350d101d8a1d7e"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-water-prompts.json",
+      "sha256": "75aadf5921848a808915a0d01bc33f1cace02934c880a629db663bbe615210dd"
+    }
+  ],
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor-source.png",
+      "role": "own project kitchen-yard style and palette reference",
+      "commit": "c2e868394ef2bb8547989aecb37bf025f5f98391",
+      "blob": "7d78da2f392f70e87781f49ad9f8a76666924669",
+      "sha256": "e4c698086abe4dabc5bf07361f14b3587f6ce572664c6ca7bdee258544a0ed61"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "processing": "Unchanged selected transparent PNG; transparent-margin crop only; exact RGBA lossless WebP; measured safe frames. No code painting, masking, mirroring, resizing or interpolation.",
+  "builder": "dev/tools/build-aw2-yard-ambient.py",
+  "pillow": "12.3.0"
+}

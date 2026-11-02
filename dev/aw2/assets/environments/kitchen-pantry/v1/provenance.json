@@ -1,0 +1,153 @@
+{
+  "task": "AW2-006H",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/prompts.json",
+      "sha256": "234de5514d3681fc3a93bd2c7a8156c6fcaa3cec58cdae3bda4941d7461ad044"
+    },
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "Own selected006Ilandscape palette/architecture/depth reference, derived from pinnedmainline",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "gitBlob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+      },
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+        "role": "Own selected006GstaticNPC/body/object rendering reference",
+        "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+        "gitBlob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+        "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "builder": "dev/tools/build-aw2-journey-environments.py",
+    "pillow": "10.2.0",
+    "processing": "SelectedPNGbytes unchanged; exactRGBAlosslessWebP; alpha>8 explicit measured frames (street per-column row split,2pxpadding; othercells4px); uniform logical sprite scale only. No source painting/masking/cropping/mirroring/warping.",
+    "reused": {
+      "threshold": "AW2-006C/b350a11d777c1e8c94b5f2aadc6299b68f7e7722",
+      "obstacle": "This task pantry originalcrate",
+      "foreground": "AW2-006I/f0c1be37cef1c83416c5eb76be2943d1e768f2bc"
+    }
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-kitchen-pantry-v1:floor",
+      "url": "/dev/aw2/assets/environments/kitchen-pantry/v1/floor.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2880718,
+      "sha256": "8945d0d17c82ddbf4962b56b6e1677f23d737313142a97f0dacf18c69ac6b5d5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+        "bytes": 3704882,
+        "sha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27"
+      }
+    },
+    "props": {
+      "id": "aw2-environment-kitchen-pantry-v1:props",
+      "url": "/dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 921926,
+      "sha256": "c5033be6dd6aa4f7085235ab1bd159d03cbde2c759920c97e1d8c430ebd82307",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png",
+        "bytes": 1237920,
+        "sha256": "f39115477bf73ade1866d06d016291bd333a893a6272610a3ba631dab5a0eb23"
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    }
+  },
+  "frames": {
+    "hint": {
+      "x": 73,
+      "y": 109,
+      "width": 601,
+      "height": 501
+    },
+    "chest": {
+      "x": 849,
+      "y": 224,
+      "width": 473,
+      "height": 353
+    },
+    "crate": {
+      "x": 1515,
+      "y": 162,
+      "width": 594,
+      "height": 453
+    }
+  },
+  "frameEdgeAlpha": {
+    "hint": 2,
+    "chest": 2,
+    "crate": 2
+  },
+  "selection": {
+    "initialCalls": 2,
+    "selected": [
+      {
+        "id": "floor",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-4e97f44d-34ca-48cb-86da-7bde29c2bf50.png",
+        "sourceSha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27",
+        "savedPath": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png"
+      },
+      {
+        "id": "props",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-b8ebae86-de93-4944-b434-ff8c3b3402b2.png",
+        "sourceSha256": "f39115477bf73ade1866d06d016291bd333a893a6272610a3ba631dab5a0eb23",
+        "savedPath": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png"
+      }
+    ],
+    "rejected": []
+  },
+  "calibration": {
+    "walkDomain": [
+      16,
+      16,
+      624,
+      368
+    ],
+    "inSource": [
+      464,
+      336,
+      1072,
+      688
+    ],
+    "scenicApronOnly": true
+  },
+  "budget": {
+    "compressedBytes": 4729712,
+    "decodedRgbaBytes": 18873024,
+    "maxCompressedBytes": 7000000,
+    "maxDecodedRgbaBytes": 40000000
+  },
+  "limits": [
+    "Static original reference scene/NPCs; no new interiors/actions/rights or full-environment acceptance.",
+    "D20independent acceptance deferred; no device-memory claim."
+  ]
+}

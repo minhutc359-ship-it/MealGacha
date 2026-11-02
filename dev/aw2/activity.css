@@ -1,0 +1,58 @@
+.aw2-activity { height: 100dvh; width: 100%; max-width: none; margin: 0; padding: max(.25rem,env(safe-area-inset-top)) max(.5rem,env(safe-area-inset-right)) max(.25rem,env(safe-area-inset-bottom)) max(.5rem,env(safe-area-inset-left)); display: grid; grid-template-rows: auto auto auto minmax(0,1fr) auto; gap: .35rem; background: #122b27; color: #f9efdc; overflow: hidden; }
+.aw2-activity header h1 { font-size: 1.1rem; line-height: 1.25; margin: .2rem 0; }
+.aw2-activity-status { margin: 0; font-size: .9rem; line-height: 1.3; min-height: 1.3em; }
+.aw2-activity select { font: inherit; width: 100%; min-width: 0; min-height: 44px; padding: .25rem; background: #213f36; color: #fff2d0; border: 1px solid #a9b990; border-radius: .5rem; }
+.aw2-activity button { min-height: 44px; min-width: 44px; padding: .25rem .5rem; font-size: .9rem; line-height: 1.25; white-space: normal; overflow-wrap: anywhere; }
+.aw2-activity-body { min-height: 0; min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.aw2-activity-body p { margin: 0; line-height: 1.35; overflow-wrap: anywhere; }
+.aw2-activity-body section, .aw2-activity-body article { margin: 0; padding: .45rem; min-width: 0; border: 1px solid #6d8675; border-radius: .65rem; background: #1d3b32; }
+.aw2-activity-body h2, .aw2-activity-body h3 { font-size: 1rem; line-height: 1.25; margin: 0; }
+.aw2-activity footer { display: flex; gap: .4rem; }
+.aw2-activity footer > button { flex: 1; }
+.aw2-activity-stack { display: flex; flex-direction: column; gap: .35rem; min-height: 0; flex: 1; }
+.aw2-activity-card { display: flex; flex-direction: column; min-height: 0; gap: .35rem; flex: 1; }
+.aw2-activity-card > article { display: flex; flex-direction: column; gap: .3rem; }
+.aw2-activity .aw2-page-controls { width: 100%; flex-shrink: 0; }
+.aw2-activity .aw2-page-controls span { font-size: .8rem; }
+.aw2-activity-copy { display: flex; flex: 1; min-height: 0; }
+.aw2-activity-copy .aw2-paged-copy { flex: 1; font-size: .95rem; line-height: 1.4; }
+.aw2-activity-copy .aw2-page-controls { margin-top: auto; }
+.aw2-activity-actions { display: flex; flex-direction: column; gap: .4rem; }
+.aw2-activity-portrait { display: flex; align-items: center; gap: .6rem; }
+.aw2-activity img { width: 44px; height: 52px; flex-shrink: 0; object-fit: contain; }
+.aw2-activity .tcg-card img { float: left; margin: 0; }
+.aw2-activity .tcg-card h3, .aw2-activity .tcg-card p, .aw2-activity .tcg-card small { margin: 0; font-size: .9rem; line-height: 1.3; }
+.aw2-activity .tcg-card small { color: #e6cf9f; }
+.aw2-activity .tcg-card button { margin: 0; }
+.aw2-activity .tcg-card { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: .3rem .5rem; }
+.aw2-activity .tcg-card img { grid-row: span 2; width: 44px; height: 52px; }
+.aw2-activity .tcg-card > p, .aw2-activity .tcg-card > button, .aw2-activity .tcg-card > small { grid-column: 1 / -1; }
+.aw2-activity .tcg-card > p:first-of-type { grid-column: 2; }
+.aw2-activity .chess-formation { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .3rem; }
+.aw2-activity .chess-formation button { padding: .25rem; font-size: .8rem; }
+.aw2-activity .chess-formation img { width: 32px; height: 36px; }
+.aw2-activity .chess-formation strong { font-size: .8rem; }
+.aw2-activity .chess-battle-grid { flex: 1; min-height: 0; gap: 2px; }
+.aw2-activity .chess-battle-cell { min-height: 0; padding: 1px; display: flex; justify-content: space-evenly; align-items: center; }
+.aw2-activity .chess-battle-cell img { width: 30px; height: 32px; }
+.aw2-activity .chess-battle-cell .chess-actor { padding: 0; background: transparent; border: 0; display: flex; flex-direction: row; gap: 2px; }
+.aw2-activity .chess-battle-cell .chess-actor span, .aw2-activity .chess-battle-cell .chess-actor strong { display: none; }
+.aw2-activity-arena { min-height: 0; flex: 1; display: flex; flex-direction: column; gap: .25rem; }
+.aw2-activity .aw2-battle-stage { flex: 1; min-height: 0; height: auto; width: 100%; border-radius: .65rem; }
+.aw2-shop-offer[data-owned="true"] { outline: 2px solid #e9c975; outline-offset: -2px; }
+.aw2-activity .aw2-battle-stage canvas { width: 100%; height: 100%; object-fit: contain; }
+.aw2-activity label { display: flex; align-items: center; gap: .5rem; min-height: 44px; }
+.aw2-activity input[type="checkbox"] { width: 24px; min-height: 24px; padding: 0; }
+@media (orientation: landscape) and (max-height: 450px) {
+ .aw2-activity { gap: .2rem; }
+ .aw2-activity header h1 { font-size: 1rem; margin: 0; }
+ .aw2-activity-portrait img { width: 36px; height: 36px; }
+ .aw2-activity-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .aw2-activity-card > .tcg-card { max-width: 100%; }
+ .aw2-activity .tcg-card { grid-template-columns: 44px 1fr 1fr; }
+ .aw2-activity .tcg-card > p, .aw2-activity .tcg-card > small { grid-column: 2 / -1; }
+ .aw2-activity .tcg-card > button { grid-column: 3; grid-row: 1 / span 2; align-self: center; }
+ .aw2-activity .tcg-card > p:first-of-type { grid-column: 2; }
+ .aw2-activity .chess-formation button { flex-direction: row; gap: .5rem; }
+ .aw2-activity .chess-formation { flex: 1; }
+}

@@ -1,0 +1,26 @@
+{
+  "task": "AW2-016K",
+  "date": "2026-10-28",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "01480f61c706c8ead346499f39666648487ecf8b",
+  "source": "c62500841351e6e8b68089ce89fca5f6641b74c2",
+  "sourceTree": "ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28",
+  "runtimeFingerprint": "7199f1883206ae806f2db0f9dc0f94906ef507c60b0ada67470feb53cc9f60bd",
+  "files": 31,
+  "checks": {
+    "expectedHead": true,
+    "nonForceUpdate": true,
+    "directParent": true,
+    "independentFetch": true,
+    "allChangedBlobs": true,
+    "exactStagedTree": true,
+    "ancestry": true,
+    "remoteEqualsLocalSource": true,
+    "trackedWorktreeClean": true,
+    "runtimeAssetParity": 262,
+    "stableTextIsolation": 49
+  },
+  "note": "Following stamp is documentation/evidence only. Final remote/local equality is verified after that push."
+}

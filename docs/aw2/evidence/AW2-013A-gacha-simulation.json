@@ -1,0 +1,47 @@
+{
+  "status": "PROPOSED_NOT_APPROVED",
+  "profile": "aw2-d11-simulation-v1",
+  "seed": 20261021,
+  "players": 10000,
+  "drawsPerPlayer": 200,
+  "totalDraws": 2000000,
+  "baseRates": {
+    "N": 55,
+    "R": 30,
+    "SR": 11,
+    "SSR": 3.5,
+    "UR": 0.5
+  },
+  "effectiveRates": {
+    "N": 52.62945,
+    "R": 28.636850000000003,
+    "SR": 13.57255,
+    "SSR": 4.3997,
+    "UR": 0.76145
+  },
+  "counts": {
+    "N": 1052589,
+    "R": 572737,
+    "SR": 271451,
+    "SSR": 87994,
+    "UR": 15229
+  },
+  "firstSSRorUR": {
+    "received": 10000,
+    "missing": 0,
+    "mean": 19.6077,
+    "p50": 15,
+    "p90": 44,
+    "p99": 80,
+    "max": 80
+  },
+  "firstUR": {
+    "received": 10000,
+    "missing": 0,
+    "mean": 114.9889,
+    "p50": 111,
+    "p90": 200,
+    "p99": 200,
+    "max": 200
+  }
+}

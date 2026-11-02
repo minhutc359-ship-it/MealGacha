@@ -12,13 +12,14 @@ import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
 import { shareResultCard } from "../../infrastructure/share/resultCard"
 
-const ChestSpiritCard = lazy(()=>import("./ChestSpiritCard"))
+const ChestSpiritCard = lazy(() => import("./ChestSpiritCard"))
 
 interface Props {
   embedded?: boolean
   reward: RewardInstance
   canOpenAgain: boolean
   showSpiritCard?: boolean
+  collectionLabel?: string
   onClose(): void
   onOpenAgain(): void
   onGoCollection(): void
@@ -30,6 +31,7 @@ export function RevealModal({
   reward,
   canOpenAgain,
   showSpiritCard = false,
+  collectionLabel = "📦 Bộ sưu tập",
   onClose,
   onOpenAgain,
   onGoCollection,
@@ -40,11 +42,19 @@ export function RevealModal({
   const dialogRef = useRef<HTMLDivElement>(null)
   const toggleFavorite = useAppStore((state) => state.toggleFavorite)
   const favorite = useAppStore(
-    (state) => state.user.rewards.find((item) => item.id === reward.id)?.favorite ?? reward.favorite,
+    (state) =>
+      state.user.rewards.find((item) => item.id === reward.id)?.favorite ??
+      reward.favorite,
   )
   const showToast = useAppStore((state) => state.showToast)
   const dishes = useAppStore((state) => state.dishes)
-  const occurrences = useAppStore((state) => state.user.rewards.filter((item) => item.dishId === reward.dishId && item.acquiredAt <= reward.acquiredAt).length)
+  const occurrences = useAppStore(
+    (state) =>
+      state.user.rewards.filter(
+        (item) =>
+          item.dishId === reward.dishId && item.acquiredAt <= reward.acquiredAt,
+      ).length,
+  )
 
   useEffect(() => {
     if (embedded) return
@@ -70,214 +80,264 @@ export function RevealModal({
     }
     document.addEventListener("keydown", handleKey)
     const focusTimer = setTimeout(() => firstFocusRef.current?.focus(), 50)
-    return () => { clearTimeout(focusTimer); document.removeEventListener("keydown", handleKey) }
+    return () => {
+      clearTimeout(focusTimer)
+      document.removeEventListener("keydown", handleKey)
+    }
   }, [onClose, showPlaces, embedded])
 
   const dish = reward.dish
   const rarity = reward.rarity ?? "common"
   const spiritCardId = chestSpiritCard(reward)
-  const particleCount = rarity === "diamond" ? 34 : rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
+  const particleCount =
+    rarity === "diamond"
+      ? 34
+      : rarity === "epic"
+        ? 24
+        : rarity === "rare"
+          ? 16
+          : 9
 
   const shareReward = async () => {
     try {
       const result = await shareResultCard(reward)
-      if (result === "downloaded") showToast("Đã lưu ảnh phần thưởng!", "success")
+      if (result === "downloaded")
+        showToast("Đã lưu ảnh phần thưởng!", "success")
     } catch (error) {
-      if ((error as DOMException).name !== "AbortError") showToast("Không thể xuất ảnh kết quả.", "error")
+      if ((error as DOMException).name !== "AbortError")
+        showToast("Không thể xuất ảnh kết quả.", "error")
     }
   }
 
   return (
     <>
-      {(embedded ? (content: React.ReactNode) => <div inert>{content}</div> : (content: React.ReactNode) => createPortal(content, document.body))(<div
-        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-center justify-center p-4`}
-        style={{
-          background: "rgba(8,12,24,0.88)",
-          backdropFilter: "blur(10px)",
-        }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) onClose()
-        }}
-        role="dialog"
-        aria-modal="true"
-        aria-label={`Phần thưởng: ${dish.name}`}
-      >
+      {(embedded
+        ? (content: React.ReactNode) => <div inert>{content}</div>
+        : (content: React.ReactNode) => createPortal(content, document.body))(
         <div
-          ref={dialogRef}
-          className={`reward-reveal-card rarity-${rarity} w-full max-w-md rounded-3xl overflow-hidden animate-reveal-card`}
+          className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-center justify-center p-4`}
           style={{
-            background: "linear-gradient(160deg, #0f1a2e 0%, #080c18 100%)",
-            border: "1.5px solid rgba(0,212,255,0.3)",
-            boxShadow:
-              "0 0 80px rgba(0,212,255,0.12), 0 24px 64px rgba(0,0,0,0.6)",
+            background: "rgba(8,12,24,0.88)",
+            backdropFilter: "blur(10px)",
           }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose()
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Phần thưởng: ${dish.name}`}
         >
-          {/* Art area */}
           <div
-            className="relative h-64 flex items-center justify-center overflow-hidden"
+            ref={dialogRef}
+            className={`reward-reveal-card rarity-${rarity} w-full max-w-md rounded-3xl overflow-hidden animate-reveal-card`}
             style={{
-              background:
-                "linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(168,85,247,0.06) 100%)",
+              background: "linear-gradient(160deg, #0f1a2e 0%, #080c18 100%)",
+              border: "1.5px solid rgba(0,212,255,0.3)",
+              boxShadow:
+                "0 0 80px rgba(0,212,255,0.12), 0 24px 64px rgba(0,0,0,0.6)",
             }}
           >
-            <div className="reward-confetti" aria-hidden="true">
-              {Array.from({ length: particleCount }, (_, index) => (
-                <i key={index} style={{ "--confetti-index": index } as React.CSSProperties} />
-              ))}
-            </div>
-            <div className="reward-shine" aria-hidden="true" />
-            {/* Radial glow */}
+            {/* Art area */}
             <div
-              className="absolute inset-0"
+              className="relative h-64 flex items-center justify-center overflow-hidden"
               style={{
                 background:
-                  "radial-gradient(circle at 50% 60%, rgba(0,212,255,0.12) 0%, transparent 70%)",
+                  "linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(168,85,247,0.06) 100%)",
               }}
-            />
-            <RarityFrame rarity={rarity} className={`reward-art-frame ${showSpiritCard && spiritCardId ? "reward-spirit-frame" : ""}`}>
-              {showSpiritCard && spiritCardId ? (
-                <Suspense fallback={<span className="reward-spirit-loading">Đang mở thẻ Vị Linh…</span>}>
-                  <ChestSpiritCard id={spiritCardId} />
-                </Suspense>
-              ) : (
-                <FoodImage
-                  dishId={dish.id}
-                  name={dish.name}
-                  imageUrl={dish.imageUrl}
-                  variant="full"
-                  eager
-                />
-              )}
-            </RarityFrame>
-            {/* Badges */}
-            <div className="absolute top-3 left-3 flex gap-2">
-              <span
-                className="text-xs px-2 py-1 rounded-full font-medium"
+            >
+              <div className="reward-confetti" aria-hidden="true">
+                {Array.from({ length: particleCount }, (_, index) => (
+                  <i
+                    key={index}
+                    style={{ "--confetti-index": index } as React.CSSProperties}
+                  />
+                ))}
+              </div>
+              <div className="reward-shine" aria-hidden="true" />
+              {/* Radial glow */}
+              <div
+                className="absolute inset-0"
                 style={{
-                  background: "rgba(0,212,255,0.15)",
-                  color: "#00d4ff",
-                  border: "1px solid rgba(0,212,255,0.3)",
-                  backdropFilter: "blur(4px)",
+                  background:
+                    "radial-gradient(circle at 50% 60%, rgba(0,212,255,0.12) 0%, transparent 70%)",
                 }}
+              />
+              <RarityFrame
+                rarity={rarity}
+                className={`reward-art-frame ${
+                  showSpiritCard && spiritCardId ? "reward-spirit-frame" : ""
+                }`}
               >
-                {MEAL_SLOT_ICONS[reward.mealSlot]}{" "}
-                {MEAL_SLOT_LABELS[reward.mealSlot]}
-              </span>
-            </div>
-            {reward.source === "fusion" && (
-              <div className="absolute top-3 right-3">
+                {showSpiritCard && spiritCardId ? (
+                  <Suspense
+                    fallback={
+                      <span className="reward-spirit-loading">
+                        Đang mở thẻ Vị Linh…
+                      </span>
+                    }
+                  >
+                    <ChestSpiritCard id={spiritCardId} />
+                  </Suspense>
+                ) : (
+                  <FoodImage
+                    dishId={dish.id}
+                    name={dish.name}
+                    imageUrl={dish.imageUrl}
+                    variant="full"
+                    eager
+                  />
+                )}
+              </RarityFrame>
+              {/* Badges */}
+              <div className="absolute top-3 left-3 flex gap-2">
                 <span
                   className="text-xs px-2 py-1 rounded-full font-medium"
                   style={{
-                    background: "rgba(168,85,247,0.15)",
-                    color: "#a855f7",
-                    border: "1px solid rgba(168,85,247,0.3)",
+                    background: "rgba(0,212,255,0.15)",
+                    color: "#00d4ff",
+                    border: "1px solid rgba(0,212,255,0.3)",
                     backdropFilter: "blur(4px)",
                   }}
                 >
-                  ✨ Ghép món
+                  {MEAL_SLOT_ICONS[reward.mealSlot]}{" "}
+                  {MEAL_SLOT_LABELS[reward.mealSlot]}
                 </span>
               </div>
-            )}
-            <div className={`reward-rarity-badge rarity-${rarity}`}>
-              {RARITY_LABELS[rarity]}
-            </div>
-            {/* Bottom fade */}
-            <div
-              className="absolute bottom-0 left-0 right-0 h-12"
-              style={{
-                background: "linear-gradient(to top, #080c18, transparent)",
-              }}
-            />
-          </div>
-
-          {/* Info */}
-          <div className="px-5 pb-5">
-            <p className="reward-unlocked-label">{reward.source === "fusion" ? "⚡ DUNG HỢP THÀNH CÔNG" : occurrences <= 1 ? "✨ MÓN MỚI KHÁM PHÁ" : "+1 MẢNH VỊ GIÁC · MÓN ĐÃ SỞ HỮU"}</p>
-            <h2
-              className="text-2xl font-extrabold mb-0.5 mt-1"
-              style={{ fontFamily: "Exo 2, sans-serif", color: "#e8edf5" }}
-            >
-              {dish.name}
-            </h2>
-            {(dish.category || dishes.find((item) => item.id === dish.id)?.description) && (
-              <p
-                className="text-xs uppercase tracking-widest mb-4"
-                style={{ color: "#6b7f99" }}
-              >
-                {dishes.find((item) => item.id === dish.id)?.description || dish.category}
-              </p>
-            )}
-
-            {spiritCardId && !showSpiritCard && <p className="reward-spirit-summary">+1 thẻ Vị Linh đã được cộng vào hồ sơ. Bật “Hiện thẻ Vị Linh ở kết quả” để xem thẻ thay cho ảnh món ăn.</p>}
-            <div className="reward-utility-actions">
-              <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
-                {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
-              </button>
-              <button onClick={shareReward}>↗ Chia sẻ</button>
-              {onCheckIn && <button onClick={() => onCheckIn(dish.id)}>🍴 Chốt món · Check-in</button>}
-            </div>
-
-            {/* Actions */}
-            <button
-              ref={firstFocusRef}
-              onClick={() => setShowPlaces(true)}
-              className="w-full py-3 rounded-xl font-bold text-sm mb-3 transition-all"
-              style={{
-                background: "linear-gradient(135deg, #00d4ff, #0088cc)",
-                color: "#080c18",
-                boxShadow: "0 4px 16px rgba(0,212,255,0.3)",
-              }}
-            >
-              📍 Tìm quán gần tôi
-            </button>
-
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                onClick={onOpenAgain}
-                disabled={!canOpenAgain}
-                className="py-3 rounded-xl text-sm font-semibold border transition-all"
-                style={
-                  canOpenAgain
-                    ? {
-                        borderColor: "rgba(245,166,35,0.35)",
-                        color: "#f5a623",
-                        background: "rgba(245,166,35,0.07)",
-                      }
-                    : {
-                        borderColor: "rgba(107,127,153,0.15)",
-                        color: "#6b7f99",
-                        background: "transparent",
-                        cursor: "not-allowed",
-                      }
-                }
-              >
-                🔑 Mở tiếp
-              </button>
-              <button
-                onClick={onGoCollection}
-                className="py-3 rounded-xl text-sm font-semibold border transition-all"
+              {reward.source === "fusion" && (
+                <div className="absolute top-3 right-3">
+                  <span
+                    className="text-xs px-2 py-1 rounded-full font-medium"
+                    style={{
+                      background: "rgba(168,85,247,0.15)",
+                      color: "#a855f7",
+                      border: "1px solid rgba(168,85,247,0.3)",
+                      backdropFilter: "blur(4px)",
+                    }}
+                  >
+                    ✨ Ghép món
+                  </span>
+                </div>
+              )}
+              <div className={`reward-rarity-badge rarity-${rarity}`}>
+                {RARITY_LABELS[rarity]}
+              </div>
+              {/* Bottom fade */}
+              <div
+                className="absolute bottom-0 left-0 right-0 h-12"
                 style={{
-                  borderColor: "rgba(107,127,153,0.2)",
-                  color: "#a8b8d0",
-                  background: "rgba(14,22,40,0.5)",
+                  background: "linear-gradient(to top, #080c18, transparent)",
+                }}
+              />
+            </div>
+
+            {/* Info */}
+            <div className="px-5 pb-5">
+              <p className="reward-unlocked-label">
+                {reward.source === "fusion"
+                  ? "⚡ DUNG HỢP THÀNH CÔNG"
+                  : occurrences <= 1
+                    ? "✨ MÓN MỚI KHÁM PHÁ"
+                    : "+1 MẢNH VỊ GIÁC · MÓN ĐÃ SỞ HỮU"}
+              </p>
+              <h2
+                className="text-2xl font-extrabold mb-0.5 mt-1"
+                style={{ fontFamily: "Exo 2, sans-serif", color: "#e8edf5" }}
+              >
+                {dish.name}
+              </h2>
+              {(dish.category ||
+                dishes.find((item) => item.id === dish.id)?.description) && (
+                <p
+                  className="text-xs uppercase tracking-widest mb-4"
+                  style={{ color: "#6b7f99" }}
+                >
+                  {dishes.find((item) => item.id === dish.id)?.description ||
+                    dish.category}
+                </p>
+              )}
+
+              {spiritCardId && !showSpiritCard && (
+                <p className="reward-spirit-summary">
+                  +1 thẻ Vị Linh đã được cộng vào hồ sơ. Bật “Hiện thẻ Vị Linh ở
+                  kết quả” để xem thẻ thay cho ảnh món ăn.
+                </p>
+              )}
+              <div className="reward-utility-actions">
+                <button
+                  onClick={() => toggleFavorite(reward.id)}
+                  aria-pressed={favorite}
+                >
+                  {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
+                </button>
+                <button onClick={shareReward}>↗ Chia sẻ</button>
+                {onCheckIn && (
+                  <button onClick={() => onCheckIn(dish.id)}>
+                    🍴 Chốt món · Check-in
+                  </button>
+                )}
+              </div>
+
+              {/* Actions */}
+              <button
+                ref={firstFocusRef}
+                onClick={() => setShowPlaces(true)}
+                className="w-full py-3 rounded-xl font-bold text-sm mb-3 transition-all"
+                style={{
+                  background: "linear-gradient(135deg, #00d4ff, #0088cc)",
+                  color: "#080c18",
+                  boxShadow: "0 4px 16px rgba(0,212,255,0.3)",
                 }}
               >
-                📦 Bộ sưu tập
+                📍 Tìm quán gần tôi
               </button>
-            </div>
 
-            {!canOpenAgain && (
-              <p
-                className="text-center text-xs mt-2.5"
-                style={{ color: "#6b7f99" }}
-              >
-                Hết chìa · Điểm danh ngày mai để nhận thêm
-              </p>
-            )}
+              <div className="grid grid-cols-2 gap-2.5">
+                <button
+                  onClick={onOpenAgain}
+                  disabled={!canOpenAgain}
+                  className="py-3 rounded-xl text-sm font-semibold border transition-all"
+                  style={
+                    canOpenAgain
+                      ? {
+                          borderColor: "rgba(245,166,35,0.35)",
+                          color: "#f5a623",
+                          background: "rgba(245,166,35,0.07)",
+                        }
+                      : {
+                          borderColor: "rgba(107,127,153,0.15)",
+                          color: "#6b7f99",
+                          background: "transparent",
+                          cursor: "not-allowed",
+                        }
+                  }
+                >
+                  🔑 Mở tiếp
+                </button>
+                <button
+                  onClick={onGoCollection}
+                  className="py-3 rounded-xl text-sm font-semibold border transition-all"
+                  style={{
+                    borderColor: "rgba(107,127,153,0.2)",
+                    color: "#a8b8d0",
+                    background: "rgba(14,22,40,0.5)",
+                  }}
+                >
+                  {collectionLabel}
+                </button>
+              </div>
+
+              {!canOpenAgain && (
+                <p
+                  className="text-center text-xs mt-2.5"
+                  style={{ color: "#6b7f99" }}
+                >
+                  Hết chìa · Điểm danh ngày mai để nhận thêm
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-      </div>)}
+        </div>,
+      )}
 
       {showPlaces && (
         <PlacesModal dish={dish} onClose={() => setShowPlaces(false)} />

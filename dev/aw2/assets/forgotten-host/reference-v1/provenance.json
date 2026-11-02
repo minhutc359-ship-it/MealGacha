@@ -1,0 +1,74 @@
+{
+  "generator": "built-in image_gen",
+  "model": "tool managed",
+  "date": "2026-10-22",
+  "prompts": "dev/aw2/assets/forgotten-host/reference-v1/prompts.json",
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "alphaEdgeTolerance": 8,
+  "processing": "Original PNG preserved; measured alpha-bounded cells/anchors; no painting, resize, mask or mirroring. Lossless WebP visible RGBA + alpha verified. Portrait is exact idle-cell crop. No generated audio.",
+  "identity": "aw2-enemy-forgotten-host",
+  "sourceAndRuntime": {
+    "battle": {
+      "id": "aw2-enemy-forgotten-host:battle:reference-v1",
+      "url": "/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+      "width": 1774,
+      "height": 887,
+      "sha256": "6b17014ce6a2e324def5eaaa9666f687f2e7ad849121f13d227a7fa717a38689",
+      "bytes": 924700,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+        "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+      },
+      "transparentFraction": 0.7530927120921135
+    },
+    "fx": {
+      "id": "aw2-enemy-forgotten-host:fx:reference-v1",
+      "url": "/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "c125771df4255c911bf9de925046873f88b58f7d77e886876b0858f9da370112",
+      "bytes": 1161768,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/reference-v1/fx.png",
+        "sha256": "d1671193bef36f37230b174e489542f649eb8689b40c865fba254932187f1dab"
+      },
+      "transparentFraction": 0.6856040954589844
+    },
+    "portrait": {
+      "id": "aw2-enemy-forgotten-host:portrait:reference-v1",
+      "url": "/dev/aw2/assets/forgotten-host/reference-v1/portrait.webp",
+      "width": 254,
+      "height": 332,
+      "sha256": "5cba73805eb282267307c096f285ec6d656a4da9c7da5fc8d16a9cf85bbd4c70",
+      "bytes": 77108,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+        "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+      },
+      "sourceCrop": [
+        89,
+        93,
+        254,
+        332
+      ],
+      "transparentFraction": 0.5886656863675173
+    }
+  },
+  "frameCount": 17,
+  "keyPoses": 8,
+  "skillEffects": 9,
+  "worldArt": "NOT_CREATED",
+  "fullEnemyComplete": false,
+  "tool": "sharp0.35.5/libvips8.18.7",
+  "checks": "All17 cells alpha-safe; runtime visible RGBA/alpha byte-identical; portrait derived crop",
+  "remaining": [
+    "full motion animation",
+    "world object art",
+    "audio",
+    "independent art review",
+    "device/performance",
+    "rights",
+    "final balance"
+  ]
+}

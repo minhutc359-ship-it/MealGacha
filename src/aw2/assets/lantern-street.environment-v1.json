@@ -1,0 +1,358 @@
+{
+  "version": 1,
+  "id": "aw2-environment-lantern-street-v1",
+  "zoneId": "aw2-zone-lantern-street",
+  "status": "REFERENCE_ENVIRONMENT",
+  "fullEnvironmentComplete": false,
+  "npcMotionComplete": false,
+  "canvas": {
+    "width": 640,
+    "height": 384
+  },
+  "landscape": {
+    "x": -448,
+    "y": -320,
+    "width": 1536,
+    "height": 1024
+  },
+  "camera": {
+    "followZoom": 0.8,
+    "overviewZoom": 0.42,
+    "centerX": 320,
+    "centerY": 192
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-lantern-street-v1:floor",
+      "url": "/dev/aw2/assets/environments/lantern-street/v1/floor.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3239024,
+      "sha256": "b76780b2e5b5640edfa26251c745eedae1a79e0f2d0c2287637d7b63f3d37bff",
+      "source": {
+        "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+        "bytes": 3998946,
+        "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede"
+      }
+    },
+    "props": {
+      "id": "aw2-environment-lantern-street-v1:props",
+      "url": "/dev/aw2/assets/environments/lantern-street/v1/props.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1417392,
+      "sha256": "d4837098b1500e69bf9182f99e84e8550ee6c13b0371cdfed536fe9e959fe799",
+      "source": {
+        "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+        "bytes": 2143823,
+        "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74"
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    },
+    "obstacle": {
+      "id": "aw2-environment-kitchen-pantry-v1:props",
+      "url": "/dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 921926,
+      "sha256": "c5033be6dd6aa4f7085235ab1bd159d03cbde2c759920c97e1d8c430ebd82307",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png",
+        "bytes": 1237920,
+        "sha256": "f39115477bf73ade1866d06d016291bd333a893a6272610a3ba631dab5a0eb23"
+      }
+    },
+    "foreground": {
+      "id": "aw2-environment-covenant-village-v2:foreground",
+      "url": "/dev/aw2/assets/environments/covenant-village/v2/foreground.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 884746,
+      "sha256": "e6316b2bf86b2c93d7f033d07dbaaa8ff0066108ff353b3b0e3c72490672b012",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/foreground-source.png",
+        "bytes": 1158981,
+        "sha256": "d5b2963a151efe6fa5ae24928d03b02b3e937b1ff03823bba5dd0641baabe5ca"
+      }
+    }
+  },
+  "frames": {
+    "lantern": {
+      "x": 143,
+      "y": 25,
+      "width": 225,
+      "height": 506
+    },
+    "breakfast": {
+      "x": 602,
+      "y": 51,
+      "width": 330,
+      "height": 470
+    },
+    "chair": {
+      "x": 1080,
+      "y": 25,
+      "width": 359,
+      "height": 498
+    },
+    "water": {
+      "x": 140,
+      "y": 560,
+      "width": 230,
+      "height": 404
+    },
+    "cards": {
+      "x": 571,
+      "y": 522,
+      "width": 376,
+      "height": 453
+    },
+    "chess": {
+      "x": 1105,
+      "y": 524,
+      "width": 315,
+      "height": 451
+    }
+  },
+  "props": [
+    {
+      "entityId": "aw2-npc-va-den",
+      "asset": "props",
+      "frame": "lantern",
+      "width": 21.343874,
+      "height": 48,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "labelOffsetX": 0,
+      "labelOffsetY": -64,
+      "labelTransform": "translate(-50%, -100%)"
+    },
+    {
+      "entityId": "aw2-npc-nguoi-ban",
+      "asset": "props",
+      "frame": "breakfast",
+      "width": 33.702128,
+      "height": 48,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "labelOffsetX": 0,
+      "labelOffsetY": -64,
+      "labelTransform": "translate(-50%, -100%)"
+    },
+    {
+      "entityId": "aw2-npc-sua-ghe",
+      "asset": "props",
+      "frame": "chair",
+      "width": 34.60241,
+      "height": 48,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "labelOffsetX": 0,
+      "labelOffsetY": -64,
+      "labelTransform": "translate(-50%, -100%)"
+    },
+    {
+      "entityId": "aw2-npc-dem-nuoc",
+      "asset": "props",
+      "frame": "water",
+      "width": 22.772277,
+      "height": 40,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "labelOffsetX": 0,
+      "labelOffsetY": -56,
+      "labelTransform": "translate(-50%, -100%)"
+    },
+    {
+      "entityId": "aw2-npc-ban-bai",
+      "asset": "props",
+      "frame": "cards",
+      "width": 53.121413,
+      "height": 64,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "labelOffsetX": 0,
+      "labelOffsetY": -80,
+      "labelTransform": "translate(-50%, -100%)"
+    },
+    {
+      "entityId": "aw2-npc-ban-co",
+      "asset": "props",
+      "frame": "chess",
+      "width": 44.700665,
+      "height": 64,
+      "anchorX": 0.5,
+      "anchorY": 1,
+      "labelOffsetX": 0,
+      "labelOffsetY": -80,
+      "labelTransform": "translate(-50%, -100%)"
+    },
+    {
+      "entityId": "aw2-zone-lantern-street:exit:west",
+      "asset": "threshold",
+      "frame": "threshold",
+      "width": 36,
+      "height": 21.692308,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "labelOffsetX": 0,
+      "labelOffsetY": 28,
+      "labelTransform": "translate(-50%, 0)"
+    },
+    {
+      "entityId": "aw2-zone-lantern-street:exit:east",
+      "asset": "threshold",
+      "frame": "threshold",
+      "width": 36,
+      "height": 21.692308,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "labelOffsetX": 0,
+      "labelOffsetY": 28,
+      "labelTransform": "translate(-50%, 0)"
+    }
+  ],
+  "obstacle": {
+    "asset": "obstacle",
+    "frame": {
+      "x": 1515,
+      "y": 162,
+      "width": 594,
+      "height": 453
+    },
+    "x": 320,
+    "y": 328,
+    "width": 64,
+    "height": 48.808081,
+    "anchorX": 0.5,
+    "anchorY": 0.5,
+    "sortY": 352,
+    "footprint": {
+      "x": 288,
+      "y": 304,
+      "width": 64,
+      "height": 48
+    },
+    "occludedAlpha": 0.35
+  },
+  "foliage": [
+    {
+      "id": "aw2-environment-covenant-village-v2:bamboo",
+      "frame": "bamboo",
+      "x": -80,
+      "y": 44,
+      "width": 240,
+      "height": 246.857143,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "depth": 10000,
+      "parallax": 0.04,
+      "occludedAlpha": 0.28
+    },
+    {
+      "id": "aw2-environment-covenant-village-v2:blossom",
+      "frame": "blossom",
+      "x": 678,
+      "y": 88,
+      "width": 220,
+      "height": 205.632653,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "depth": 10000,
+      "parallax": 0.06,
+      "occludedAlpha": 0.28
+    },
+    {
+      "id": "aw2-environment-covenant-village-v2:willow",
+      "frame": "willow",
+      "x": 72,
+      "y": 460,
+      "width": 230,
+      "height": 226.093418,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "depth": 10000,
+      "parallax": 0.08,
+      "occludedAlpha": 0.28
+    }
+  ],
+  "foregroundFrames": {
+    "bamboo": {
+      "x": 207,
+      "y": 135,
+      "width": 455,
+      "height": 468
+    },
+    "blossom": {
+      "x": 829,
+      "y": 137,
+      "width": 490,
+      "height": 458
+    },
+    "willow": {
+      "x": 1560,
+      "y": 146,
+      "width": 471,
+      "height": 463
+    }
+  },
+  "budget": {
+    "compressedBytes": 7390156,
+    "decodedRgbaBytes": 31454592,
+    "maxCompressedBytes": 8000000,
+    "maxDecodedRgbaBytes": 40000000
+  },
+  "provenance": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/prompts.json",
+      "sha256": "632d98f487b268714d9eccdbf7cdbdde1ab210c9fb2cb313180cf46c79b43dfb"
+    },
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "Own selected006Ilandscape palette/architecture/depth reference, derived from pinnedmainline",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "gitBlob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+      },
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+        "role": "Own selected006GstaticNPC/body/object rendering reference",
+        "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+        "gitBlob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+        "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "builder": "dev/tools/build-aw2-journey-environments.py",
+    "pillow": "10.2.0",
+    "processing": "SelectedPNGbytes unchanged; exactRGBAlosslessWebP; alpha>8 explicit measured frames (street per-column row split,2pxpadding; othercells4px); uniform logical sprite scale only. No source painting/masking/cropping/mirroring/warping.",
+    "reused": {
+      "threshold": "AW2-006C/b350a11d777c1e8c94b5f2aadc6299b68f7e7722",
+      "obstacle": "This task pantry originalcrate",
+      "foreground": "AW2-006I/f0c1be37cef1c83416c5eb76be2943d1e768f2bc"
+    }
+  }
+}

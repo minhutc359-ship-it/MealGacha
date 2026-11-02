@@ -1,0 +1,255 @@
+{
+  "task": "AW2-006G",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "22103f244fc9d9e2bba278977f0cfebcd167407f",
+  "source": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+  "stagedAndRemoteTree": "ddcee1cac569c66eaa722dbbce3ca79d4bf86765",
+  "expectedShaGuard": "22103f244fc9d9e2bba278977f0cfebcd167407f",
+  "force": false,
+  "independentGitFetch": "PASS",
+  "all38RemoteBlobsEqualStaged": "PASS",
+  "treeIndexEquality": "PASS",
+  "baseIsAncestor": true,
+  "guardedLocalSync": "PASS",
+  "cleanAfterSourceSync": true,
+  "changedFiles": 38,
+  "files": [
+    {
+      "path": "dev/aw2/RoomWaypoints.tsx",
+      "mode": "100644",
+      "sha": "85f64678df28599a89c2b2fa67a17296c8a073ea",
+      "bytes": 1943
+    },
+    {
+      "path": "dev/aw2/WorldCanvas.tsx",
+      "mode": "100644",
+      "sha": "1de965ea8f23c7d3ab86d5aa6583215a1716b95a",
+      "bytes": 21934
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/floor-source.png",
+      "mode": "100644",
+      "sha": "9335b4ba6e2ee42c7f4f9c36acedc5979622a9d8",
+      "bytes": 2804565
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/floor.webp",
+      "mode": "100644",
+      "sha": "cc1b673b3d19accebc4de423e0d943d8e26e43f4",
+      "bytes": 2087698
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/prompts.json",
+      "mode": "100644",
+      "sha": "a2a01c9e96b8de4c6c961fd629854e6405069be3",
+      "bytes": 3220
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+      "mode": "100644",
+      "sha": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+      "bytes": 886068
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props.webp",
+      "mode": "100644",
+      "sha": "5cef14c7f289d4d3e3ac355644e1a17476c53395",
+      "bytes": 617006
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/provenance.json",
+      "mode": "100644",
+      "sha": "c708c37e4557032b24ae482908dde0dbc4bdea68",
+      "bytes": 4254
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/selection.json",
+      "mode": "100644",
+      "sha": "e26699575054c588c12dfc053729a78bd7961d09",
+      "bytes": 832
+    },
+    {
+      "path": "dev/aw2/styles.css",
+      "mode": "100644",
+      "sha": "4a0bc20bc04acf7300d65580d0a68de9d9107a6e",
+      "bytes": 12200
+    },
+    {
+      "path": "dev/tests/aw2/village.test.ts",
+      "mode": "100644",
+      "sha": "fd5cd71b8b31de47c58efbbb16199e5a685f810c",
+      "bytes": 7942
+    },
+    {
+      "path": "dev/tools/build-aw2-village.py",
+      "mode": "100644",
+      "sha": "18f010504acc8761c38317dff61e2bfe48dd1815",
+      "bytes": 5362
+    },
+    {
+      "path": "dev/tools/verify-aw2-village-files.py",
+      "mode": "100644",
+      "sha": "24e16338e242a2b9970a7d91ab572dd7ead5f98b",
+      "bytes": 2293
+    },
+    {
+      "path": "dev/tools/verify-aw2-village.mjs",
+      "mode": "100644",
+      "sha": "1398074725e694a8f535847e9a99d9f83befa1cc",
+      "bytes": 18861
+    },
+    {
+      "path": "docs/aw2/BACKLOG.md",
+      "mode": "100644",
+      "sha": "fd5a9491b581e000edcf1df6290bb991e6417212",
+      "bytes": 28030
+    },
+    {
+      "path": "docs/aw2/CANON.md",
+      "mode": "100644",
+      "sha": "ce03346bce8d1156b298f14fe4fa1d539a30a944",
+      "bytes": 21754
+    },
+    {
+      "path": "docs/aw2/CHANGELOG.md",
+      "mode": "100644",
+      "sha": "2fbf358e62654a0d9cb89c30439f923334a8e673",
+      "bytes": 43597
+    },
+    {
+      "path": "docs/aw2/DECISIONS.md",
+      "mode": "100644",
+      "sha": "4f9bcb44706bd297c5257ebc2d1e490a1a6f341b",
+      "bytes": 5900
+    },
+    {
+      "path": "docs/aw2/DELIVERY_PLAN.md",
+      "mode": "100644",
+      "sha": "5238cc2eb7dce4961e6b02e36b1792d43267b254",
+      "bytes": 25907
+    },
+    {
+      "path": "docs/aw2/DEMO.md",
+      "mode": "100644",
+      "sha": "afe945963d0b40755945cdf1e835b24a7d5c2099",
+      "bytes": 6482
+    },
+    {
+      "path": "docs/aw2/HANDOFF.md",
+      "mode": "100644",
+      "sha": "9ae2b754aff83b7e97a34a4fc09f4dd78d4ce9d1",
+      "bytes": 9498
+    },
+    {
+      "path": "docs/aw2/LANG_GIAO_UOC.md",
+      "mode": "100644",
+      "sha": "69739d0e8950d19ec55ce1efcb832d9726fa7bb7",
+      "bytes": 2500
+    },
+    {
+      "path": "docs/aw2/NEXT_MILESTONES.md",
+      "mode": "100644",
+      "sha": "8800a01f1ca43870d67c490db681698d6d9c2ec2",
+      "bytes": 7546
+    },
+    {
+      "path": "docs/aw2/PROGRESS.md",
+      "mode": "100644",
+      "sha": "661b9b520441d7d4840f926b01d4d4e8e297c72f",
+      "bytes": 30566
+    },
+    {
+      "path": "docs/aw2/README.md",
+      "mode": "100644",
+      "sha": "f194032277d0af5a57d6d00a44dff8f2610223a1",
+      "bytes": 29134
+    },
+    {
+      "path": "docs/aw2/REPORT.md",
+      "mode": "100644",
+      "sha": "6577ef6e3bebc181c53d5b509bb52dcd0c7e6a0f",
+      "bytes": 1736
+    },
+    {
+      "path": "docs/aw2/STATUS.md",
+      "mode": "100644",
+      "sha": "898c331d704d846ec1c68460c36ca0c8719365de",
+      "bytes": 6757
+    },
+    {
+      "path": "docs/aw2/TEST_LEDGER.md",
+      "mode": "100644",
+      "sha": "8746669be97d43707048375e27f61c8a01e8152f",
+      "bytes": 141490
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006G-reused-evidence.json",
+      "mode": "100644",
+      "sha": "eca01b6acec7550907fa0cbaa98fb9549245339c",
+      "bytes": 84319
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006G-review-build.json",
+      "mode": "100644",
+      "sha": "1fa43426fc2c0a8293b5e1d4aea7319986276fdb",
+      "bytes": 39163
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006G-verification.json",
+      "mode": "100644",
+      "sha": "1d0c6acbe36c39826d6bd2d98b1389fdd4df126b",
+      "bytes": 68036
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006G.md",
+      "mode": "100644",
+      "sha": "a9902557c4b9b64c115c955cd11a77acff87f533",
+      "bytes": 6397
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006G.md",
+      "mode": "100644",
+      "sha": "b9ba89982989386dd546912813abe615abefaee9",
+      "bytes": 6306
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006H.md",
+      "mode": "100644",
+      "sha": "6b21586ddb3af447cd705ed88072ef84ffd1379b",
+      "bytes": 2327
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-010C.md",
+      "mode": "100644",
+      "sha": "76f059badfc282cbcdc9869900b1088b7c448095",
+      "bytes": 1718
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-011A.md",
+      "mode": "100644",
+      "sha": "8884246d3ada99ccfeada479d96de19454befc75",
+      "bytes": 1553
+    },
+    {
+      "path": "src/aw2/assets/covenant-village.environment-v1.json",
+      "mode": "100644",
+      "sha": "201a3e1b20b0c4b6b5ab298a0118421d0dda5092",
+      "bytes": 4838
+    },
+    {
+      "path": "src/aw2/assets/village.ts",
+      "mode": "100644",
+      "sha": "6101a2271936b81ec4981265d28e63b1b5241b06",
+      "bytes": 3460
+    }
+  ],
+  "postCommitIdentity": {
+    "baseGitSha": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+    "sourceDirty": false,
+    "codeFingerprint": "5433cced6dfc0b8bee930db1d99531f908aa5deec1dfb3128df710daf64ec8fd",
+    "inputFiles": 286,
+    "sameTestedRuntime": true
+  },
+  "completion": "Docs-only source stamps/proof follow; final fresh remote=clean local must be checked after that push."
+}

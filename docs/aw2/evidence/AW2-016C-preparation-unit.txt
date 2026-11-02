@@ -1,0 +1,8 @@
+
+ RUN  v5.0.1 /workspace/scratch/47c00dd5b26d/MealGacha
+
+
+ Test Files  1 passed (1)
+      Tests  18 passed (18)
+   Start at  11:47:04
+   Duration  1.43s (transform 60%, tests 27%, import 13%)

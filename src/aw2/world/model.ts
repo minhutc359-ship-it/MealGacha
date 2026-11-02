@@ -1,6 +1,15 @@
 import { z } from "zod"
 import { MEMORY_IDS, SPIRIT_IDS, STARTER_TEAM, ZONE_IDS } from "./ids"
 import { canStand } from "./maps"
+import {
+  TEA_ROOM,
+  TEA_ROOM_ID,
+  canStandInTeaRoom,
+  ROOM_IDS,
+  V7_ROOM_IDS,
+  roomById,
+  canStandInRoom,
+} from "./interiorLayout"
 
 const baseProgressSchema = z.strictObject({
   zoneId: z.enum(ZONE_IDS),
@@ -20,6 +29,7 @@ const baseProgressSchema = z.strictObject({
 function validateBase(
   value: z.infer<typeof baseProgressSchema>,
   context: z.RefinementCtx,
+  startersOnly = true,
 ) {
   const issue = () =>
     context.addIssue({
@@ -50,7 +60,9 @@ function validateBase(
   if (
     value.questIndex > 0 &&
     (!value.tableRead ||
-      JSON.stringify(value.partyIds) !== JSON.stringify(STARTER_TEAM))
+      value.partyIds.length !== 5 ||
+      (startersOnly &&
+        JSON.stringify(value.partyIds) !== JSON.stringify(STARTER_TEAM)))
   )
     issue()
   if (value.questIndex < 2 && (value.hintRead || value.puzzleStep)) issue()
@@ -83,35 +95,119 @@ export const worldProgressV2Schema = baseProgressSchema
   })
   .superRefine(validateBase)
 
-export const worldProgressSchema = baseProgressSchema
-  .extend({
-    bossDefeated: z.boolean(),
-    tableNoteRead: z.boolean(),
-    endingChoice: z.enum(["wait", "share"]).nullable(),
-  })
-  .superRefine((value, context) => {
-    validateBase(value, context)
-    const issue = () =>
-      context.addIssue({
+const progressWithBoss = baseProgressSchema.extend({
+  bossDefeated: z.boolean(),
+  tableNoteRead: z.boolean(),
+  endingChoice: z.enum(["wait", "share"]).nullable(),
+})
+
+function validateBoss(
+  value: z.infer<typeof progressWithBoss>,
+  context: z.RefinementCtx,
+) {
+  const issue = () =>
+    context.addIssue({
+      code: "custom",
+      message: "Kết quả boss/ghi chép/kết truyện AW2 không nhất quán.",
+    })
+  if (
+    value.questIndex < 3 &&
+    (value.bossDefeated || value.tableNoteRead || value.endingChoice)
+  )
+    issue()
+  if (value.questIndex === 3 && value.bossDefeated && !value.accepted) issue()
+  if (value.tableNoteRead && !value.bossDefeated) issue()
+  if (value.questIndex < 4 && value.endingChoice !== null) issue()
+  if (
+    value.questIndex === 4 &&
+    (!value.bossDefeated ||
+      !value.tableNoteRead ||
+      !value.endingChoice ||
+      value.accepted)
+  )
+    issue()
+}
+
+/** Strict historical v3/v4 party contract. */
+export const worldProgressV4Schema = progressWithBoss.superRefine(
+  (value, ctx) => {
+    validateBase(value, ctx)
+    validateBoss(value, ctx)
+  },
+)
+export const worldProgressV5Schema = progressWithBoss.superRefine(
+  (value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+  },
+)
+
+const interiorSchema = z.strictObject({
+  roomId: z.literal(TEA_ROOM_ID),
+  x: z.number().finite(),
+  y: z.number().finite(),
+  facing: z.enum(["up", "down", "left", "right"]),
+})
+export const worldProgressV6Schema = progressWithBoss
+  .extend({ interior: interiorSchema.nullable() })
+  .superRefine((value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+    if (
+      value.interior &&
+      (value.zoneId !== TEA_ROOM.zoneId ||
+        Math.hypot(
+          value.x - TEA_ROOM.entrance.x,
+          value.y - TEA_ROOM.entrance.y,
+        ) > 48 ||
+        !canStandInTeaRoom(value.interior.x, value.interior.y))
+    )
+      ctx.addIssue({
         code: "custom",
-        message: "Kết quả boss/ghi chép/kết truyện AW2 không nhất quán.",
+        message: "Vị trí tiệm trà/điểm quay về không hợp lệ.",
       })
-    if (
-      value.questIndex < 3 &&
-      (value.bossDefeated || value.tableNoteRead || value.endingChoice)
-    )
-      issue()
-    if (value.questIndex === 3 && value.bossDefeated && !value.accepted) issue()
-    if (value.tableNoteRead && !value.bossDefeated) issue()
-    if (value.questIndex < 4 && value.endingChoice !== null) issue()
-    if (
-      value.questIndex === 4 &&
-      (!value.bossDefeated ||
-        !value.tableNoteRead ||
-        !value.endingChoice ||
-        value.accepted)
-    )
-      issue()
+  })
+
+export const worldProgressV7Schema = progressWithBoss
+  .extend({
+    interior: interiorSchema.extend({ roomId: z.enum(V7_ROOM_IDS) }).nullable(),
+  })
+  .superRefine((value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+    if (value.interior) {
+      const room = roomById(value.interior.roomId)
+      if (
+        value.zoneId !== room.zoneId ||
+        Math.hypot(value.x - room.entrance.x, value.y - room.entrance.y) > 48 ||
+        !canStandInRoom(room.id, value.interior.x, value.interior.y)
+      )
+        ctx.addIssue({
+          code: "custom",
+          message: "Vị trí phòng/điểm quay về không hợp lệ.",
+        })
+    }
+  })
+
+export const worldProgressSchema = progressWithBoss
+  .extend({
+    interior: interiorSchema.extend({ roomId: z.enum(ROOM_IDS) }).nullable(),
+  })
+  .superRefine((value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+    if (value.interior) {
+      const room = roomById(value.interior.roomId)
+      if (
+        value.zoneId !== room.zoneId ||
+        Math.hypot(value.x - room.entrance.x, value.y - room.entrance.y) > 48 ||
+        !canStandInRoom(room.id, value.interior.x, value.interior.y)
+      )
+        ctx.addIssue({
+          code: "custom",
+          message: "Vị trí phòng/điểm quay về không hợp lệ.",
+        })
+    }
   })
 
 export type WorldProgress = z.infer<typeof worldProgressSchema>
@@ -132,6 +228,7 @@ export function newWorldProgress(): WorldProgress {
     bossDefeated: false,
     tableNoteRead: false,
     endingChoice: null,
+    interior: null,
   }
 }
 

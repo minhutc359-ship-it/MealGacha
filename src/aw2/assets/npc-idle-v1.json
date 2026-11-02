@@ -1,0 +1,1071 @@
+{
+  "version": 1,
+  "id": "aw2-npc-idle-v1",
+  "status": "AUTHORED_IDLE_REFERENCE",
+  "npcCount": 8,
+  "authoredFrameCount": 32,
+  "fullNpcComplete": false,
+  "locomotionComplete": false,
+  "timeline": [
+    {
+      "frame": "neutral",
+      "durationMs": 450
+    },
+    {
+      "frame": "breath",
+      "durationMs": 250
+    },
+    {
+      "frame": "neutral",
+      "durationMs": 300
+    },
+    {
+      "frame": "blink",
+      "durationMs": 110
+    },
+    {
+      "frame": "neutral",
+      "durationMs": 650
+    },
+    {
+      "frame": "gesture",
+      "durationMs": 400
+    },
+    {
+      "frame": "breath",
+      "durationMs": 250
+    },
+    {
+      "frame": "neutral",
+      "durationMs": 650
+    }
+  ],
+  "cycleMs": 3060,
+  "reducedMotionFrame": "neutral",
+  "npc": [
+    {
+      "entityId": "aw2-npc-giu-cho",
+      "displayName": "Bà Giữ Chỗ",
+      "zoneId": "aw2-zone-covenant-village",
+      "asset": {
+        "id": "aw2-npc-giu-cho:idle-v1",
+        "url": "/dev/aw2/assets/npcs/giu-cho/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 659352,
+        "sha256": "84270c3ef65e6dc65ec8777f343a485a1c1c9b658853c8c00f8d242ca7a8bd1b",
+        "source": {
+          "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/idle-source.png",
+          "bytes": 972830,
+          "sha256": "93d214dcd5a25206e6b14eea9bd9ea51fc2655006d7b0b42118155d629ec25df"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 195,
+          "y": 46,
+          "width": 247,
+          "height": 568,
+          "anchorX": 125.021494,
+          "anchorY": 563,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 811,
+          "y": 45,
+          "width": 248,
+          "height": 570,
+          "anchorX": 126.134415,
+          "anchorY": 565,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 195,
+          "y": 659,
+          "width": 250,
+          "height": 567,
+          "anchorX": 125.297113,
+          "anchorY": 562,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 812,
+          "y": 661,
+          "width": 315,
+          "height": 565,
+          "anchorX": 125.014946,
+          "anchorY": 560,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 48,
+        "scale": 0.084507042254
+      },
+      "phaseMs": 0,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/prompts.json",
+          "sha256": "60aacf8cf546324fa28570dfbca95bb09a07d3fc4393a59313bd51eddb1b3a00"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373",
+            "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+            "blob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/selection.json",
+          "sha256": "338e154622de8afcf17a7acf635f1dd37d2b1302c5ba5caa1515df7796154bae"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-va-den",
+      "displayName": "An Vá Đèn",
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": {
+        "id": "aw2-npc-va-den:idle-v1",
+        "url": "/dev/aw2/assets/npcs/va-den/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 856232,
+        "sha256": "2c9fad29aa5d1d34b1745a5cf9526160467d1df2f5e03f1dbf6aef11e178732f",
+        "source": {
+          "path": "dev/aw2/assets/npcs/va-den/idle-v1/idle-source.png",
+          "bytes": 1208056,
+          "sha256": "53690089d3c8041e40acfe907d14846fda6150bdb8701ae1ab07f4650086ccb2"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 636
+          },
+          "x": 188,
+          "y": 13,
+          "width": 289,
+          "height": 623,
+          "anchorX": 164.476794,
+          "anchorY": 621,
+          "alphaEdgeMax": 4,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 636
+          },
+          "x": 780,
+          "y": 12,
+          "width": 286,
+          "height": 624,
+          "anchorX": 163.85172,
+          "anchorY": 622,
+          "alphaEdgeMax": 4,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 636,
+            "width": 627,
+            "height": 618
+          },
+          "x": 188,
+          "y": 638,
+          "width": 288,
+          "height": 616,
+          "anchorX": 164.284525,
+          "anchorY": 613,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 636,
+            "width": 627,
+            "height": 618
+          },
+          "x": 782,
+          "y": 636,
+          "width": 292,
+          "height": 618,
+          "anchorX": 162.016155,
+          "anchorY": 613,
+          "alphaEdgeMax": 4,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 48,
+        "scale": 0.077046548957
+      },
+      "phaseMs": 137,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/va-den/idle-v1/prompts.json",
+          "sha256": "229dcb785faf1c6a96d0e4cc016d39e63b8396c2cfdc9eec37093be14c265e87"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/va-den/idle-v1/selection.json",
+          "sha256": "6284796f2a6606a6089cb33d24cd1b4153b2d8d7614dc3be2e7c3fc811bbc8a1"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-nguoi-ban",
+      "displayName": "Người Bán Bữa Sáng",
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": {
+        "id": "aw2-npc-nguoi-ban:idle-v1",
+        "url": "/dev/aw2/assets/npcs/nguoi-ban/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 1117572,
+        "sha256": "a83ae55c68514347e4d1bde17248dfb26a61fdbe109113209f0a3181d1860613",
+        "source": {
+          "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/idle-source.png",
+          "bytes": 1564535,
+          "sha256": "d1d37c5646496c8609476ad8f4be2d56e3d25d7384086055ed8620af084dc4e8"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 641
+          },
+          "x": 148,
+          "y": 37,
+          "width": 448,
+          "height": 604,
+          "anchorX": 193.124125,
+          "anchorY": 602,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 642
+          },
+          "x": 736,
+          "y": 36,
+          "width": 441,
+          "height": 606,
+          "anchorX": 188.366357,
+          "anchorY": 604,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 641,
+            "width": 627,
+            "height": 613
+          },
+          "x": 155,
+          "y": 649,
+          "width": 441,
+          "height": 594,
+          "anchorX": 185.183196,
+          "anchorY": 589,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 642,
+            "width": 627,
+            "height": 612
+          },
+          "x": 742,
+          "y": 650,
+          "width": 433,
+          "height": 594,
+          "anchorX": 183.827577,
+          "anchorY": 589,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 48,
+        "scale": 0.079470198675
+      },
+      "phaseMs": 274,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/prompts.json",
+          "sha256": "6bae463cd4c298ebc6e19f10b609fa6989561d7bfcf79b801948d3c54771d7f5"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/selection.json",
+          "sha256": "465ceadf00cf3a9c8e00e45b6f73acfa501e712f4975fdfa877c9aa572458524"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-sua-ghe",
+      "displayName": "Thợ Sửa Ghế",
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": {
+        "id": "aw2-npc-sua-ghe:idle-v1",
+        "url": "/dev/aw2/assets/npcs/sua-ghe/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 1012294,
+        "sha256": "807b7ab568568b75726dd8abfb603821c79f8399dd87e15333be2901adc4f193",
+        "source": {
+          "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/idle-source.png",
+          "bytes": 1453425,
+          "sha256": "9356de9c3b53ec6fd868d1a92df2d51a00dff5c5de3f46d866eae2c012004004"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 629
+          },
+          "x": 166,
+          "y": 18,
+          "width": 453,
+          "height": 611,
+          "anchorX": 190.009095,
+          "anchorY": 609,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 630
+          },
+          "x": 788,
+          "y": 16,
+          "width": 451,
+          "height": 614,
+          "anchorX": 186.185925,
+          "anchorY": 612,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 629,
+            "width": 627,
+            "height": 625
+          },
+          "x": 165,
+          "y": 642,
+          "width": 452,
+          "height": 603,
+          "anchorX": 186.003032,
+          "anchorY": 598,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 630,
+            "width": 627,
+            "height": 624
+          },
+          "x": 793,
+          "y": 643,
+          "width": 446,
+          "height": 602,
+          "anchorX": 183.981304,
+          "anchorY": 597,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 48,
+        "scale": 0.078559738134
+      },
+      "phaseMs": 411,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/prompts.json",
+          "sha256": "9dfe2300acb25c7ab8029bc7bd0b6614b6d7ac75a6fcbdc81474a35bab677243"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/selection.json",
+          "sha256": "b4f209975ffdf4edafdc3b7113c5e09dc4b2273d9c51c4aaeca9bb5e10466224"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-dem-nuoc",
+      "displayName": "Em Đem Nước",
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": {
+        "id": "aw2-npc-dem-nuoc:idle-v1",
+        "url": "/dev/aw2/assets/npcs/dem-nuoc/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 868028,
+        "sha256": "5afe62b7dcd009b8db295ad9f0e186af5c73eaee397631f08f46731837292b50",
+        "source": {
+          "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/idle-source.png",
+          "bytes": 1266104,
+          "sha256": "623ee675fec778a1b73eef3b3a78e2fc5e7013e98b2bff655f8536fc6aeb1506"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 151,
+          "y": 39,
+          "width": 347,
+          "height": 585,
+          "anchorX": 182.498737,
+          "anchorY": 580,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 745,
+          "y": 47,
+          "width": 347,
+          "height": 578,
+          "anchorX": 176.088906,
+          "anchorY": 573,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 161,
+          "y": 644,
+          "width": 350,
+          "height": 581,
+          "anchorX": 173.038781,
+          "anchorY": 576,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 723,
+          "y": 634,
+          "width": 366,
+          "height": 592,
+          "anchorX": 204.365573,
+          "anchorY": 587,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 40,
+        "scale": 0.068376068376
+      },
+      "phaseMs": 548,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/prompts.json",
+          "sha256": "b22d751000693ced8f91ad44cecb822decf9c7d67dd2870c12eb51bc648134bc"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/selection.json",
+          "sha256": "d709ccbe801c931283022f2975f476c16c94c04027d29ff88cdf1343dcf14409"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-ban-bai",
+      "displayName": "Chủ Bàn Bài",
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": {
+        "id": "aw2-npc-ban-bai:idle-v1",
+        "url": "/dev/aw2/assets/npcs/ban-bai/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 1017384,
+        "sha256": "4e3e85a0cfb89272140fd31ae9296d57f887a7261f60fb17bd26479f556a50b8",
+        "source": {
+          "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/idle-source.png",
+          "bytes": 1475767,
+          "sha256": "00c3af8f196a7530c03ee3e24c800f6575473ae70e874d62b4d6ac7be3294747"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 82,
+          "y": 29,
+          "width": 497,
+          "height": 587,
+          "anchorX": 256.952076,
+          "anchorY": 582,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 709,
+          "y": 30,
+          "width": 497,
+          "height": 586,
+          "anchorX": 257.762183,
+          "anchorY": 581,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 82,
+          "y": 656,
+          "width": 497,
+          "height": 588,
+          "anchorX": 257.022491,
+          "anchorY": 583,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 709,
+          "y": 655,
+          "width": 497,
+          "height": 589,
+          "anchorX": 257.202652,
+          "anchorY": 584,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 64,
+        "scale": 0.109028960818
+      },
+      "phaseMs": 685,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/prompts.json",
+          "sha256": "2dea1884e6aefffd28b311851d93982d6504153f75fdb20f777f580473c1f71f"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/selection.json",
+          "sha256": "b983e5de12dcf69a3155f776e735ce483e7ee881139eb04f1f65445d21f9e7be"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-ban-co",
+      "displayName": "Chủ Bàn Cờ",
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": {
+        "id": "aw2-npc-ban-co:idle-v1",
+        "url": "/dev/aw2/assets/npcs/ban-co/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 842276,
+        "sha256": "a04aab12a9cf00235dfe45a8b69bede0fc5cb7951441b4cf49c151d2e8e7bc85",
+        "source": {
+          "path": "dev/aw2/assets/npcs/ban-co/idle-v1/idle-source.png",
+          "bytes": 1225889,
+          "sha256": "86fa37be9288b03d13691a2c7380920e3463405a4fa4a6d037a16332c6d51913"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 132,
+          "y": 71,
+          "width": 397,
+          "height": 538,
+          "anchorX": 198.527573,
+          "anchorY": 533,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 737,
+          "y": 72,
+          "width": 404,
+          "height": 537,
+          "anchorX": 203.107039,
+          "anchorY": 532,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 125,
+          "y": 654,
+          "width": 412,
+          "height": 554,
+          "anchorX": 203.930474,
+          "anchorY": 549,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 738,
+          "y": 654,
+          "width": 416,
+          "height": 554,
+          "anchorX": 207.416077,
+          "anchorY": 549,
+          "alphaEdgeMax": 1,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 64,
+        "scale": 0.118959107807
+      },
+      "phaseMs": 822,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/ban-co/idle-v1/prompts.json",
+          "sha256": "3d2ff6df69ebb905c7bf8dd2d165e44aa3960a129b012d068ce203119146e7d7"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/ban-co/idle-v1/selection.json",
+          "sha256": "4e83b2e6fd6e7186f66f8c489357becbde02a4af2f179339d2776bf9e21d58d5"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    },
+    {
+      "entityId": "aw2-npc-gac-bep",
+      "displayName": "Dì Gác Bếp",
+      "zoneId": "aw2-zone-forgotten-kitchen-yard",
+      "asset": {
+        "id": "aw2-npc-gac-bep:idle-v1",
+        "url": "/dev/aw2/assets/npcs/gac-bep/idle-v1/idle.webp",
+        "width": 1254,
+        "height": 1254,
+        "bytes": 812642,
+        "sha256": "85b43956fffe742fb4345babaef74a6ab89a78f490e09fd001f40aab83e7521c",
+        "source": {
+          "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/idle-source.png",
+          "bytes": 1211552,
+          "sha256": "c1342d520947c30d62097c3dd91ee8bcb825d907989d692ad448e592453d9b62"
+        }
+      },
+      "frames": {
+        "neutral": {
+          "cellRegion": {
+            "x": 0,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 183,
+          "y": 36,
+          "width": 294,
+          "height": 589,
+          "anchorX": 166.502301,
+          "anchorY": 584,
+          "alphaEdgeMax": 3,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "breath": {
+          "cellRegion": {
+            "x": 627,
+            "y": 0,
+            "width": 627,
+            "height": 627
+          },
+          "x": 759,
+          "y": 31,
+          "width": 297,
+          "height": 594,
+          "anchorX": 166.108582,
+          "anchorY": 589,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "blink": {
+          "cellRegion": {
+            "x": 0,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 183,
+          "y": 634,
+          "width": 294,
+          "height": 592,
+          "anchorX": 166.230622,
+          "anchorY": 587,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        },
+        "gesture": {
+          "cellRegion": {
+            "x": 627,
+            "y": 627,
+            "width": 627,
+            "height": 627
+          },
+          "x": 734,
+          "y": 639,
+          "width": 321,
+          "height": 587,
+          "anchorX": 190.130736,
+          "anchorY": 582,
+          "alphaEdgeMax": 2,
+          "footMeasurement": "Mean opaque alpha>32 contact in last32source rows; bottom alpha>8 row. Frame0 height fixes common scale; no per-pose scaling."
+        }
+      },
+      "display": {
+        "neutralHeight": 48,
+        "scale": 0.081494057725
+      },
+      "phaseMs": 959,
+      "status": "AUTHORED_IDLE_REFERENCE",
+      "idleMotionComplete": true,
+      "locomotionComplete": false,
+      "fullNpcComplete": false,
+      "provenance": {
+        "task": "AW2-006M",
+        "tool": "OpenAI built-in image_gen",
+        "model": "not exposed by tool",
+        "date": "2026-10-24",
+        "prompts": {
+          "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/prompts.json",
+          "sha256": "114c81bc41f24da7a95a5ea1b65bf8d65e5f1ada2f93d6d5689110616bf7fd24"
+        },
+        "references": [
+          {
+            "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props-source.png",
+            "role": "own project identity edit reference",
+            "sha256": "f37a281583d31a6fbf631a54e486400e51a2665793d0ca16f4b9e93cfa91c5c6",
+            "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+            "blob": "7abd9ace6b44d748ed9c5c13779166d2f3976d9a"
+          }
+        ],
+        "selection": {
+          "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/selection.json",
+          "sha256": "2fb2ee4c16136565607c3c638ef827380636ced11023013a689b3b93a372589a"
+        },
+        "licenseStatus": "REVIEW_REQUIRED",
+        "commercialRelease": "NOT_CLEARED",
+        "builder": "dev/tools/build-aw2-npc-idle.py",
+        "pillow": "10.2.0",
+        "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+      }
+    }
+  ],
+  "regions": [
+    {
+      "zoneId": "aw2-zone-covenant-village",
+      "requiredAssetIds": [
+        "aw2-environment-covenant-village-v2:floor",
+        "aw2-environment-covenant-village-v2:foreground",
+        "aw2-environment-covenant-village-v1:props",
+        "aw2-environment-kitchen-table-interactions-v1:threshold",
+        "aw2-npc-giu-cho:idle-v1"
+      ],
+      "budget": {
+        "compressedBytes": 6209638,
+        "decodedRgbaBytes": 31453200,
+        "maxCompressedBytes": 15000000,
+        "maxDecodedRgbaBytes": 80000000
+      }
+    },
+    {
+      "zoneId": "aw2-zone-lantern-street",
+      "requiredAssetIds": [
+        "aw2-environment-lantern-street-v1:floor",
+        "aw2-environment-kitchen-table-interactions-v1:threshold",
+        "aw2-environment-kitchen-pantry-v1:props",
+        "aw2-environment-covenant-village-v2:foreground",
+        "aw2-npc-va-den:idle-v1",
+        "aw2-npc-nguoi-ban:idle-v1",
+        "aw2-npc-sua-ghe:idle-v1",
+        "aw2-npc-dem-nuoc:idle-v1",
+        "aw2-npc-ban-bai:idle-v1",
+        "aw2-npc-ban-co:idle-v1"
+      ],
+      "budget": {
+        "compressedBytes": 11686550,
+        "decodedRgbaBytes": 62903520,
+        "maxCompressedBytes": 15000000,
+        "maxDecodedRgbaBytes": 80000000
+      }
+    },
+    {
+      "zoneId": "aw2-zone-forgotten-kitchen-yard",
+      "requiredAssetIds": [
+        "aw2-environment-forgotten-kitchen-yard-v1:floor",
+        "aw2-environment-forgotten-kitchen-yard-v1:props",
+        "aw2-environment-kitchen-table-interactions-v1:threshold",
+        "aw2-environment-kitchen-pantry-v1:props",
+        "aw2-environment-covenant-village-v2:foreground",
+        "aw2-npc-gac-bep:idle-v1"
+      ],
+      "budget": {
+        "compressedBytes": 7443906,
+        "decodedRgbaBytes": 37747352,
+        "maxCompressedBytes": 15000000,
+        "maxDecodedRgbaBytes": 80000000
+      }
+    }
+  ]
+}

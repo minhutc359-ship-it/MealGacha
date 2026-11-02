@@ -86,5 +86,69 @@
   "fullCharacterComplete": false,
   "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
   "python": "3.12.3",
-  "Pillow": "10.2.0"
+  "Pillow": "10.2.0",
+  "motionUpdate": {
+    "task": "AW2-004D",
+    "date": "2026-10-21",
+    "tool": "built-in image_gen",
+    "model": "not exposed by tool",
+    "prompts": "motion-prompts.json",
+    "externalInputs": [],
+    "identityReferences": [
+      {
+        "path": "dev/aw2/assets/lua/base-v1/portrait.png",
+        "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+      },
+      {
+        "path": "dev/aw2/assets/lua/base-v1/battle.png",
+        "sha256": "404b4a65e5ad611f3357ab95e6dea37ce99490497329f1e2af6128222f99777f"
+      }
+    ],
+    "processing": "Preserved generated RGBA; lossless WebP; measured rectangles/visible-foot anchors. Logical renderScale1.35 for motion-a-v1 and1.9 for motion-b-v2, no pixel repaint/mask/mirror/resize.",
+    "history": [
+      {
+        "promptKey": "MotionA",
+        "toolOutputFilename": "exec-150784ed-ee63-42fd-813a-49bdedd0556c.png",
+        "outputSha256": "90df59572639666221f30d354297b1a79e64fac6313a4d655db07d5c458fc697",
+        "workspaceSource": "battle-motion-a-v1.png",
+        "selected": true,
+        "inputs": [
+          "portrait.png",
+          "battle.png"
+        ],
+        "rejectionReason": null
+      },
+      {
+        "promptKey": "MotionB",
+        "toolOutputFilename": "exec-3950b2d6-8a2a-4e3b-a80d-2b32cf19c74c.png",
+        "outputSha256": "759bd0eef321e001ac5f26f0929b4e2c20d54c46573ac62f06809ef41ddcc60f",
+        "workspaceSource": null,
+        "selected": false,
+        "inputs": [
+          "portrait.png",
+          "battle.png"
+        ],
+        "rejectionReason": "No safe vertical gutters between ultimate-punch and adjacent poses; repaired through image_gen, no alpha masking/cropping."
+      },
+      {
+        "promptKey": "MotionBRepair",
+        "toolOutputFilename": "exec-022758c0-cbef-4a8c-be23-1fb082cd14e2.png",
+        "outputSha256": "def5836eb85178ce1e43287473550e0be75140168bf115d1a5b0f4c02b928a93",
+        "workspaceSource": "battle-motion-b-v2.png",
+        "selected": true,
+        "inputs": [
+          "MotionB"
+        ],
+        "rejectionReason": null
+      }
+    ],
+    "review": {
+      "inSessionVisualInspection": "PASS reference identity/layout/32 pose inventory",
+      "independentArtReview": "NOT_RUN",
+      "humanListening": "NOT_RUN",
+      "physicalDevice": "NOT_RUN",
+      "legal": "NOT_RUN"
+    },
+    "fullCharacterComplete": false
+  }
 }

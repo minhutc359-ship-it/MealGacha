@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "id": "aw2-environment-village-tea-v1",
+  "sceneId": "aw2-room-village-tea",
+  "zoneId": "aw2-zone-covenant-village",
+  "status": "REFERENCE_ENVIRONMENT",
+  "fullEnvironmentComplete": false,
+  "canvas": {
+    "width": 640,
+    "height": 384
+  },
+  "landscape": {
+    "x": -448,
+    "y": -320,
+    "width": 1536,
+    "height": 1024
+  },
+  "camera": {
+    "followZoom": 0.8,
+    "overviewZoom": 0.42,
+    "centerX": 320,
+    "centerY": 192
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-village-tea-v1:floor",
+      "url": "/dev/aw2/assets/environments/village-tea/v1/floor.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2358656,
+      "sha256": "9d4e003d4bb873f0f20b4b5e0d3aa7fe81b638ca2a2aefeef798b2b95deec03e",
+      "source": {
+        "path": "dev/aw2/assets/environments/village-tea/v1/floor-source.png",
+        "bytes": 2923343,
+        "sha256": "64f463893c468475d82c34b6e4e5f535ec83f5548a9bbcc40739b86898b4b2fe"
+      }
+    },
+    "props": {
+      "id": "aw2-environment-village-tea-v1:props",
+      "url": "/dev/aw2/assets/environments/village-tea/v1/props.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1045334,
+      "sha256": "c4f37fc7ff49e8cb2fa3656cf80dd6afd1ba3d3e81cd4953488cce85e770d6f3",
+      "source": {
+        "path": "dev/aw2/assets/environments/village-tea/v1/props-source.png",
+        "bytes": 1453578,
+        "sha256": "760c4d7c7644718e07faaf729324f98f4ee361234ca300f3cce099ef3349374a"
+      }
+    }
+  },
+  "frames": {
+    "party": {
+      "x": 14,
+      "y": 321,
+      "width": 529,
+      "height": 390
+    },
+    "journal": {
+      "x": 554,
+      "y": 354,
+      "width": 431,
+      "height": 286
+    },
+    "exit": {
+      "x": 1051,
+      "y": 309,
+      "width": 471,
+      "height": 350
+    }
+  },
+  "props": [
+    {
+      "entityId": "aw2-object-tea-party-desk",
+      "frame": "party",
+      "x": 240,
+      "y": 96,
+      "width": 108,
+      "depth": 128
+    },
+    {
+      "entityId": "aw2-object-tea-journal-desk",
+      "frame": "journal",
+      "x": 432,
+      "y": 96,
+      "width": 94,
+      "depth": 128
+    },
+    {
+      "entityId": "aw2-object-tea-exit",
+      "frame": "exit",
+      "x": 24,
+      "y": 192,
+      "width": 56,
+      "depth": 1
+    }
+  ],
+  "budget": {
+    "newCompressedBytes": 3403990,
+    "newDecodedRgbaBytes": 12582912,
+    "maxNewCompressedBytes": 4000000,
+    "maxRequiredDecodedRgbaBytes": 24000000
+  },
+  "provenance": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-27",
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/village-tea/v1/prompts.json",
+      "sha256": "b489069f508ddb229882c4ec3bf7aa1f83e53f04439566ffe1b273e89873e419"
+    },
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/kitchen-table/v2/landscape-source.png",
+        "commit": "d459b30bf884778576065a95a713304ea71e65c0",
+        "sha256": "5902f1deec63cf8093287a9039dba2b87904df2333885c029b0f6e62fa9a9667",
+        "role": "Own project art style/camera/palette reference; not an edit target"
+      }
+    ],
+    "builder": "dev/tools/build-aw2-tea-room.py",
+    "pillow": "12.3.0",
+    "processing": "Selected PNG bytes unchanged; exact-RGBA lossless WebP. Three measured alpha>8 frames with2px padding within explicit nonoverlapping columns; no paint/mask/mirror/resize/source cropping. Uniform logical display scale only."
+  }
+}

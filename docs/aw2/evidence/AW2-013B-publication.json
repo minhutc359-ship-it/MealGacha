@@ -1,0 +1,143 @@
+{
+  "task": "AW2-013B",
+  "status": "PASS_MERGE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "9596f54b831a588f74d5eec7d08ab122b421a75f",
+  "sourceMerge": "0e65fc33624f072b026b80da02f2ae90bacc93bc",
+  "orderedParents": [
+    "9596f54b831a588f74d5eec7d08ab122b421a75f",
+    "c34c6a20dc9755d622117bb594b80e4787b5bf6c"
+  ],
+  "stagedAndRemoteTree": "fa13eebdcdec9821033a1ea3f414ffff6c9e52e8",
+  "expectedShaGuard": "9596f54b831a588f74d5eec7d08ab122b421a75f",
+  "force": false,
+  "independentGitFetch": "PASS",
+  "treeIndexEquality": "PASS",
+  "prHeadActualAncestor": true,
+  "guardedLocalSync": "PASS",
+  "cleanAfterSourceSync": true,
+  "githubPr": {
+    "url": "https://github.com/minhutc359-ship-it/MealGacha/pull/82",
+    "state": "closed",
+    "merged": true,
+    "base": "game/adventure-world-2",
+    "head": "c34c6a20dc9755d622117bb594b80e4787b5bf6c",
+    "mergeCommit": "0e65fc33624f072b026b80da02f2ae90bacc93bc",
+    "mergedAt": "2026-10-24T06:28:56Z",
+    "readback": "AW2-013B-pr-after.json"
+  },
+  "rpgUnchanged": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f",
+  "sourceBranchUnchanged": "c34c6a20dc9755d622117bb594b80e4787b5bf6c",
+  "changedDocsPolicyFiles": 18,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "sha": "70f7b754973e2b165bddd1ebdcf4e6c08b98e4f7",
+      "bytes": 6736
+    },
+    {
+      "path": "docs/aw2/BACKLOG.md",
+      "mode": "100644",
+      "sha": "3c309f28e234c79612879028b9bc85dba9f0e06f",
+      "bytes": 25275
+    },
+    {
+      "path": "docs/aw2/CHANGELOG.md",
+      "mode": "100644",
+      "sha": "0d050382308045010308f50a46ddb7f21fde5350",
+      "bytes": 42631
+    },
+    {
+      "path": "docs/aw2/DECISIONS.md",
+      "mode": "100644",
+      "sha": "612659d49a7de6e82325e2986a38e32ad9b90253",
+      "bytes": 5088
+    },
+    {
+      "path": "docs/aw2/HANDOFF.md",
+      "mode": "100644",
+      "sha": "503891c387828a5c14442da0655db429d76e7753",
+      "bytes": 6347
+    },
+    {
+      "path": "docs/aw2/NEXT_MILESTONES.md",
+      "mode": "100644",
+      "sha": "67730e1eb6c5eac7b9e1b48c01a8a774bce43b5f",
+      "bytes": 6965
+    },
+    {
+      "path": "docs/aw2/PRODUCT_PLAN.md",
+      "mode": "100644",
+      "sha": "fb3151fec248bfd56bed4a574ea579cd3e6084c0",
+      "bytes": 15797
+    },
+    {
+      "path": "docs/aw2/PROGRESS.md",
+      "mode": "100644",
+      "sha": "270dccfdd584273cd59d52e587ba65bcfdc0dd29",
+      "bytes": 29739
+    },
+    {
+      "path": "docs/aw2/README.md",
+      "mode": "100644",
+      "sha": "2855c2fc07ed1f2e84abfaf9a5fc0ad613250a78",
+      "bytes": 27040
+    },
+    {
+      "path": "docs/aw2/REPORT.md",
+      "mode": "100644",
+      "sha": "9e0457bf1f257e9b653aa20287c2dff9642828d2",
+      "bytes": 1842
+    },
+    {
+      "path": "docs/aw2/STATUS.md",
+      "mode": "100644",
+      "sha": "9b9b6b30df3b762991baba8b059193268d5ef176",
+      "bytes": 3526
+    },
+    {
+      "path": "docs/aw2/TEST_LEDGER.md",
+      "mode": "100644",
+      "sha": "1c7c0d33bc5f44add9e5626b43dc086cda3d74ef",
+      "bytes": 136259
+    },
+    {
+      "path": "docs/aw2/WORKFLOW.md",
+      "mode": "100644",
+      "sha": "6f680fde1e04c333480c8a94a9cdc8681287a208",
+      "bytes": 5098
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-013B-merge-audit.json",
+      "mode": "100644",
+      "sha": "50a4f528c60fbd74e94953581c633c0c3cbec958",
+      "bytes": 422198
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-013B-pr-before.json",
+      "mode": "100644",
+      "sha": "0de3d1d9feade7195a944fe81654906d0e5778ee",
+      "bytes": 3624
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-013B-unit-summary.json",
+      "mode": "100644",
+      "sha": "c500631228a2365a2345cf0acfebd7e28f65535d",
+      "bytes": 13830
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-013B.md",
+      "mode": "100644",
+      "sha": "cdc64564124970d5e955c2edac5f3183c56ffa55",
+      "bytes": 4661
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-013B.md",
+      "mode": "100644",
+      "sha": "b59ef87e8f8a027f5bc962c8273e9fd5d01b4886",
+      "bytes": 4204
+    }
+  ],
+  "completion": "Source stamps/PR readback documentation only. Final fresh remote=clean local checked independently after completion push; no recursive final SHA."
+}

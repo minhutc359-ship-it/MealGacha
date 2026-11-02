@@ -1,0 +1,17 @@
+{
+  "task": "AW2-006O",
+  "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-9fee7669-1f2a-441f-8cda-b11313617108.png",
+  "selected": "homes-source.png",
+  "sha256": "04d0c2a0194b064e55ec9e7b7b9a46adbd42a20b24edb24418b261fbd9d4316b",
+  "generatedCount": 2,
+  "selectedCount": 1,
+  "rejectedCount": 1,
+  "inspection": "Opened output: four cohesive full structures on transparent canvas, no characters/text; source PNG unchanged. Exact frame gutters measured before use.",
+  "rejected": [
+    {
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-12aa10e0-e850-4570-a947-9adf27dadd8a.png",
+      "sha256": "7788bd07ac25ec1d3639851f42b0f6304833b7637561ca2f084bb4c83ace1bb6",
+      "reason": "No safe straight gutter between lower grocery and playground; no pixels cropped/painted to fix."
+    }
+  ]
+}

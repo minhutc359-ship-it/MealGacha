@@ -6,7 +6,15 @@ import {
   ZONE_IDS,
 } from "./ids"
 import { canStand, zoneById, type WorldObject } from "./maps"
+import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 import { worldProgressSchema, type WorldProgress } from "./model"
+import { canStandInScene, sceneId, scenePosition, sceneObjects } from "./scene"
+import {
+  TEA_ROOM,
+  TEA_PARTY_ID,
+  TEA_JOURNAL_ID,
+  roomForEntrance,
+} from "./interiorLayout"
 
 export const INTERACT_RANGE = 48
 export const questLabel = (state: WorldProgress) =>
@@ -21,16 +29,52 @@ export const completedReceipts = (state: WorldProgress) =>
   QUEST_GRANTS.slice(0, state.questIndex)
 export const currentQuestId = (state: WorldProgress) =>
   QUEST_IDS[state.questIndex]
-export function nearestObject(state: WorldProgress): WorldObject | undefined {
-  return zoneById(state.zoneId)
-    .objects.filter(
+export function currentObjective(state: WorldProgress): string {
+  if (state.questIndex === 0)
+    return !state.accepted
+      ? "Đến Bà Giữ Chỗ ở làng để nhận lời nhờ."
+      : !state.tableRead
+        ? "Đọc mảnh khăn trên Bàn chung rồi trở lại Bà."
+        : "Trở lại Bà Giữ Chỗ để đón năm người bạn."
+  if (state.questIndex === 1)
+    return !state.accepted
+      ? "Đến An Vá Đèn tại Phố Đèn Lồng."
+      : state.memories.length < 3
+        ? `Nghe ba câu chuyện ở Phố: còn ${3 - state.memories.length} mẩu ký ức.`
+        : "Trở lại An Vá Đèn, chọn nét chỉ để nối mảnh khăn."
+  if (state.questIndex === 2)
+    return !state.accepted
+      ? "Gặp Dì Gác Bếp ở Sân Bếp Bỏ Quên."
+      : !state.hintRead
+        ? "Vào Phòng Kho, đọc Bảng dấu hơi."
+        : state.puzzleStep < 3
+          ? "Trong Phòng Lửa: mở lối thoát → đặt nồi → nhóm lửa."
+          : "Trở về Sân, báo Dì rằng bếp đã sáng."
+  if (state.questIndex === 3)
+    return !state.accepted
+      ? "Nhận nhiệm vụ Thêm một chén tại Dì Gác Bếp."
+      : !state.bossDefeated
+        ? "Đến Phòng Bàn và vượt thử thách Người Giữ Bàn Quên."
+        : !state.tableNoteRead
+          ? "Đọc Ghi chép bên chén trong Phòng Bàn."
+          : "Trở về Bà Giữ Chỗ, chọn cách giữ lời mời."
+  return "Bếp đã sáng. Bạn có thể khám phá, mở rương và chia một bữa ấm."
+}
+export function nearestObject(
+  state: WorldProgress,
+  patrol?: Readonly<NpcPatrolState>,
+): WorldObject | undefined {
+  const position = scenePosition(state)
+  return worldObjects(state, patrol)
+    .filter(
       (object) =>
-        Math.hypot(state.x - object.x, state.y - object.y) <= INTERACT_RANGE,
+        Math.hypot(position.x - object.x, position.y - object.y) <=
+        INTERACT_RANGE,
     )
     .sort(
       (a, b) =>
-        Math.hypot(state.x - a.x, state.y - a.y) -
-        Math.hypot(state.x - b.x, state.y - b.y),
+        Math.hypot(position.x - a.x, position.y - a.y) -
+        Math.hypot(position.x - b.x, position.y - b.y),
     )[0]
 }
 export function moveWorld(
@@ -45,12 +89,12 @@ export function moveWorld(
   const distance = 140 * Math.min(seconds, 0.05)
   const vx = (dx / length) * distance,
     vy = (dy / length) * distance
-  let x = state.x,
-    y = state.y
-  if (canStand(state.zoneId, x + vx, y)) x += vx
-  if (canStand(state.zoneId, x, y + vy)) y += vy
-  return {
-    ...state,
+  const position = scenePosition(state)
+  let x = position.x,
+    y = position.y
+  if (canStandInScene(sceneId(state), x + vx, y)) x += vx
+  if (canStandInScene(sceneId(state), x, y + vy)) y += vy
+  const nextPosition: Pick<WorldProgress, "x" | "y" | "facing"> = {
     x,
     y,
     facing:
@@ -62,6 +106,9 @@ export function moveWorld(
           ? "up"
           : "down",
   }
+  return state.interior
+    ? { ...state, interior: { ...state.interior, ...nextPosition } }
+    : { ...state, ...nextPosition }
 }
 
 export interface WorldDialogAction {
@@ -78,11 +125,60 @@ export function describeObject(
   state: WorldProgress,
   object: WorldObject,
 ): WorldDialog {
-  const result = (text: string, actions: WorldDialog["actions"] = []) => ({
-    title: object.name,
-    text,
-    actions,
-  })
+  const result = (text: string, actions: WorldDialog["actions"] = []) => {
+    const scheduled =
+      object.activity &&
+      (object.kind === "npc" ||
+        object.kind === "memory" ||
+        (object.kind === "mode" && object.id.startsWith("aw2-npc-")))
+    return {
+      title: object.name,
+      text: scheduled
+        ? `${text}\nNhịp sống ${object.lifeClock}: ${object.activity}.`
+        : text,
+      actions,
+    }
+  }
+  if (object.kind === "room")
+    return result(
+      `Vào ${roomForEntrance(object.id)?.name ?? "phòng"} để sử dụng các hoạt động bên trong.`,
+      state.interior
+        ? []
+        : [
+            action(
+              "enter-room",
+              object.id === TEA_ROOM.entrance.id
+                ? "Vào tiệm trà"
+                : `Vào ${roomForEntrance(object.id)!.name}`,
+            ),
+          ],
+    )
+  if (object.kind === "room-exit")
+    return result(
+      "Trở lại đúng vị trí và hướng trước cửa đã lưu khi vào nhà.",
+      state.interior ? [action("leave-room", "Ra hiên")] : [],
+    )
+  if (object.kind === "room-service")
+    return result(
+      object.id === TEA_PARTY_ID || object.service === "party"
+        ? "Xem và sắp xếp năm người bạn đồng hành."
+        : object.service === "journal"
+          ? "Đọc sổ hành trình và xem công thức hiện có."
+          : "Xem nhật ký, công thức hoặc ghé bàn luyện tập TCG/Auto Chess. Các ván luyện tập không nhận thưởng hành trình.",
+      state.interior
+        ? object.id === TEA_PARTY_ID || object.service === "party"
+          ? [action("view-party", "Xem đội đồng hành")]
+          : object.id === TEA_JOURNAL_ID || object.service === "journal"
+            ? [
+                action("view-journal", "Xem nhật ký"),
+                action("view-recipe", "Xem công thức"),
+                ...(object.id === TEA_JOURNAL_ID
+                  ? [action("view-practice", "Xem bàn luyện tập")]
+                  : []),
+              ]
+            : []
+        : [],
+    )
   if (object.kind === "exit") {
     const locked =
       (object.to === ZONE_IDS[3] &&
@@ -101,13 +197,35 @@ export function describeObject(
   }
   if (object.kind === "mode")
     return result(
-      "Chế độ chưa được nối với AW2. Chưa chuyển mode hoặc thay đổi tiến trình.",
+      object.id === "aw2-npc-ban-bai" || object.id === "aw2-object-guild-tcg"
+        ? "Ghé bàn TCG luyện tập với bộ bài mượn, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng."
+        : "Ghé bàn Auto Chess luyện tập: tuyển Vị Linh mượn, xếp đội và đấu 5 vòng, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng hành trình.",
+      [action("visit-mode", "Ghé bàn")],
+    )
+  if (object.kind === "stock")
+    return result(
+      "Kiểm nguyên liệu đang có, xem công thức và chọn lối đi trong Kho.",
+    )
+  if (object.kind === "field")
+    return result(
+      {
+        well: "Nước giếng trong và mát. Đây là điểm quan sát của sân chung; xem không nhận vật phẩm hoặc thay đổi hành trình.",
+        "repair-crate":
+          "Thùng đựng dây, giấy dầu và dụng cụ vá đèn. Đây là điểm quan sát; xem không nhận vật phẩm hoặc thay đổi hành trình.",
+        "wash-basin":
+          "Bồn rửa còn vệt nước sau buổi chuẩn bị bếp. Đây là điểm quan sát; xem không nhận vật phẩm hoặc thay đổi hành trình.",
+      }[object.field!],
     )
   if (object.kind === "chest")
     return result(
-      "Rương chưa có contract phần thưởng. Chưa nhận vật phẩm hoặc đánh dấu đã nhận.",
+      "Rương nguyên liệu: 4 Gạo thơm, 3 Rau vườn, 2 Nước dùng. Mỗi hành trình chỉ nhận một lần.",
     )
   if (object.kind === "boss") {
+    if (state.questIndex === 4)
+      return result(
+        "Đấu lại để luyện đội hình đã lưu. Không nhận EXP, vật phẩm hoặc phần thưởng; thắng, thua và rút lui đều trở về Phòng Bàn, giữ nguyên kết thúc đã chọn.",
+        [action("rematch", "Đấu lại boss · không nhận thưởng")],
+      )
     if (state.bossDefeated)
       return result(
         "Ký ức đã lắng xuống. Đọc ghi chép bên chén rồi trở về Bà Giữ Chỗ.",
@@ -238,12 +356,15 @@ export function applyWorldAction(
   objectId: string,
   actionId: string,
 ): WorldActionResult {
-  const object = zoneById(state.zoneId).objects.find(
+  const object = sceneObjects(state).find(
     (candidate) => candidate.id === objectId,
   )
   if (
     !object ||
-    Math.hypot(state.x - object.x, state.y - object.y) > INTERACT_RANGE
+    Math.hypot(
+      scenePosition(state).x - object.x,
+      scenePosition(state).y - object.y,
+    ) > INTERACT_RANGE
   )
     throw Error("Hãy đến gần để tương tác.")
   if (
@@ -252,14 +373,28 @@ export function applyWorldAction(
     )
   )
     throw Error("Thao tác chưa hợp lệ với trạng thái hiện tại.")
-  if (actionId === "challenge")
+  if (actionId === "challenge" || actionId === "rematch")
     throw Error(
       "Bắt đầu trận qua bộ điều khiển boss; không thể ghi kết quả bằng tương tác thường.",
     )
+  if (actionId === "visit-mode")
+    throw Error(
+      "Ghé bàn qua bộ chuyển mode; không thay đổi quest hoặc nhận phần thưởng.",
+    )
+  if (actionId.startsWith("view-"))
+    throw Error("Mở góc xem trong giao diện; không ghi quest hoặc nhận thưởng.")
   let next = { ...state },
     message = "Đã ghi nhận tiến trình AW2."
   if (actionId === "travel")
-    next = { ...next, zoneId: object.to!, x: object.spawnX!, y: 192 }
+    next = {
+      ...next,
+      zoneId: object.to!,
+      x: object.spawnX!,
+      y: object.spawnY ?? 192,
+    }
+  if (actionId === "enter-room")
+    next = { ...next, interior: { ...roomForEntrance(object.id)!.spawn } }
+  if (actionId === "leave-room") next = { ...next, interior: null }
   if (actionId === "accept") next.accepted = true
   if (actionId === "inspect" && object.kind === "table") next.tableRead = true
   if (actionId === "inspect" && object.kind === "hint") next.hintRead = true
@@ -270,7 +405,8 @@ export function applyWorldAction(
     next.endingChoice = actionId === "seat-wait" ? "wait" : "share"
     next.questIndex = 4
     next.accepted = false
-    message = "Đã giữ lời mời bên bếp. Nhiệm vụ hoàn tất; chưa cấp XP/vật phẩm."
+    message =
+      "Đã giữ lời mời bên bếp. Nhiệm vụ hoàn tất; quà được lưu cùng tiến trình."
   }
   if (actionId.startsWith("thread-")) {
     next.threadChoice = actionId === "thread-wait" ? "wait" : "return"
@@ -292,7 +428,13 @@ export function applyWorldAction(
       : "Chưa đúng thứ tự. Thử lại từ mở lối thoát; không mất tài nguyên."
   }
   next = worldProgressSchema.parse(next)
-  if (!canStand(next.zoneId, next.x, next.y))
+  if (
+    !canStandInScene(
+      sceneId(next),
+      scenePosition(next).x,
+      scenePosition(next).y,
+    )
+  )
     throw Error("Điểm đến chưa an toàn.")
   return { state: next, message }
 }

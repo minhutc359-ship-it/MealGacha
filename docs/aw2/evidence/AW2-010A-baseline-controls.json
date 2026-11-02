@@ -1,0 +1,9 @@
+{
+  "base": "4dde53f9cdae36afa11814ddae62077963c59d3d",
+  "modeArrowPrevented": true,
+  "nativeArrowPrevented": true,
+  "directionEnterMoves": false,
+  "before": "Vị trí 96, 192 · down",
+  "after": "Vị trí 96, 192 · down",
+  "fixtureNote": "Each synthetic keydown is paired with keyup. First diagnostic omitted keyup and its direction-move observation was inconclusive."
+}

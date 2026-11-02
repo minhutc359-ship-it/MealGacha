@@ -1,19 +1,21 @@
 import {
-  STARTER_SPIRIT_IDS,
   advanceCombatBattle,
   castCombatUltimate,
   createCombatBattle,
-  createDevelopmentStarterSeed,
+  createDevelopmentCombatSeed,
   type CombatBattle,
 } from "../combat"
 import { KITCHEN_BOSS_ID, ZONE_IDS } from "./ids"
 import { worldProgressSchema, type WorldProgress } from "./model"
 import { describeObject, INTERACT_RANGE } from "./rules"
 import { zoneById } from "./maps"
-import { aw2DevSaveSchema } from "../save/schema"
+import { decodeAw2Save } from "../save/schema"
+import { createForgottenHostSeed } from "../combat/forgottenHost"
 
-export const WORLD_BOSS_TUNING_ID = "aw2-world-boss-development-v1"
+export const WORLD_BOSS_TUNING_ID = "aw2-world-boss-development-v2"
+export type BossEncounterPurpose = "quest" | "rematch"
 export interface BossEncounterView {
+  purpose: BossEncounterPurpose
   battle: CombatBattle
   retreated: boolean
   committed: boolean
@@ -25,6 +27,7 @@ export interface WorldBossEncounter {
   retreat(): void
 }
 interface PrivateEncounter {
+  purpose: BossEncounterPurpose
   checkpointRaw: string
   progress: WorldProgress
   battle: CombatBattle
@@ -33,7 +36,11 @@ interface PrivateEncounter {
 }
 const encounters = new WeakMap<WorldBossEncounter, PrivateEncounter>()
 
-export function bossCheckpoint(progress: WorldProgress): WorldProgress {
+export function bossCheckpoint(
+  progress: WorldProgress,
+  purpose: BossEncounterPurpose = "quest",
+): WorldProgress {
+  assertPurpose(purpose)
   const valid = worldProgressSchema.parse(progress)
   const boss = zoneById(valid.zoneId).objects.find(
     (object) => object.id === KITCHEN_BOSS_ID,
@@ -42,53 +49,58 @@ export function bossCheckpoint(progress: WorldProgress): WorldProgress {
     !boss ||
     Math.hypot(valid.x - boss.x, valid.y - boss.y) > INTERACT_RANGE ||
     !describeObject(valid, boss).actions.some(
-      (action) => action.id === "challenge",
+      (action) => action.id === (purpose === "quest" ? "challenge" : "rematch"),
     )
   )
     throw Error("Chưa đủ điều kiện hoặc chưa đến gần để bắt đầu thử thách.")
   return { ...valid, x: 96, y: 192, facing: "right" }
 }
 
+function assertPurpose(purpose: BossEncounterPurpose): void {
+  if (purpose !== "quest" && purpose !== "rematch")
+    throw Error("Mục đích thử thách không hợp lệ.")
+}
+
 /** Only rule commands can change this private battle; snapshots are detached. */
 export function createWorldBossEncounter(
   checkpointRaw: string,
+  purpose: BossEncounterPurpose = "quest",
 ): WorldBossEncounter {
-  const checkpoint = aw2DevSaveSchema.parse(JSON.parse(checkpointRaw))
+  assertPurpose(purpose)
+  const decoded = decodeAw2Save(checkpointRaw)
+  if (decoded.status !== "ready") throw Error("Điểm kiểm tra AW2 không hợp lệ.")
+  const checkpoint = decoded.save
   const valid = checkpoint.progress
   if (
     valid.zoneId !== ZONE_IDS[5] ||
-    valid.questIndex !== 3 ||
-    !valid.accepted ||
-    valid.bossDefeated
+    (purpose === "quest"
+      ? valid.questIndex !== 3 || !valid.accepted || valid.bossDefeated
+      : valid.questIndex !== 4)
   )
     throw Error("Điểm kiểm tra không thể mở thử thách boss.")
   const state: PrivateEncounter = {
+    purpose,
     checkpointRaw,
     progress: structuredClone(valid),
     retreated: false,
     committed: false,
     battle: createCombatBattle({
-      id: `${checkpoint.saveId}:boss:${checkpoint.revision}`,
-      players: STARTER_SPIRIT_IDS.map((spiritId, slot) =>
-        createDevelopmentStarterSeed(`player-${spiritId}`, spiritId, 0, {
-          energy: 100,
-          position: 12 + slot * 4,
-        }),
+      id: `${checkpoint.saveId}:boss:${purpose}:${checkpoint.revision}`,
+      players: valid.partyIds.map((spiritId, slot) =>
+        createDevelopmentCombatSeed(
+          `player-${spiritId}`,
+          spiritId,
+          checkpoint.economy.teamExperience,
+          {
+            ...(spiritId === "aw2-van"
+              ? { vanEmphasis: checkpoint.collection.vanEmphasis }
+              : {}),
+            energy: 100,
+            position: 12 + slot * 4,
+          },
+        ),
       ),
-      enemies: [
-        {
-          id: KITCHEN_BOSS_ID,
-          spiritId: KITCHEN_BOSS_ID,
-          boss: true,
-          hp: 1000,
-          maxHp: 1000,
-          attack: 180,
-          defense: 14,
-          position: 82,
-          range: 8,
-          nextBasicTick: 2,
-        },
-      ],
+      enemies: [createForgottenHostSeed()],
     }),
   }
   const assertActive = () => {
@@ -97,6 +109,7 @@ export function createWorldBossEncounter(
   }
   const encounter: WorldBossEncounter = Object.freeze({
     snapshot: () => ({
+      purpose: state.purpose,
       battle: structuredClone(state.battle),
       retreated: state.retreated,
       committed: state.committed,
@@ -111,7 +124,10 @@ export function createWorldBossEncounter(
         (candidate) => candidate.id === actorId,
       )
       const needsEnemy =
-        actor?.spiritId === "aw2-lua" || actor?.spiritId === "aw2-suong"
+        ["aw2-lua", "aw2-suong", "aw2-muoi", "aw2-nhien", "aw2-moc"].includes(
+          actor?.spiritId ?? "",
+        ) ||
+        (actor?.spiritId === "aw2-van" && actor.vanEmphasis === "attack")
       state.battle = castCombatUltimate(
         state.battle,
         actorId,
@@ -131,7 +147,10 @@ export function createWorldBossEncounter(
 export async function commitWorldBossEncounter<T>(
   encounter: WorldBossEncounter,
   checkpointRaw: string,
-  commit: (progress: WorldProgress) => Promise<T>,
+  commit: (
+    progress: WorldProgress,
+    purpose: BossEncounterPurpose,
+  ) => Promise<T>,
 ): Promise<T> {
   const state = encounters.get(encounter)
   if (!state || state.committed || state.checkpointRaw !== checkpointRaw)
@@ -141,13 +160,14 @@ export async function commitWorldBossEncounter<T>(
   const won = !state.retreated && state.battle.status === "player-win"
   const progress = worldProgressSchema.parse({
     ...state.progress,
-    bossDefeated: won,
-    zoneId: won ? ZONE_IDS[5] : ZONE_IDS[2],
+    bossDefeated:
+      state.purpose === "rematch" ? state.progress.bossDefeated : won,
+    zoneId: state.purpose === "rematch" || won ? ZONE_IDS[5] : ZONE_IDS[2],
     x: 96,
     y: 192,
     facing: "right",
   })
-  const result = await commit(progress)
+  const result = await commit(progress, state.purpose)
   state.committed = true
   return result
 }

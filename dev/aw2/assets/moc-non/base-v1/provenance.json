@@ -56,5 +56,55 @@
   "fullCharacterComplete": false,
   "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
   "python": "3.12.3",
-  "Pillow": "10.2.0"
+  "Pillow": "10.2.0",
+  "motionUpdate": {
+    "task": "AW2-004F",
+    "date": "2026-10-21",
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "prompts": "motion-prompts.json",
+    "promptsSha256": "3fcd51071697d021bd1585a47da1fb94494515716407bd24bfa78a3142e488cc",
+    "externalInputs": [],
+    "identityReferences": [
+      {
+        "path": "dev/aw2/assets/moc-non/base-v1/portrait.png",
+        "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005"
+      },
+      {
+        "path": "dev/aw2/assets/moc-non/base-v1/battle.png",
+        "sha256": "40d272c9a391eab53ced50382db8971b9575eeba7d9509bf37e6accb511bd628"
+      }
+    ],
+    "history": [
+      {
+        "promptKey": "AW2-004F-a",
+        "toolOutputFilename": "exec-712cfacb-2335-4a17-9256-287eabb94697.png",
+        "outputSha256": "e30bedd9b9b0c70e8583b18d33725e930ddaac0f509c128aceb11954e7d19d69",
+        "selected": true,
+        "workspaceSource": "battle-motion-a-v1.png",
+        "inputs": [
+          "portrait.png",
+          "battle.png"
+        ],
+        "reason": "selected after actual alpha/cell/foot-anchor inspection; sheet B uses per-column row cuts"
+      },
+      {
+        "promptKey": "AW2-004F-b",
+        "toolOutputFilename": "exec-33408c35-fb8b-4991-9639-4f1ad3588de7.png",
+        "outputSha256": "92e62f88098eae9211ca13f089a8f843605f81cbe1d3e892a3b46f612870bd21",
+        "selected": true,
+        "workspaceSource": "battle-motion-b-v1.png",
+        "inputs": [
+          "portrait.png",
+          "battle.png"
+        ],
+        "reason": "selected after actual alpha/cell/foot-anchor inspection; sheet B uses per-column row cuts"
+      }
+    ],
+    "processing": "unchanged selected PNGs/lossless WebPs, measured nonuniform/per-column rectangles and visible-foot anchors; logical renderScale1.45 only; no masking/repainting/mirroring/pixel resizing",
+    "fullCharacterComplete": false,
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "independentArtListeningDeviceRights": "NOT_RUN"
+  }
 }

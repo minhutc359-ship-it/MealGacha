@@ -1,0 +1,43 @@
+{
+  "task": "AW2-013B",
+  "status": "PASS_GITHUB_MERGE_READBACK",
+  "date": "2026-10-24",
+  "pr": {
+    "url": "https://github.com/minhutc359-ship-it/MealGacha/pull/82",
+    "number": 82,
+    "state": "closed",
+    "merged": true,
+    "mergeable": false,
+    "draft": false,
+    "body": "Tích hợp source tiến trình RPG vào `game/adventure-world-2` để thống nhất lịch sử phát triển AW2. `rpg` được giữ làm nhánh product về sau theo D19; đích của PR này đổi từ `rpg` sang AW2.\n\nCác chức năng economy/EXP/rương/nấu ăn/build riêng của source `c34c6a2` đã được tiếp nhận tại AW2-013A và mở rộng. Kết quả merge giữ triển khai AW2 hiện tại: schema5/collection12 Vị Linh, một đại diện map/năm thành viên chiến đấu, boss/đấu lại, TCG/Chess và Phòng Lửa/Phòng Bàn. Audit đủ47tệp (14giống hệt,33đã phát triển tiếp), xử lý30xung đột theo từng tệp; không tìm thấy chức năng runtime còn thiếu. Merge có hai parent để giữ lịch sử source gốc, không sửa nhánh nguồn.\n\nKiểm chứng mới: **1471/1471 unit tests PASS**, không fail/skip. Toàn bộ2583tệp ngoài tài liệu/policy giữ nguyên byte so với AW2 trước merge. Typecheck/build và72kiểm tra trình duyệt006F được giữ bằng chứng tại source4d46330 trong phạm vi code/config/dependencies không đổi; không tuyên bố browser/device mới. Chi tiết: `docs/aw2/tasks/AW2-013B.md`, `docs/aw2/evidence/AW2-013B.md` và audit47tệp.\n\nTiến độ hiện tại90%demo/40%product giữ nguyên. D18chỉ mở PR milestone AW2→`rpg` sau nghiệm thu độc lập100%/45%, baseline điện thoại thật và các gate tích hợp. Incoming PR82 không tự đóng các gate này. Không cập nhật `rpg`/`master`, deploy, release hoặc reset save. Các số907tests/120browser trong bằng chứng AW2-013 là lịch sử source ban đầu.\n",
+    "title": "AW2: hợp nhất tiến trình RPG và lịch sử PR #82",
+    "base": "game/adventure-world-2",
+    "base_sha": "9596f54b831a588f74d5eec7d08ab122b421a75f",
+    "head": "feat/rpg-playable-progression",
+    "head_sha": "c34c6a20dc9755d622117bb594b80e4787b5bf6c",
+    "head_repo_id": 1374003150,
+    "head_repo_full_name": "minhutc359-ship-it/MealGacha",
+    "merge_commit_sha": "0e65fc33624f072b026b80da02f2ae90bacc93bc",
+    "user": {
+      "login": "hoangmingzzz123-source",
+      "name": "hoangmingzzz123-source",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/245597597?v=4",
+      "id": 245597597
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-20T18:50:50Z",
+    "updated_at": "2026-10-24T06:28:56Z",
+    "closed_at": "2026-10-24T06:28:56Z",
+    "merged_at": "2026-10-24T06:28:56Z",
+    "commits": 4,
+    "changed_files": 47,
+    "additions": 2473,
+    "deletions": 159,
+    "display_url": "https://github.com/minhutc359-ship-it/MealGacha/pull/82",
+    "display_title": "AW2: hợp nhất tiến trình RPG và lịch sử PR #82"
+  }
+}
