@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**AW2-018K VERIFIED technical với blockers — batch9/10,19/20 automated gates.** Matrix versioned khóa7 lane desktop/mobile/screen-reader và8 scenario; session bắt SHA-256/human/device/no-automation/exact allowlist/blocker. Hiện0PASS/0FAIL/7NOT_RUN. Artifact141.470.404bytes/376files;offline1.471.880bytes/24URL;**2.197unit/158files**,focused29,hai typecheck/build,package/release/assets/budget PASS. Browser/UAT `NOT_RUN`. [Bằng chứng](evidence/AW2-018K.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Batch9 đóng evidence contract, không tự tạo session người thật. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **1commit kỹ thuật**; next batch10 release-candidate/runbook/rollback technical manifest. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018K.
+
 **AW2-018J VERIFIED technical với blockers — batch8/10,19/20 automated gates.** Performance contract khóa artifact/offline/JS và runtime observation budgets; telemetry scalar không private fields/sink; error boundary chỉ tải nhánh AW2 và không chạm save. Artifact141.468.122bytes/376files; offline1.469.598bytes/24URL; **2.187unit/157files**,focused90,hai typecheck/build,package/release/assets/budget PASS. Browser/device metrics `NOT_RUN`. [Bằng chứng](evidence/AW2-018J.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Batch8 đóng resilience kỹ thuật, không tự biến build metrics thành device acceptance. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **2commit kỹ thuật**; next batch9 UAT matrix/session evidence contract. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018J.

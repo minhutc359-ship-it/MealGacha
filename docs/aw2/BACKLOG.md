@@ -1,5 +1,7 @@
 # Task board
 
+**018K TECHNICAL DONE/HUMAN BLOCKED — batch9/10,19/20 automated gates:**7lane/8scenario UAT matrix;SHA-256 artifact;human/device/no-automation;exact private-field guard;latest-run/blocker aggregation. Hiện0PASS/0FAIL/7NOT_RUN. Artifact141.470.404bytes/376files;offline1.471.880/24;full2.197unit/158files,focused29,types/build/release/assets/budget PASS. **CÒN1COMMIT KỸ THUẬT; NEXT batch10** RC/runbook/rollback. [Evidence](evidence/AW2-018K.md).
+
 **018J TECHNICAL DONE/DEVICE BLOCKED — batch8/10,19/20 automated gates:** artifact/offline/JS+runtime budgets,4-state evaluator,scalar telemetry privacy,AW2-only dynamic error boundary/no-save-touch fallback. Artifact141.468.122bytes/376files;offline1.469.598/24;full2.187unit/157files,focused90,types/build/release/assets/budget PASS. Browser/device metrics NOT_RUN. **CÒN2COMMIT KỸ THUẬT; NEXT batch9** UAT matrix/session evidence. [Evidence](evidence/AW2-018J.md).
 
 **018I TECHNICAL DONE/HUMAN BLOCKED — batch7/10,19/20 automated gates:** content contract6zone/6room/8NPC/4quest/12spirit;12/12 reciprocal routes;6/6 reachable;0placeholder; production disclosure giữ human acceptance NOT_RUN. Artifact141.465.237bytes/375files;offline1.466.864/24;full2.178unit/156files,focused26,types/build/release/assets/budget PASS. Browser NOT_RUN. **CÒN3COMMIT KỸ THUẬT; NEXT batch8** performance/loading/telemetry/error boundary. [Evidence](evidence/AW2-018I.md).

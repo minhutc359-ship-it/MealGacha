@@ -1,5 +1,7 @@
 # Changes
 
+**AW2-018K:** thêm UAT matrix7lane/8scenario, artifact-bound human/device session validator, exact privacy allowlist, blocker/latest-run aggregation và production disclosure. 2.197unit/158files,hai typecheck/build/package/release PASS; browser/human UAT NOT_RUN. [Evidence](evidence/AW2-018K.md).
+
 **AW2-018J:** thêm performance budgets/evaluator, privacy-safe scalar telemetry, production disclosure và AW2-only dynamic error boundary/no-save-touch fallback. 2.187unit/157files,hai typecheck/build/package/release PASS; browser/device metrics NOT_RUN. [Evidence](evidence/AW2-018J.md).
 
 **AW2-018I:** thêm content acceptance contract cho6zone/6room/8NPC/4quest/12spirit, reciprocal return routes, reachability và placeholder guard; Hướng dẫn production công bố technical PASS/human NOT_RUN. 2.178unit/156files,hai typecheck/build/package/release PASS; browser/human acceptance NOT_RUN. [Evidence](evidence/AW2-018I.md).

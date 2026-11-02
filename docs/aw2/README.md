@@ -1,5 +1,7 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-018K hiện hành — batch9/10:** UAT matrix7lane/8scenario và evidence contract yêu cầu SHA-256/human/device/no-automation/exact privacy allowlist; hiện0PASS/0FAIL/7NOT_RUN. Full2.197unit/158files,hai builds/package PASS. [Task](tasks/AW2-018K.md) · [Evidence](evidence/AW2-018K.md) · [Matrix](UAT_MATRIX.md) · [Roadmap còn1commit kỹ thuật](PRODUCTION_10_COMMIT.md).
+
 **AW2-018J hiện hành — batch8/10:** performance build/runtime budgets, scalar telemetry privacy và AW2-only error recovery đã khóa; artifact/offline/JS PASS, cold-load/FPS/GPU/heap/long-task thiết bị thật `NOT_RUN`. Full2.187unit/157files,hai builds/package PASS. [Task](tasks/AW2-018J.md) · [Evidence](evidence/AW2-018J.md) · [Contract](PERFORMANCE.md) · [Roadmap còn2commit kỹ thuật](PRODUCTION_10_COMMIT.md).
 
 **AW2-018I hiện hành — batch7/10:** contract machine-readable xác nhận6zone/6room/8NPC/4quest/12spirit,12/12 portal có return route,6/6 vùng reachable và0placeholder; human story/content acceptance vẫn `NOT_RUN`. Full2.178unit/156files,hai builds/package PASS; browser thật `NOT_RUN`. [Task](tasks/AW2-018I.md) · [Evidence](evidence/AW2-018I.md) · [Contract](CONTENT_ACCEPTANCE.md) · [Roadmap còn3commit kỹ thuật](PRODUCTION_10_COMMIT.md).

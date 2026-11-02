@@ -34,6 +34,7 @@ import { BalanceDisclosure } from "./BalanceDisclosure"
 import { CharacterReadinessDisclosure } from "./CharacterReadinessDisclosure"
 import { ContentAcceptanceDisclosure } from "./ContentAcceptanceDisclosure"
 import { PerformanceDisclosure } from "./PerformanceDisclosure"
+import { UatDisclosure } from "./UatDisclosure"
 import "./game.css"
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
@@ -435,6 +436,7 @@ export function WorldGame(props: Props) {
               <CharacterReadinessDisclosure />
               <ContentAcceptanceDisclosure />
               <PerformanceDisclosure />
+              <UatDisclosure />
               {props.production && <WebReadiness compact />}
               {props.production ? (
                 <a className="aw2-production-chest-link" href="/chest">

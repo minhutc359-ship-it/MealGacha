@@ -1,5 +1,23 @@
 # Test ledger / change impact
 
+## AW2-018K UAT matrix/evidence /2026-11-02
+
+Base remote `a628163b989e4f5e0430697a696cad86be96beae`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không tạo human/device evidence, không PII/raw save/URL, không đổi gameplay/save/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| UAT/feedback focused | PASS |2files/29tests;matrix/privacy/evidence/blockers/aggregation/disclosure |
+| Full Vitest | PASS |158files/2.197tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |1.001modules/7HTML entry |
+| Production build/package | PASS |1.140modules;141.470.404bytes/376files |
+| Offline/package graph | PASS |24URL/1.471.880bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS703.903/CSS38.083;0leaks |
+| Fresh browser/human UAT | NOT_RUN |Thiếu `playwright`;0PASS/0FAIL/7NOT_RUN external lanes |
+| React review | PASS |Static disclosure/public summary; no state/effect/network/waterfall |
+
+[Evidence](evidence/AW2-018K.md).
+
 ## AW2-018J performance/resilience /2026-11-02
 
 Base remote `e1b87c396cd9827f80ec0d961f7eb4b97ba0abb9`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi save/gameplay/art/dependency; không analytics/network sink.
