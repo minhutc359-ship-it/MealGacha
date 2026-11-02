@@ -1,4 +1,8 @@
-# Handoff —2026-11-02 / AW2-019C
+# Handoff —2026-11-02 / AW2-019D
+
+**019D VERIFIED repository / REMOTE DEPLOYMENT PENDING:** base`82c62af6791990330dcf6bb80c5db0f22c2a9319` on`master`. `.vercelignore` had removed `dev/` and reproduced the owner's exact Node24 `MODULE_NOT_FOUND`; it would also remove required `rights/`. The fixed exact allowlist keeps production source/tools/rights and is enforced by delivery tests, package verification and candidate.68focused tests, both types,format/syntax/whitespace and a complete build from filtered input PASS;artifact166712260bytes/396files,JS700714,15/15technical,0/7external. [Task](tasks/AW2-019D.md) · [Evidence](evidence/AW2-019D.md).
+
+Next owner/operator: observe the Vercel build for the published hotfix SHA, then probe `/assets/release-identity.json` and required HTTPS headers per SERVER_BUILD. Do not weaken checkout/package guards if a separate project/root/branch setting fails. Gameplay/save/media/canon are unchanged; browser/device/human/legal/release evidence remains inherited or open. Demo90/product≈40 historical estimates unchanged.
 
 **019C VERIFIED technical / EXTERNAL BLOCKED:** clean-clone LFS404 đã được sửa bằng actual49136-byte journal blob có đúng SHA-256 cũ. Build/CI source audit3662tracked/2443critical/555835985bytes,0pointer/0symlink; release identity và Vercel CSP/9security header/4cache contract được candidate/package kiểm. Full2337tests/169files,89focused,hai types/hai builds và release/catalog/assets/budget PASS. Artifact166712221bytes/396files;JS700718≤710000;offline1479512/27;candidate15/15technical,0/7external,overallBLOCKED_EXTERNAL. Browser source rootgame mới,original chest và journal PASS giới hạn. [Evidence](evidence/AW2-019C.md) · [Server](SERVER_BUILD.md).
 

@@ -1,5 +1,6 @@
-dev/
-rights/
 node_modules/
+dist/
+dist-aw2/
+.asset-work/
 *.log
 *.tsbuildinfo

@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**019D VERIFIED repository / REMOTE DEPLOYMENT PENDING:** lỗi Vercel sau merge không nằm ở Vite/pnpm: `.vercelignore` đã loại `dev/`, nên entry đầu của `pnpm build` không tồn tại; lọc cũ tái hiện đúng Node `MODULE_NOT_FOUND`. Contract mới chỉ bỏ sáu output/cache cục bộ, giữ `dev/`+`rights/`, có test/package/candidate guard chống tái phát. Filtered-input build PASS:68focused,hai types,source3662/critical2443,1142modules,artifact166712260bytes/396files,15/15technical;external0/7. [Evidence](evidence/AW2-019D.md).
+
+Demo90%/product≈40%(35–45%) giữ nguyên: đây là hotfix build-input, không đổi gameplay/save/canon/media hoặc tạo human/device/rights/release evidence. `master` đã nhận AW2 qua PR84/85; commit hotfix sẽ kích hoạt build từ xa nếu project Git connection đang theo `master`, nhưng trạng thái Vercel phải đọc lại riêng.
+
 **019C VERIFIED technical / EXTERNAL BLOCKED:** normal clone từng thất bại vì journal evidence là LFS pointer thiếu object; ảnh actual browser49136bytes/hash gốc đã được khôi phục thành Git blob thật. Source audit3662tracked/2443critical/555835985bytes,0pointer/0symlink chạy trước build và trong CI. Release identity+CSP/9security header/4cache contract nâng candidate lên15/15technical; external vẫn0/7. Full2337tests/169files,hai types/hai builds,package/release/assets/budget PASS;artifact166712221bytes/396files,JS700718,offline1479512/27. Root game mới/Rương original/journal browser source PASS giới hạn. [Evidence](evidence/AW2-019C.md).
 
 Demo90%/product≈40%(35–45%) giữ nguyên theo D18. Batch này sửa blocker tái lập và delivery, không cung cấp HTTPS server response, thiết bị thật, full-character DoD, independent review, rights hoặc release approval. Đúng Vercel project/source branch vẫn phải được operator xác minh; không deploy/đổi `master`/`rpg`.

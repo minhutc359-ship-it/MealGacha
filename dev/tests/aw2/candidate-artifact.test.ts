@@ -7,6 +7,7 @@ import {
   AW2_CACHE_HEADERS,
   AW2_DELIVERY_SECURITY_PROFILE,
   AW2_SECURITY_HEADERS,
+  AW2_VERCEL_IGNORE_RULES,
 } from "../../tools/aw2-delivery-contract.mjs"
 import { readReleaseCandidateReport } from "../../tools/aw2-release-candidate.mjs"
 
@@ -108,6 +109,7 @@ function artifactFixture() {
       ],
     }),
   )
+  write(".vercelignore", `${AW2_VERCEL_IGNORE_RULES.join("\n")}\n`)
   // Deliberately stale, forged measurements must never be used by the candidate.
   write(
     "dev/docs/release/build-size.json",

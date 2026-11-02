@@ -4,10 +4,13 @@ import {
   AW2_CACHE_HEADERS,
   AW2_DELIVERY_SECURITY_PROFILE,
   AW2_SECURITY_HEADERS,
+  AW2_VERCEL_IGNORE_RULES,
   validateAw2DeliveryConfig,
+  validateAw2VercelIgnore,
 } from "../../tools/aw2-delivery-contract.mjs"
 
 const config = () => JSON.parse(readFileSync("vercel.json", "utf8"))
+const ignore = () => readFileSync(".vercelignore", "utf8")
 
 describe("AW2 static delivery security", () => {
   it("locks the named security profile and current Vercel contract", () => {
@@ -15,6 +18,16 @@ describe("AW2 static delivery security", () => {
     expect(validateAw2DeliveryConfig(config())).toEqual([])
     expect(Object.keys(AW2_SECURITY_HEADERS)).toHaveLength(9)
     expect(Object.keys(AW2_CACHE_HEADERS)).toHaveLength(4)
+  })
+
+  it("keeps every production build input out of the Vercel ignore set", () => {
+    expect(validateAw2VercelIgnore(ignore())).toEqual([])
+    expect(AW2_VERCEL_IGNORE_RULES).not.toContain("dev/")
+    expect(AW2_VERCEL_IGNORE_RULES).not.toContain("rights/")
+    expect(validateAw2VercelIgnore(`${ignore()}dev/\nrights/\n`)).toEqual([
+      "Unapproved Vercel ignore rule: dev/",
+      "Unapproved Vercel ignore rule: rights/",
+    ])
   })
 
   it.each(Object.keys(AW2_SECURITY_HEADERS))(
