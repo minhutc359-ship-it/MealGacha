@@ -1,5 +1,22 @@
 # Test ledger / change impact
 
+## AW2-019E strict-CSP Pixi runtime hotfix /2026-11-02
+
+Base`9338f56b2d4fbd606da2ff7f8d74dc040322f5f3`;`master`;Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Production report reproduced at contract level: strict CSP plus direct Pixi import reached Pixi's generated-function guard; repair installs static factories first.
+
+| Gate | Result | Observed |
+|---|---|---|
+|Focused Pixi/delivery contract|PASS|24tests/2files/285ms;order/cache/7entries/CSP|
+|Full Vitest|PASS|170files/2347tests/16.56s|
+|Runtime import audit|PASS|0direct awaited Pixi imports in production map/chest/arena consumers|
+|Root/dev typecheck|PASS|Both exit0 after final side-effect declaration|
+|Guarded production build|PASS|source3664/critical2444;0pointer/symlink;1151modules;166720334bytes/397files|
+|Artifact/candidate|PASS technical/BLOCKED external|JS702371;offline1479422/27;15/15technical,0/7external;SHA`3e3fe982afeb04271635cb06221e7c4ccf0fe91078bd70d49fdbd761fc6bb60b`|
+|Compiled import order/CSP|PASS|Compatibility chunk before Pixi module;`script-src 'self'`;no`'unsafe-eval'`|
+|Browser/device/human/legal|NOT_RUN/UNCHANGED|No Chromium executable or physical-device/external acceptance|
+
+Diagnostic pnpm11 formatting stopped before dependency changes; final commands used pnpm10.34.3. Initial types exposed Pixi's missing subpath declaration; declaration added and final both types PASS. No assertion/header was weakened. [Evidence](evidence/AW2-019E.md).
+
 ## AW2-019D Vercel build-input hotfix /2026-11-02
 
 Base`82c62af6791990330dcf6bb80c5db0f22c2a9319`;`master`;Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Pre-fix deployment filter reproduced exact `MODULE_NOT_FOUND`; post-fix filtered input retained production source/tools/rights.

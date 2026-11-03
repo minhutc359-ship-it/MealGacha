@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**019E VERIFIED repository / REMOTE DEPLOYMENT PENDING:** lỗi bản đồ production do Pixi8 kiểm tra generated function dưới CSP chặt. Một loader lazy dùng chung nay nạp `pixi.js/unsafe-eval` trước Pixi ở cả7runtime entry; CSP vẫn `script-src 'self'`, không thêm `'unsafe-eval'`.24focused,full2347/170,hai types và guarded build PASS;source3664/critical2444,1151modules,artifact166720334bytes/397files,JS702371,candidate15/15technical/0/7external. Bundle sinh ra giữ đúng thứ tự compatibility→Pixi. Browser mới NOT_RUN vì không có Chromium. [Evidence](evidence/AW2-019E.md).
+
+Demo90%/product≈40%(35–45%) giữ nguyên: đây là hotfix renderer/runtime, không đổi gameplay/save/canon/media hoặc tạo human/device/rights/release evidence. Sau khi push, cần đọc lại deployment Vercel và xác nhận bản đồ trên HTTPS không còn thông báo CSP.
+
 **019D VERIFIED repository / REMOTE DEPLOYMENT PENDING:** lỗi Vercel sau merge không nằm ở Vite/pnpm: `.vercelignore` đã loại `dev/`, nên entry đầu của `pnpm build` không tồn tại; lọc cũ tái hiện đúng Node `MODULE_NOT_FOUND`. Contract mới chỉ bỏ sáu output/cache cục bộ, giữ `dev/`+`rights/`, có test/package/candidate guard chống tái phát. Filtered-input build PASS:68focused,hai types,source3662/critical2443,1142modules,artifact166712260bytes/396files,15/15technical;external0/7. [Evidence](evidence/AW2-019D.md).
 
 Demo90%/product≈40%(35–45%) giữ nguyên: đây là hotfix build-input, không đổi gameplay/save/canon/media hoặc tạo human/device/rights/release evidence. `master` đã nhận AW2 qua PR84/85; commit hotfix sẽ kích hoạt build từ xa nếu project Git connection đang theo `master`, nhưng trạng thái Vercel phải đọc lại riêng.

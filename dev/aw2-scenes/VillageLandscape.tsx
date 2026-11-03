@@ -62,6 +62,7 @@ import {
 } from "../aw2/AmbientLayer"
 import { zoneById } from "../../src/aw2/world/maps"
 import { createWorldPolishLayer } from "../aw2/WorldPolishLayer"
+import { loadPixi } from "../../src/infrastructure/presentation/loadPixi"
 
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
 export function VillageLandscape({
@@ -140,7 +141,7 @@ export function VillageLandscape({
           Rectangle,
           Graphics,
           TilingSprite,
-        } = await import("pixi.js")
+        } = await loadPixi()
         const [
           floor,
           props,

@@ -21,6 +21,7 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { JourneyFrame } from "../../src/aw2/assets/journeyScenes"
+import { loadPixi } from "../../src/infrastructure/presentation/loadPixi"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -102,7 +103,7 @@ export function TeaRoomCanvas({
     void (async () => {
       try {
         const { Application, Assets, Sprite, Texture, Rectangle } =
-          await import("pixi.js")
+          await loadPixi()
         const [floor, props, body, loadedNpc] = await Promise.all([
           Assets.load(scene.assets.floor.url),
           Assets.load(scene.assets.props.url),

@@ -2,6 +2,8 @@
 
 declare const __AW2_PRODUCTION__: boolean
 
+declare module "pixi.js/unsafe-eval"
+
 declare module "virtual:dev-content-panel" {
   export const DevContentPanel: import("react").ComponentType
 }

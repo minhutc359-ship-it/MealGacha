@@ -1,4 +1,8 @@
-# Handoff —2026-11-02 / AW2-019D
+# Handoff —2026-11-02 / AW2-019E
+
+**019E VERIFIED repository / REMOTE DEPLOYMENT PENDING:** base`9338f56b2d4fbd606da2ff7f8d74dc040322f5f3` on`master`. Root cause của thông báo bản đồ là Pixi8 chạy unsafe-eval capability check trước khi strict-CSP compatibility module được cài. Shared cached loader nay hoàn tất module đó trước Pixi ở7runtime entry; CSP vẫn same-origin-only.24focused,full2347/170,hai types và guarded build PASS;1151modules,397files/166720334bytes,JS702371,15/15technical,0/7external. Artifact giữ compatibility import trước Pixi. [Task](tasks/AW2-019E.md) · [Evidence](evidence/AW2-019E.md).
+
+Next owner/operator: quan sát Vercel build của SHA hotfix, mở bản đồ trên HTTPS và xác nhận canvas xuất hiện mà không còn lỗi `unsafe-eval`; đồng thời probe release identity/headers như SERVER_BUILD. Workspace không có Chromium nên fresh browser/device là NOT_RUN, không phải PASS. Không thêm `'unsafe-eval'` vào CSP. Gameplay/save/canon/media không đổi; Demo90/product≈40 lịch sử giữ nguyên.
 
 **019D VERIFIED repository / REMOTE DEPLOYMENT PENDING:** base`82c62af6791990330dcf6bb80c5db0f22c2a9319` on`master`. `.vercelignore` had removed `dev/` and reproduced the owner's exact Node24 `MODULE_NOT_FOUND`; it would also remove required `rights/`. The fixed exact allowlist keeps production source/tools/rights and is enforced by delivery tests, package verification and candidate.68focused tests, both types,format/syntax/whitespace and a complete build from filtered input PASS;artifact166712260bytes/396files,JS700714,15/15technical,0/7external. [Task](tasks/AW2-019D.md) · [Evidence](evidence/AW2-019D.md).
 

@@ -1,5 +1,7 @@
 # Task board
 
+**019E VERIFIED repository / REMOTE DEPLOYMENT PENDING:** sửa lỗi Pixi strict-CSP trên bản đồ bằng shared cached loader compatibility→Pixi cho7runtime entry, giữ nguyên CSP không`unsafe-eval`.24focused,full2347/170,hai types,guarded build và artifact-order audit PASS;166720334bytes/397files,candidate15/15technical. **NEXT:** đọc deployment hotfix và smoke-test bản đồ trên HTTPS; không nới CSP hoặc tự promote/release. [Evidence](evidence/AW2-019E.md).
+
 **019D VERIFIED repository / REMOTE DEPLOYMENT PENDING:** sửa `.vercelignore` loại nhầm production `dev/`/`rights/`, tái hiện đúng rồi loại bỏ Node `MODULE_NOT_FOUND`; thêm exact allowlist contract vào tests/package/candidate.68focused,hai types,filtered source audit và guarded build PASS;artifact166712260bytes/396files,candidate15/15technical. **NEXT:** đọc build Vercel của commit hotfix và xác minh HTTPS identity/headers; không tự promote/release. [Evidence](evidence/AW2-019D.md).
 
 **019C DONE engineering / EXTERNAL BLOCKED:** portable checkout/build/CI guard, real-byte evidence, release identity và static delivery security hoàn tất. Source3662/critical2443/0pointer/0symlink;full2337/169,hai types/builds và release checks PASS. Candidate15/15technical,0/7external; artifact166712221bytes/396files. **NEXT:** đúng Vercel project/source AW2/HTTPS response và evidence người thật/thiết bị/rights/release; không tự nâng100%. [Evidence](evidence/AW2-019C.md).
