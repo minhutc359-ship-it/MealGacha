@@ -1,6 +1,7 @@
 import { renderIsLight, renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
 import { useEffect, useRef } from "react"
 import type { Application as PixiApplication } from "pixi.js"
+import { loadPixi } from "../../infrastructure/presentation/loadPixi"
 
 interface Props {
   state: string
@@ -42,7 +43,7 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
 
     void (async () => {
       try {
-        const { Application, Container, Graphics } = await import("pixi.js")
+        const { Application, Container, Graphics } = await loadPixi()
         const nextApp = new Application()
         await nextApp.init({
           resizeTo: host,

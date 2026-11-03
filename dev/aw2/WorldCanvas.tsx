@@ -60,6 +60,7 @@ import {
   firstWorldFrame,
 } from "./sceneLifecycle"
 import { createWorldPolishLayer } from "./WorldPolishLayer"
+import { loadPixi } from "../../src/infrastructure/presentation/loadPixi"
 
 export function WorldCanvas(props: WorldCanvasProps) {
   const family = worldRendererFamily(props.world)
@@ -169,7 +170,7 @@ function FlatWorldCanvas({
     void (async () => {
       try {
         const { Application, Graphics, Assets, Sprite, Texture, Rectangle } =
-          await import("pixi.js")
+          await loadPixi()
         const [loaded, environment] = await Promise.all([
           Promise.all(
             ids.map((id) => Assets.load(ROSTER_ASSETS[id].assets.world.url)),

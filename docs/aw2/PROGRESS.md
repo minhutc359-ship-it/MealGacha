@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+019E sửa hotfix **Pixi strict-CSP runtime**: bản đồ nay cài static compatibility factories trước Pixi mà không mở quyền`unsafe-eval`. Đây là sửa khả năng chạy production, không thêm feature hoặc acceptance. **Demo90%/product≈40%(35–45%) giữ nguyên**; candidate vẫn15/15technical và0/7external. [Evidence](evidence/AW2-019E.md).
+
 019D sửa hotfix **Vercel build input** sau merge: script/runtime/rights production không còn bị `.vercelignore` loại và filtered-input build đã PASS. Đây là sửa đường giao hàng, không thêm tính năng hoặc acceptance. **Demo90%/product≈40%(35–45%) giữ nguyên**; candidate vẫn15/15technical và0/7external. [Evidence](evidence/AW2-019D.md).
 
 019C đóng blocker **source portability/delivery hardening**: clone không còn phụ thuộc LFS object thiếu, build có source audit/release identity/security-header gates và candidate15/15technical. Đây là bằng chứng kỹ thuật, không phải character/human/device/rights acceptance. **Demo90%/product≈40%(35–45%) giữ nguyên** theo D18; external0/7 và overall`BLOCKED_EXTERNAL`. [Evidence](evidence/AW2-019C.md).

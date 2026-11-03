@@ -65,6 +65,7 @@ import {
 } from "../aw2/AmbientLayer"
 import { zoneById } from "../../src/aw2/world/maps"
 import { createWorldPolishLayer } from "../aw2/WorldPolishLayer"
+import { loadPixi } from "../../src/infrastructure/presentation/loadPixi"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
 export function JourneyLandscape({
@@ -145,7 +146,7 @@ export function JourneyLandscape({
     void (async () => {
       try {
         const { Application, Assets, Sprite, Texture, Rectangle, Graphics } =
-          await import("pixi.js")
+          await loadPixi()
         const keys = Object.keys(scene.assets).filter(
           (key) =>
             !(scene.zoneId === "aw2-zone-lantern-street" && key === "props"),

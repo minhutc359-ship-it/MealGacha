@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useAppStore } from "../../store/useAppStore"
+import { loadPixi } from "../../infrastructure/presentation/loadPixi"
 import "./arenaScene.css"
 
 export type ArenaRegion = "market" | "harbor" | "kitchen"
@@ -148,7 +149,7 @@ export function ArenaScene({
         return
       }
       try {
-        const { Application, Graphics } = await import("pixi.js")
+        const { Application, Graphics } = await loadPixi()
         if (cancelled) return
         const next = new Application()
         await next.init({

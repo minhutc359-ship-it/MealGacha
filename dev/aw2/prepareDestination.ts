@@ -6,6 +6,7 @@ import {
 } from "../../src/aw2/assets/prepareScene"
 import { loadAmbientTextures, releaseAmbientTextures } from "./AmbientLayer"
 import { preloadWorldRenderer } from "./worldRendererLoader"
+import { loadPixi } from "../../src/infrastructure/presentation/loadPixi"
 
 export async function prepareDestination(
   world: WorldProgress,
@@ -13,7 +14,7 @@ export async function prepareDestination(
   onProgress: (progress: ScenePreparationProgress) => void,
 ) {
   const [pixi] = await Promise.all([
-    import("pixi.js"),
+    loadPixi(),
     preloadWorldRenderer(world),
   ])
   const { Assets } = pixi
