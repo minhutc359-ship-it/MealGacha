@@ -591,10 +591,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .reward-utility-actions { display: flex; gap: 8px; margin: -7px 0 13px; }
 .reward-utility-actions button { padding: 5px 8px; color: #7f96a9; border: 1px solid rgba(125,148,168,.18); border-radius: 7px; background: rgba(7,24,39,.52); font-size: 9px; cursor: pointer; transition: .2s ease; }
 .reward-utility-actions button:hover, .reward-utility-actions button[aria-pressed='true'] { color: var(--gold-300); border-color: rgba(232,199,119,.36); }
-.reward-tactical-grant { display: grid; gap: 4px; margin: 10px 0 16px; padding: 11px 13px; border: 1px solid rgba(232,199,119,.34); border-radius: 12px; background: linear-gradient(115deg, rgba(53,38,17,.82), rgba(8,39,44,.82)); color: #f4df9f; text-align: left; }
-.reward-tactical-grant strong { font-size: 10px; letter-spacing: .12em; }
-.reward-tactical-grant span { color: #fff7dc; font-weight: 800; }
-.reward-tactical-grant small { color: #a9c6ba; }
+.reward-tactical-grant { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; margin: 10px 0 16px; padding: 11px 13px; overflow: hidden; position: relative; border: 1px solid rgba(232,199,119,.34); border-radius: 14px; background: radial-gradient(circle at 0 50%,rgba(232,199,119,.14),transparent 35%),linear-gradient(115deg,rgba(53,38,17,.88),rgba(8,39,44,.88)); color: #f4df9f; text-align: left; box-shadow: inset 0 1px rgba(255,255,255,.05); }
+.reward-tactical-grant__sigil { width: 38px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(232,199,119,.35); border-radius: 50%; color: #f1cf7d!important; background: rgba(232,199,119,.08); font: 18px Georgia,serif; }
+.reward-tactical-grant>div { display: grid; gap: 3px; min-width: 0; }
+.reward-tactical-grant strong { color: #d8c07e; font-size: 8px; letter-spacing: .15em; }
+.reward-tactical-grant>div>span { overflow: hidden; color: #fff7dc; font-size: 12px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+.reward-tactical-grant small { color: #92aaa0; font-size: 8px; }
+.reward-tactical-grant>b { width: 22px; aspect-ratio: 1; display: grid; place-items: center; color: #6fd0a0; border: 1px solid rgba(111,208,160,.35); border-radius: 50%; font-size: 9px; }
+.reward-tactical-grant[data-reward='tinh-vi'] { border-color: rgba(121,221,190,.34); background: radial-gradient(circle at 0 50%,rgba(121,221,190,.14),transparent 35%),linear-gradient(115deg,rgba(18,55,43,.9),rgba(8,35,44,.9)); }
 @keyframes reward-shine-sweep { to { left: 125%; } }
 @keyframes reward-confetti { 0% { opacity: 0; translate: 0 0; scale: .2; } 18% { opacity: 1; } 100% { opacity: 0; translate: var(--x) var(--y); rotate: 220deg; scale: 1; } }
 

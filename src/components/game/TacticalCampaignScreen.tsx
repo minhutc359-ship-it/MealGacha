@@ -64,13 +64,49 @@ export function TacticalCampaignScreen({
   return (
     <section className="tactical-campaign">
       <header>
-        <small>CHIẾN DỊCH BỐN HỒI</small>
-        <h1>Con đường Giao Ước</h1>
-        <p>Thắng trận để mở nút tiếp theo và chương Manga tương ứng.</p>
+        <div>
+          <small>CHIẾN DỊCH BỐN HỒI</small>
+          <h1>Con đường Giao Ước</h1>
+          <p>Thắng trận để mở nút tiếp theo và chương Manga tương ứng.</p>
+        </div>
+        <div className="tactical-campaign-progress">
+          <span>
+            <b>{progress.completedCampaignNodes.length}</b> / 8
+          </span>
+          <small>ĐÃ HOÀN THÀNH</small>
+          <i
+            role="progressbar"
+            aria-label="Tiến trình chiến dịch"
+            aria-valuemin={0}
+            aria-valuemax={8}
+            aria-valuenow={progress.completedCampaignNodes.length}
+          >
+            <b
+              style={{
+                width: `${(progress.completedCampaignNodes.length / 8) * 100}%`,
+              }}
+            />
+          </i>
+        </div>
       </header>
       {[1, 2, 3, 4].map((act) => (
         <section className="tactical-act" key={act}>
-          <h2>Hồi {act}</h2>
+          <header>
+            <div>
+              <small>CHƯƠNG {String(act).padStart(2, "0")}</small>
+              <h2>Hồi {act}</h2>
+            </div>
+            <span>
+              {
+                TACTICAL_CAMPAIGN_NODES.filter(
+                  (node) =>
+                    node.act === act &&
+                    progress.completedCampaignNodes.includes(node.id),
+                ).length
+              }
+              /2 hoàn thành
+            </span>
+          </header>
           <div className="tactical-node-list">
             {TACTICAL_CAMPAIGN_NODES.filter((node) => node.act === act).map(
               (node) => {
@@ -101,6 +137,9 @@ export function TacticalCampaignScreen({
                           ? "Sẵn sàng"
                           : "Đang khóa"}
                     </small>
+                    <b aria-hidden="true">
+                      {done ? "✓" : available ? "›" : "⌁"}
+                    </b>
                   </button>
                 )
               },

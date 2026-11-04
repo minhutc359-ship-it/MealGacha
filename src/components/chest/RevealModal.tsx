@@ -266,16 +266,31 @@ export function RevealModal({
                 </p>
               )}
               {tacticalGrant && (
-                <aside className="reward-tactical-grant" role="status">
-                  <strong>⚔ ĐÃ ĐỒNG BỘ LINH CHIẾN</strong>
-                  <span>
-                    {tacticalGrant.reward === "card"
-                      ? `+1 thẻ ${tacticalGrant.collectibleName}`
-                      : tacticalGrant.reward === "tinh-vi"
-                        ? `Thẻ trùng · +${tacticalGrant.tinhVi} Tinh Vị`
-                        : "Phần thưởng này đã được ghi nhận trước đó"}
+                <aside
+                  className="reward-tactical-grant"
+                  data-reward={tacticalGrant.reward}
+                  role="status"
+                >
+                  <span
+                    className="reward-tactical-grant__sigil"
+                    aria-hidden="true"
+                  >
+                    {tacticalGrant.reward === "tinh-vi" ? "✧" : "⚔"}
                   </span>
-                  <small>{tacticalGrant.rarityName} · biên nhận an toàn</small>
+                  <div>
+                    <strong>ĐÃ ĐỒNG BỘ LINH CHIẾN</strong>
+                    <span>
+                      {tacticalGrant.reward === "card"
+                        ? `+1 thẻ ${tacticalGrant.collectibleName}`
+                        : tacticalGrant.reward === "tinh-vi"
+                          ? `Thẻ trùng · +${tacticalGrant.tinhVi} Tinh Vị`
+                          : "Phần thưởng này đã được ghi nhận trước đó"}
+                    </span>
+                    <small>
+                      {tacticalGrant.rarityName} · biên nhận an toàn
+                    </small>
+                  </div>
+                  <b aria-hidden="true">✓</b>
                 </aside>
               )}
               <div className="reward-utility-actions">
