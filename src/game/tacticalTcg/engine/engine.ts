@@ -1,4 +1,14 @@
 import { TACTICAL_UNIT_MAP } from "./catalog"
+import { TACTICAL_CARD_MAP } from "../cards"
+import {
+  cardLog,
+  createCardGame,
+  drawCards,
+  emptyCardCell,
+  playCard,
+  recordFallenCards,
+  seededShuffle,
+} from "./cardRuntime"
 import type {
   BattleSide,
   BattleTrap,
@@ -71,10 +81,29 @@ function makeUnits(
 export function createTacticalBattle(
   options: CreateBattleOptions,
 ): TacticalBattleState {
+  const cardGame = createCardGame(options)
   const units = [
-    ...makeUnits("player", options.player ?? defaultPlayer),
-    ...makeUnits("enemy", options.enemy ?? defaultEnemy),
+    ...makeUnits("player", cardGame ? [] : (options.player ?? defaultPlayer)),
+    ...makeUnits(
+      "enemy",
+      cardGame
+        ? options.boss
+          ? [
+              {
+                definitionId: options.boss.definitionId,
+                cell: { row: 0, column: 1 },
+              },
+            ]
+          : []
+        : (options.enemy ?? defaultEnemy),
+    ),
   ]
+  if (cardGame)
+    for (const unit of units) {
+      unit.maxHp = unit.hp = Math.ceil(unit.maxHp * 0.55)
+      unit.attack = Math.ceil(unit.attack * 0.25)
+      unit.ultimatePower = Math.ceil(unit.ultimatePower * 0.4)
+    }
   const seen = new Set<string>()
   for (const unit of units) {
     const key = `${unit.side}:${unit.cell.row}:${unit.cell.column}`
@@ -105,13 +134,14 @@ export function createTacticalBattle(
         ? { unitId: bossUnit.instanceId, title: options.boss.title, phase: 1 }
         : null,
     commanders: {
-      player: { hp: 100, maxHp: 100 },
-      enemy: { hp: 100, maxHp: 100 },
+      player: { hp: cardGame ? 30 : 100, maxHp: cardGame ? 30 : 100 },
+      enemy: { hp: cardGame ? 30 : 100, maxHp: cardGame ? 30 : 100 },
     },
     processedActionIds: [],
     log: [{ id: "start", text: "Dàn trận trên bàn 4×2." }],
     lastReaction: null,
     reward: null,
+    cardGame,
   }
 }
 
@@ -191,7 +221,7 @@ function advanceBossPhase(state: TacticalBattleState, target: BattleUnit) {
         ? 2
         : 1
   while (state.boss.phase < desired) {
-    state.boss.phase = ((state.boss.phase + 1) as 2 | 3)
+    state.boss.phase = (state.boss.phase + 1) as 2 | 3
     const shield = state.boss.phase === 2 ? 12 : 18
     target.shield += shield
     target.attack += 4
@@ -209,6 +239,12 @@ export function findTarget(state: TacticalBattleState, attacker: BattleUnit) {
     (unit) => unit.side === side && !unit.defeated,
   )
   return (
+    candidates.find(
+      (unit) =>
+        unit.role === "guardian" &&
+        unit.cell.row === 0 &&
+        unit.cell.column === attacker.cell.column,
+    ) ??
     candidates.find(
       (unit) =>
         unit.cell.column === attacker.cell.column && unit.cell.row === 0,
@@ -239,10 +275,15 @@ function activeTraitBonus(state: TacticalBattleState, side: BattleSide) {
     for (const trait of unit.traits)
       counts.set(trait, (counts.get(trait) ?? 0) + 1)
   const traitSystems = [...counts.values()].filter((count) => count >= 2).length
+  const distinctSchools = new Set(
+    state.units
+      .filter((u) => u.side === side && !u.defeated && u.cardId)
+      .map((u) => TACTICAL_CARD_MAP[u.cardId!].school),
+  ).size
   return {
     attack: [...counts.values()].some((count) => count >= 4)
       ? 6
-      : traitSystems >= 3
+      : traitSystems >= 3 || (state.cardGame && distinctSchools >= 3)
         ? 3
         : 0,
     systems: traitSystems,
@@ -257,8 +298,22 @@ function deal(
 ) {
   const target = findTarget(state, attacker)
   const bonus = activeTraitBonus(state, attacker.side).attack
-  const damage = power + bonus
+  const ability = attacker.cardId
+    ? TACTICAL_CARD_MAP[attacker.cardId].ability
+    : null
+  const abilityBonus =
+    target &&
+    ((ability === "duelist" && target.hp === target.maxHp) ||
+      (ability === "execute" && target.hp < target.maxHp))
+      ? 12
+      : 0
+  const damage = power + bonus + abilityBonus
   if (target) {
+    if (ability === "siphon") {
+      const stolen = Math.min(12, target.shield)
+      target.shield -= stolen
+      attacker.shield += stolen
+    }
     const trap = matchingTrap(state, target)
     if (trap) triggerTrap(state, trap, attacker, target, "before")
     const absorbed = Math.min(target.shield, damage)
@@ -273,17 +328,35 @@ function deal(
     advanceBossPhase(state, target)
   } else {
     const side: BattleSide = attacker.side === "player" ? "enemy" : "player"
-    state.commanders[side].hp = Math.max(0, state.commanders[side].hp - damage)
+    const commanderDamage = state.cardGame
+      ? Math.max(1, Math.ceil(damage / 10))
+      : damage
+    state.commanders[side].hp = Math.max(
+      0,
+      state.commanders[side].hp - commanderDamage,
+    )
+    log(state, `${attacker.name} đánh Chỉ huy: -${commanderDamage} Ý chí.`)
   }
+  if (
+    attacker.cardId &&
+    TACTICAL_CARD_MAP[attacker.cardId].keywords.includes("drain")
+  )
+    state.commanders[attacker.side].hp = Math.min(
+      state.commanders[attacker.side].maxHp,
+      state.commanders[attacker.side].hp + 1,
+    )
   attacker.energy = Math.min(100, attacker.energy + 25)
 }
 
 function finish(state: TacticalBattleState) {
   const living = (side: BattleSide) =>
     state.units.some((unit) => unit.side === side && !unit.defeated)
-  if (!living("enemy") || state.commanders.enemy.hp === 0)
+  if ((!state.cardGame && !living("enemy")) || state.commanders.enemy.hp === 0)
     state.winner = "player"
-  else if (!living("player") || state.commanders.player.hp === 0)
+  else if (
+    (!state.cardGame && !living("player")) ||
+    state.commanders.player.hp === 0
+  )
     state.winner = "enemy"
   if (state.winner) {
     state.phase = "result"
@@ -293,7 +366,10 @@ function finish(state: TacticalBattleState) {
         battleId: state.battleId,
         nodeId: state.nodeId,
         tinhVi: state.mode === "pvp" ? 0 : state.boss ? 60 : 30,
-        cardCopies: state.mode === "pvp" ? {} : { "card:chef-nhien": 1 },
+        cardCopies:
+          state.mode === "pvp"
+            ? {}
+            : { [`card:${state.cardGame?.rewardCardId ?? "chef-nhien"}`]: 1 },
       }
   }
 }
@@ -313,14 +389,44 @@ export function reduceTacticalBattle(
         )
       : null
   switch (action.type) {
+    case "forfeit":
+      state.commanders.player.hp = 0
+      break
+    case "mulligan": {
+      const player = state.cardGame?.sides.player
+      if (
+        !player ||
+        player.mulliganUsed ||
+        state.round !== 1 ||
+        state.phase !== "planning" ||
+        state.units.some((u) => u.side === "player")
+      )
+        return current
+      const previous = [...player.hand]
+      player.hand = player.deck.splice(0, 4)
+      player.deck = seededShuffle(
+        [...player.deck, ...previous],
+        state.seed + 77,
+      )
+      player.mulliganUsed = true
+      log(state, "Đã đổi tay đầu một lần.")
+      break
+    }
+    case "play-card":
+      if (!playCard(state, action)) return current
+      break
     case "move":
       if (
         state.phase !== "planning" ||
         !unit ||
+        (state.cardGame &&
+          (unit.side !== "player" ||
+            state.cardGame.movedRound === state.round)) ||
         occupied(state.units, unit.side, action.cell, unit.instanceId)
       )
         return current
       unit.cell = action.cell
+      if (state.cardGame) state.cardGame.movedRound = state.round
       break
     case "merge": {
       // exact copies: campaign 3, PvP 2
@@ -342,7 +448,7 @@ export function reduceTacticalBattle(
         copies[0]!.star === 3
       )
         return current
-      copies[0]!.star = (Math.min(3, copies[0]!.star + 1) as 1 | 2 | 3)
+      copies[0]!.star = Math.min(3, copies[0]!.star + 1) as 1 | 2 | 3
       copies[0]!.attack += copies[0]!.attack
       copies[0]!.maxHp += copies[0]!.maxHp
       copies[0]!.hp = copies[0]!.maxHp
@@ -354,7 +460,7 @@ export function reduceTacticalBattle(
       break
     }
     case "place-trap": {
-      if (state.phase !== "planning") return current
+      if (state.phase !== "planning" || state.cardGame) return current
       state.traps = state.traps.filter(
         (trap) => !(trap.side === action.side && trap.armed),
       )
@@ -381,6 +487,9 @@ export function reduceTacticalBattle(
       break
     case "basic":
       if (!unit || !["clash", "reaction"].includes(state.phase)) return current
+      if (state.cardGame?.attacks[unit.instanceId] === state.round)
+        return current
+      if (state.cardGame) state.cardGame.attacks[unit.instanceId] = state.round
       deal(state, unit, unit.attack, "đánh")
       state.phase = "reaction"
       break
@@ -407,7 +516,39 @@ export function reduceTacticalBattle(
       state.phase = "planning"
       for (const item of state.units)
         item.energy = Math.min(100, item.energy + 20)
+      if (state.cardGame)
+        for (const side of ["player", "enemy"] as const) {
+          const cards = state.cardGame.sides[side]
+          cards.maxMana = Math.min(10, cards.maxMana + 1)
+          cards.mana = cards.maxMana
+          cards.spellsThisRound = 0
+          cards.lastSchool = null
+          drawCards(state, side, 1)
+        }
       break
+  }
+  recordFallenCards(current, state)
+  if (state.cardGame)
+    for (const side of ["player", "enemy"] as const) {
+      if (state.commanders[side].hp <= current.commanders[side].hp) continue
+      for (const ally of state.units.filter(
+        (u) =>
+          !u.defeated &&
+          u.side === side &&
+          u.cardId &&
+          TACTICAL_CARD_MAP[u.cardId].ability === "bloom",
+      )) {
+        const key = `bloom:${state.round}`
+        ally.triggers ??= {}
+        if ((ally.triggers[key] ?? 0) < 2) {
+          ally.attack += 6
+          ally.triggers[key] = (ally.triggers[key] ?? 0) + 1
+        }
+      }
+    }
+  if (state.boss) {
+    const boss = state.units.find((u) => u.instanceId === state.boss!.unitId)
+    if (boss) advanceBossPhase(state, boss)
   }
   finish(state)
   return state
@@ -419,14 +560,47 @@ export function playAutomaticRound(current: TacticalBattleState) {
       id: `r${current.round}:end`,
       type: "end-round",
     })
-  let state = reduceTacticalBattle(current, {
+  let state = current
+  if (state.cardGame && state.phase === "planning") {
+    for (let i = 0; i < 8; i++) {
+      const owner = state.cardGame!.sides.enemy
+      let played = false
+      for (let handIndex = 0; handIndex < owner.hand.length; handIndex++) {
+        const card = TACTICAL_CARD_MAP[owner.hand[handIndex]]
+        if (card.cost > owner.mana) continue
+        const next = reduceTacticalBattle(state, {
+          id: `r${state.round}:enemy:${i}:${handIndex}`,
+          type: "play-card",
+          side: "enemy",
+          handIndex,
+          cell:
+            emptyCardCell(state, "enemy", card.tacticalRole !== "guardian") ??
+            undefined,
+          column: (state.round % 4) as 0 | 1 | 2 | 3,
+        })
+        if (next !== state) {
+          state = next
+          played = true
+          break
+        }
+      }
+      if (!played || state.phase === "result") break
+    }
+  }
+  state = reduceTacticalBattle(state, {
     id: `r${current.round}:begin`,
     type: "begin-round",
   })
   const order = [...state.units]
     .filter((unit) => !unit.defeated)
     .sort(
-      (a, b) => b.attack - a.attack || a.instanceId.localeCompare(b.instanceId),
+      (a, b) =>
+        b.attack - a.attack ||
+        (state.cardGame && a.side !== b.side
+          ? a.side === (state.round % 2 ? "player" : "enemy")
+            ? -1
+            : 1
+          : a.instanceId.localeCompare(b.instanceId)),
     )
   for (const unit of order) {
     if (state.phase === "result") break
@@ -435,6 +609,12 @@ export function playAutomaticRound(current: TacticalBattleState) {
       type: "basic",
       unitId: unit.instanceId,
     })
+    if (state.cardGame && unit.side === "enemy" && state.phase !== "result")
+      state = reduceTacticalBattle(state, {
+        id: `r${state.round}:enemy-ult:${unit.instanceId}`,
+        type: "ultimate",
+        unitId: unit.instanceId,
+      })
   }
   return state
 }

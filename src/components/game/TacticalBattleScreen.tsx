@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import {
   createTacticalBattle,
   playAutomaticRound,
@@ -7,7 +7,17 @@ import {
   type TacticalBattleState,
   type TrapId,
 } from "../../game/tacticalTcg/engine"
-import { claimBattleReward } from "../../game/tacticalTcg/progression"
+import {
+  claimBattleReward,
+  readTacticalProgress,
+  saveTacticalCheckpoint,
+  withTacticalLock,
+  TacticalCheckpointConflict,
+} from "../../game/tacticalTcg/progression"
+import { TACTICAL_CARD_MAP } from "../../game/tacticalTcg/cards"
+import { emptyCardCell } from "../../game/tacticalTcg/engine/cardRuntime"
+import { GameCardView } from "./GameCardView"
+import { Dialog } from "./Dialog"
 import "../../game/tacticalBattle.css"
 
 const TUTORIAL_KEY = "soul-of-meal.tactical-tcg.battle-tutorial.v1"
@@ -95,10 +105,16 @@ export function TacticalBattleScreen({
   options,
   mangaChapterId,
   onProgress,
+  onComplete,
+  onResumeSaved,
+  onExit,
 }: {
   options?: Partial<CreateBattleOptions>
   mangaChapterId?: string | null
   onProgress?: () => void
+  onComplete?: () => void
+  onResumeSaved?: () => void
+  onExit?: () => void
 }) {
   const battleId = options?.battleId ?? "practice-v1",
     initial = useMemo(
@@ -111,18 +127,172 @@ export function TacticalBattleScreen({
           player: options?.player,
           enemy: options?.enemy,
           boss: options?.boss,
+          deck: options?.deck,
+          enemyDeck: options?.enemyDeck,
+          rewardCardId: options?.rewardCardId,
+          enemyManaPenalty: options?.enemyManaPenalty,
         }),
       [battleId],
     )
-  const [battle, setBattle] = useState<TacticalBattleState>(initial),
+  const [savedProgress] = useState(() =>
+    options?.deck ? readTacticalProgress(localStorage) : null,
+  )
+  const saved = savedProgress?.checkpoint ?? null
+  const checkpointRef = useRef(saved)
+  const [showReplacement, setShowReplacement] = useState(
+    !!(
+      saved &&
+      (saved.battleId !== battleId || saved.mode !== initial.mode) &&
+      (saved.phase !== "result" ||
+        (saved.reward &&
+          !savedProgress?.claimedRewardReceiptIds.includes(saved.reward.id)))
+    ),
+  )
+  const [saveConflict, setSaveConflict] = useState(false)
+  const [claimed, setClaimed] = useState(
+    savedProgress?.claimedRewardReceiptIds ?? [],
+  )
+  const [battle, setBattle] = useState<TacticalBattleState>(() => {
+      return saved?.battleId === battleId && saved.mode === initial.mode
+        ? saved
+        : initial
+    }),
     [selected, setSelected] = useState<string | null>(null),
     [trapColumn, setTrapColumn] = useState<0 | 1 | 2 | 3>(1),
     [showTutorial, setShowTutorial] = useState(
       () => localStorage.getItem(TUTORIAL_KEY) !== "done",
     ),
     [claimStatus, setClaimStatus] = useState("")
+  const battleRef = useRef(battle)
+  const commandPending = useRef(false)
+  const hitTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [visualHits, setVisualHits] = useState<Record<string, string>>({})
+  useEffect(
+    () => () => {
+      if (hitTimer.current) clearTimeout(hitTimer.current)
+    },
+    [],
+  )
+  const [selectedCard, setSelectedCard] = useState<number | null>(null)
+  const [showLog, setShowLog] = useState(false)
+  const cards = battle.cardGame?.sides.player
+  const chosenCard =
+    selectedCard !== null && cards
+      ? TACTICAL_CARD_MAP[cards.hand[selectedCard]]
+      : null
+  const updateBattle = async (
+    update: (current: TacticalBattleState) => TacticalBattleState,
+    replace = false,
+  ) => {
+    if (commandPending.current || (showReplacement && !replace) || saveConflict)
+      return false
+    commandPending.current = true
+    try {
+      return await withTacticalLock(() => {
+        const next = update(battleRef.current)
+        if (next === battleRef.current && !replace) {
+          setClaimStatus(
+            "Hành động chưa hợp lệ. Kiểm tra Lửa Bếp, ô trống và mục tiêu của thẻ.",
+          )
+          return false
+        }
+        try {
+          if (next.cardGame) {
+            saveTacticalCheckpoint(localStorage, next, checkpointRef.current)
+            checkpointRef.current = next
+          }
+          const hits: Record<string, string> = {}
+          for (const unit of next.units) {
+            const before = battleRef.current.units.find(
+              (u) => u.instanceId === unit.instanceId,
+            )
+            if (before && before.hp !== unit.hp)
+              hits[unit.instanceId] = unit.hp < before.hp ? "damage" : "heal"
+          }
+          setVisualHits(hits)
+          if (hitTimer.current) clearTimeout(hitTimer.current)
+          hitTimer.current = setTimeout(() => setVisualHits({}), 450)
+          battleRef.current = next
+          setBattle(next)
+          setClaimStatus("")
+          onProgress?.()
+          return true
+        } catch (e) {
+          if (e instanceof TacticalCheckpointConflict) setSaveConflict(true)
+          setClaimStatus(`Chưa lưu được trận: ${(e as Error).message}`)
+          return false
+        }
+      })
+    } catch (e) {
+      setClaimStatus((e as Error).message)
+      return false
+    } finally {
+      commandPending.current = false
+    }
+  }
+  const loadLatest = () => {
+    try {
+      const latest = readTacticalProgress(localStorage),
+        next = latest.checkpoint
+      if (!next) {
+        onExit?.()
+        return
+      }
+      if (next?.battleId !== battleId || next.mode !== initial.mode) {
+        onResumeSaved?.()
+        return
+      }
+      checkpointRef.current = next
+      battleRef.current = next
+      setBattle(next)
+      setClaimed(latest.claimedRewardReceiptIds)
+      setSelectedCard(null)
+      setSelected(null)
+      setSaveConflict(false)
+      setClaimStatus("Đã đọc lại trận mới nhất từ thiết bị.")
+      onProgress?.()
+    } catch (e) {
+      setClaimStatus((e as Error).message)
+    }
+  }
+  const playSelected = async (
+    cell?: { row: 0 | 1; column: 0 | 1 | 2 | 3 },
+    targetId?: string,
+  ) => {
+    if (selectedCard === null || !chosenCard) return
+    const position =
+      cell ??
+      emptyCardCell(battle, "player", chosenCard.tacticalRole !== "guardian") ??
+      undefined
+    if (
+      await updateBattle((current) =>
+        reduceTacticalBattle(current, {
+          id: `card:${current.round}:${current.processedActionIds.length}`,
+          type: "play-card",
+          side: "player",
+          handIndex: selectedCard,
+          cell: position,
+          targetId,
+          column: trapColumn,
+        }),
+      )
+    )
+      setSelectedCard(null)
+  }
   const living = (side: "player" | "enemy") =>
     battle.units.filter((unit) => unit.side === side && !unit.defeated)
+  const traitCounts = new Map<string, number>()
+  for (const unit of living("player"))
+    for (const trait of unit.traits)
+      traitCounts.set(trait, (traitCounts.get(trait) ?? 0) + 1)
+  const synergies = [...traitCounts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+  const schoolCount = new Set(
+    living("player")
+      .filter((u) => u.cardId)
+      .map((u) => TACTICAL_CARD_MAP[u.cardId!].school),
+  ).size
   const selectedUnit = battle.units.find(
       (unit) => unit.instanceId === selected && !unit.defeated,
     ),
@@ -131,7 +301,7 @@ export function TacticalBattleScreen({
     )
   const move = (row: 0 | 1, column: 0 | 1 | 2 | 3) => {
     if (selected)
-      setBattle((current) =>
+      updateBattle((current) =>
         reduceTacticalBattle(current, {
           id: `move:${current.round}:${selected}:${row}:${column}`,
           type: "move",
@@ -143,7 +313,7 @@ export function TacticalBattleScreen({
   const placeTrap = (trapId: TrapId) => {
     const column = selectedUnit?.cell.column ?? trapColumn
     setTrapColumn(column)
-    setBattle((current) =>
+    updateBattle((current) =>
       reduceTacticalBattle(current, {
         id: `trap:${current.round}:${trapId}:${column}:${current.processedActionIds.length}`,
         type: "place-trap",
@@ -157,20 +327,20 @@ export function TacticalBattleScreen({
     localStorage.setItem(TUTORIAL_KEY, "done")
     setShowTutorial(false)
   }
-  const claim = () => {
+  const claim = async () => {
     if (!battle.reward) return
     try {
-      const result = claimBattleReward(
-        localStorage,
-        battle.reward,
-        mangaChapterId,
+      const result = await withTacticalLock(() =>
+        claimBattleReward(localStorage, battle.reward!, mangaChapterId),
       )
+      setClaimed(result.progress.claimedRewardReceiptIds)
       setClaimStatus(
         result.status === "duplicate"
           ? "Phần thưởng này đã được ghi nhận trước đó."
           : `Đã nhận ${battle.reward.tinhVi} Tinh Vị và lưu an toàn.`,
       )
       onProgress?.()
+      onComplete?.()
     } catch (error) {
       setClaimStatus(
         error instanceof Error
@@ -184,15 +354,58 @@ export function TacticalBattleScreen({
       className="tactical-battle"
       aria-label="Bàn Linh Chiến 4 x 2"
       data-phase={battle.phase}
+      data-card-game={!!cards}
       data-boss-phase={battle.boss?.phase ?? undefined}
     >
+      {showReplacement && (
+        <Dialog
+          title="Bạn còn một trận đang lưu"
+          onClose={() => onExit?.()}
+          dismissible={!!onExit}
+        >
+          <p>
+            Trận trước đang ở vòng {saved?.round}. Bắt đầu trận này sẽ thay bản
+            lưu của trận trước; thẻ đã sở hữu và phần thưởng đã nhận vẫn được
+            giữ.
+          </p>
+          <div className="tactical-backup-actions">
+            {onResumeSaved && (
+              <button className="tcg-button ghost" onClick={onResumeSaved}>
+                Tiếp tục trận đã lưu
+              </button>
+            )}
+            <button
+              className="tcg-button primary"
+              onClick={async () => {
+                if (await updateBattle(() => initial, true))
+                  setShowReplacement(false)
+              }}
+            >
+              Bắt đầu trận mới
+            </button>
+          </div>
+          {claimStatus && <p role="status">{claimStatus}</p>}
+          {saveConflict && (
+            <button
+              className="tcg-button ghost"
+              onClick={onResumeSaved ?? onExit}
+            >
+              Đọc lại trận đã lưu
+            </button>
+          )}
+        </Dialog>
+      )}
       <header className="tactical-battle__header">
         <div className="tactical-battle__title">
           <span className="tactical-kicker">
             {battle.mode === "pvp" ? "PHÒNG THỬ NGHIỆM" : "GIAO ƯỚC LINH VỊ"}
           </span>
           <h1>Linh Chiến 4×2</h1>
-          <p>Tổ đội năm Vị Linh · bẫy theo cột · phản ứng thời gian thực</p>
+          <p>
+            {cards
+              ? "Bộ bài 24 lá · rút bài · triệu hồi · Bí thuật & Bẫy Hương"
+              : "Tổ đội năm Vị Linh · bẫy theo cột"}
+          </p>
         </div>
         <div
           className="tactical-round-seal"
@@ -220,6 +433,58 @@ export function TacticalBattleScreen({
           maxHp={battle.commanders.enemy.maxHp}
         />
       </div>
+      {cards && (
+        <div className="tactical-card-resources">
+          <div>
+            <span aria-hidden="true">♨</span>
+            <strong>
+              {cards.mana}
+              <small>/{cards.maxMana}</small>
+            </strong>
+            <span>LỬA BẾP</span>
+            <i>
+              {Array.from({ length: cards.maxMana }, (_, i) => (
+                <b key={i} className={i < cards.mana ? "is-full" : ""} />
+              ))}
+            </i>
+          </div>
+          <span>
+            {cards.deck.length} trong bộ · {cards.hand.length}/8 trên tay ·{" "}
+            {cards.discard.length} ký ức
+          </span>
+          <span>
+            Địch: {battle.cardGame!.sides.enemy.hand.length} lá ·{" "}
+            {battle.cardGame!.sides.enemy.deck.length} trong bộ
+          </span>
+          <button onClick={() => setShowLog(true)}>Nhật ký</button>
+        </div>
+      )}
+      {cards && synergies.length > 0 && (
+        <div
+          className="tactical-synergy-strip"
+          aria-label="Cộng hưởng đội hình"
+        >
+          {synergies.map(([trait, count]) => (
+            <span
+              key={trait}
+              className={count >= 2 ? "is-active" : ""}
+              title={`${trait}: ${count} Vị Linh sống, mốc 2/4`}
+            >
+              <b>{trait}</b>
+              {count}/2
+            </span>
+          ))}
+          <span
+            className={schoolCount >= 3 ? "is-active" : ""}
+            title="Mâm Chung: từ 3 hệ khác nhau, +3 công toàn đội"
+          >
+            Mâm Chung {schoolCount}/3
+          </span>
+          {cards.recipeRound === battle.round && (
+            <span className="is-active">Đồng Vị ✓</span>
+          )}
+        </div>
+      )}
       {battle.boss && (
         <div className="tactical-boss-phase-track" role="status">
           <div>
@@ -250,10 +515,10 @@ export function TacticalBattleScreen({
             <strong>Trận đầu trong 30 giây</strong>
             <ol>
               <li>
-                <b>1</b> Dàn Vị Linh
+                <b>1</b> Chọn bài trên tay
               </li>
               <li>
-                <b>2</b> Gài bẫy theo cột
+                <b>2</b> Chọn ô triệu hồi / dùng phép
               </li>
               <li>
                 <b>3</b> Giao chiến
@@ -277,7 +542,7 @@ export function TacticalBattleScreen({
           <span className={activeTrap ? "is-armed" : ""}>
             <i aria-hidden="true">◆</i>
             {activeTrap
-              ? `${TRAPS.find((trap) => trap.id === activeTrap.trapId)?.name} · Cột ${activeTrap.column + 1}`
+              ? `${activeTrap.cardId ? TACTICAL_CARD_MAP[activeTrap.cardId].name : TRAPS.find((trap) => trap.id === activeTrap.trapId)?.name} · Cột ${activeTrap.column + 1}`
               : "Chưa gài bẫy"}
           </span>
         </div>
@@ -296,24 +561,31 @@ export function TacticalBattleScreen({
             </button>
           ))}
         </div>
-        {TRAPS.map((trap) => (
-          <button
-            key={trap.id}
-            className={activeTrap?.trapId === trap.id ? "is-active" : ""}
-            onClick={() => placeTrap(trap.id)}
-            disabled={battle.phase !== "planning"}
-            aria-pressed={activeTrap?.trapId === trap.id}
-          >
-            <span aria-hidden="true">{trap.glyph}</span>
-            <span>
-              <strong>{trap.name}</strong>
-              <small>{trap.detail}</small>
-            </span>
-            <i aria-hidden="true">
-              {activeTrap?.trapId === trap.id ? "✓" : "+"}
-            </i>
-          </button>
-        ))}
+        {!cards &&
+          TRAPS.map((trap) => (
+            <button
+              key={trap.id}
+              className={activeTrap?.trapId === trap.id ? "is-active" : ""}
+              onClick={() => placeTrap(trap.id)}
+              disabled={battle.phase !== "planning"}
+              aria-pressed={activeTrap?.trapId === trap.id}
+            >
+              <span aria-hidden="true">{trap.glyph}</span>
+              <span>
+                <strong>{trap.name}</strong>
+                <small>{trap.detail}</small>
+              </span>
+              <i aria-hidden="true">
+                {activeTrap?.trapId === trap.id ? "✓" : "+"}
+              </i>
+            </button>
+          ))}
+        {cards && (
+          <p className="tactical-trap-card-hint">
+            Bẫy phải được rút từ bộ bài. Chọn cột, chọn lá Bẫy Hương trên tay
+            rồi nhấn Dùng thẻ. Mỗi bên gài một bẫy.
+          </p>
+        )}
       </div>
       {battle.lastReaction && battle.phase !== "planning" && (
         <p className="tactical-reaction-banner" role="status">
@@ -356,6 +628,22 @@ export function TacticalBattleScreen({
                     role = unit ? ROLE_LABELS[unit.role] : null,
                     canArrange =
                       side === "player" && battle.phase === "planning"
+                  const cardTarget =
+                    !!chosenCard &&
+                    battle.phase === "planning" &&
+                    !!cards &&
+                    cards.mana >= chosenCard.cost &&
+                    (chosenCard.kind === "unit"
+                      ? side === "player" &&
+                        (unit
+                          ? unit.cardId === chosenCard.id && unit.star === 1
+                          : living("player").length < 5)
+                      : chosenCard.kind === "spell" &&
+                        !!unit &&
+                        (chosenCard.tacticalEffect === "damage"
+                          ? side === "enemy"
+                          : chosenCard.tacticalEffect === "buff" &&
+                            side === "player"))
                   return (
                     <div
                       key={`${row}-${column}`}
@@ -363,15 +651,30 @@ export function TacticalBattleScreen({
                         unit ? "is-occupied" : "is-empty"
                       } ${selected === unit?.instanceId ? "is-selected" : ""}`}
                       data-row={row === 0 ? "front" : "back"}
+                      data-change={
+                        unit ? visualHits[unit.instanceId] : undefined
+                      }
+                      data-card-target={cardTarget || undefined}
                     >
                       <button
                         className="tactical-cell__select"
                         onClick={() => {
+                          if (chosenCard && battle.phase === "planning") {
+                            if (!cardTarget) return
+                            playSelected({ row, column }, unit?.instanceId)
+                            return
+                          }
+                          if (side === "player" && unit) {
+                            setSelected(unit.instanceId)
+                            return
+                          }
                           if (!canArrange) return
                           if (unit) setSelected(unit.instanceId)
                           else move(row, column)
                         }}
-                        aria-disabled={side === "enemy"}
+                        aria-disabled={
+                          chosenCard ? !cardTarget : side === "enemy"
+                        }
                         aria-pressed={selected === unit?.instanceId}
                         aria-label={
                           unit
@@ -468,7 +771,7 @@ export function TacticalBattleScreen({
                           <button
                             className="tactical-ultimate"
                             onClick={() =>
-                              setBattle((current) =>
+                              updateBattle((current) =>
                                 reduceTacticalBattle(current, {
                                   id: `ult:${current.round}:${unit.instanceId}`,
                                   type: "ultimate",
@@ -489,6 +792,94 @@ export function TacticalBattleScreen({
           </section>
         ))}
       </div>
+      {cards && battle.phase !== "result" && (
+        <section className="tactical-hand-area" aria-label="Tay bài của bạn">
+          <header>
+            <strong>{chosenCard ? chosenCard.name : "TAY BÀI CỦA BẠN"}</strong>
+            <span>
+              {chosenCard
+                ? `${chosenCard.cost} Lửa Bếp · ${chosenCard.kind === "unit" ? "chọn ô bên bạn để triệu hồi" : chosenCard.kind === "spell" ? "chọn mục tiêu hoặc dùng tự động" : `gài ở cột ${trapColumn + 1}`}`
+                : "Chọn một lá để xem kỹ năng và chơi"}
+            </span>
+            {battle.round === 1 &&
+              !cards.mulliganUsed &&
+              !battle.units.some((u) => u.side === "player") && (
+                <button
+                  disabled={battle.phase !== "planning"}
+                  onClick={async () => {
+                    if (
+                      await updateBattle((c) =>
+                        reduceTacticalBattle(c, {
+                          id: "mulligan",
+                          type: "mulligan",
+                        }),
+                      )
+                    )
+                      setSelectedCard(null)
+                  }}
+                >
+                  Đổi tay đầu
+                </button>
+              )}
+          </header>
+          <div className="tactical-hand">
+            {cards.hand.map((id, index) => (
+              <GameCardView
+                key={`${index}:${id}`}
+                card={TACTICAL_CARD_MAP[id]}
+                compact
+                selected={selectedCard === index}
+                playable={
+                  battle.phase === "planning" &&
+                  TACTICAL_CARD_MAP[id].cost <= cards.mana
+                }
+                onClick={() =>
+                  setSelectedCard(selectedCard === index ? null : index)
+                }
+              />
+            ))}
+            {!cards.hand.length && (
+              <p>Hết bài trên tay. Kết thúc vòng để rút lá tiếp theo.</p>
+            )}
+          </div>
+          {chosenCard && (
+            <div className="tactical-hand-selection">
+              <p>
+                {chosenCard.text}
+                <small className="tactical-target-hint">
+                  {chosenCard.kind === "unit"
+                    ? "Chọn ô sáng bên bạn; chọn quân trùng lá để nâng 2 sao."
+                    : chosenCard.kind === "trap"
+                      ? `Dùng thẻ để gài bẫy ở cột ${trapColumn + 1}.`
+                      : chosenCard.tacticalEffect === "damage"
+                        ? "Chọn quân địch. Nút Dùng thẻ tự chọn quân đầu tiên, hoặc Chỉ huy nếu địch trống sân."
+                        : chosenCard.tacticalEffect === "buff"
+                          ? "Chọn quân bạn. Nút Dùng thẻ tự chọn đồng minh ít máu nhất."
+                          : "Nhấn Dùng thẻ để áp dụng hiệu ứng ghi trên lá."}
+                </small>
+              </p>
+              <button
+                className="tcg-button primary"
+                disabled={
+                  battle.phase !== "planning" || chosenCard.cost > cards.mana
+                }
+                onClick={() => playSelected()}
+              >
+                {chosenCard.kind === "unit"
+                  ? "Triệu hồi vào ô trống"
+                  : "Dùng thẻ"}{" "}
+                · {chosenCard.cost} ♨
+              </button>
+              <button
+                aria-label="Hủy chọn thẻ"
+                onClick={() => setSelectedCard(null)}
+              >
+                ×
+              </button>
+            </div>
+          )}
+        </section>
+      )}
       <aside className="tactical-unit-inspector" aria-live="polite">
         {selectedUnit ? (
           <>
@@ -558,9 +949,10 @@ export function TacticalBattleScreen({
             </div>
             <button
               className="tcg-button primary tactical-main-action"
-              onClick={() =>
-                setBattle((current) => playAutomaticRound(current))
-              }
+              onClick={() => {
+                setSelectedCard(null)
+                updateBattle((current) => playAutomaticRound(current))
+              }}
             >
               <span aria-hidden="true">
                 {battle.phase === "planning" ? "⚔" : "↻"}
@@ -602,6 +994,18 @@ export function TacticalBattleScreen({
                 <div>
                   <small>PHẦN THƯỞNG</small>
                   <strong>+{battle.reward.tinhVi} Tinh Vị</strong>
+                  <p>
+                    +1 vé mở thẻ ·{" "}
+                    {Object.entries(battle.reward.cardCopies)
+                      .map(
+                        ([id, count]) =>
+                          `${TACTICAL_CARD_MAP[id.replace(/^card:/, "")]?.name ?? id} ×${count}`,
+                      )
+                      .join(", ")}
+                  </p>
+                  {claimed.includes(battle.reward.id) && (
+                    <small>Đã nhận và lưu vào bộ sưu tập ✓</small>
+                  )}
                 </div>
               </div>
             ) : battle.mode === "pvp" ? (
@@ -611,25 +1015,67 @@ export function TacticalBattleScreen({
             ) : null}
             <div className="tactical-result__actions">
               {battle.reward && battle.reward.tinhVi > 0 && (
-                <button className="tcg-button primary" onClick={claim}>
-                  Nhận phần thưởng
+                <button
+                  className="tcg-button primary"
+                  onClick={claim}
+                  disabled={claimed.includes(battle.reward.id)}
+                >
+                  {claimed.includes(battle.reward.id)
+                    ? "Đã nhận phần thưởng ✓"
+                    : "Nhận phần thưởng"}
                 </button>
               )}
               <button
                 className="tcg-button ghost"
                 onClick={() => {
-                  setBattle(initial)
+                  updateBattle(() => initial)
                   setSelected(null)
                   setClaimStatus("")
                 }}
               >
                 Đấu lại
               </button>
+              {onExit && (
+                <button className="tcg-button ghost" onClick={onExit}>
+                  Rời bàn chơi
+                </button>
+              )}
             </div>
             {claimStatus && <p>{claimStatus}</p>}
           </div>
         )}
       </footer>
+      {claimStatus && battle.phase !== "result" && (
+        <p role="status" className="tactical-battle-notice">
+          {claimStatus}
+        </p>
+      )}
+      {saveConflict && (
+        <div className="tactical-save-conflict" role="alert">
+          <p>
+            Trận ở tab này đã cũ. Đọc lại bản lưu để giữ những thao tác mới
+            nhất.
+          </p>
+          <button className="tcg-button primary" onClick={loadLatest}>
+            Đọc lại trận mới nhất
+          </button>
+        </div>
+      )}
+      {cards && battle.phase !== "result" && (
+        <button
+          className="tactical-forfeit"
+          onClick={() =>
+            updateBattle((c) =>
+              reduceTacticalBattle(c, {
+                id: `forfeit:${c.round}`,
+                type: "forfeit",
+              }),
+            )
+          }
+        >
+          Đầu hàng trận này
+        </button>
+      )}
       <details className="tactical-log">
         <summary>
           <span aria-hidden="true">☷</span>Nhật ký giao chiến
@@ -644,6 +1090,24 @@ export function TacticalBattleScreen({
           ))}
         </ol>
       </details>
+      {showLog && (
+        <Dialog
+          title={`Nhật ký trận · Vòng ${battle.round}`}
+          onClose={() => setShowLog(false)}
+        >
+          <ol className="tactical-battle-dialog-log">
+            {battle.log.map((entry) => (
+              <li key={entry.id}>{entry.text}</li>
+            ))}
+          </ol>
+          <p>
+            Trong bộ: {cards?.deck.length} · Ký ức:{" "}
+            {cards?.discard
+              .map((id) => TACTICAL_CARD_MAP[id].name)
+              .join(", ") || "chưa có"}
+          </p>
+        </Dialog>
+      )}
     </section>
   )
 }

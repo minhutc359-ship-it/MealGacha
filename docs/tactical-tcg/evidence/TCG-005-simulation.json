@@ -1,0 +1,144 @@
+{
+  "base": "32e089cac3a344b760ba110cd415f5326d956afd",
+  "catalogCards": 181,
+  "simulations": 84,
+  "allTerminal": true,
+  "completedNodes": [
+    "act-1-hearth",
+    "act-1-salt-gate",
+    "act-2-kiln",
+    "act-2-knight",
+    "act-3-cloud",
+    "act-3-regent",
+    "act-4-vow",
+    "act-4-last-table"
+  ],
+  "results": [
+    {
+      "node": "act-1-hearth",
+      "winner": "player",
+      "outcomes": [
+        "player:9",
+        "player:9",
+        "player:9",
+        "player:7",
+        "player:8",
+        "player:7",
+        "player:9",
+        "player:9",
+        "player:9",
+        "player:7",
+        "player:8",
+        "player:7"
+      ]
+    },
+    {
+      "node": "act-1-salt-gate",
+      "winner": "player",
+      "outcomes": [
+        "player:12",
+        "player:11",
+        "player:12",
+        "enemy:11",
+        "enemy:11",
+        "enemy:11",
+        "player:12",
+        "player:11",
+        "player:12",
+        "enemy:11",
+        "enemy:11",
+        "enemy:11"
+      ]
+    },
+    {
+      "node": "act-2-kiln",
+      "winner": "player",
+      "outcomes": [
+        "player:10",
+        "enemy:10",
+        "player:11",
+        "player:8",
+        "player:8",
+        "player:8",
+        "player:8",
+        "player:8",
+        "player:7",
+        "player:8",
+        "player:8",
+        "player:8"
+      ]
+    },
+    {
+      "node": "act-2-knight",
+      "winner": "player",
+      "outcomes": [
+        "player:11",
+        "enemy:10",
+        "player:11",
+        "enemy:8",
+        "enemy:8",
+        "enemy:9",
+        "player:11",
+        "enemy:11",
+        "player:12",
+        "enemy:10",
+        "enemy:10",
+        "enemy:10"
+      ]
+    },
+    {
+      "node": "act-3-cloud",
+      "winner": "player",
+      "outcomes": [
+        "player:12",
+        "player:11",
+        "player:12",
+        "player:9",
+        "player:9",
+        "player:9",
+        "player:12",
+        "player:8",
+        "player:12",
+        "player:8",
+        "player:8",
+        "player:8"
+      ]
+    },
+    {
+      "node": "act-3-regent",
+      "winner": "player",
+      "outcomes": [
+        "enemy:11",
+        "enemy:11",
+        "enemy:11",
+        "player:12",
+        "player:12",
+        "player:12",
+        "enemy:11",
+        "enemy:11",
+        "enemy:11",
+        "player:11",
+        "player:11",
+        "player:11"
+      ]
+    },
+    {
+      "node": "act-4-last-table",
+      "winner": "player",
+      "outcomes": [
+        "player:9",
+        "player:8",
+        "player:12",
+        "player:10",
+        "player:9",
+        "player:10",
+        "player:9",
+        "player:8",
+        "player:12",
+        "player:10",
+        "player:9",
+        "player:10"
+      ]
+    }
+  ]
+}

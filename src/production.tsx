@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client"
 import { startWebOffline } from "./infrastructure/web/offline"
 import { productionRoute } from "./productionRoute"
 import { migrateTacticalStorage } from "./game/tacticalTcg/migration"
+import { recoverTacticalRestore } from "./game/tacticalTcg/progression/backup"
 import "./production.css"
 const root = createRoot(document.getElementById("root")!)
 const render = (content: ReactNode) =>
@@ -29,6 +30,7 @@ async function start() {
     return
   }
   if (route.surface === "legal") return
+  recoverTacticalRestore(localStorage)
   const migration = migrateTacticalStorage(localStorage)
   if (route.surface === "chest") {
     const { OriginalChestApp } = await import("./OriginalChestApp")

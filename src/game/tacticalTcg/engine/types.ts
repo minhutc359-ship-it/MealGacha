@@ -1,5 +1,11 @@
 export type BattleSide = "player" | "enemy"
-export type BattlePhase = "planning" | "clash" | "reaction" | "ultimate" | "round-end" | "result"
+export type BattlePhase =
+  | "planning"
+  | "clash"
+  | "reaction"
+  | "ultimate"
+  | "round-end"
+  | "result"
 export type BattleMode = "campaign" | "pvp"
 export type UnitRole = "guardian" | "striker" | "support" | "mage"
 export type TrapId = "bamboo-guard" | "steam-counter" | "warm-broth"
@@ -19,6 +25,8 @@ export interface UnitDefinition {
   art: string
 }
 export interface BattleUnit extends UnitDefinition {
+  cardId?: string
+  triggers?: Record<string, number>
   instanceId: string
   side: BattleSide
   cell: BoardCell
@@ -44,6 +52,7 @@ export interface BattleLogEntry {
   text: string
 }
 export interface BattleTrap {
+  cardId?: string
   instanceId: string
   trapId: TrapId
   side: BattleSide
@@ -73,6 +82,43 @@ export interface TacticalBattleState {
   log: BattleLogEntry[]
   lastReaction: string | null
   reward: BattleRewardReceipt | null
+  cardGame?: TacticalCardGame
+}
+export interface CardCombatant {
+  deck: string[]
+  hand: string[]
+  discard: string[]
+  mana: number
+  maxMana: number
+  fatigue: number
+  mulliganUsed: boolean
+  spellsThisRound: number
+  lastSchool: string | null
+  recipeRound: number
+}
+export interface TacticalCardGame {
+  sides: Record<BattleSide, CardCombatant>
+  nextUnit: number
+  rewardCardId: string
+  movedRound: number | null
+  attacks: Record<string, number>
+}
+interface PlayCardAction {
+  id: string
+  type: "play-card"
+  side: BattleSide
+  handIndex: number
+  cell?: BoardCell
+  targetId?: string
+  column?: 0 | 1 | 2 | 3
+}
+interface MulliganAction {
+  id: string
+  type: "mulligan"
+}
+interface ForfeitAction {
+  id: string
+  type: "forfeit"
 }
 interface MoveAction {
   id: string
@@ -110,13 +156,27 @@ interface EndRoundAction {
   id: string
   type: "end-round"
 }
-export type TacticalBattleAction = MoveAction | MergeAction | PlaceTrapAction | BeginRoundAction | BasicAction | UltimateAction | EndRoundAction
+export type TacticalBattleAction =
+  | MoveAction
+  | MergeAction
+  | PlaceTrapAction
+  | BeginRoundAction
+  | BasicAction
+  | UltimateAction
+  | EndRoundAction
+  | PlayCardAction
+  | MulliganAction
+  | ForfeitAction
 
 export interface CreateBattleOptions {
   battleId: string
   mode?: BattleMode
   nodeId?: string | null
   seed?: number
+  deck?: string[]
+  enemyDeck?: string[]
+  rewardCardId?: string
+  enemyManaPenalty?: number
   player?: Array<{
     definitionId: string
     cell: BoardCell

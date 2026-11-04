@@ -1,0 +1,1980 @@
+/* Complete card-game shell; all selectors are scoped away from Chest. */
+.tactical-shell {
+  --hub-green: #173d36;
+  --hub-gold: #c49d51;
+  --hub-muted: #718378;
+}
+.tactical-shell .tcg-main {
+  max-width: 1540px;
+  padding: 26px clamp(16px, 3vw, 40px) 38px;
+}
+.tactical-shell .tcg-mobile-nav {
+  display: none;
+}
+.tactical-shell .tcg-sidebar nav button {
+  min-height: 46px;
+  font-size: 12px;
+}
+.tactical-nav-count {
+  margin-left: auto;
+  padding: 1px 6px;
+  border-radius: 99px;
+  color: #f4d38a;
+  background: #eac87420;
+  font-size: 9px;
+}
+.tactical-shell .tcg-sidebar-chapter {
+  margin-top: auto;
+  padding: 22px 10px 0;
+}
+.tactical-shell .tcg-sidebar-chapter strong {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.tactical-shell .tcg-wallet button {
+  min-height: 36px;
+  border-radius: 99px;
+}
+.tactical-shell-notice {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  max-width: 1100px;
+  margin: 14px auto 0;
+  padding: 11px 16px;
+  color: #315a42;
+  background: #e6eee0;
+  border: 1px solid #aac49c;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.tactical-shell-notice button {
+  min-width: 32px;
+  min-height: 32px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+}
+.tactical-hub {
+  max-width: 1180px;
+  margin: auto;
+}
+.tactical-hub-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.tactical-hub-heading .tcg-kicker {
+  color: #a18347;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+.tactical-hub-heading h1 {
+  margin: 5px 0 8px;
+  color: #21493e;
+  font:
+    clamp(28px, 4vw, 42px) / 1.15 Georgia,
+    serif;
+}
+.tactical-hub-heading p {
+  max-width: 660px;
+  color: #718378;
+  font-size: 12px;
+}
+.tactical-hub-heading > strong {
+  display: grid;
+  color: #8f7138;
+  font:
+    34px/1.1 Georgia,
+    serif;
+  white-space: nowrap;
+}
+.tactical-hub-heading > strong small {
+  font: 10px/1.5 sans-serif;
+  color: #829082;
+  margin-top: 5px;
+}
+.tactical-card-filters {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px;
+  border: 1px solid #dce2d5;
+  border-radius: 13px;
+  background: #fcfbf5;
+}
+.tactical-card-filters > input {
+  flex: 1;
+  min-width: 160px;
+}
+.tactical-card-filters input:not([type="checkbox"]),
+.tactical-card-filters select,
+.tactical-deck-summary input {
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid #d5decc;
+  border-radius: 8px;
+  background: #fffdf6;
+  color: #395847;
+  font-size: 12px;
+}
+.tactical-card-filters label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: #6a7f6b;
+  font-size: 11px;
+}
+.tactical-filter-status {
+  padding: 12px 2px;
+  color: #82917f;
+  font-size: 11px;
+}
+.tactical-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 18px;
+}
+.tactical-shell .tactical-collection-grid .tcg-card,
+.tactical-deck-pool .tcg-card {
+  border-radius: 12px;
+  box-shadow: 0 5px 18px #1e3b3114;
+}
+.tactical-shell .tactical-collection-grid .tcg-card-body {
+  min-height: 46%;
+  padding: 11px;
+}
+.tactical-shell .tactical-collection-grid .tcg-card-body > strong {
+  font-size: 18px;
+  line-height: 1.15;
+  margin: 5px 0 7px;
+}
+.tactical-shell .tactical-collection-grid .tcg-card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 9px;
+  line-height: 1.5;
+  min-height: 50px;
+}
+.tactical-shell .tactical-collection-grid .tcg-card-eyebrow {
+  font-size: 6px;
+}
+.tactical-shell .tactical-collection-grid .tcg-card-footer {
+  font-size: 10px;
+}
+.tactical-shell .tactical-collection-grid .tcg-card-count {
+  top: 43%;
+  font-size: 9px;
+}
+.tactical-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+  color: #79907a;
+  font-size: 12px;
+}
+.tactical-pagination button {
+  min-height: 42px;
+  padding: 8px 15px;
+  color: #45664e;
+  border: 1px solid #d5decb;
+  border-radius: 9px;
+  background: #fbfaf3;
+}
+.tactical-card-detail {
+  padding: 8px 4px 14px;
+}
+.tactical-card-detail > div:last-child {
+  display: grid;
+  align-content: center;
+  gap: 15px;
+}
+.tactical-card-detail h3 {
+  font-size: 20px;
+}
+.tactical-card-detail p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.tactical-card-detail blockquote {
+  padding-left: 14px;
+  color: #84917a;
+  border-left: 2px solid #c9ad71;
+  font:
+    italic 15px/1.7 Georgia,
+    serif;
+}
+.tactical-card-detail .tcg-card-text {
+  font-size: 9px;
+}
+.tactical-card-detail > div > small {
+  color: #8d947f;
+  font-size: 11px;
+}
+.tactical-deck-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tactical-deck-tabs button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border-radius: 99px;
+  border: 1px solid #cbd6c1;
+  color: #58735a;
+  background: #fdfbf4;
+  font-size: 11px;
+}
+.tactical-deck-tabs button.is-active {
+  border-color: #315b45;
+  background: #315b45;
+  color: #f8eed0;
+}
+.tactical-deck-builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 22px;
+  align-items: start;
+}
+.tactical-deck-pool {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 15px;
+  margin-top: 16px;
+}
+.tactical-deck-pool > div {
+  position: relative;
+  min-width: 0;
+}
+.tactical-deck-pool > div > small {
+  display: block;
+  margin-top: 4px;
+  color: #819078;
+  font-size: 10px;
+}
+.tactical-deck-pool .tcg-card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 7px;
+  line-height: 1.4;
+}
+.tactical-deck-pool .tcg-card-body > strong {
+  font-size: 13px;
+}
+.tactical-inspect-card {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 6;
+  width: 27px;
+  height: 27px;
+  border: 1px solid #e5cc91;
+  border-radius: 50%;
+  color: #fff5d7;
+  background: #173a32eb;
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.tactical-deck-summary {
+  position: sticky;
+  top: 16px;
+  display: grid;
+  gap: 12px;
+  padding: 19px;
+  border: 1px solid #d9ddca;
+  border-radius: 16px;
+  background: #fcfbf2;
+  box-shadow: 0 8px 35px #304a2e0d;
+}
+.tactical-deck-summary label {
+  display: grid;
+  gap: 5px;
+  color: #7c8d75;
+  font-size: 10px;
+}
+.tactical-deck-summary > strong {
+  font:
+    34px Georgia,
+    serif;
+  color: #31593e;
+}
+.tactical-deck-summary > strong small {
+  font: 12px sans-serif;
+  color: #99a48c;
+}
+.tactical-deck-summary > p {
+  color: #829077;
+  font-size: 10px;
+  line-height: 1.7;
+}
+.tactical-mana-curve {
+  display: flex;
+  gap: 8px;
+  height: 90px;
+  align-items: end;
+  padding: 8px 0;
+  border-bottom: 1px solid #dde0ce;
+}
+.tactical-mana-curve > div {
+  flex: 1;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  color: #839271;
+  font-size: 8px;
+}
+.tactical-mana-curve i {
+  width: 100%;
+  max-height: 60px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(#aec599, #6f9572);
+}
+.tactical-deck-list {
+  display: grid;
+  gap: 4px;
+  max-height: 400px;
+  overflow: auto;
+}
+.tactical-deck-list button {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  min-height: 38px;
+  padding: 6px 9px;
+  border: 1px solid #e2e5d6;
+  border-radius: 7px;
+  background: #f2f3e6;
+  color: #4a6a45;
+  text-align: left;
+}
+.tactical-deck-list button b {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #35593f;
+  color: #f5edce;
+  font-size: 10px;
+}
+.tactical-deck-list button span {
+  flex: 1;
+  font-size: 10px;
+}
+.tactical-deck-list button small {
+  font-size: 9px;
+}
+.tactical-form-error {
+  color: #a75948 !important;
+}
+.tactical-pack-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 35px;
+  padding: 25px;
+  border: 1px solid #d6dccb;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #e9eddd, #fcfbf2);
+}
+.tactical-pack-display {
+  display: grid;
+  place-items: center;
+  min-height: 350px;
+  background: radial-gradient(ellipse, #b8bd9440, transparent 65%);
+}
+.tactical-pack-object {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 195px;
+  height: 290px;
+  padding: 25px 13px;
+  color: #eccd83;
+  border: 1px solid #c9a259;
+  border-radius: 13px;
+  background: radial-gradient(circle at 50% 42%, #3a6552, #173c38 65%);
+  box-shadow:
+    12px 14px 0 #24463512,
+    0 20px 40px #2140343b;
+  transform: rotate(-7deg);
+  outline: 1px solid #d8bd6c55;
+  outline-offset: -9px;
+}
+.tactical-pack-object::before {
+  position: absolute;
+  inset: 14px;
+  content: "";
+  border: 1px solid #dbbf6830;
+  border-radius: 10px;
+  pointer-events: none;
+}
+.tactical-pack-object small {
+  font-size: 7px;
+  letter-spacing: 0.16em;
+}
+.tactical-pack-object > span {
+  display: grid;
+  width: 100px;
+  height: 100px;
+  place-items: center;
+  color: #f1d790;
+  border: 1px solid #d8bf6350;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 9px #e7cf7610,
+    0 0 40px #e7cf7620;
+  font:
+    55px Georgia,
+    serif;
+}
+.tactical-pack-object strong {
+  font:
+    22px Georgia,
+    serif;
+}
+.tactical-pack-offer h2 {
+  margin: 0 0 8px;
+  font:
+    28px Georgia,
+    serif;
+  color: #34583e;
+}
+.tactical-pack-offer > p {
+  color: #8a967d;
+  font-size: 11px;
+}
+.tactical-pack-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin: 17px 0;
+}
+.tactical-pack-selector button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+  border: 1px solid #dbe1cb;
+  border-radius: 10px;
+  color: #4c6c48;
+  background: #fafbf0;
+  text-align: left;
+}
+.tactical-pack-selector button.is-active {
+  border-color: #ab8d49;
+  background: #f0e9d3;
+  box-shadow: inset 0 0 0 1px #ab8d4930;
+}
+.tactical-pack-selector button b {
+  font-size: 23px;
+  color: #a48c4e;
+}
+.tactical-pack-selector button span {
+  font-size: 11px;
+}
+.tactical-pack-selector button small {
+  display: block;
+  margin-top: 2px;
+  color: #8e9b80;
+  font-size: 8px;
+}
+.tactical-pack-offer > .tcg-button {
+  width: 100%;
+  min-height: 48px;
+  font-size: 12px !important;
+}
+.tactical-pack-pity {
+  margin-top: 10px !important;
+}
+.tactical-pack-odds {
+  margin: 16px 0;
+  padding: 12px 15px;
+  border: 1px solid #dbe1cd;
+  border-radius: 12px;
+  color: #79886e;
+  background: #f9f8ed;
+}
+.tactical-pack-odds summary {
+  color: #597149;
+  cursor: pointer;
+  font-size: 12px;
+}
+.tactical-pack-odds p {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.tactical-notice {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #c3d7b5;
+  color: #567944;
+  background: #edf4e7;
+  font-size: 12px;
+}
+.tactical-pack-reveal {
+  margin-top: 25px;
+}
+.tactical-pack-reveal > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+.tactical-pack-reveal > header small {
+  color: #a78e54;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+}
+.tactical-pack-reveal h2 {
+  color: #315a43;
+  font:
+    23px Georgia,
+    serif;
+}
+.tactical-pack-reveal > div {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 13px;
+}
+.tactical-pack-reveal article {
+  position: relative;
+  min-width: 0;
+  animation: tcg-card-arrive 0.4s ease-out;
+}
+.tactical-pack-reveal > p {
+  margin: 12px 0;
+  color: #7a8d6d;
+  font-size: 11px;
+}
+.tactical-card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  aspect-ratio: 0.69;
+  padding: 20px 8px;
+  border: 1px solid #c2a15b;
+  border-radius: 10px;
+  background: radial-gradient(circle, #315b4d, #14372f);
+  color: #e8ce86;
+  outline: 1px solid #c2a15b55;
+  outline-offset: -6px;
+  box-shadow: 0 7px 17px #26432e26;
+}
+.tactical-card-back small {
+  font-size: 7px;
+  letter-spacing: 0.12em;
+}
+.tactical-card-back span {
+  display: grid;
+  width: 65%;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid #d4b56655;
+  border-radius: 50%;
+  font:
+    38px Georgia,
+    serif;
+}
+.tactical-card-back b {
+  font-size: 6px;
+  letter-spacing: 0.1em;
+}
+.tactical-new-card {
+  position: absolute;
+  right: 4px;
+  bottom: -6px;
+  z-index: 8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #e8c573;
+  color: #3b3013;
+  box-shadow: 0 3px 8px #362c1130;
+  font-size: 8px;
+}
+
+.tactical-home {
+  max-width: 1200px;
+  margin: auto;
+}
+.tactical-home-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 365px;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 35px;
+  color: #eee5cd;
+  border: 1px solid #c2aa6b44;
+  border-radius: 23px;
+  background: #153b36;
+}
+.tactical-home-hero > img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+}
+.tactical-home-hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: linear-gradient(90deg, #102f2af7, #14392dc9 58%, #14392d48);
+}
+.tactical-home-hero > div:first-of-type {
+  max-width: 550px;
+  z-index: 2;
+}
+.tactical-home-hero small {
+  color: #e1c782;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+.tactical-home-hero h1 {
+  margin: 17px 0;
+  font:
+    clamp(36px, 4.2vw, 56px) / 1.03 Georgia,
+    serif;
+  color: #fff1ca;
+  letter-spacing: -0.035em;
+}
+.tactical-home-hero h1 em {
+  color: #e2be73;
+  font-weight: 400;
+}
+.tactical-home-hero p {
+  max-width: 395px;
+  color: #bdd0bb;
+  font-size: 12px;
+  line-height: 1.9;
+}
+.tactical-home-hero > div:first-of-type > div {
+  display: flex;
+  gap: 10px;
+  margin: 23px 0;
+}
+.tactical-home-hero .tcg-button.ghost {
+  color: #ebdba6;
+  border-color: #e4cf8844;
+  background: #0d302666;
+}
+.tactical-home-hero > div:first-of-type > span {
+  color: #94b095;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+.tactical-home-featured {
+  position: absolute;
+  right: 25px;
+  top: 50px;
+  display: flex;
+  width: 300px;
+  transform: rotate(7deg);
+}
+.tactical-home-featured .tcg-card {
+  min-width: 170px;
+  width: 170px;
+  box-shadow: 0 16px 35px #0006;
+}
+.tactical-home-featured .tcg-card:first-child {
+  transform: rotate(-15deg) translateY(6px);
+  margin-right: -40px;
+}
+.tactical-home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 20px 0;
+  border: 1px solid #d9e0cf;
+  border-radius: 14px;
+  background: #fcfbf3;
+}
+.tactical-home-stats button {
+  display: grid;
+  gap: 4px;
+  padding: 18px 22px;
+  border: 0;
+  border-right: 1px solid #dfe3d3;
+  background: transparent;
+  color: #335b3f;
+  text-align: left;
+}
+.tactical-home-stats button:last-child {
+  border: 0;
+}
+.tactical-home-stats strong {
+  font:
+    29px Georgia,
+    serif;
+}
+.tactical-home-stats strong small {
+  color: #a3b18c;
+  font-size: 12px;
+}
+.tactical-home-stats span {
+  color: #8a987b;
+  font-size: 10px;
+}
+.tactical-home-columns {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+.tactical-active-deck {
+  min-width: 0;
+  padding: 21px;
+  border: 1px solid #d9dfcb;
+  border-radius: 17px;
+  background: #fcfbf3;
+}
+.tactical-active-deck > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 17px;
+}
+.tactical-active-deck > header small {
+  color: #b2985e;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.tactical-active-deck > header h2 {
+  color: #31593b;
+  font:
+    21px Georgia,
+    serif;
+}
+.tactical-active-deck > header button {
+  color: #8b9a77;
+  border: 0;
+  background: none;
+  font-size: 10px;
+}
+.tactical-active-deck > div {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+.tactical-active-deck > div .tcg-card-text {
+  display: none;
+}
+.tactical-active-deck > div .tcg-card-body > strong {
+  font-size: 10px;
+}
+.tactical-active-deck footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 17px;
+}
+.tactical-active-deck footer span {
+  color: #929f83;
+  font-size: 8px;
+}
+.tactical-next-scene {
+  position: relative;
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  min-height: 285px;
+  padding: 24px;
+  border-radius: 17px;
+  background: #214839;
+  isolation: isolate;
+}
+.tactical-next-scene > img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tactical-next-scene::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  z-index: -1;
+  background: linear-gradient(transparent, #0d2b28f5);
+}
+.tactical-next-scene small {
+  color: #e7cf89;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.tactical-next-scene h2 {
+  margin: 5px 0;
+  color: #fff1ca;
+  font:
+    26px Georgia,
+    serif;
+}
+.tactical-next-scene p {
+  margin-bottom: 14px;
+  color: #b5c9b6;
+  font-size: 10px;
+}
+.tactical-next-scene .tcg-button {
+  color: #ebd594;
+  border-color: #ebd59455;
+  background: #12352d66;
+}
+.tactical-daily-strip {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #d8dfc5;
+  border-radius: 14px;
+  background: #ebefde;
+}
+.tactical-daily-strip > span {
+  color: #b19a53;
+  font-size: 28px;
+}
+.tactical-daily-strip > div {
+  flex: 1;
+}
+.tactical-daily-strip strong {
+  color: #4a683a;
+  font-size: 12px;
+}
+.tactical-daily-strip p {
+  margin-top: 3px;
+  color: #869674;
+  font-size: 10px;
+}
+.tactical-daily-strip > a {
+  color: #8b9c73;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.tactical-core-loop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 25px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tactical-core-loop li {
+  display: grid;
+  gap: 5px;
+  padding: 20px;
+  border: 1px solid #e0e2d3;
+  border-radius: 14px;
+}
+.tactical-core-loop b {
+  color: #c2ad73;
+  font:
+    22px Georgia,
+    serif;
+}
+.tactical-core-loop strong {
+  color: #47653e;
+  font-size: 13px;
+}
+.tactical-core-loop p {
+  color: #8f9b80;
+  font-size: 11px;
+}
+.tactical-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.tactical-guide-grid article,
+.tactical-guide-synergy,
+.tactical-settings-cards article {
+  padding: 23px;
+  border: 1px solid #dbe0cd;
+  border-radius: 16px;
+  background: #fcfbf3;
+}
+.tactical-guide-grid article > b {
+  color: #b59d5f;
+  font:
+    22px Georgia,
+    serif;
+}
+.tactical-guide-grid h2,
+.tactical-settings-cards h2,
+.tactical-guide-synergy h2 {
+  margin: 5px 0 10px;
+  color: #3e613f;
+  font:
+    23px Georgia,
+    serif;
+}
+.tactical-guide-grid p,
+.tactical-guide-synergy p,
+.tactical-settings-cards p {
+  color: #7a8a6d;
+  font-size: 12px;
+  line-height: 1.9;
+}
+.tactical-guide-synergy {
+  margin: 20px 0;
+}
+.tactical-settings-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+.tactical-settings-cards button {
+  margin-top: 15px;
+}
+.tactical-settings-cards label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  color: #607c53;
+  font-size: 12px;
+}
+.tactical-pack-reveal .tcg-card {
+  animation: tactical-reveal-flip 0.45s ease-out;
+  transform-origin: center;
+}
+.tactical-cell[data-change="damage"] {
+  animation: tactical-card-hit 0.4s ease-out;
+  border-color: #ed7d77;
+}
+.tactical-cell[data-change="heal"] {
+  animation: tactical-card-heal 0.4s ease-out;
+  border-color: #7ad59c;
+}
+@keyframes tactical-reveal-flip {
+  from {
+    transform: perspective(600px) rotateY(80deg);
+    opacity: 0.3;
+  }
+  to {
+    transform: perspective(600px) rotateY(0);
+    opacity: 1;
+  }
+}
+@keyframes tactical-card-hit {
+  30% {
+    transform: translateX(-3px);
+    box-shadow: inset 0 0 28px #d6505960;
+  }
+}
+@keyframes tactical-card-heal {
+  50% {
+    box-shadow: 0 0 22px #79dd9c66;
+  }
+}
+.presentation-quiet .tactical-shell *,
+.presentation-light .tactical-shell * {
+  animation: none !important;
+  transition: none !important;
+}
+.presentation-light .tactical-battle::before {
+  display: none;
+}
+
+.tactical-story-scene {
+  position: relative;
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #c2a86255;
+  border-radius: 24px;
+  background: #0f2a29;
+  color: #ece8d7;
+}
+.tactical-story-scene__background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+}
+.tactical-story-scene::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(#0e2829b3, #071c23ed);
+}
+.tactical-story-scene > button {
+  color: #dbce9e !important;
+  border-color: #dbce9e33 !important;
+  background: #0b282688 !important;
+}
+.tactical-story-scene > header {
+  margin: 30px 0 25px;
+}
+.tactical-story-scene > header small {
+  color: #ceb673;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+}
+.tactical-story-scene h1 {
+  margin-top: 8px;
+  color: #fff0c9;
+  font:
+    clamp(28px, 4vw, 42px) Georgia,
+    serif;
+}
+.tactical-story-scene > article {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 25px;
+  padding: 23px;
+  border: 1px solid #d3c39122;
+  border-radius: 18px;
+  background: #091e22bf;
+}
+.tactical-story-scene > article > img {
+  width: 150px;
+  aspect-ratio: 0.8;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 12px;
+}
+.tactical-story-scene > article strong {
+  color: #e9ca7f;
+  font-size: 14px;
+}
+.tactical-story-scene > article p {
+  margin: 12px 0;
+  color: #c3d2c3;
+  font-size: 14px;
+  line-height: 2;
+}
+.tactical-story-scene blockquote {
+  margin-top: 20px;
+  color: #eddba6;
+  font:
+    italic 19px/1.8 Georgia,
+    serif;
+}
+.tactical-story-scene > aside {
+  margin: 20px 0;
+  padding: 15px 18px;
+  border-left: 2px solid #c9aa5f;
+  border-radius: 0 12px 12px 0;
+  background: #c9aa5f0d;
+}
+.tactical-story-scene > aside small {
+  color: #d2b86d;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+}
+.tactical-story-scene > aside p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+.tactical-story-scene > aside span {
+  color: #8cae94;
+  font-size: 10px;
+}
+.tactical-story-scene footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.tactical-story-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.tactical-story-choices button {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  text-align: left;
+  color: #e6ce87;
+  border: 1px solid #cdb26a66;
+  border-radius: 12px;
+  background: #cdb26a12;
+}
+.tactical-story-choices button span {
+  color: #9dbba5;
+  font-size: 12px;
+}
+
+/* Hand and decision controls stay visible while the battle arena scrolls. */
+.tactical-battle[data-card-game="true"] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: calc(100dvh - 128px);
+  min-height: 650px;
+  max-height: 1000px;
+  padding: 15px;
+}
+.tactical-battle[data-card-game="true"] .tactical-battle__header {
+  padding: 0;
+}
+.tactical-battle[data-card-game="true"] .tactical-battle__title h1 {
+  font-size: 25px;
+}
+.tactical-battle[data-card-game="true"] .tactical-battle__title p {
+  font-size: 8px;
+}
+.tactical-battle[data-card-game="true"] .tactical-round-seal {
+  width: 52px;
+  min-width: 52px;
+}
+.tactical-battle[data-card-game="true"] .tactical-round-seal strong {
+  font-size: 20px;
+}
+.tactical-battle[data-card-game="true"] .tactical-commanders {
+  margin: 0;
+}
+.tactical-battle[data-card-game="true"] .tactical-commander {
+  padding: 7px 10px;
+}
+.tactical-battle[data-card-game="true"] .tactical-commander__sigil {
+  width: 29px;
+  min-width: 29px;
+  font-size: 14px;
+}
+.tactical-battle[data-card-game="true"] .tactical-commander strong {
+  font-size: 19px;
+  margin-bottom: 4px;
+}
+.tactical-battle[data-card-game="true"] .tactical-tutorial {
+  padding: 8px 12px;
+  margin: 0;
+  grid-template-columns: 1fr auto;
+}
+.tactical-battle[data-card-game="true"] .tactical-tutorial__icon {
+  display: none;
+}
+.tactical-battle[data-card-game="true"] .tactical-tutorial > button {
+  grid-column: auto;
+  width: auto;
+}
+.tactical-battle[data-card-game="true"] .tactical-tutorial > div > small {
+  display: none;
+}
+.tactical-battle[data-card-game="true"] .tactical-tutorial strong {
+  font-size: 12px;
+}
+.tactical-battle[data-card-game="true"] .tactical-boss-phase-track {
+  margin: 0;
+  padding: 5px 10px;
+}
+.tactical-card-resources {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #a5c4ac;
+  font-size: 9px;
+}
+.tactical-card-resources > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #edc376;
+}
+.tactical-card-resources > button {
+  min-height: 27px;
+  padding: 3px 8px;
+  border: 1px solid #9bbfa144;
+  border-radius: 7px;
+  background: #163e36;
+  color: #b1ccb5;
+  font-size: 8px;
+}
+.tactical-synergy-strip {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tactical-synergy-strip > span {
+  display: flex;
+  gap: 5px;
+  padding: 2px 7px;
+  border: 1px solid #a5bf9f22;
+  border-radius: 99px;
+  color: #7a9987;
+  background: #14352e80;
+  font-size: 7px;
+}
+.tactical-synergy-strip > span.is-active {
+  color: #e4cd83;
+  border-color: #e4cd8355;
+  background: #66552a33;
+}
+.tactical-battle-dialog-log {
+  display: grid;
+  gap: 6px;
+  padding: 8px 20px;
+  max-height: 55dvh;
+  overflow: auto;
+  color: #4e6b4e;
+  font-size: 12px;
+}
+.tactical-card-resources strong {
+  font-size: 20px;
+}
+.tactical-card-resources strong small {
+  color: #7c9789;
+  font-size: 10px;
+}
+.tactical-card-resources > div > span:last-of-type {
+  font-size: 7px;
+  letter-spacing: 0.1em;
+}
+.tactical-card-resources i {
+  display: flex;
+  gap: 2px;
+}
+.tactical-card-resources i b {
+  width: 6px;
+  height: 13px;
+  border: 1px solid #b99a4f44;
+  border-radius: 2px;
+  background: #8b744220;
+}
+.tactical-card-resources i b.is-full {
+  background: #e9b866;
+  box-shadow: 0 0 6px #e9b86644;
+}
+.tactical-battle[data-card-game="true"] .tactical-trap-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 6px 10px;
+}
+.tactical-battle[data-card-game="true"] .tactical-trap-heading {
+  padding: 0;
+}
+.tactical-battle[data-card-game="true"] .tactical-trap-heading > div {
+  display: none;
+}
+.tactical-battle[data-card-game="true"] .tactical-trap-columns {
+  display: flex;
+  align-items: center;
+}
+.tactical-battle[data-card-game="true"] .tactical-trap-columns button {
+  width: 30px;
+  min-height: 30px;
+}
+.tactical-trap-card-hint {
+  flex: 1;
+  color: #8ca798;
+  font-size: 8px;
+}
+.tactical-battle[data-card-game="true"] .tactical-arena {
+  flex: 1;
+  min-height: 190px;
+  margin: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #5c8975 #0c2729;
+}
+.tactical-battle[data-card-game="true"] .tactical-side {
+  padding: 5px;
+}
+.tactical-battle[data-card-game="true"] .tactical-side > header {
+  padding: 0 4px 5px;
+}
+.tactical-battle[data-card-game="true"] .tactical-board {
+  gap: 5px;
+  padding: 4px;
+}
+.tactical-battle[data-card-game="true"] .tactical-cell {
+  height: 100px;
+  aspect-ratio: auto;
+}
+.tactical-battle[data-card-game="true"] .tactical-unit__art img {
+  object-position: 50% 30%;
+  height: 100%;
+}
+.tactical-battle[data-card-game="true"] .tactical-unit__art::after {
+  background:
+    linear-gradient(90deg, #06151b88, transparent 40%),
+    linear-gradient(transparent, #06151b 90%);
+}
+.tactical-battle[data-card-game="true"] .tactical-unit__traits {
+  display: none;
+}
+.tactical-battle[data-card-game="true"] .tactical-unit-inspector {
+  display: none;
+}
+.tactical-battle[data-card-game="true"] .tactical-controls {
+  flex-shrink: 0;
+  min-height: 52px;
+  margin: 0;
+  padding: 6px 10px;
+}
+.tactical-battle[data-card-game="true"] .tactical-controls p {
+  font-size: 8px;
+}
+.tactical-battle[data-card-game="true"] .tactical-main-action {
+  min-height: 43px;
+  padding: 6px 12px;
+}
+.tactical-battle[data-card-game="true"] .tactical-log {
+  display: none;
+}
+.tactical-hand-area {
+  flex-shrink: 0;
+  padding: 9px;
+  border: 1px solid #c4aa6040;
+  border-radius: 13px;
+  background: #08242a;
+}
+.tactical-hand-area > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.tactical-hand-area > header strong {
+  color: #ebd299;
+  font-size: 9px;
+}
+.tactical-hand-area > header span {
+  color: #87a493;
+  font-size: 8px;
+}
+.tactical-hand-area > header button {
+  padding: 3px 7px;
+  min-height: 29px;
+  border: 1px solid #b99d5355;
+  border-radius: 6px;
+  background: #d4b35c15;
+  color: #e7d093;
+  font-size: 8px;
+}
+.tactical-hand {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 3px 3px 7px;
+  scrollbar-color: #78946e #09262b;
+}
+.tactical-hand > .tcg-card {
+  flex: 0 0 100px;
+  width: 100px;
+  height: 137px;
+  aspect-ratio: auto;
+}
+.tactical-hand .tcg-card-art {
+  bottom: 35%;
+}
+.tactical-hand .tcg-card-body {
+  min-height: 39%;
+  padding: 6px;
+}
+.tactical-hand .tcg-card-body > strong {
+  font-size: 10px !important;
+  margin: 4px 0 3px;
+}
+.tactical-hand .tcg-card-text,
+.tactical-hand .tcg-card-eyebrow,
+.tactical-hand .tcg-card-footer > span:last-child {
+  display: none;
+}
+.tactical-hand .tcg-card-footer {
+  margin-top: 0;
+  padding-top: 4px;
+  font-size: 9px;
+}
+.tactical-hand .tcg-card-cost {
+  top: 4px;
+  left: 4px;
+  width: 23px;
+  height: 24px;
+  font-size: 15px;
+}
+.tactical-hand .tcg-card-school {
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+}
+.tactical-hand .is-playable {
+  border-color: #82cfa2;
+  box-shadow: 0 0 10px #82cfa233;
+}
+.tactical-hand .is-selected {
+  outline-color: #efc86e;
+}
+.tactical-hand-selection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 39px;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid #c4aa6022;
+}
+.tactical-hand-selection p {
+  flex: 1;
+  color: #bed3bf;
+  font-size: 9px;
+  line-height: 1.6;
+}
+.tactical-hand-selection > .tcg-button {
+  min-height: 34px;
+  white-space: nowrap;
+  font-size: 8px !important;
+}
+.tactical-hand-selection > button:last-child {
+  min-width: 29px;
+  min-height: 29px;
+  color: #b3cbb4;
+  background: none;
+  border: 1px solid #b3cbb433;
+  border-radius: 50%;
+}
+.tactical-battle-notice {
+  padding: 6px 9px;
+  border: 1px solid #d9b15e66;
+  border-radius: 7px;
+  background: #4e361c;
+  color: #f4deac;
+  font-size: 10px;
+}
+.tactical-forfeit {
+  align-self: flex-end;
+  color: #88a193;
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  font-size: 8px;
+}
+.tactical-battle[data-card-game="true"][data-phase="result"] .tactical-arena {
+  max-height: 230px;
+}
+.tactical-battle[data-card-game="true"][data-phase="result"]
+  .tactical-controls {
+  flex: 1;
+  overflow: auto;
+}
+.tactical-battle[data-card-game="true"] .tactical-reaction-banner {
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 8px;
+}
+@keyframes tcg-card-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .tactical-home-featured {
+    right: -25px;
+    opacity: 0.75;
+  }
+  .tactical-home-hero p {
+    max-width: 340px;
+  }
+  .tactical-home-columns {
+    grid-template-columns: 1fr;
+  }
+  .tactical-next-scene {
+    min-height: 230px;
+  }
+  .tactical-deck-builder {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 15px;
+  }
+  .tactical-deck-pool {
+    grid-template-columns: repeat(auto-fill, minmax(114px, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .tactical-home-featured {
+    display: none;
+  }
+  .tactical-home-hero {
+    padding: 25px;
+    min-height: 330px;
+  }
+  .tactical-home-hero p {
+    max-width: 100%;
+  }
+  .tactical-home-stats button {
+    padding: 14px;
+  }
+  .tactical-home-stats strong {
+    font-size: 24px;
+  }
+  .tactical-daily-strip {
+    flex-wrap: wrap;
+  }
+  .tactical-daily-strip > div {
+    flex-basis: 80%;
+  }
+  .tactical-core-loop,
+  .tactical-guide-grid,
+  .tactical-settings-cards {
+    grid-template-columns: 1fr;
+  }
+  .tactical-deck-builder {
+    grid-template-columns: 1fr;
+  }
+  .tactical-deck-summary {
+    position: static;
+    grid-row: 1;
+  }
+  .tactical-deck-list {
+    max-height: 210px;
+  }
+  .tactical-deck-pool {
+    grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  }
+  .tactical-pack-layout {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    gap: 5px;
+  }
+  .tactical-pack-display {
+    min-height: 230px;
+  }
+  .tactical-pack-object {
+    width: 140px;
+    height: 210px;
+    padding: 18px 10px;
+  }
+  .tactical-pack-object > span {
+    width: 70px;
+    height: 70px;
+    font-size: 38px;
+  }
+  .tactical-pack-object strong {
+    font-size: 18px;
+  }
+  .tactical-pack-reveal > div {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .tactical-story-scene {
+    padding: 18px;
+  }
+  .tactical-story-scene > article {
+    grid-template-columns: 65px 1fr;
+    gap: 14px;
+    padding: 16px;
+  }
+  .tactical-story-scene > article > img {
+    width: 65px;
+    aspect-ratio: 1;
+  }
+  .tactical-story-scene > article p {
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .tactical-story-choices {
+    grid-template-columns: 1fr;
+  }
+  .tactical-battle[data-card-game="true"] {
+    padding: 10px;
+    min-height: 610px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-tutorial ol {
+    display: none;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-controls {
+    display: flex;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-action-copy {
+    display: none;
+  }
+  .tactical-card-resources > span:last-child {
+    display: none;
+  }
+  .tactical-hand-area > header > span {
+    display: none;
+  }
+  .tactical-hand > .tcg-card {
+    flex-basis: 85px;
+    width: 85px;
+    height: 114px;
+  }
+  .tactical-hand-selection {
+    flex-wrap: wrap;
+  }
+  .tactical-hand-selection p {
+    flex-basis: 100%;
+    font-size: 8px;
+  }
+  .tactical-hand-selection > .tcg-button {
+    flex: 1;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-cell {
+    height: 83px;
+  }
+  .tactical-trap-card-hint {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .tactical-shell .tcg-sidebar {
+    display: none;
+  }
+  .tactical-shell .tcg-content {
+    padding-bottom: 0;
+  }
+  .tactical-shell .tcg-main {
+    padding: 16px 12px 85px;
+  }
+  .tactical-shell .tcg-mobile-nav {
+    position: fixed;
+    z-index: 35;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: #17362ff5;
+    border-top: 1px solid #d7bd7645;
+    scrollbar-width: none;
+  }
+  .tactical-shell .tcg-mobile-nav button {
+    flex: 0 0 72px;
+    display: grid;
+    gap: 4px;
+    justify-items: center;
+    min-height: 60px;
+    padding: 8px 5px;
+    color: #a9c0ac;
+    background: transparent;
+    border: 0;
+    font-size: 9px;
+  }
+  .tactical-shell .tcg-mobile-nav button b {
+    font-size: 19px;
+    font-weight: 400;
+  }
+  .tactical-shell .tcg-mobile-nav button[aria-current="page"] {
+    color: #f2d68c;
+    background: #d9ba6515;
+    box-shadow: inset 0 2px #e2c175;
+  }
+  .tactical-shell .tcg-main[data-screen="battle"] {
+    padding: 5px 10px 66px;
+  }
+  .tactical-shell[data-active-screen="battle"] .tcg-topbar {
+    height: 43px;
+  }
+  .tactical-hub-heading {
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: 18px;
+  }
+  .tactical-hub-heading > strong {
+    font-size: 27px;
+  }
+  .tactical-collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+  }
+  .tactical-card-filters {
+    gap: 7px;
+  }
+  .tactical-card-filters > input {
+    flex-basis: 100%;
+  }
+  .tactical-card-filters > select {
+    flex: 1;
+    min-width: 0;
+    font-size: 10px;
+  }
+  .tactical-shell .tactical-collection-grid .tcg-card-body > strong {
+    font-size: 15px;
+  }
+  .tactical-shell .tactical-collection-grid .tcg-card-text {
+    font-size: 8px;
+    -webkit-line-clamp: 3;
+    min-height: 34px;
+  }
+  .tactical-home-hero {
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .tactical-home-hero h1 {
+    font-size: 43px;
+  }
+  .tactical-home-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tactical-home-stats button:nth-child(2) {
+    border-right: 0;
+  }
+  .tactical-home-stats button:nth-child(-n + 2) {
+    border-bottom: 1px solid #dfe3d3;
+  }
+  .tactical-active-deck {
+    padding: 15px;
+  }
+  .tactical-active-deck > div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .tactical-active-deck > div > .tcg-card:last-child {
+    display: none;
+  }
+  .tactical-active-deck footer {
+    flex-wrap: wrap;
+  }
+  .tactical-pack-reveal .tcg-card-body > strong {
+    font-size: 10px !important;
+  }
+  .tactical-pack-reveal .tcg-card-text {
+    display: none;
+  }
+  .tactical-battle[data-card-game="true"] {
+    height: calc(100dvh - 117px - env(safe-area-inset-bottom));
+    min-height: 0;
+    border-radius: 13px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-battle__title h1 {
+    font-size: 21px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-battle__title p {
+    display: none;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-commander {
+    padding: 4px 7px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-commander__sigil {
+    display: none;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-battle__header {
+    min-height: 42px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-tutorial {
+    display: none;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-arena {
+    min-height: 125px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-forfeit {
+    position: absolute;
+    top: 21px;
+    right: 78px;
+    font-size: 7px;
+  }
+  .tactical-battle[data-card-game="true"] .tactical-round-seal {
+    width: 45px;
+    min-width: 45px;
+  }
+  .tactical-card-resources {
+    font-size: 8px;
+  }
+  .tactical-card-resources > div > i {
+    display: none;
+  }
+  .tactical-hand-selection p {
+    max-height: 42px;
+    overflow: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tactical-shell *,
+  .tactical-shell *::before,
+  .tactical-shell *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.tactical-resume-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 26px;
+  border: 1px solid #c7b77b;
+  border-radius: 16px;
+  background: #f5f1df;
+  color: #23433c;
+}
+.tactical-resume-banner > span {
+  font-size: 36px;
+  color: #927a37;
+}
+.tactical-resume-banner > div {
+  flex: 1;
+  min-width: 0;
+}
+.tactical-resume-banner small {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #796c42;
+}
+.tactical-resume-banner h2 {
+  margin: 4px 0;
+  font: 24px var(--font-serif, Georgia, serif);
+}
+.tactical-resume-banner p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.tactical-backup-panel {
+  min-width: 0;
+}
+.tactical-backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+}
+.tactical-file-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tactical-file-button input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.tactical-file-button:focus-within {
+  outline: 3px solid #ac8d43;
+  outline-offset: 3px;
+}
+.tactical-backup-paste summary {
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+.tactical-backup-paste label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.tactical-backup-paste textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 130px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #bdbcae;
+  border-radius: 8px;
+  font: 12px/1.6 monospace;
+  background: #fffef8;
+  color: #20372f;
+}
+.tactical-backup-paste button {
+  margin-top: 10px;
+}
+.tactical-backup-undo {
+  border-top: 1px solid #dcd9c8;
+  margin-top: 16px;
+  padding-top: 12px;
+}
+.tactical-backup-preview {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+.tactical-backup-preview caption {
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+.tactical-backup-preview th,
+.tactical-backup-preview td {
+  padding: 10px 6px;
+  border-bottom: 1px solid #d8d1ba;
+  text-align: left;
+}
+.tactical-backup-preview td {
+  text-align: right;
+}
+.tactical-save-conflict {
+  position: fixed;
+  z-index: 70;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(580px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 18px 22px;
+  border: 1px solid #bc8f3e;
+  border-radius: 14px;
+  background: #fff5db;
+  box-shadow: 0 12px 45px #14261e44;
+  color: #47331e;
+}
+.tactical-save-conflict p {
+  margin: 0 0 10px;
+}
+.tactical-result__reward p {
+  font-size: 13px !important;
+  line-height: 1.6;
+}
+.tactical-cell[data-card-target="true"] {
+  outline: 2px solid #d2ac58;
+  outline-offset: -2px;
+  background-color: #fff4c52b;
+}
+.tactical-target-hint {
+  display: block;
+  margin-top: 4px;
+  color: #735c23;
+  font-size: 11px;
+  line-height: 1.5;
+}
+@media (max-width: 760px) {
+  .tactical-resume-banner {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+  }
+  .tactical-resume-banner > div {
+    flex-basis: calc(100% - 60px);
+  }
+  .tactical-resume-banner > button {
+    width: 100%;
+  }
+  .tactical-backup-actions > .tcg-button {
+    flex: 1 1 180px;
+    text-align: center;
+  }
+}

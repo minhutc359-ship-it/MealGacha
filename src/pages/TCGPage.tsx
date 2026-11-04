@@ -2,79 +2,190 @@ import { lazy, Suspense, useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
 import { TacticalBattleScreen } from "../components/game/TacticalBattleScreen"
 import { TacticalCampaignScreen } from "../components/game/TacticalCampaignScreen"
+import { TacticalHome, TacticalGuide } from "../components/game/TacticalHome"
 import { BrandMark } from "../components/layout/BrandMark"
 import { LegalLinks } from "../legal/LegalLinks"
 import {
+  ensureTacticalAccount,
+  claimTacticalDaily,
   readTacticalProgress,
+  withTacticalLock,
   type TacticalProgress,
 } from "../game/tacticalTcg/progression"
+import {
+  ownedTacticalCards,
+  tacticalDeckErrors,
+} from "../game/tacticalTcg/cards"
+import { useAppStore } from "../store/useAppStore"
 import "../game/tcg.css"
 import "../game/tacticalBattle.css"
+import "../game/tacticalHub.css"
 
 const MangaChronicle = lazy(() =>
   import("../components/game/MangaChronicle").then((module) => ({
     default: module.MangaChronicle,
   })),
 )
+const TacticalCollection = lazy(() =>
+  import("../components/game/TacticalCardHub").then((module) => ({
+    default: module.TacticalCollection,
+  })),
+)
+const TacticalDeckBuilder = lazy(() =>
+  import("../components/game/TacticalCardHub").then((module) => ({
+    default: module.TacticalDeckBuilder,
+  })),
+)
+const TacticalPacks = lazy(() =>
+  import("../components/game/TacticalCardHub").then((module) => ({
+    default: module.TacticalPacks,
+  })),
+)
+const TacticalBackupPanel = lazy(() =>
+  import("../components/game/TacticalBackupPanel").then((module) => ({
+    default: module.TacticalBackupPanel,
+  })),
+)
 const NAV = [
-  { id: "battle", name: "Linh Chiến", icon: "⚔" },
-  { id: "campaign", name: "Chiến dịch", icon: "◇" },
-  { id: "manga", name: "Manga ký ức", icon: "▤" },
+  { id: "home", name: "Sảnh", icon: "⌂" },
+  { id: "campaign", name: "Hành trình", icon: "◇" },
+  { id: "decks", name: "Bộ bài", icon: "▱" },
+  { id: "collection", name: "Bộ sưu tập", icon: "▤" },
+  { id: "packs", name: "Mở thẻ", icon: "✧" },
+  { id: "manga", name: "Manga", icon: "☰" },
+  { id: "guide", name: "Cách chơi", icon: "?" },
   { id: "settings", name: "Cài đặt", icon: "⚙" },
-] as const
+]
+const MANGA_UNLOCKS: Record<string, string[]> = {
+  "manga:act-1": ["lantern"],
+  "manga:act-2": ["harbor"],
+  "manga:act-3": ["garden", "tide"],
+  "manga:act-4": ["moon"],
+  "manga:ending": ["last-table"],
+}
+
 export function TCGPage() {
-  const [params, setParams] = useSearchParams(),
-    requested = params.get("tab"),
-    tab =
-      requested === "play" || !requested
-        ? "battle"
-        : NAV.some((item) => item.id === requested)
-          ? requested
-          : "battle",
-    queue = params.get("queue")
+  const preferences = useAppStore((state) => state.user.preferences)
+  const updatePreference = useAppStore((state) => state.updatePreference)
+  const [params, setParams] = useSearchParams()
+  const requested = params.get("tab") ?? "home"
+  const tab =
+    requested === "play"
+      ? "battle"
+      : [...NAV.map((n) => n.id), "battle"].includes(requested)
+        ? requested
+        : "home"
   const [progress, setProgress] = useState<TacticalProgress>(() =>
-      readTacticalProgress(localStorage),
-    ),
-    refresh = () => setProgress(readTacticalProgress(localStorage)),
-    go = (id: string) => setParams(id === "battle" ? {} : { tab: id })
+    ensureTacticalAccount(localStorage),
+  )
+  const [notice, setNotice] = useState("")
+  const activeDeck =
+    progress.decks.find((d) => d.id === progress.activeDeckId) ??
+    progress.decks[0]
+  const deckErrors = tacticalDeckErrors(
+    activeDeck?.cards ?? [],
+    ownedTacticalCards(progress.cardCopies),
+  )
+  const go = (id: string) => {
+    refresh()
+    setParams(id === "home" ? {} : { tab: id })
+    window.scrollTo({ top: 0 })
+  }
+  const refresh = () => {
+    try {
+      setProgress(readTacticalProgress(localStorage))
+    } catch (e) {
+      setNotice((e as Error).message)
+    }
+  }
+  const resume = () => {
+    try {
+      const latest = readTacticalProgress(localStorage)
+      setProgress(latest)
+      const saved = latest.checkpoint
+      if (!saved) {
+        setNotice("Chưa có trận đang lưu.")
+        return
+      }
+      setParams(
+        saved.nodeId
+          ? { tab: "campaign", resume: saved.nodeId }
+          : {
+              tab: "battle",
+              resume: saved.battleId,
+              ...(saved.mode === "pvp" ? { queue: "pvp" } : {}),
+            },
+      )
+      window.scrollTo({ top: 0 })
+    } catch (e) {
+      setNotice((e as Error).message)
+    }
+  }
   useEffect(() => {
     const sync = (event: StorageEvent) => {
       if (event.key?.includes("tactical-tcg")) refresh()
     }
     window.addEventListener("storage", sync)
-    return () => window.removeEventListener("storage", sync)
+    window.addEventListener("focus", refresh)
+    return () => {
+      window.removeEventListener("storage", sync)
+      window.removeEventListener("focus", refresh)
+    }
   }, [])
+  const daily = async () => {
+    try {
+      setProgress(
+        await withTacticalLock(() => claimTacticalDaily(localStorage)),
+      )
+      setNotice(
+        "Quà hôm nay đã được ghi nhận: 1 vé và 30 Tinh Vị (mỗi ngày một lần).",
+      )
+    } catch (e) {
+      setNotice((e as Error).message)
+    }
+  }
   return (
-    <div className="tcg-app tactical-shell">
+    <div className="tcg-app tactical-shell" data-active-screen={tab}>
+      <a className="tcg-skip" href="#tcg-main">
+        Đến nội dung
+      </a>
       <aside className="tcg-sidebar tactical-sidebar">
-        <button className="tcg-brand" onClick={() => go("battle")}>
+        <button className="tcg-brand" onClick={() => go("home")}>
           <BrandMark />
           <span>
             <strong>SOUL OF MEAL</strong>
             <small>LINH CHIẾN VỊ GIÁC</small>
           </span>
         </button>
+        <span className="tcg-sidebar-label">HÀNH TRÌNH CỦA BẠN</span>
         <nav aria-label="Điều hướng Linh Chiến">
           {NAV.map((item) => (
             <button
               key={item.id}
+              title={item.name}
               className={tab === item.id ? "active" : ""}
               aria-current={tab === item.id ? "page" : undefined}
               onClick={() => go(item.id)}
             >
               <b aria-hidden="true">{item.icon}</b>
               <span>{item.name}</span>
+              {item.id === "packs" && progress.packTickets > 0 && (
+                <small className="tactical-nav-count">
+                  {progress.packTickets}
+                </small>
+              )}
             </button>
           ))}
         </nav>
         <Link className="tcg-pvp-entry" to="/chest">
-          ◇ Rương Vị Giác
+          ◇ Rương Vị Giác ↗
         </Link>
         <div className="tcg-sidebar-chapter">
-          <span>TIẾN TRÌNH</span>
-          <strong>{progress.tinhVi} Tinh Vị</strong>
+          <span>BỘ BÀI ĐANG TRANG BỊ</span>
+          <strong>{activeDeck?.name}</strong>
           <small>
-            {progress.completedCampaignNodes.length}/8 nút chiến dịch
+            {activeDeck?.cards.length}/24 lá ·{" "}
+            {progress.completedCampaignNodes.length}/8 chặng
           </small>
         </div>
       </aside>
@@ -82,14 +193,23 @@ export function TCGPage() {
         <header className="tcg-topbar">
           <div>
             <span className="tcg-topbar-label">SOUL OF MEAL / </span>
-            <strong>{NAV.find((item) => item.id === tab)?.name}</strong>
+            <strong>
+              {tab === "battle"
+                ? "Linh Chiến"
+                : NAV.find((n) => n.id === tab)?.name}
+            </strong>
           </div>
           <div className="tcg-wallet">
+            <button onClick={() => go("packs")} title="Vé mở thẻ">
+              ▱ <b>{progress.packTickets}</b>
+            </button>
             <span title="Tinh Vị">
               <i>✧</i>
               <b>{progress.tinhVi}</b>
             </span>
-            <Link to="/chest">Mở Rương</Link>
+            <button onClick={() => go("guide")} aria-label="Hướng dẫn chơi">
+              ?
+            </button>
           </div>
         </header>
         <nav className="tcg-mobile-nav" aria-label="Điều hướng nhanh">
@@ -104,59 +224,176 @@ export function TCGPage() {
             </button>
           ))}
         </nav>
-        <main id="tcg-main" className="tcg-main" data-screen={tab}>
-          {tab === "battle" && (
-            <TacticalBattleScreen
-              options={{
-                battleId: queue === "pvp" ? "pvp-practice-v1" : "practice-v1",
-                mode: queue === "pvp" ? "pvp" : "campaign",
-              }}
-              onProgress={refresh}
-            />
-          )}{" "}
-          {tab === "campaign" && (
-            <TacticalCampaignScreen onProgress={setProgress} />
-          )}{" "}
-          {tab === "manga" && (
-            <>
-              <div className="tcg-section-heading">
-                <div>
-                  <span className="tcg-kicker">KÝ ỨC ĐÃ MỞ</span>
-                  <h1>Manga Linh Vị</h1>
-                  <p>
-                    {progress.unlockedMangaChapters.length} chương đã được mở
-                    bằng tiến trình chiến dịch.
-                  </p>
+        {notice && (
+          <div className="tactical-shell-notice" role="status">
+            <span>{notice}</span>
+            <button onClick={() => setNotice("")} aria-label="Đóng thông báo">
+              ×
+            </button>
+          </div>
+        )}
+        <main
+          id="tcg-main"
+          className="tcg-main"
+          data-screen={tab}
+          tabIndex={-1}
+        >
+          <Suspense
+            fallback={
+              <p className="tcg-panel" role="status">
+                Đang mở ký ức…
+              </p>
+            }
+          >
+            {tab === "home" && (
+              <TacticalHome
+                progress={progress}
+                go={go}
+                onDaily={daily}
+                onResume={resume}
+              />
+            )}
+            {tab === "decks" && (
+              <TacticalDeckBuilder
+                progress={progress}
+                onProgress={setProgress}
+              />
+            )}
+            {tab === "collection" && (
+              <TacticalCollection
+                progress={progress}
+                onProgress={setProgress}
+              />
+            )}
+            {tab === "packs" && (
+              <TacticalPacks progress={progress} onProgress={setProgress} />
+            )}
+            {(tab === "battle" || tab === "campaign") &&
+            deckErrors.length > 0 ? (
+              <section className="tcg-panel">
+                <h1>Bộ bài chưa sẵn sàng</h1>
+                <p>{deckErrors[0]}</p>
+                <button
+                  className="tcg-button primary"
+                  onClick={() => go("decks")}
+                >
+                  Sửa bộ bài
+                </button>
+              </section>
+            ) : (
+              <>
+                {tab === "battle" && (
+                  <TacticalBattleScreen
+                    key={`${activeDeck.id}:${params.get("queue") ?? "solo"}:${params.get("resume") ?? ""}`}
+                    options={{
+                      battleId:
+                        params.has("resume") &&
+                        progress.checkpoint?.nodeId === null
+                          ? progress.checkpoint.battleId
+                          : `practice:${activeDeck.id}:v2`,
+                      mode: params.get("queue") === "pvp" ? "pvp" : "campaign",
+                      deck: activeDeck.cards,
+                      seed: 101,
+                    }}
+                    onProgress={refresh}
+                    onResumeSaved={resume}
+                    onExit={() => go("home")}
+                  />
+                )}
+                {tab === "campaign" && (
+                  <TacticalCampaignScreen
+                    key={params.get("resume") ?? "map"}
+                    deck={activeDeck.cards}
+                    resumeNodeId={params.get("resume")}
+                    onResumeSaved={resume}
+                    onProgress={setProgress}
+                    onManga={() => go("manga")}
+                  />
+                )}
+              </>
+            )}
+            {tab === "manga" && (
+              <>
+                <div className="tcg-section-heading">
+                  <div>
+                    <span className="tcg-kicker">
+                      MỖI LỜI KỂ ĐỀU ĐƯỢC GIỮ LẠI
+                    </span>
+                    <h1>Manga Linh Vị</h1>
+                    <p>
+                      Chương mở theo campaign. Đọc đối thoại trong Hành trình để
+                      theo trọn mạch truyện mới.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <Suspense
-                fallback={
-                  <p className="tcg-panel" role="status">
-                    Đang mở Manga ký ức…
-                  </p>
-                }
-              >
-                <MangaChronicle track="tcg" clearedStages={[]} />
-              </Suspense>
-            </>
-          )}{" "}
-          {tab === "settings" && (
-            <section className="tcg-panel">
-              <h1>Cài đặt & dữ liệu</h1>
-              <p>
-                Tiến trình, biên nhận thưởng và chương Manga được lưu trên thiết
-                bị. Mỗi biên nhận chỉ được áp dụng một lần, kể cả khi reload.
-              </p>
-              <p>
-                PvP hiện là phòng thử nghiệm cục bộ: không nhập sức mạnh hay xếp
-                hạng từ bản lưu cũ và không cấp thưởng PvE.
-              </p>
-              <LegalLinks />
-              <Link className="tcg-button ghost" to="/chest">
-                Mở Rương Vị Giác
-              </Link>
-            </section>
-          )}
+                <MangaChronicle
+                  track="tcg"
+                  unlockedChapterIds={progress.unlockedMangaChapters.flatMap(
+                    (id) => MANGA_UNLOCKS[id] ?? [],
+                  )}
+                  clearedStages={[]}
+                />
+              </>
+            )}
+            {tab === "guide" && <TacticalGuide onPlay={() => go("battle")} />}
+            {tab === "settings" && (
+              <section className="tactical-hub">
+                <header className="tactical-hub-heading">
+                  <div>
+                    <span className="tcg-kicker">HỒ SƠ NGƯỜI GIỮ VỊ</span>
+                    <h1>Cài đặt & dữ liệu</h1>
+                    <p>
+                      Tiến trình được lưu trên thiết bị. Trận đang chơi tiếp tục
+                      sau khi tải lại.
+                    </p>
+                  </div>
+                </header>
+                <div className="tactical-settings-cards">
+                  <TacticalBackupPanel
+                    onRestored={() => window.location.reload()}
+                  />
+                  <article>
+                    <h2>Hiển thị & chuyển động</h2>
+                    <p>
+                      Giảm hiệu ứng khi cần tập trung vào lá bài hoặc khi thiết
+                      bị yếu.
+                    </p>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={preferences.reducedMotion}
+                        onChange={(e) =>
+                          updatePreference("reducedMotion", e.target.checked)
+                        }
+                      />{" "}
+                      Giảm chuyển động
+                    </label>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={preferences.graphicsQuality === "low"}
+                        onChange={(e) =>
+                          updatePreference(
+                            "graphicsQuality",
+                            e.target.checked ? "low" : "normal",
+                          )
+                        }
+                      />{" "}
+                      Đồ họa nhẹ
+                    </label>
+                    <button
+                      className="tcg-button ghost"
+                      onClick={() => go("guide")}
+                    >
+                      Xem toàn bộ luật
+                    </button>
+                  </article>
+                </div>
+                <LegalLinks />
+                <Link to="/chest">Rương Vị Giác ↗</Link>
+              </section>
+            )}
+          </Suspense>
         </main>
       </div>
     </div>

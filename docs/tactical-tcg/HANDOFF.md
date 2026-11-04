@@ -2,6 +2,22 @@
 
 Nhánh: `game/tactical-tcg`.
 
+TCG-006: bản nguồn xây lại từ `e855a67` sau khi phiên browser chọn tệp bị timeout và workspace tạm bị maintenance dọn. Các kiểm tra cuối được chạy lại: 2,349/178 unit, 79 focused, cả hai typecheck, release records và production/package 376 files PASS. Failure full-suite đầu là source assertion cũ đòi `<GameErrorBoundary>` không có props; đã giữ kiểm tra boundary bằng regex/open+close và chạy lại toàn bộ PASS.
+
+`backup.ts` quản lý export cũ/mới, strict preview, so raw snapshot trước khi import/undo, journal/readback/rollback và khôi phục trước migration. Game reload sau import/undo để các store Rương/profile đọc cùng dữ liệu. Recovery panel vẫn dùng được khi Tactical render lỗi; raw recovery export gồm cả prefix Tactical. Snapshot undo chỉ giữ một lần nhập gần nhất. Không merge nhiều thiết bị hoặc cung cấp server authority.
+
+Checkpoint writes nhận expected checkpoint, so bản lưu trước khi cập nhật; thay đổi wallet độc lập không chặn trận. Home có resume practice/campaign; component cảnh báo trước khi thay trận chưa xong/chưa nhận thưởng. `newTacticalRequestId` dùng UUID nếu có, random bytes+timestamp+sequence ở HTTP/WebView thiếu UUID; không thay đổi odds.
+
+Browser giai đoạn đầu: daily disabled, triệu hồi/chi phí/rút bài, resume+reload, stale-tab reject/read-latest, campaign replace confirm và pack reveal PASS. File chooser timeout, phiên mất và ảnh local bị dọn; native file import/touch/device chưa được nhận là PASS. Kiểm tra cuối tiếp tục sau mốc lưu Git này. Xem evidence TCG-006.
+
+TCG-005 là bản khôi phục vòng TCG thực sau phản hồi prototype sơ sài: `/` mở sảnh; collection/decks/packs/guide đã có route tab. Trận luyện/campaign nhận active deck (24 lá, owned/limit validated), tay đầu 4 lá và sân người chơi trống. Native IDs/art/lore của 181 thẻ được giữ; Tactical text mô tả hiệu ứng đã chuyển đổi, nội tại/công thức có engine authority.
+
+New fields bổ sung trên progress v1, không đổi/xóa key cũ: account/decks/tickets/pity/pack receipts/choices/checkpoint. `ensureTacticalAccount` hồi phục một lần legacy profile và thêm starter. `withTacticalLock` serialize UI writers khi browser hỗ trợ; transaction fallback vẫn là optimistic localStorage, không phải database/server lock. Rương cũ giữ dữ liệu/receipt; gói TCG ở màn riêng. Chưa có UI import backup mới hoặc cloud save.
+
+Luồng thử nhanh: Sảnh → nhận quà ngày → Mở thẻ → lật 5 lá → Bộ sưu tập tìm thẻ mới → Bộ bài sửa/lưu → Luyện tập chọn lá và ô/mục tiêu → Giao chiến/Tuyệt kỹ/Kết vòng → reload checkpoint → Hành trình đọc cảnh trước/sau/nhận reward → Manga. Thử cả 390px dọc/ngang và desktop trên preview thật trước merge.
+
+Local verification hiện hành: 2,337 tests/177 files, 67 focused, hai typecheck, release records và build/package 375 files PASS. 84 mô phỏng chiến dịch bằng public commands (không sửa HP/kết quả) chứng minh có đường đi đủ 8 nút với thẻ kiếm được và lựa chọn ending. Xem evidence TCG-005; đây không là kết quả human balance/playtest.
+
 TCG-003 hoàn tất local: Chest cấp collectible/Tinh Vị exact-once, bẫy/reaction/Tuyệt kỹ dùng được, boss ba pha, merge campaign/PvP đúng số bản, tutorial trận đầu và Manga lazy boundary. Không xóa hoặc ghi đè reward Chest cũ.
 
 TCG-004 hoàn tất local: battle hierarchy, commander HP, boss phase, Vị Linh card/inspector, trap panel, result/log, campaign progress và Chest reward UI đã được đồng bộ; responsive 760/430px và reduced-motion có kiểm tra source/SSR. Vite dev server không khởi động được trong sandbox do `uv_interface_addresses`; production build vẫn PASS. QA hình ảnh/touch trên thiết bị thật chưa chạy.

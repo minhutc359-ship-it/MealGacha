@@ -127,7 +127,8 @@ describe("AW2 performance and telemetry contract", () => {
     )
     expect(source).not.toContain("<WorldPreview production />")
     expect(source).not.toContain("<Aw2ErrorBoundary>")
-    expect(tactical).toContain("<GameErrorBoundary>")
+    expect(tactical).toMatch(/<GameErrorBoundary(?:\s|>)/)
+    expect(tactical).toContain("</GameErrorBoundary>")
     expect(boundary).not.toMatch(
       /localStorage|sessionStorage|fetch\(|sendBeacon|XMLHttpRequest/,
     )
