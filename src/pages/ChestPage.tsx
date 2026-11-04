@@ -34,6 +34,11 @@ import { getDailyQuestions } from "../domain/dailyQuiz"
 import { getFeaturedEvents } from "../domain/events"
 import { buildPool } from "../domain/drawReward"
 import { useGameAudio, useGameMusic } from "../components/game/GameAudio"
+import {
+  claimChestReward,
+  syncPendingChestRewards,
+  type TacticalChestGrant,
+} from "../game/tacticalTcg/progression"
 
 type ChestState = "idle" | "key-flight" | "inserting" | "locking" | "charging" | "pulse" | "anticipation" | "impact" | "opening" | "reward-rise" | "result"
 
@@ -123,6 +128,9 @@ export function ChestPage({ standalone = false }: { standalone?: boolean }) {
   const [showOdds, setShowOdds] = useState(false)
   const [skipAnimation, setSkipAnimation] = useState(false)
   const [showSpiritCard, setShowSpiritCard] = useState(false)
+  const [tacticalGrant, setTacticalGrant] = useState<TacticalChestGrant | null>(
+    null,
+  )
   const [ritualRarity, setRitualRarity] = useState<RewardRarity | null>(null)
   const processingRef = useRef(false)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -263,6 +271,17 @@ export function ChestPage({ standalone = false }: { standalone?: boolean }) {
     }
 
     pendingRewardRef.current = result.reward
+    try {
+      setTacticalGrant(claimChestReward(localStorage, result.reward))
+    } catch (error) {
+      setTacticalGrant(null)
+      showToast(
+        error instanceof Error
+          ? error.message
+          : "Thẻ đã nằm trong Rương nhưng chưa đồng bộ được với Linh Chiến.",
+        "error",
+      )
+    }
     setRitualRarity(result.reward.rarity ?? "common")
     preloadFoodAsset(result.reward.dishId, "full")
     if (result.reward.dish.imageUrl) cacheFoodAsset(result.reward.dish.imageUrl)
@@ -304,6 +323,7 @@ export function ChestPage({ standalone = false }: { standalone?: boolean }) {
     pendingRewardRef.current = null
     setChestState("idle")
     setRitualRarity(null)
+    setTacticalGrant(null)
     customTrackRef.current = false
     processingRef.current = false
   }
@@ -331,6 +351,19 @@ export function ChestPage({ standalone = false }: { standalone?: boolean }) {
   useEffect(() => {
     preloadChestOpeningTrack()
     preloadRewardReceivedTrack()
+    try {
+      const recovered = syncPendingChestRewards(localStorage, user.rewards)
+      if (recovered.length)
+        showToast(
+          `Đã phục hồi ${recovered.length} phần thưởng Linh Chiến còn dở.`,
+          "success",
+        )
+    } catch {
+      showToast(
+        "Rương vẫn an toàn; phần thưởng Linh Chiến đang chờ đồng bộ lại.",
+        "error",
+      )
+    }
   }, [])
 
   useEffect(() => {
@@ -596,6 +629,7 @@ export function ChestPage({ standalone = false }: { standalone?: boolean }) {
       {showReveal && reward && (
         <RevealModal
           reward={reward}
+          tacticalGrant={tacticalGrant}
           showSpiritCard={showSpiritCard}
           canOpenAgain={unlimited || user.keys >= 1}
           collectionLabel={standalone ? "↩ Trở lại hành trình" : undefined}

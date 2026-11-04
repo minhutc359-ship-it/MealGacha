@@ -29,6 +29,7 @@ export const TACTICAL_CAMPAIGN_NODES: TacticalCampaignNode[] = [
     mangaChapterId: "manga:act-2",
     battle: {
       seed: 111,
+      boss: { definitionId: "aroma-regent", title: "Hương Vương" },
       enemy: [
         { definitionId: "salt-scarab", cell: { row: 0, column: 0 } },
         { definitionId: "salt-scarab", cell: { row: 0, column: 2 } },
@@ -52,7 +53,10 @@ export const TACTICAL_CAMPAIGN_NODES: TacticalCampaignNode[] = [
     kind: "boss",
     prerequisite: "act-2-kiln",
     mangaChapterId: "manga:act-3",
-    battle: { seed: 222 },
+    battle: {
+      seed: 222,
+      boss: { definitionId: "kiln-knight", title: "Kỵ Sĩ Không Vị" },
+    },
   },
   {
     id: "act-3-cloud",
@@ -70,7 +74,10 @@ export const TACTICAL_CAMPAIGN_NODES: TacticalCampaignNode[] = [
     kind: "boss",
     prerequisite: "act-3-cloud",
     mangaChapterId: "manga:act-4",
-    battle: { seed: 333 },
+    battle: {
+      seed: 333,
+      boss: { definitionId: "aroma-regent", title: "Hương Vương" },
+    },
   },
   {
     id: "act-4-vow",
@@ -88,7 +95,10 @@ export const TACTICAL_CAMPAIGN_NODES: TacticalCampaignNode[] = [
     kind: "boss",
     prerequisite: "act-4-vow",
     mangaChapterId: "manga:ending",
-    battle: { seed: 444 },
+    battle: {
+      seed: 444,
+      boss: { definitionId: "aroma-regent", title: "Hương Vương Tận Cùng" },
+    },
   },
 ]
 

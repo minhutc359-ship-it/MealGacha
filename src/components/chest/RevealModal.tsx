@@ -11,12 +11,14 @@ import { FoodImage } from "../food/FoodImage"
 import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
 import { shareResultCard } from "../../infrastructure/share/resultCard"
+import type { TacticalChestGrant } from "../../game/tacticalTcg/progression"
 
 const ChestSpiritCard = lazy(() => import("./ChestSpiritCard"))
 
 interface Props {
   embedded?: boolean
   reward: RewardInstance
+  tacticalGrant?: TacticalChestGrant | null
   canOpenAgain: boolean
   showSpiritCard?: boolean
   collectionLabel?: string
@@ -29,6 +31,7 @@ interface Props {
 export function RevealModal({
   embedded = false,
   reward,
+  tacticalGrant,
   canOpenAgain,
   showSpiritCard = false,
   collectionLabel = "📦 Bộ sưu tập",
@@ -261,6 +264,19 @@ export function RevealModal({
                   +1 thẻ Vị Linh đã được cộng vào hồ sơ. Bật “Hiện thẻ Vị Linh ở
                   kết quả” để xem thẻ thay cho ảnh món ăn.
                 </p>
+              )}
+              {tacticalGrant && (
+                <aside className="reward-tactical-grant" role="status">
+                  <strong>⚔ ĐÃ ĐỒNG BỘ LINH CHIẾN</strong>
+                  <span>
+                    {tacticalGrant.reward === "card"
+                      ? `+1 thẻ ${tacticalGrant.collectibleName}`
+                      : tacticalGrant.reward === "tinh-vi"
+                        ? `Thẻ trùng · +${tacticalGrant.tinhVi} Tinh Vị`
+                        : "Phần thưởng này đã được ghi nhận trước đó"}
+                  </span>
+                  <small>{tacticalGrant.rarityName} · biên nhận an toàn</small>
+                </aside>
               )}
               <div className="reward-utility-actions">
                 <button

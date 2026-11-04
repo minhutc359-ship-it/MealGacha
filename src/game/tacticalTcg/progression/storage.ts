@@ -83,6 +83,9 @@ function migrationBaseline(storage: StorageLike) {
     const progress = emptyTacticalProgress(profile.migratedAt)
     progress.tinhVi = Math.max(0, profile.collection?.tinhVi ?? 0)
     progress.cardCopies = copies(profile.collection?.cardCopies)
+    for (const id of profile.collection?.ownedSpiritAliases ?? [])
+      if (typeof id === "string" && !progress.cardCopies[id])
+        progress.cardCopies[id] = 1
     return progress
   } catch {
     return emptyTacticalProgress()

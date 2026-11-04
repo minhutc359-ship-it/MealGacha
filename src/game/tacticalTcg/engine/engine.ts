@@ -1,6 +1,7 @@
 import { TACTICAL_UNIT_MAP } from "./catalog"
 import type {
   BattleSide,
+  BattleTrap,
   BattleUnit,
   BoardCell,
   CreateBattleOptions,
@@ -80,6 +81,14 @@ export function createTacticalBattle(
     if (seen.has(key)) throw Error(`Duplicate board cell: ${key}`)
     seen.add(key)
   }
+  const bossUnit = options.boss
+    ? units.find(
+        (unit) =>
+          unit.side === "enemy" && unit.id === options.boss?.definitionId,
+      )
+    : null
+  if (options.boss && !bossUnit)
+    throw Error(`Boss is missing from formation: ${options.boss.definitionId}`)
   return {
     schemaVersion: 1,
     battleId: options.battleId,
@@ -90,13 +99,107 @@ export function createTacticalBattle(
     phase: "planning",
     winner: null,
     units,
+    traps: [],
+    boss:
+      options.boss && bossUnit
+        ? { unitId: bossUnit.instanceId, title: options.boss.title, phase: 1 }
+        : null,
     commanders: {
       player: { hp: 100, maxHp: 100 },
       enemy: { hp: 100, maxHp: 100 },
     },
     processedActionIds: [],
     log: [{ id: "start", text: "Dàn trận trên bàn 4×2." }],
+    lastReaction: null,
     reward: null,
+  }
+}
+
+const trapName = (trapId: BattleTrap["trapId"]) =>
+  ({
+    "bamboo-guard": "Mành Tre",
+    "steam-counter": "Hơi Nóng Phản Kích",
+    "warm-broth": "Nước Dùng Ấm",
+  })[trapId]
+
+function log(state: TacticalBattleState, text: string) {
+  state.log.push({ id: `${state.log.length}`, text })
+}
+
+function reactionLog(state: TacticalBattleState, text: string) {
+  state.lastReaction = text
+  log(state, text)
+}
+
+function matchingTrap(state: TacticalBattleState, target: BattleUnit) {
+  return state.traps.find(
+    (trap) =>
+      trap.armed &&
+      trap.side === target.side &&
+      trap.column === target.cell.column,
+  )
+}
+
+function triggerTrap(
+  state: TacticalBattleState,
+  trap: BattleTrap,
+  attacker: BattleUnit,
+  target: BattleUnit,
+  moment: "before" | "after",
+) {
+  if (trap.trapId === "bamboo-guard" && moment === "before") {
+    target.shield += 20
+    trap.armed = false
+    trap.triggeredRound = state.round
+    reactionLog(
+      state,
+      `Bẫy ${trapName(trap.trapId)} chắn 20 sát thương cho ${target.name}.`,
+    )
+  } else if (trap.trapId === "steam-counter" && moment === "after") {
+    attacker.hp = Math.max(0, attacker.hp - 12)
+    attacker.defeated = attacker.hp === 0
+    trap.armed = false
+    trap.triggeredRound = state.round
+    reactionLog(
+      state,
+      `Bẫy ${trapName(trap.trapId)} phản lại ${attacker.name} 12 sát thương.`,
+    )
+  } else if (
+    trap.trapId === "warm-broth" &&
+    moment === "after" &&
+    !target.defeated &&
+    target.hp <= target.maxHp / 2
+  ) {
+    const healed = Math.min(18, target.maxHp - target.hp)
+    target.hp += healed
+    trap.armed = false
+    trap.triggeredRound = state.round
+    reactionLog(
+      state,
+      `Bẫy ${trapName(trap.trapId)} hồi ${healed} sinh lực cho ${target.name}.`,
+    )
+  }
+}
+
+function advanceBossPhase(state: TacticalBattleState, target: BattleUnit) {
+  if (!state.boss || state.boss.unitId !== target.instanceId || target.defeated)
+    return
+  const desired =
+    target.hp / target.maxHp <= 1 / 3
+      ? 3
+      : target.hp / target.maxHp <= 2 / 3
+        ? 2
+        : 1
+  while (state.boss.phase < desired) {
+    state.boss.phase = ((state.boss.phase + 1) as 2 | 3)
+    const shield = state.boss.phase === 2 ? 12 : 18
+    target.shield += shield
+    target.attack += 4
+    target.energy = Math.min(100, target.energy + 20)
+    reactionLog(
+      state,
+      `${state.boss.title} chuyển Pha ${state.boss.phase}: +${shield} khiên, sức đánh tăng.`,
+    )
   }
 }
 
@@ -156,14 +259,18 @@ function deal(
   const bonus = activeTraitBonus(state, attacker.side).attack
   const damage = power + bonus
   if (target) {
+    const trap = matchingTrap(state, target)
+    if (trap) triggerTrap(state, trap, attacker, target, "before")
     const absorbed = Math.min(target.shield, damage)
     target.shield -= absorbed
     target.hp = Math.max(0, target.hp - damage + absorbed)
     target.defeated = target.hp === 0
-    state.log.push({
-      id: `${state.log.length}`,
-      text: `${attacker.name} ${label} ${target.name}: ${damage} sát thương.`,
-    })
+    log(
+      state,
+      `${attacker.name} ${label} ${target.name}: ${damage} sát thương.`,
+    )
+    if (trap?.armed) triggerTrap(state, trap, attacker, target, "after")
+    advanceBossPhase(state, target)
   } else {
     const side: BattleSide = attacker.side === "player" ? "enemy" : "player"
     state.commanders[side].hp = Math.max(0, state.commanders[side].hp - damage)
@@ -185,7 +292,7 @@ function finish(state: TacticalBattleState) {
         id: `reward:${state.battleId}`,
         battleId: state.battleId,
         nodeId: state.nodeId,
-        tinhVi: state.mode === "pvp" ? 0 : 30,
+        tinhVi: state.mode === "pvp" ? 0 : state.boss ? 60 : 30,
         cardCopies: state.mode === "pvp" ? {} : { "card:chef-nhien": 1 },
       }
   }
@@ -218,26 +325,58 @@ export function reduceTacticalBattle(
     case "merge": {
       // exact copies: campaign 3, PvP 2
       if (state.phase !== "planning") return current
+      const required = state.mode === "campaign" ? 3 : 2
+      if (action.unitIds.length !== required) return current
       const copies = action.unitIds.map((id) =>
         state.units.find((item) => item.instanceId === id && !item.defeated),
       )
       if (
         copies.some((item) => !item) ||
-        copies[0]!.id !== copies[1]!.id ||
-        copies[0]!.star !== copies[1]!.star
+        new Set(action.unitIds).size !== required ||
+        copies.some(
+          (item) =>
+            item!.id !== copies[0]!.id ||
+            item!.star !== copies[0]!.star ||
+            item!.side !== copies[0]!.side,
+        ) ||
+        copies[0]!.star === 3
       )
         return current
-      if (state.mode === "campaign") return current // a two-copy action is deliberately insufficient in campaign
       copies[0]!.star = (Math.min(3, copies[0]!.star + 1) as 1 | 2 | 3)
       copies[0]!.attack += copies[0]!.attack
       copies[0]!.maxHp += copies[0]!.maxHp
       copies[0]!.hp = copies[0]!.maxHp
-      copies[1]!.hp = 0
-      copies[1]!.defeated = true
+      for (const consumed of copies.slice(1)) {
+        consumed!.hp = 0
+        consumed!.defeated = true
+      }
+      log(state, `${copies[0]!.name} hợp nhất thành ${copies[0]!.star} sao.`)
+      break
+    }
+    case "place-trap": {
+      if (state.phase !== "planning") return current
+      state.traps = state.traps.filter(
+        (trap) => !(trap.side === action.side && trap.armed),
+      )
+      state.traps.push({
+        instanceId: action.id,
+        trapId: action.trapId,
+        side: action.side,
+        column: action.column,
+        armed: true,
+        triggeredRound: null,
+      })
+      log(
+        state,
+        `${
+          action.side === "player" ? "Bạn" : "Địch"
+        } đặt bẫy ${trapName(action.trapId)} ở cột ${action.column + 1}.`,
+      )
       break
     }
     case "begin-round":
       if (state.phase !== "planning") return current
+      state.lastReaction = null
       state.phase = "clash"
       break
     case "basic":
@@ -275,13 +414,15 @@ export function reduceTacticalBattle(
 }
 
 export function playAutomaticRound(current: TacticalBattleState) {
-  let state =
-    current.phase === "planning"
-      ? reduceTacticalBattle(current, {
-          id: `r${current.round}:begin`,
-          type: "begin-round",
-        })
-      : current
+  if (["reaction", "ultimate", "round-end"].includes(current.phase))
+    return reduceTacticalBattle(current, {
+      id: `r${current.round}:end`,
+      type: "end-round",
+    })
+  let state = reduceTacticalBattle(current, {
+    id: `r${current.round}:begin`,
+    type: "begin-round",
+  })
   const order = [...state.units]
     .filter((unit) => !unit.defeated)
     .sort(
@@ -295,12 +436,7 @@ export function playAutomaticRound(current: TacticalBattleState) {
       unitId: unit.instanceId,
     })
   }
-  return state.phase === "result"
-    ? state
-    : reduceTacticalBattle(state, {
-        id: `r${state.round}:end`,
-        type: "end-round",
-      })
+  return state
 }
 
 export function replayTacticalBattle(

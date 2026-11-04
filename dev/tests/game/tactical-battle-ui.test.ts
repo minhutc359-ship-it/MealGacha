@@ -17,6 +17,9 @@ describe("Tactical battle UI", () => {
     expect(battle).toMatch(/\[0,\s*1,\s*2,\s*3\]/)
     expect(battle).toContain("Tuyệt kỹ")
     expect(battle).toContain("claimBattleReward")
+    expect(battle).toContain("Bẫy phản ứng")
+    expect(battle).toContain("tactical-boss-badge")
+    expect(battle).toContain("Hướng dẫn trận đầu")
   })
   it("has responsive and reduced-motion layouts", () => {
     expect(css).toContain("@media(max-width:640px)")
