@@ -9,6 +9,12 @@
   text-align: center;
 }
 
+.tactical-migration-notice {
+  position: fixed; z-index: 1000; top: 12px; left: 50%; transform: translateX(-50%);
+  width: min(680px, calc(100% - 24px)); padding: 12px 16px; border: 1px solid #e1b45d;
+  border-radius: 12px; background: #172d31f2; color: #fff2cd; box-shadow: 0 12px 35px #0008;
+}
+
 .production-start-error button,
 .production-start-error a {
   min-height: 44px;

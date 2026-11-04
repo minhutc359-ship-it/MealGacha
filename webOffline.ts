@@ -20,7 +20,7 @@ function isChunk(value: unknown): value is BundleChunk {
   )
 }
 
-/** Entry + the AW2 route's static graph. Scene renderers and chest stay lazy. */
+/** Entry + the Tactical route's static graph. The original chest stays lazy. */
 export function offlineCoreBundleNames(bundle: Record<string, unknown>) {
   const selected = new Set<string>()
   const add = (name: string) => {
@@ -38,7 +38,7 @@ export function offlineCoreBundleNames(bundle: Record<string, unknown>) {
         if (
           isChunk(dynamic) &&
           Object.keys(dynamic.modules ?? {}).some((id) =>
-            /[\\/](?:src[\\/]aw2|dev[\\/]aw2)[\\/]/.test(id),
+            /[\\/]src[\\/]TacticalTcgApp\.tsx$/.test(id),
           )
         )
           add(target)

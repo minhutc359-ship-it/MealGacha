@@ -13,7 +13,7 @@ export function OriginalChestApp() {
   const init = useAppStore((state) => state.init)
   useEffect(() => {
     document.documentElement.dataset.productionSurface = "original-chest"
-    document.title = "Rương Vị Giác original · Soul of Meal"
+    document.title = "Rương Vị Giác · Soul of Meal"
     init()
     return () => {
       delete document.documentElement.dataset.productionSurface
@@ -32,10 +32,10 @@ export function OriginalChestApp() {
           <div className="client-backdrop" aria-hidden="true" />
           <div className="cinematic-curtain" aria-hidden="true" />
           <header className="production-chest-nav">
-            <a href="/" aria-label="Trở lại hành trình Soul of Meal mới">
-              ← Hành trình mới
+            <a href="/" aria-label="Trở lại Linh Chiến Vị Giác">
+              ← Linh Chiến
             </a>
-            <strong>Rương Vị Giác original</strong>
+            <strong>Rương Vị Giác</strong>
             <a href="/legal/privacy.html">Quyền riêng tư</a>
           </header>
           <div className="client-layout production-chest-layout">

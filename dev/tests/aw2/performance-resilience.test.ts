@@ -118,16 +118,16 @@ describe("AW2 performance and telemetry contract", () => {
     expect(disclosure).toContain("không tự gửi mạng")
   })
 
-  it("wires the boundary only around the AW2 production surface", () => {
+  it("keeps the legacy AW2 boundary available but boots the Tactical boundary in production", () => {
     const source = readFileSync("src/production.tsx", "utf8")
+    const tactical = readFileSync("src/TacticalTcgApp.tsx", "utf8")
     const boundary = readFileSync(
       "src/aw2/observability/Aw2ErrorBoundary.tsx",
       "utf8",
     )
-    expect(
-      source.indexOf('productionSurface(location.pathname) === "chest"'),
-    ).toBeLessThan(source.indexOf("<Aw2ErrorBoundary>"))
-    expect(source).toContain("<WorldPreview production />")
+    expect(source).not.toContain("<WorldPreview production />")
+    expect(source).not.toContain("<Aw2ErrorBoundary>")
+    expect(tactical).toContain("<GameErrorBoundary>")
     expect(boundary).not.toMatch(
       /localStorage|sessionStorage|fetch\(|sendBeacon|XMLHttpRequest/,
     )

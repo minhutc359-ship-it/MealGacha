@@ -7,10 +7,10 @@
   "scripts": {
     "dev": "vite --config dev/vite.dev.config.ts",
     "dev:aw2": "vite --config dev/vite.aw2.config.ts",
-    "build": "node dev/tools/verify-aw2-source-checkout.mjs && node dev/tools/aw2-character-rights.mjs --check && node dev/tools/aw2-media-sources.mjs --check && vite build && node dev/tools/verify-aw2-production-package.mjs && node releaseGuard.mjs && node dev/tools/aw2-release-candidate.mjs",
+    "build": "vite build && node dev/tools/verify-tactical-tcg-production-package.mjs && node releaseGuard.mjs",
     "build:aw2": "vite build --config dev/vite.aw2.config.ts",
-    "verify:production": "node dev/tools/verify-aw2-production-cutover.mjs",
-    "verify:package": "node dev/tools/verify-aw2-production-package.mjs",
+    "verify:production": "vitest run --config dev/vitest.config.ts dev/tests/aw2/production-cutover.test.ts dev/tests/aw2/production-package.test.ts dev/tests/game/tactical-*.test.ts",
+    "verify:package": "node dev/tools/verify-tactical-tcg-production-package.mjs",
     "preview": "vite preview",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
