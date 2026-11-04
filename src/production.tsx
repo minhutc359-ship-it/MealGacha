@@ -29,16 +29,16 @@ async function start() {
     return
   }
   if (route.surface === "legal") return
+  const migration = migrateTacticalStorage(localStorage)
   if (route.surface === "chest") {
     const { OriginalChestApp } = await import("./OriginalChestApp")
     render(<OriginalChestApp />)
     return
   }
-  const migration = migrateTacticalStorage(localStorage),
-    notice =
-      migration.status === "blocked" || migration.status === "failed"
-        ? "Bản lưu cũ chưa được chuyển đổi; dữ liệu gốc vẫn được giữ nguyên. Hãy xuất backup trước khi tiếp tục trên thiết bị này."
-        : null
+  const notice =
+    migration.status === "blocked" || migration.status === "failed"
+      ? "Bản lưu cũ chưa được chuyển đổi; dữ liệu gốc vẫn được giữ nguyên. Hãy xuất backup trước khi tiếp tục trên thiết bị này."
+      : null
   const { default: TacticalTcgApp } = await import("./TacticalTcgApp")
   render(<TacticalTcgApp migrationNotice={notice} />)
 }

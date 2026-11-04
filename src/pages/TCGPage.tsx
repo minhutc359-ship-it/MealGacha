@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react"
+import { lazy, Suspense, useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
 import { TacticalBattleScreen } from "../components/game/TacticalBattleScreen"
 import { TacticalCampaignScreen } from "../components/game/TacticalCampaignScreen"
-import { MangaChronicle } from "../components/game/MangaChronicle"
 import { BrandMark } from "../components/layout/BrandMark"
 import { LegalLinks } from "../legal/LegalLinks"
 import {
@@ -11,6 +10,12 @@ import {
 } from "../game/tacticalTcg/progression"
 import "../game/tcg.css"
 import "../game/tacticalBattle.css"
+
+const MangaChronicle = lazy(() =>
+  import("../components/game/MangaChronicle").then((module) => ({
+    default: module.MangaChronicle,
+  })),
+)
 const NAV = [
   { id: "battle", name: "Linh Chiến", icon: "⚔" },
   { id: "campaign", name: "Chiến dịch", icon: "◇" },
@@ -124,7 +129,15 @@ export function TCGPage() {
                   </p>
                 </div>
               </div>
-              <MangaChronicle track="tcg" clearedStages={[]} />
+              <Suspense
+                fallback={
+                  <p className="tcg-panel" role="status">
+                    Đang mở Manga ký ức…
+                  </p>
+                }
+              >
+                <MangaChronicle track="tcg" clearedStages={[]} />
+              </Suspense>
             </>
           )}{" "}
           {tab === "settings" && (

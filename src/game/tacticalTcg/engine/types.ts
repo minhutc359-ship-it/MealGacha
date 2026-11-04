@@ -2,6 +2,7 @@ export type BattleSide = "player" | "enemy"
 export type BattlePhase = "planning" | "clash" | "reaction" | "ultimate" | "round-end" | "result"
 export type BattleMode = "campaign" | "pvp"
 export type UnitRole = "guardian" | "striker" | "support" | "mage"
+export type TrapId = "bamboo-guard" | "steam-counter" | "warm-broth"
 
 export interface BoardCell {
   row: 0 | 1
@@ -42,6 +43,19 @@ export interface BattleLogEntry {
   id: string
   text: string
 }
+export interface BattleTrap {
+  instanceId: string
+  trapId: TrapId
+  side: BattleSide
+  column: 0 | 1 | 2 | 3
+  armed: boolean
+  triggeredRound: number | null
+}
+export interface BattleBossState {
+  unitId: string
+  title: string
+  phase: 1 | 2 | 3
+}
 export interface TacticalBattleState {
   schemaVersion: 1
   battleId: string
@@ -52,18 +66,51 @@ export interface TacticalBattleState {
   phase: BattlePhase
   winner: BattleSide | null
   units: BattleUnit[]
+  traps: BattleTrap[]
+  boss: BattleBossState | null
   commanders: Record<BattleSide, BattleCommander>
   processedActionIds: string[]
   log: BattleLogEntry[]
+  lastReaction: string | null
   reward: BattleRewardReceipt | null
 }
-export type TacticalBattleAction =
-  | { id: string; type: "move"; unitId: string; cell: BoardCell }
-  | { id: string; type: "merge"; unitIds: [string, string] }
-  | { id: string; type: "begin-round" }
-  | { id: string; type: "basic"; unitId: string }
-  | { id: string; type: "ultimate"; unitId: string }
-  | { id: string; type: "end-round" }
+interface MoveAction {
+  id: string
+  type: "move"
+  unitId: string
+  cell: BoardCell
+}
+interface MergeAction {
+  id: string
+  type: "merge"
+  unitIds: [string, string] | [string, string, string]
+}
+interface PlaceTrapAction {
+  id: string
+  type: "place-trap"
+  side: BattleSide
+  trapId: TrapId
+  column: 0 | 1 | 2 | 3
+}
+interface BeginRoundAction {
+  id: string
+  type: "begin-round"
+}
+interface BasicAction {
+  id: string
+  type: "basic"
+  unitId: string
+}
+interface UltimateAction {
+  id: string
+  type: "ultimate"
+  unitId: string
+}
+interface EndRoundAction {
+  id: string
+  type: "end-round"
+}
+export type TacticalBattleAction = MoveAction | MergeAction | PlaceTrapAction | BeginRoundAction | BasicAction | UltimateAction | EndRoundAction
 
 export interface CreateBattleOptions {
   battleId: string
@@ -80,4 +127,8 @@ export interface CreateBattleOptions {
     cell: BoardCell
     star?: 1 | 2 | 3
   }>
+  boss?: {
+    definitionId: string
+    title: string
+  }
 }

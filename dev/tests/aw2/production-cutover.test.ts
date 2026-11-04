@@ -66,6 +66,9 @@ describe("Tactical production cutover", () => {
       source.indexOf("TacticalTcgApp"),
     )
     expect(source).toContain('import("./OriginalChestApp")')
+    expect(source.indexOf("migrateTacticalStorage(localStorage)")).toBeLessThan(
+      source.indexOf('import("./OriginalChestApp")'),
+    )
     expect(source).not.toContain("WorldPreview")
   })
 })

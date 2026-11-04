@@ -8,6 +8,6 @@
 
 ## Tiếp theo
 
-- Mở rộng trap/reaction UI và boss phase riêng cho từng hồi.
-- Tách Manga khỏi Tactical chunk để giảm JavaScript initial graph.
-- Hoàn thiện vòng kinh tế Chest chỉ tạo Tinh Vị/thẻ theo contract sản phẩm.
+- Tạo VFX/âm thanh riêng cho từng bẫy và từng boss; cần duyệt cảm quan độc lập.
+- Đo cold-load, FPS, memory và thao tác touch trên thiết bị thật trước merge.
+- Thiết kế thêm đội hình/bẫy riêng cho từng node sau khi có dữ liệu playtest cân bằng.
