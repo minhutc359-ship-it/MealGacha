@@ -1,4 +1,10 @@
-# Soul of Meal · Hành trình mới
+# Soul of Meal · Linh Chiến Vị Giác
+
+Production hiện mở Tactical TCG 4×2 tại `/`, chiến dịch bốn hồi và Manga tại `/?tab=manga`; `/chest` giữ Rương Vị Giác. Auto Chess, Adventure và AW2 không còn nằm trong module graph/asset package production. Bản lưu cũ được backup và migration một lần; thưởng trận dùng biên nhận exact-once, không nhập sức mạnh hay xếp hạng PvP cũ.
+
+Chạy `pnpm typecheck`, `pnpm test`, `pnpm release:verify` và `pnpm build` trước khi phát hành. Trạng thái và bằng chứng hiện hành: [docs/tactical-tcg/README.md](docs/tactical-tcg/README.md). Các phần dưới là lịch sử của sản phẩm trước cutover.
+
+# Soul of Meal · Hành trình mới (lịch sử)
 
 **018M: web chính là game mới; chỉ giữ Rương Vị Giác original.** Trên `game/adventure-world-2`, `pnpm dev`, `pnpm build` và `pnpm preview` mở game mới tại `/`. `/chest` giữ rương; đường dẫn UI cũ về game mới. Build tự kiểm module graph, asset/package và candidate từ chính output vừa tạo. Đã thêm sao lưu/khôi phục JSON, legal/offline fixes và CI cho nhánh AW2. Công cụ QA dùng `pnpm dev:aw2` hoặc `pnpm build:aw2`, không nằm trong artifact chính. [Cấu hình server](docs/aw2/SERVER_BUILD.md) · [Evidence](docs/aw2/evidence/AW2-018M.md).
 

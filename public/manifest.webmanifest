@@ -1,7 +1,7 @@
 {
-  "name": "Soul of Meal · Huyền thoại vị giác",
+  "name": "Soul of Meal · Linh Chiến Vị Giác",
   "short_name": "Soul of Meal",
-  "description": "Hành trình RPG Soul of Meal mới cùng Rương Vị Giác original",
+  "description": "Tactical TCG 4x2, Manga ký ức và Rương Vị Giác",
   "id": "/",
   "scope": "/",
   "start_url": "/",
@@ -14,7 +14,8 @@
     { "src": "/assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ],
   "shortcuts": [
-    { "name": "Tiếp tục hành trình", "short_name": "Hành trình", "url": "/", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
-    { "name": "Rương Vị Giác original", "short_name": "Rương original", "url": "/chest", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+    { "name": "Linh Chiến", "short_name": "Chiến đấu", "url": "/", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Manga ký ức", "short_name": "Manga", "url": "/?tab=manga", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Rương Vị Giác", "short_name": "Rương", "url": "/chest", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
   ]
 }

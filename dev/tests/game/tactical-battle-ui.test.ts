@@ -1,0 +1,25 @@
+import { readFileSync } from "node:fs"
+import { describe, expect, it } from "vitest"
+describe("Tactical battle UI", () => {
+  const page = readFileSync("src/pages/TCGPage.tsx", "utf8"),
+    battle = readFileSync(
+      "src/components/game/TacticalBattleScreen.tsx",
+      "utf8",
+    ),
+    css = readFileSync("src/game/tacticalBattle.css", "utf8")
+  it("defaults to the battle and retains only Manga and Chest links", () => {
+    expect(page).toContain('"battle"')
+    expect(page).toContain("MangaChronicle")
+    expect(page).toContain('to="/chest"')
+    expect(page).not.toContain("ModeSwitch")
+  })
+  it("renders sixteen cells and manual ultimates", () => {
+    expect(battle).toMatch(/\[0,\s*1,\s*2,\s*3\]/)
+    expect(battle).toContain("Tuyệt kỹ")
+    expect(battle).toContain("claimBattleReward")
+  })
+  it("has responsive and reduced-motion layouts", () => {
+    expect(css).toContain("@media(max-width:640px)")
+    expect(css).toContain("prefers-reduced-motion")
+  })
+})
