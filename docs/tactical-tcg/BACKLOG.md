@@ -15,8 +15,10 @@
 
 ## Tiếp theo
 
+- TCG-006 đã thêm: tiếp tục trận từ sảnh, xác nhận thay trận, bảo vệ tab cũ, import/preview/undo, trạng thái quà/thưởng và sửa mở gói/tạo bộ ở môi trường thiếu randomUUID. Kiểm tra browser phần cuối đang tiếp tục; không coi là nghiệm thu thiết bị thật.
+
 - Tạo VFX/âm thanh riêng cho từng bẫy và từng boss; cần duyệt cảm quan độc lập.
 - Đo cold-load, FPS, memory và thao tác touch trên thiết bị thật trước merge.
 - Thiết kế thêm đội hình/bẫy riêng cho từng node sau khi có dữ liệu playtest cân bằng.
-- Thêm UI nhập backup Tactical có preview/confirm/rollback (hiện hỗ trợ xuất và giữ raw backup).
+- Hoàn tất nghiệm thu độc lập luồng backup/restore và touch trên thiết bị thật (UI preview/confirm/rollback/undo đã được triển khai).
 - Online PvP authoritative và reconnect thật, mastery/side story mở rộng; không mô tả phòng AI cục bộ là multiplayer.

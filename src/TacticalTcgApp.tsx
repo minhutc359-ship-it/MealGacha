@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { BrowserRouter } from "react-router-dom"
 import { PresentationSettings } from "./components/game/PresentationSettings"
 import { GameErrorBoundary } from "./components/layout/GameErrorBoundary"
@@ -6,6 +6,11 @@ import { WebUpdatePrompt } from "./components/layout/WebUpdatePrompt"
 import { TCGPage } from "./pages/TCGPage"
 import "./index.css"
 import "./ui-polish.css"
+const TacticalBackupPanel = lazy(() =>
+  import("./components/game/TacticalBackupPanel").then((module) => ({
+    default: module.TacticalBackupPanel,
+  })),
+)
 export default function TacticalTcgApp({
   migrationNotice,
 }: {
@@ -21,7 +26,13 @@ export default function TacticalTcgApp({
   return (
     <BrowserRouter>
       <PresentationSettings />
-      <GameErrorBoundary>
+      <GameErrorBoundary
+        recovery={
+          <Suspense fallback={<p>Đang mở khôi phục…</p>}>
+            <TacticalBackupPanel onRestored={() => window.location.reload()} />
+          </Suspense>
+        }
+      >
         <WebUpdatePrompt />
         {migrationNotice && (
           <aside className="tactical-migration-notice" role="status">

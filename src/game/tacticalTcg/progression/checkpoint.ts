@@ -1,12 +1,23 @@
 import { TACTICAL_CARD_MAP } from "../cards"
 import type { TacticalBattleState } from "../engine/types"
+const record = (v: unknown): v is Record<string, unknown> =>
+  !!v && typeof v === "object" && !Array.isArray(v)
+const amount = (v: unknown): v is number =>
+  typeof v === "number" && Number.isFinite(v) && v >= 0
+const integer = (v: unknown): v is number => amount(v) && Number.isInteger(v)
+const strings = (v: unknown): v is string[] =>
+  Array.isArray(v) && v.every((s) => typeof s === "string")
+const nullableString = (v: unknown) => v === null || typeof v === "string"
+const cardExists = (v: unknown) =>
+  typeof v === "string" &&
+  Object.prototype.hasOwnProperty.call(TACTICAL_CARD_MAP, v)
 
 /** Reject a corrupt checkpoint instead of replacing it with a new match. */
 export function validTacticalCheckpoint(
   value: unknown,
 ): value is TacticalBattleState {
-  if (!value || typeof value !== "object") return false
-  const battle = value as TacticalBattleState
+  if (!record(value)) return false
+  const battle = value as unknown as TacticalBattleState
   const number = (n: unknown) =>
     typeof n === "number" && Number.isFinite(n) && n >= 0
   if (
@@ -14,6 +25,11 @@ export function validTacticalCheckpoint(
     typeof battle.battleId !== "string" ||
     !Number.isInteger(battle.round) ||
     battle.round < 1 ||
+    !integer(battle.seed) ||
+    !nullableString(battle.nodeId) ||
+    !nullableString(battle.lastReaction) ||
+    ![null, "player", "enemy"].includes(battle.winner) ||
+    (battle.phase === "result") !== (battle.winner !== null) ||
     !["campaign", "pvp"].includes(battle.mode) ||
     ![
       "planning",
@@ -39,7 +55,18 @@ export function validTacticalCheckpoint(
     !Array.isArray(battle.units) ||
     !battle.units.every(
       (u) =>
+        record(u) &&
         typeof u.instanceId === "string" &&
+        typeof u.id === "string" &&
+        typeof u.name === "string" &&
+        typeof u.art === "string" &&
+        ["guardian", "striker", "support", "mage"].includes(u.role) &&
+        strings(u.traits) &&
+        [1, 2, 3].includes(u.star) &&
+        number(u.ultimatePower) &&
+        (u.cardId === undefined || cardExists(u.cardId)) &&
+        (u.triggers === undefined ||
+          (record(u.triggers) && Object.values(u.triggers).every(integer))) &&
         ["player", "enemy"].includes(u.side) &&
         u.cell &&
         [0, 1].includes(u.cell.row) &&
@@ -56,9 +83,54 @@ export function validTacticalCheckpoint(
   )
     return false
   if (
+    new Set(battle.units.map((u) => u.instanceId)).size !== battle.units.length
+  )
+    return false
+  if (
+    !battle.traps.every(
+      (t) =>
+        record(t) &&
+        typeof t.instanceId === "string" &&
+        ["bamboo-guard", "steam-counter", "warm-broth"].includes(t.trapId) &&
+        ["player", "enemy"].includes(t.side) &&
+        [0, 1, 2, 3].includes(t.column) &&
+        typeof t.armed === "boolean" &&
+        (t.triggeredRound === null || integer(t.triggeredRound)) &&
+        (t.cardId === undefined ||
+          (cardExists(t.cardId) &&
+            TACTICAL_CARD_MAP[t.cardId].kind === "trap")),
+    )
+  )
+    return false
+  if (
+    battle.boss !== null &&
+    (!record(battle.boss) ||
+      typeof battle.boss.title !== "string" ||
+      ![1, 2, 3].includes(battle.boss.phase) ||
+      !battle.units.some((u) => u.instanceId === battle.boss!.unitId))
+  )
+    return false
+  if (
+    battle.reward !== null &&
+    (!record(battle.reward) ||
+      typeof battle.reward.id !== "string" ||
+      battle.reward.battleId !== battle.battleId ||
+      !nullableString(battle.reward.nodeId) ||
+      !amount(battle.reward.tinhVi) ||
+      !record(battle.reward.cardCopies) ||
+      !Object.values(battle.reward.cardCopies).every(integer))
+  )
+    return false
+  if (
     !battle.cardGame?.sides ||
     !battle.cardGame.attacks ||
-    !number(battle.cardGame.nextUnit)
+    !integer(battle.cardGame.nextUnit) ||
+    !record(battle.cardGame.attacks) ||
+    !Object.values(battle.cardGame.attacks).every(integer) ||
+    !cardExists(battle.cardGame.rewardCardId) ||
+    !(
+      battle.cardGame.movedRound === null || integer(battle.cardGame.movedRound)
+    )
   )
     return false
   for (const side of ["player", "enemy"] as const) {
@@ -75,14 +147,15 @@ export function validTacticalCheckpoint(
       owner.mana > owner.maxMana ||
       owner.maxMana > 10 ||
       !number(owner.fatigue) ||
-      !number(owner.spellsThisRound)
+      !integer(owner.spellsThisRound) ||
+      typeof owner.mulliganUsed !== "boolean" ||
+      !nullableString(owner.lastSchool) ||
+      !integer(owner.recipeRound)
     )
       return false
     if (
       ![owner.deck, owner.hand, owner.discard].every(
-        (cards) =>
-          Array.isArray(cards) &&
-          cards.every((id) => typeof id === "string" && TACTICAL_CARD_MAP[id]),
+        (cards) => Array.isArray(cards) && cards.every(cardExists),
       ) ||
       owner.hand.length > 8
     )

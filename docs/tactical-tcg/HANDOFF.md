@@ -2,6 +2,14 @@
 
 Nhánh: `game/tactical-tcg`.
 
+TCG-006: bản nguồn xây lại từ `e855a67` sau khi phiên browser chọn tệp bị timeout và workspace tạm bị maintenance dọn. Các kiểm tra cuối được chạy lại: 2,349/178 unit, 79 focused, cả hai typecheck, release records và production/package 376 files PASS. Failure full-suite đầu là source assertion cũ đòi `<GameErrorBoundary>` không có props; đã giữ kiểm tra boundary bằng regex/open+close và chạy lại toàn bộ PASS.
+
+`backup.ts` quản lý export cũ/mới, strict preview, so raw snapshot trước khi import/undo, journal/readback/rollback và khôi phục trước migration. Game reload sau import/undo để các store Rương/profile đọc cùng dữ liệu. Recovery panel vẫn dùng được khi Tactical render lỗi; raw recovery export gồm cả prefix Tactical. Snapshot undo chỉ giữ một lần nhập gần nhất. Không merge nhiều thiết bị hoặc cung cấp server authority.
+
+Checkpoint writes nhận expected checkpoint, so bản lưu trước khi cập nhật; thay đổi wallet độc lập không chặn trận. Home có resume practice/campaign; component cảnh báo trước khi thay trận chưa xong/chưa nhận thưởng. `newTacticalRequestId` dùng UUID nếu có, random bytes+timestamp+sequence ở HTTP/WebView thiếu UUID; không thay đổi odds.
+
+Browser giai đoạn đầu: daily disabled, triệu hồi/chi phí/rút bài, resume+reload, stale-tab reject/read-latest, campaign replace confirm và pack reveal PASS. File chooser timeout, phiên mất và ảnh local bị dọn; native file import/touch/device chưa được nhận là PASS. Kiểm tra cuối tiếp tục sau mốc lưu Git này. Xem evidence TCG-006.
+
 TCG-005 là bản khôi phục vòng TCG thực sau phản hồi prototype sơ sài: `/` mở sảnh; collection/decks/packs/guide đã có route tab. Trận luyện/campaign nhận active deck (24 lá, owned/limit validated), tay đầu 4 lá và sân người chơi trống. Native IDs/art/lore của 181 thẻ được giữ; Tactical text mô tả hiệu ứng đã chuyển đổi, nội tại/công thức có engine authority.
 
 New fields bổ sung trên progress v1, không đổi/xóa key cũ: account/decks/tickets/pity/pack receipts/choices/checkpoint. `ensureTacticalAccount` hồi phục một lần legacy profile và thêm starter. `withTacticalLock` serialize UI writers khi browser hỗ trợ; transaction fallback vẫn là optimistic localStorage, không phải database/server lock. Rương cũ giữ dữ liệu/receipt; gói TCG ở màn riêng. Chưa có UI import backup mới hoặc cloud save.

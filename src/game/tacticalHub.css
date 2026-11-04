@@ -1816,3 +1816,165 @@
     scroll-behavior: auto !important;
   }
 }
+
+.tactical-resume-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 26px;
+  border: 1px solid #c7b77b;
+  border-radius: 16px;
+  background: #f5f1df;
+  color: #23433c;
+}
+.tactical-resume-banner > span {
+  font-size: 36px;
+  color: #927a37;
+}
+.tactical-resume-banner > div {
+  flex: 1;
+  min-width: 0;
+}
+.tactical-resume-banner small {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #796c42;
+}
+.tactical-resume-banner h2 {
+  margin: 4px 0;
+  font: 24px var(--font-serif, Georgia, serif);
+}
+.tactical-resume-banner p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.tactical-backup-panel {
+  min-width: 0;
+}
+.tactical-backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+}
+.tactical-file-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tactical-file-button input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.tactical-file-button:focus-within {
+  outline: 3px solid #ac8d43;
+  outline-offset: 3px;
+}
+.tactical-backup-paste summary {
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+.tactical-backup-paste label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.tactical-backup-paste textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 130px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #bdbcae;
+  border-radius: 8px;
+  font: 12px/1.6 monospace;
+  background: #fffef8;
+  color: #20372f;
+}
+.tactical-backup-paste button {
+  margin-top: 10px;
+}
+.tactical-backup-undo {
+  border-top: 1px solid #dcd9c8;
+  margin-top: 16px;
+  padding-top: 12px;
+}
+.tactical-backup-preview {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+.tactical-backup-preview caption {
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: 8px;
+}
+.tactical-backup-preview th,
+.tactical-backup-preview td {
+  padding: 10px 6px;
+  border-bottom: 1px solid #d8d1ba;
+  text-align: left;
+}
+.tactical-backup-preview td {
+  text-align: right;
+}
+.tactical-save-conflict {
+  position: fixed;
+  z-index: 70;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(580px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 18px 22px;
+  border: 1px solid #bc8f3e;
+  border-radius: 14px;
+  background: #fff5db;
+  box-shadow: 0 12px 45px #14261e44;
+  color: #47331e;
+}
+.tactical-save-conflict p {
+  margin: 0 0 10px;
+}
+.tactical-result__reward p {
+  font-size: 13px !important;
+  line-height: 1.6;
+}
+.tactical-cell[data-card-target="true"] {
+  outline: 2px solid #d2ac58;
+  outline-offset: -2px;
+  background-color: #fff4c52b;
+}
+.tactical-target-hint {
+  display: block;
+  margin-top: 4px;
+  color: #735c23;
+  font-size: 11px;
+  line-height: 1.5;
+}
+@media (max-width: 760px) {
+  .tactical-resume-banner {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+  }
+  .tactical-resume-banner > div {
+    flex-basis: calc(100% - 60px);
+  }
+  .tactical-resume-banner > button {
+    width: 100%;
+  }
+  .tactical-backup-actions > .tcg-button {
+    flex: 1 1 180px;
+    text-align: center;
+  }
+}

@@ -41,6 +41,11 @@ const TacticalPacks = lazy(() =>
     default: module.TacticalPacks,
   })),
 )
+const TacticalBackupPanel = lazy(() =>
+  import("../components/game/TacticalBackupPanel").then((module) => ({
+    default: module.TacticalBackupPanel,
+  })),
+)
 const NAV = [
   { id: "home", name: "Sảnh", icon: "⌂" },
   { id: "campaign", name: "Hành trình", icon: "◇" },
@@ -82,12 +87,36 @@ export function TCGPage() {
     ownedTacticalCards(progress.cardCopies),
   )
   const go = (id: string) => {
+    refresh()
     setParams(id === "home" ? {} : { tab: id })
     window.scrollTo({ top: 0 })
   }
   const refresh = () => {
     try {
       setProgress(readTacticalProgress(localStorage))
+    } catch (e) {
+      setNotice((e as Error).message)
+    }
+  }
+  const resume = () => {
+    try {
+      const latest = readTacticalProgress(localStorage)
+      setProgress(latest)
+      const saved = latest.checkpoint
+      if (!saved) {
+        setNotice("Chưa có trận đang lưu.")
+        return
+      }
+      setParams(
+        saved.nodeId
+          ? { tab: "campaign", resume: saved.nodeId }
+          : {
+              tab: "battle",
+              resume: saved.battleId,
+              ...(saved.mode === "pvp" ? { queue: "pvp" } : {}),
+            },
+      )
+      window.scrollTo({ top: 0 })
     } catch (e) {
       setNotice((e as Error).message)
     }
@@ -114,31 +143,6 @@ export function TCGPage() {
     } catch (e) {
       setNotice((e as Error).message)
     }
-  }
-  const backup = () => {
-    const keys = [
-      "foodchest.tcg.v1",
-      "foodchest.user.v1",
-      "soul-of-meal.tactical-tcg.profile.v1",
-      "soul-of-meal.tactical-tcg.progress.v1",
-      "soul-of-meal.tactical-tcg.legacy-backup.v1",
-    ]
-    const data = {
-      format: "soul-of-meal-tactical-backup-v1",
-      exportedAt: new Date().toISOString(),
-      storage: Object.fromEntries(
-        keys.map((key) => [key, localStorage.getItem(key)]),
-      ),
-    }
-    const url = URL.createObjectURL(
-      new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }),
-    )
-    const link = document.createElement("a")
-    link.href = url
-    link.download = "soul-of-meal-backup.json"
-    link.click()
-    URL.revokeObjectURL(url)
-    setNotice("Đã xuất bản sao tiến trình trên thiết bị.")
   }
   return (
     <div className="tcg-app tactical-shell" data-active-screen={tab}>
@@ -242,7 +246,12 @@ export function TCGPage() {
             }
           >
             {tab === "home" && (
-              <TacticalHome progress={progress} go={go} onDaily={daily} />
+              <TacticalHome
+                progress={progress}
+                go={go}
+                onDaily={daily}
+                onResume={resume}
+              />
             )}
             {tab === "decks" && (
               <TacticalDeckBuilder
@@ -275,19 +284,28 @@ export function TCGPage() {
               <>
                 {tab === "battle" && (
                   <TacticalBattleScreen
-                    key={`${activeDeck.id}:${params.get("queue") ?? "solo"}`}
+                    key={`${activeDeck.id}:${params.get("queue") ?? "solo"}:${params.get("resume") ?? ""}`}
                     options={{
-                      battleId: `practice:${activeDeck.id}:v2`,
+                      battleId:
+                        params.has("resume") &&
+                        progress.checkpoint?.nodeId === null
+                          ? progress.checkpoint.battleId
+                          : `practice:${activeDeck.id}:v2`,
                       mode: params.get("queue") === "pvp" ? "pvp" : "campaign",
                       deck: activeDeck.cards,
                       seed: 101,
                     }}
                     onProgress={refresh}
+                    onResumeSaved={resume}
+                    onExit={() => go("home")}
                   />
                 )}
                 {tab === "campaign" && (
                   <TacticalCampaignScreen
+                    key={params.get("resume") ?? "map"}
                     deck={activeDeck.cards}
+                    resumeNodeId={params.get("resume")}
+                    onResumeSaved={resume}
                     onProgress={setProgress}
                     onManga={() => go("manga")}
                   />
@@ -331,16 +349,9 @@ export function TCGPage() {
                   </div>
                 </header>
                 <div className="tactical-settings-cards">
-                  <article>
-                    <h2>Bản sao tiến trình</h2>
-                    <p>
-                      Xuất toàn bộ thẻ, bộ bài, Rương và dữ liệu trước chuyển
-                      đổi để giữ bản dự phòng của riêng bạn.
-                    </p>
-                    <button className="tcg-button primary" onClick={backup}>
-                      Xuất bản sao JSON
-                    </button>
-                  </article>
+                  <TacticalBackupPanel
+                    onRestored={() => window.location.reload()}
+                  />
                   <article>
                     <h2>Hiển thị & chuyển động</h2>
                     <p>

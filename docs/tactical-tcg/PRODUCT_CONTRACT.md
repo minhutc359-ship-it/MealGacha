@@ -26,6 +26,7 @@ Sảnh, bộ bài, bộ sưu tập, mở gói, campaign và hướng dẫn là t
 - Không chuyển power bonus/rating cũ sang PvP.
 - Collection, deck, TCG ticket/dust cũ giữ trong profile gốc và được khôi phục bổ sung một lần. Không xóa raw save gốc.
 - Trận TCG lưu checkpoint trước khi UI cập nhật; checkpoint hỏng bị từ chối, giữ raw bytes. Mở/craft/lưu bộ/checkpoint trong browser dùng Web Locks khi có; fallback optimistic check không phải khóa nhiều thiết bị.
+- TCG-006: sảnh tiếp tục đúng trận đang lưu; đổi trận chưa xong cần xác nhận. Checkpoint chỉ ghi nếu khớp bản component đã đọc, tab cũ phải đọc lại. Backup JSON có preview/confirm, giữ raw bản trước để hoàn tác một lần, journal/readback/rollback và recovery trước migration. Nhập/hoàn tác tải lại game; không phải cloud save hoặc cộng gộp tiến trình.
 
 ## Battle
 

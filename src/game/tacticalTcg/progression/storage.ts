@@ -13,7 +13,34 @@ import {
   type ProgressCommitResult,
   type ProgressMutation,
   type TacticalProgress,
+  type TacticalPackReceipt,
 } from "./schema"
+
+const record = (v: unknown): v is Record<string, unknown> =>
+  !!v && typeof v === "object" && !Array.isArray(v)
+const validPack = (v: unknown): v is TacticalPackReceipt => {
+  if (!record(v)) return false
+  return (
+    typeof v.id === "string" &&
+    typeof v.packId === "string" &&
+    Array.isArray(v.cards) &&
+    v.cards.length === 5 &&
+    v.cards.every(
+      (id) =>
+        typeof id === "string" &&
+        Object.prototype.hasOwnProperty.call(TACTICAL_CARD_MAP, id),
+    ) &&
+    Array.isArray(v.newCardIds) &&
+    v.newCardIds.every(
+      (id) => typeof id === "string" && (v.cards as string[]).includes(id),
+    ) &&
+    typeof v.duplicateTinhVi === "number" &&
+    Number.isFinite(v.duplicateTinhVi) &&
+    v.duplicateTinhVi >= 0 &&
+    typeof v.openedAt === "string" &&
+    Number.isFinite(Date.parse(v.openedAt))
+  )
+}
 
 const uniqueStrings = (value: unknown) =>
   Array.isArray(value)
@@ -68,6 +95,39 @@ export function parseTacticalProgress(
   if (raw === null) return null
   try {
     const value = JSON.parse(raw) as Partial<TacticalProgress>
+    if (!record(value)) return null
+    if (
+      value.lastPack !== undefined &&
+      value.lastPack !== null &&
+      !validPack(value.lastPack)
+    )
+      return null
+    if (
+      value.packHistory !== undefined &&
+      (!Array.isArray(value.packHistory) || !value.packHistory.every(validPack))
+    )
+      return null
+    if (
+      value.campaignChoices !== undefined &&
+      (!record(value.campaignChoices) ||
+        !Object.values(value.campaignChoices).every(
+          (v) => typeof v === "string",
+        ))
+    )
+      return null
+    if (
+      value.decks !== undefined &&
+      (!Array.isArray(value.decks) ||
+        !value.decks.every(
+          (d) =>
+            d &&
+            typeof d.id === "string" &&
+            typeof d.name === "string" &&
+            Array.isArray(d.cards) &&
+            d.cards.every((id) => typeof id === "string"),
+        ))
+    )
+      return null
     if (value.checkpoint && !validTacticalCheckpoint(value.checkpoint))
       return null
     for (const n of [value.packTickets, value.packsOpened, value.packPity])
@@ -105,13 +165,9 @@ export function parseTacticalProgress(
       packTickets: Math.max(0, Math.floor(Number(value.packTickets) || 0)),
       packsOpened: Math.max(0, Math.floor(Number(value.packsOpened) || 0)),
       packPity: Math.max(0, Math.floor(Number(value.packPity) || 0)),
-      lastPack: value.lastPack?.cards?.every((id) => !!TACTICAL_CARD_MAP[id])
-        ? value.lastPack
-        : null,
+      lastPack: value.lastPack ?? null,
       packHistory: Array.isArray(value.packHistory)
-        ? value.packHistory
-            .filter((p) => p.cards?.every((id) => !!TACTICAL_CARD_MAP[id]))
-            .slice(-20)
+        ? value.packHistory.slice(-20)
         : [],
       dailyClaimedDate:
         typeof value.dailyClaimedDate === "string"

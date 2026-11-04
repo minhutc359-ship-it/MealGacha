@@ -9,7 +9,13 @@ import {
   TacticalPacks,
 } from "@/components/game/TacticalCardHub"
 import { TacticalHome, TacticalGuide } from "@/components/game/TacticalHome"
-import { ensureTacticalAccount } from "@/game/tacticalTcg/progression"
+import {
+  ensureTacticalAccount,
+  saveTacticalCheckpoint,
+  claimTacticalDaily,
+} from "@/game/tacticalTcg/progression"
+import { createTacticalBattle } from "@/game/tacticalTcg/engine"
+import { TacticalBackupPanel } from "@/components/game/TacticalBackupPanel"
 import { TACTICAL_STARTER } from "@/game/tacticalTcg/cards"
 import { MemoryRouter } from "react-router-dom"
 
@@ -58,6 +64,49 @@ describe("Tactical production UI render", () => {
     expect(html).toContain("tactical-campaign-progress")
     expect(html.match(/<button/g)).toHaveLength(8)
     expect(html).toContain("Con đường Giao Ước")
+  })
+  it("resumes a saved campaign and shows a clear home/daily state", () => {
+    ensureTacticalAccount(localStorage)
+    saveTacticalCheckpoint(
+      localStorage,
+      createTacticalBattle({
+        battleId: "campaign:act-1-hearth:v1",
+        nodeId: "act-1-hearth",
+        deck: TACTICAL_STARTER,
+      }),
+    )
+    const progress = claimTacticalDaily(localStorage)
+    const home = renderToStaticMarkup(
+      createElement(
+        MemoryRouter,
+        null,
+        createElement(TacticalHome, {
+          progress,
+          go: () => {},
+          onDaily: () => {},
+          onResume: () => {},
+        }),
+      ),
+    )
+    expect(home).toContain("Tiếp tục trận đang chơi")
+    expect(home).toContain("Đã nhận hôm nay")
+    const campaign = renderToStaticMarkup(
+      createElement(TacticalCampaignScreen, {
+        deck: TACTICAL_STARTER,
+        resumeNodeId: "act-1-hearth",
+      }),
+    )
+    expect(campaign).toContain("Linh Chiến 4×2")
+    expect(campaign).toContain("Tay bài của bạn")
+  })
+  it("makes backup import and its paste alternative reachable", () => {
+    const html = renderToStaticMarkup(
+      createElement(TacticalBackupPanel, { onRestored: () => {} }),
+    )
+    expect(html).toContain("Chọn tệp bản sao JSON")
+    expect(html).toContain("Nội dung bản sao JSON")
+    expect(html).toContain("Kiểm tra bản sao")
+    expect(maximumButtonDepth(html)).toBe(1)
   })
   it("renders a card match with an empty board and an actual four-card hand", () => {
     const html = renderToStaticMarkup(

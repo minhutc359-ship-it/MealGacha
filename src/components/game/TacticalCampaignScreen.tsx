@@ -24,16 +24,30 @@ export function TacticalCampaignScreen({
   onProgress,
   onManga,
   deck,
+  resumeNodeId,
+  onResumeSaved,
 }: {
   onProgress?: (value: TacticalProgress) => void
   onManga?: () => void
   deck?: string[]
+  resumeNodeId?: string | null
+  onResumeSaved?: () => void
 }) {
   const [progress, setProgress] = useState(() =>
     readTacticalProgress(localStorage),
   )
-  const [active, setActive] = useState<TacticalCampaignNode | null>(null)
-  const [screen, setScreen] = useState<"before" | "battle" | "after">("before")
+  const resumed =
+    TACTICAL_CAMPAIGN_NODES.find(
+      (node) =>
+        node.id === resumeNodeId &&
+        node.id === progress.checkpoint?.nodeId &&
+        node.battle &&
+        isCampaignNodeAvailable(node, progress.completedCampaignNodes),
+    ) ?? null
+  const [active, setActive] = useState<TacticalCampaignNode | null>(resumed)
+  const [screen, setScreen] = useState<"before" | "battle" | "after">(
+    resumed ? "battle" : "before",
+  )
   const [error, setError] = useState("")
   const refresh = () => {
     const value = readTacticalProgress(localStorage)
@@ -84,6 +98,11 @@ export function TacticalCampaignScreen({
             }}
             mangaChapterId={active.mangaChapterId}
             onProgress={refresh}
+            onResumeSaved={onResumeSaved}
+            onExit={() => {
+              setActive(null)
+              refresh()
+            }}
             onComplete={() => {
               refresh()
               setScreen("after")

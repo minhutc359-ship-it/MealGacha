@@ -1,5 +1,7 @@
 # Test ledger
 
+TCG-006 fresh checks after rebuilding the workspace from `e855a67`: production/dev types PASS; `pnpm verify:production` 10 files/79 tests PASS; `pnpm test` 178 files/2,349 tests PASS; release records 32/774/3 PASS; `pnpm build` and Tactical package/release guard PASS (376 files). No runtime dependencies changed. Browser facts and remaining limits are in [TCG-006 evidence](evidence/TCG-006.md); the table below retains TCG-005's historical verification.
+
 | Gate | Kết quả |
 | --- | --- |
 | `pnpm typecheck` | PASS |

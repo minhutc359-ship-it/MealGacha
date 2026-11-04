@@ -16,6 +16,7 @@ import {
   withTacticalLock,
   TACTICAL_PACKS,
   TACTICAL_PACK_COST,
+  newTacticalRequestId,
   type TacticalProgress,
 } from "../../game/tacticalTcg/progression"
 import { GameCardView } from "./GameCardView"
@@ -297,7 +298,11 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
         <button
           className="tcg-button ghost"
           onClick={() => {
-            setDraft({ id: crypto.randomUUID(), name: "Bộ bài mới", cards: [] })
+            setDraft({
+              id: newTacticalRequestId(),
+              name: "Bộ bài mới",
+              cards: [],
+            })
             setNotice("")
           }}
         >
@@ -486,7 +491,7 @@ export function TacticalPacks({ progress, onProgress }: HubProps) {
     processing.current = true
     setBusy(true)
     try {
-      const requestId = crypto.randomUUID()
+      const requestId = newTacticalRequestId()
       const result = await withTacticalLock(() =>
         openTacticalPack(localStorage, selected, requestId),
       )

@@ -18,6 +18,20 @@ import type { TacticalPackReceipt } from "./schema"
 import { commitTacticalProgress, readTacticalProgress } from "./storage"
 
 export const TACTICAL_PACK_COST = 80
+export class TacticalCheckpointConflict extends Error {}
+let requestSequence = 0
+/** Receipt/deck identity, including HTTP previews and WebViews without randomUUID. */
+export function newTacticalRequestId() {
+  if (typeof globalThis.crypto?.randomUUID === "function")
+    return globalThis.crypto.randomUUID()
+  const bytes = new Uint8Array(16)
+  if (typeof globalThis.crypto?.getRandomValues === "function")
+    globalThis.crypto.getRandomValues(bytes)
+  else
+    for (let i = 0; i < bytes.length; i++)
+      bytes[i] = Math.floor(Math.random() * 256)
+  return `${Date.now().toString(36)}-${Array.from(bytes, (n) => n.toString(16).padStart(2, "0")).join("")}-${++requestSequence}`
+}
 export async function withTacticalLock<T>(operation: () => T): Promise<T> {
   if (typeof navigator !== "undefined" && navigator.locks)
     return navigator.locks.request("soul-of-meal:tactical-progress", operation)
@@ -134,14 +148,17 @@ export function craftTacticalCard(storage: StorageLike, cardId: string) {
     cardCopies: { [`card:${cardId}`]: 1 },
   }).progress
 }
-export function claimTacticalDaily(storage: StorageLike, now = new Date()) {
-  ensureTacticalAccount(storage)
-  const date = new Intl.DateTimeFormat("en-CA", {
+export function tacticalDailyDate(now = new Date()) {
+  return new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Ho_Chi_Minh",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   }).format(now)
+}
+export function claimTacticalDaily(storage: StorageLike, now = new Date()) {
+  ensureTacticalAccount(storage)
+  const date = tacticalDailyDate(now)
   return commitTacticalProgress(storage, {
     receiptId: `tcg-daily:${date}`,
     tinhVi: 30,
@@ -229,8 +246,16 @@ export function openTacticalPack(
 export function saveTacticalCheckpoint(
   storage: StorageLike,
   battle: TacticalBattleState | null,
+  expected?: TacticalBattleState | null,
 ) {
   const progress = readTacticalProgress(storage)
+  if (
+    expected !== undefined &&
+    JSON.stringify(progress.checkpoint) !== JSON.stringify(expected)
+  )
+    throw new TacticalCheckpointConflict(
+      "Trận đã thay đổi ở tab khác. Đọc lại bản lưu trước khi tiếp tục.",
+    )
   return commitTacticalProgress(storage, {
     receiptId: `checkpoint:${progress.revision}`,
     checkpoint: battle,

@@ -6,19 +6,29 @@ import {
 } from "../../game/tacticalTcg/cards"
 import { TACTICAL_CAMPAIGN_NODES } from "../../game/tacticalTcg/campaign"
 import { TACTICAL_SCENES } from "../../game/tacticalTcg/campaign/story"
-import type { TacticalProgress } from "../../game/tacticalTcg/progression"
+import {
+  tacticalDailyDate,
+  type TacticalProgress,
+} from "../../game/tacticalTcg/progression"
 import { GameCardView } from "./GameCardView"
 
 export function TacticalHome({
   progress,
   go,
   onDaily,
+  onResume,
 }: {
   progress: TacticalProgress
   go: (tab: string) => void
   onDaily: () => void
+  onResume?: () => void
 }) {
-  const active = progress.decks.find((d) => d.id === progress.activeDeckId)!
+  const active =
+    progress.decks.find((d) => d.id === progress.activeDeckId) ??
+    progress.decks[0]
+  const saved = progress.checkpoint
+  const savedNode = TACTICAL_CAMPAIGN_NODES.find((n) => n.id === saved?.nodeId)
+  const dailyClaimed = progress.dailyClaimedDate === tacticalDailyDate()
   const next =
     TACTICAL_CAMPAIGN_NODES.find(
       (n) => !progress.completedCampaignNodes.includes(n.id),
@@ -62,6 +72,31 @@ export function TacticalHome({
           ))}
         </div>
       </header>
+      {saved && onResume && (
+        <section className="tactical-resume-banner" aria-label="Trận đã lưu">
+          <span aria-hidden="true">↻</span>
+          <div>
+            <small>
+              {saved.phase === "result"
+                ? "KẾT QUẢ ĐANG LƯU"
+                : "HẸN GẶP LẠI BÊN BÀN"}
+            </small>
+            <h2>{savedNode?.title ?? "Trận luyện tập của bạn"}</h2>
+            <p>
+              Vòng {saved.round} ·{" "}
+              {saved.cardGame?.sides.player.hand.length ?? 0} lá trên tay ·{" "}
+              {saved.cardGame?.sides.player.mana ?? 0} Lửa Bếp. Bài và đội hình
+              được giữ nguyên.
+            </p>
+          </div>
+          <button className="tcg-button primary" onClick={onResume}>
+            {saved.phase === "result"
+              ? "Xem kết quả đã lưu"
+              : "Tiếp tục trận đang chơi"}{" "}
+            →
+          </button>
+        </section>
+      )}
       <div className="tactical-home-stats">
         <button onClick={() => go("collection")}>
           <strong>
@@ -91,17 +126,22 @@ export function TacticalHome({
           <header>
             <div>
               <small>ĐANG TRANG BỊ</small>
-              <h2>{active.name}</h2>
+              <h2>{active?.name ?? "Chưa trang bị bộ bài"}</h2>
             </div>
             <button onClick={() => go("decks")}>Sửa bộ bài ↗</button>
           </header>
           <div>
-            {[...new Set(active.cards)].slice(0, 5).map((id) => (
-              <GameCardView key={id} card={TACTICAL_CARD_MAP[id]} compact />
-            ))}
+            {[...new Set(active?.cards ?? [])]
+              .filter((id) => TACTICAL_CARD_MAP[id])
+              .slice(0, 5)
+              .map((id) => (
+                <GameCardView key={id} card={TACTICAL_CARD_MAP[id]} compact />
+              ))}
           </div>
           <footer>
-            <span>24 lá · thẻ bạn sở hữu · tay đầu 4 lá</span>
+            <span>
+              {active?.cards.length ?? 0}/24 lá · thẻ bạn sở hữu · tay đầu 4 lá
+            </span>
             <button className="tcg-button primary" onClick={() => go("battle")}>
               Luyện tập với bộ này
             </button>
@@ -128,8 +168,12 @@ export function TacticalHome({
             nhận thêm thẻ, vé và mở Manga.
           </p>
         </div>
-        <button className="tcg-button primary" onClick={onDaily}>
-          Nhận quà hôm nay
+        <button
+          className="tcg-button primary"
+          onClick={onDaily}
+          disabled={dailyClaimed}
+        >
+          {dailyClaimed ? "Đã nhận hôm nay ✓" : "Nhận quà hôm nay"}
         </button>
         <Link to="/chest">Rương món ăn ↗</Link>
       </div>
