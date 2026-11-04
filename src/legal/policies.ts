@@ -1,6 +1,6 @@
 export type PolicyId = "terms" | "privacy" | "rights"
-export const POLICY_DATE = "02/11/2026"
-export const POLICY_VERSION = "2026-11-02-aw2-free-v1"
+export const POLICY_DATE = "04/11/2026"
+export const POLICY_VERSION = "2026-11-04-tactical-tcg-v1"
 export const SUPPORT_NOTICE =
   "Kênh hỗ trợ riêng chưa được công bố. Thông tin liên hệ sẽ được cập nhật tại đây trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Không gửi bản lưu, giấy tờ hoặc dữ liệu nhạy cảm lên nơi công khai."
 export interface Policy {
@@ -240,20 +240,20 @@ export const POLICIES: Record<PolicyId, Policy> = {
   terms: {
     title: LEGACY_POLICIES.terms.title,
     intro:
-      "Áp dụng cho Soul of Meal mới: hành trình Một chỗ bên bếp tại trang chính, đội năm Vị Linh, bàn luyện tập TCG/Auto Chess trong game và Rương Vị Giác original tại /chest. Các giao diện Phiêu lưu, PvP, sự kiện, Timeline và Cài đặt của bản cũ không còn được cung cấp trong bản web này.",
+      "Áp dụng cho Soul of Meal · Linh Chiến Vị Giác: Tactical TCG 4×2 tại trang chính, chiến dịch bốn hồi, Manga ký ức và Rương Vị Giác tại /chest. Auto Chess, Adventure và AW2 không còn là bề mặt sản phẩm của bản web này.",
     sections: [
       {
         title: "1. Sản phẩm và liên hệ",
         paragraphs: [
           LEGACY_POLICIES.terms.sections[0].paragraphs[0],
-          "Bản web hiện chơi miễn phí, không yêu cầu tài khoản máy chủ, không có chat công khai, PvP mạng, quảng cáo hoặc thanh toán. Đây là phạm vi web; không mô tả bản Android/iOS mới đã phát hành.",
+          "Bản web hiện chơi miễn phí, không yêu cầu tài khoản máy chủ, không có chat công khai, PvP xếp hạng, quảng cáo hoặc thanh toán. Phòng PvP hiện chỉ là thử nghiệm cục bộ và không cấp thưởng PvE.",
         ],
       },
       { ...LEGACY_POLICIES.terms.sections[2], title: "Quyền chơi và nội dung" },
       {
         title: "2. Tiến trình và vật phẩm",
         paragraphs: [
-          "Hành trình, đội, nguyên liệu, kinh nghiệm và bộ sưu tập được lưu cục bộ trên trình duyệt. Rương original giữ dữ liệu riêng; bộ sưu tập cũ không bị tự chuyển thành nhân vật hoặc phần thưởng trong hành trình mới. Các tài nguyên ảo không đổi thành tiền hoặc phần thưởng bên ngoài trò chơi.",
+          "Tiến trình Linh Chiến, Tinh Vị, thẻ, biên nhận thưởng, nút chiến dịch và chương Manga được lưu cục bộ trên trình duyệt. Migration giữ backup byte gốc; dữ liệu PvP cũ không được nhập thành sức mạnh hoặc xếp hạng. Các tài nguyên ảo không đổi thành tiền hoặc phần thưởng bên ngoài trò chơi.",
           "Dùng Lưu vị trí trước khi rời game. Trong Thêm → Hướng dẫn / thông báo → Sao lưu và chuyển thiết bị, bạn có thể xuất JSON, chọn tệp và xác nhận khôi phục. Khôi phục thay tiến trình hiện tại; bản hợp lệ ngay trước đó được giữ ở bản an toàn. Không có cloud save hay cam kết phục hồi được dữ liệu chưa từng sao lưu khi trình duyệt bị xóa hoặc thu hồi dung lượng.",
           "Rương original có lựa chọn ngẫu nhiên và hiển thị quy tắc tại Xem món & tỉ lệ. Hành trình mới có triệu hồi miễn phí tại Đội → Triệu hồi, với tỷ lệ và bảo hiểm công bố trong cùng menu. Vé chỉ nhận từ biên nhận nhiệm vụ và lần đầu thắng mỗi bậc TCG/Auto Chess; không có mua vé hoặc thanh toán. Các mốc hiện có cho tổng cộng 100 vé. Bảo hiểm UR ở 200 lần không hứa nhận UR ngẫu nhiên trong số vé này; cốt truyện vẫn có lời mời miễn phí cho đủ 12 Vị Linh.",
           "Mỗi bàn TCG/Auto Chess có ba bậc, dùng bộ bài hoặc quân và vàng riêng tại bàn. Kết quả cần được lưu sau khi ván kết thúc; rời bàn hay tải lại giữa ván bỏ phần chưa lưu. Thắng lần đầu mỗi bậc mở mốc nhận vé riêng, xem lại hoặc chơi lại bậc đã hoàn tất không nhận mốc lần nữa. Bản Vị Linh trùng ghi dấu kỷ niệm, không tăng sức mạnh và không đổi thành tiền hay vật phẩm.",
@@ -281,7 +281,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
   privacy: {
     title: LEGACY_POLICIES.privacy.title,
     intro:
-      "Chính sách mô tả Soul of Meal mới và Rương Vị Giác original. Game chạy trên trình duyệt, lưu tiến trình tại thiết bị và không tự gửi bản lưu lên tài khoản máy chủ. Các mô tả PvP, tìm quán, Timeline, ảnh check-in và native bridge của bản cũ không áp dụng cho các giao diện web hiện đang cung cấp.",
+      "Chính sách mô tả Tactical TCG, chiến dịch, Manga và Rương Vị Giác. Game chạy trên trình duyệt, lưu tiến trình tại thiết bị và không tự gửi bản lưu lên tài khoản máy chủ. Auto Chess, Adventure, AW2, tìm quán, Timeline và ảnh check-in không thuộc bề mặt web hiện tại.",
     sections: [
       {
         title: "1. Dữ liệu trên thiết bị",

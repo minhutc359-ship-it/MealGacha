@@ -4,8 +4,7 @@ import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import { fileURLToPath } from "node:url"
 import metadata from "./src/appMetadata.json"
-import { aw2ReviewBuild } from "./dev/tools/aw2-review-build"
-import { aw2ProductionBuild } from "./dev/tools/aw2-production-build"
+import { tacticalProductionBuild } from "./dev/tools/tactical-tcg-production-build"
 import { productionPublicAssets } from "./dev/tools/production-public-assets"
 
 const escape = (value: string) =>
@@ -78,8 +77,7 @@ export default defineConfig({
   publicDir: false,
   define: { __AW2_PRODUCTION__: true },
   plugins: [
-    aw2ReviewBuild(),
-    aw2ProductionBuild(),
+    tacticalProductionBuild(),
     productionPublicAssets(),
     react(),
     tailwindcss(),
@@ -112,8 +110,8 @@ export default defineConfig({
               priority: 30,
             },
             {
-              name: "aw2-game",
-              test: /[\/](?:src[\/]aw2|dev[\/]aw2)[\/]/,
+              name: "tactical-tcg",
+              test: /[\/]src[\/](?:game|pages|components[\/]game)[\/]/,
               priority: 15,
             },
             {
