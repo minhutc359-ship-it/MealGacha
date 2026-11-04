@@ -3,6 +3,15 @@ import { renderToStaticMarkup } from "react-dom/server"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { TacticalBattleScreen } from "@/components/game/TacticalBattleScreen"
 import { TacticalCampaignScreen } from "@/components/game/TacticalCampaignScreen"
+import {
+  TacticalCollection,
+  TacticalDeckBuilder,
+  TacticalPacks,
+} from "@/components/game/TacticalCardHub"
+import { TacticalHome, TacticalGuide } from "@/components/game/TacticalHome"
+import { ensureTacticalAccount } from "@/game/tacticalTcg/progression"
+import { TACTICAL_STARTER } from "@/game/tacticalTcg/cards"
+import { MemoryRouter } from "react-router-dom"
 
 class MemoryStorage {
   private data = new Map<string, string>()
@@ -49,5 +58,50 @@ describe("Tactical production UI render", () => {
     expect(html).toContain("tactical-campaign-progress")
     expect(html.match(/<button/g)).toHaveLength(8)
     expect(html).toContain("Con đường Giao Ước")
+  })
+  it("renders a card match with an empty board and an actual four-card hand", () => {
+    const html = renderToStaticMarkup(
+      createElement(TacticalBattleScreen, {
+        options: { battleId: "deck-ui", deck: TACTICAL_STARTER },
+      }),
+    )
+    expect(html.match(/class="tactical-cell is-empty/g)).toHaveLength(16)
+    expect(html).toContain("Tay bài của bạn")
+    expect(html).toContain("LỬA BẾP")
+    expect(html).toContain("Đổi tay đầu")
+    expect(maximumButtonDepth(html)).toBe(1)
+  })
+  it("makes collection, deck editing, packs, guide and home reachable with real account data", () => {
+    const progress = ensureTacticalAccount(localStorage)
+    const props = { progress, onProgress: () => {} }
+    const collection = renderToStaticMarkup(
+      createElement(TacticalCollection, props),
+    )
+    const deck = renderToStaticMarkup(createElement(TacticalDeckBuilder, props))
+    const packs = renderToStaticMarkup(createElement(TacticalPacks, props))
+    const guide = renderToStaticMarkup(
+      createElement(TacticalGuide, { onPlay: () => {} }),
+    )
+    const home = renderToStaticMarkup(
+      createElement(
+        MemoryRouter,
+        null,
+        createElement(TacticalHome, {
+          progress,
+          go: () => {},
+          onDaily: () => {},
+        }),
+      ),
+    )
+    expect(collection).toContain("Bộ sưu tập")
+    expect(collection).toContain("Tìm thẻ")
+    expect(deck).toContain("Lưu &amp; trang bị")
+    expect(deck).toContain("Bếp nhà")
+    expect(packs).toContain("Mở 5 lá")
+    expect(packs).toContain("Huyền thoại 2%")
+    expect(guide).toContain("24 lá")
+    expect(home).toContain("Tiếp tục hành trình")
+    for (const html of [collection, deck, packs, guide, home])
+      expect(maximumButtonDepth(html)).toBeLessThanOrEqual(1)
   })
 })

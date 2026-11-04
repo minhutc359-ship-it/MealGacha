@@ -1,4 +1,6 @@
 import type { CreateBattleOptions } from "../engine"
+import { TACTICAL_STARTER, TACTICAL_CARD_MAP } from "../cards"
+import { TACTICAL_SCENES } from "./story"
 
 export interface TacticalCampaignNode {
   id: string
@@ -101,6 +103,46 @@ export const TACTICAL_CAMPAIGN_NODES: TacticalCampaignNode[] = [
     },
   },
 ]
+
+// Preserve shipped node IDs while giving each encounter its own deck and reward.
+for (const node of TACTICAL_CAMPAIGN_NODES) {
+  if (!node.battle) continue
+  const additions =
+    node.act === 1
+      ? ["trap-ward", "herb"]
+      : node.act === 2
+        ? ["wok-storm", "trap-embers"]
+        : node.act === 3
+          ? ["recipe-scroll", "sugar-veil"]
+          : ["family-table", "trap-mirror"]
+  const noviceDeck = [
+    "pho-bo",
+    "banh-mi",
+    "caravan-scout",
+    "caravan-herbalist",
+    "bun-rieu",
+    "cha-ca-la-vong",
+    "banh-xeo",
+    "spark",
+    "herb",
+    "seasoning",
+    "trap-ward",
+    "sugar-veil",
+  ]
+  const ids = (
+    node.act === 1
+      ? noviceDeck
+      : [...new Set([...additions, ...TACTICAL_STARTER])]
+  )
+    .filter((id) => TACTICAL_CARD_MAP[id])
+    .slice(0, 12)
+  node.battle.enemyDeck = ids.flatMap((id) => [id, id])
+  node.battle.rewardCardId = TACTICAL_SCENES[node.id].rewardCardId
+  node.battle.enemyManaPenalty =
+    node.act === 1 || node.id === "act-2-kiln" || node.id === "act-3-regent"
+      ? 1
+      : 0
+}
 
 export function isCampaignNodeAvailable(
   node: TacticalCampaignNode,

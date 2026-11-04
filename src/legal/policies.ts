@@ -1,6 +1,6 @@
 export type PolicyId = "terms" | "privacy" | "rights"
 export const POLICY_DATE = "04/11/2026"
-export const POLICY_VERSION = "2026-11-04-tactical-tcg-v1"
+export const POLICY_VERSION = "2026-11-04-tactical-tcg-v2"
 export const SUPPORT_NOTICE =
   "Kênh hỗ trợ riêng chưa được công bố. Thông tin liên hệ sẽ được cập nhật tại đây trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Không gửi bản lưu, giấy tờ hoặc dữ liệu nhạy cảm lên nơi công khai."
 export interface Policy {
@@ -254,9 +254,9 @@ export const POLICIES: Record<PolicyId, Policy> = {
         title: "2. Tiến trình và vật phẩm",
         paragraphs: [
           "Tiến trình Linh Chiến, Tinh Vị, thẻ, biên nhận thưởng, nút chiến dịch và chương Manga được lưu cục bộ trên trình duyệt. Migration giữ backup byte gốc; dữ liệu PvP cũ không được nhập thành sức mạnh hoặc xếp hạng. Các tài nguyên ảo không đổi thành tiền hoặc phần thưởng bên ngoài trò chơi.",
-          "Dùng Lưu vị trí trước khi rời game. Trong Thêm → Hướng dẫn / thông báo → Sao lưu và chuyển thiết bị, bạn có thể xuất JSON, chọn tệp và xác nhận khôi phục. Khôi phục thay tiến trình hiện tại; bản hợp lệ ngay trước đó được giữ ở bản an toàn. Không có cloud save hay cam kết phục hồi được dữ liệu chưa từng sao lưu khi trình duyệt bị xóa hoặc thu hồi dung lượng.",
-          "Rương original có lựa chọn ngẫu nhiên và hiển thị quy tắc tại Xem món & tỉ lệ. Hành trình mới có triệu hồi miễn phí tại Đội → Triệu hồi, với tỷ lệ và bảo hiểm công bố trong cùng menu. Vé chỉ nhận từ biên nhận nhiệm vụ và lần đầu thắng mỗi bậc TCG/Auto Chess; không có mua vé hoặc thanh toán. Các mốc hiện có cho tổng cộng 100 vé. Bảo hiểm UR ở 200 lần không hứa nhận UR ngẫu nhiên trong số vé này; cốt truyện vẫn có lời mời miễn phí cho đủ 12 Vị Linh.",
-          "Mỗi bàn TCG/Auto Chess có ba bậc, dùng bộ bài hoặc quân và vàng riêng tại bàn. Kết quả cần được lưu sau khi ván kết thúc; rời bàn hay tải lại giữa ván bỏ phần chưa lưu. Thắng lần đầu mỗi bậc mở mốc nhận vé riêng, xem lại hoặc chơi lại bậc đã hoàn tất không nhận mốc lần nữa. Bản Vị Linh trùng ghi dấu kỷ niệm, không tăng sức mạnh và không đổi thành tiền hay vật phẩm.",
+          "Mỗi hành động trong trận Linh Chiến được lưu trên thiết bị trước khi cập nhật giao diện. Tải lại tiếp tục checkpoint đã ghi. Trong Cài đặt & dữ liệu, bạn có thể xuất bản sao JSON gồm tiến trình Tactical và dữ liệu cũ còn lưu. Bản hiện tại chưa có cloud save hoặc màn nhập bản sao Tactical; không cam kết khôi phục dữ liệu chưa từng sao lưu khi trình duyệt bị xóa hoặc thu hồi dung lượng.",
+          "Mở thẻ trong TCG dùng 1 vé hoặc 80 Tinh Vị để nhận 5 lá. Tỷ lệ cơ bản mỗi lá: Thường 63%, Hiếm 25%, Sử thi 10%, Huyền thoại 2%. Mỗi gói có ít nhất một Hiếm; trong 8 gói chưa nhận Sử thi hoặc Huyền thoại, gói thứ 8 bảo đảm ít nhất Sử thi. Gói theo hệ giữ cùng tỷ lệ bậc hiếm và chỉ lấy thẻ thuộc hệ đó. Tỷ lệ, bảo đảm và phần thưởng bản dư được hiển thị trước khi mở. Vé nhận từ bộ khởi đầu, điểm danh và thưởng trận; không có thanh toán hoặc đổi tài nguyên ra tiền.",
+          "Bộ bài chiến đấu có 24 lá, tối đa 2 bản mỗi thẻ đã sở hữu. Bản dư từ thứ 3 đổi thành Tinh Vị theo bậc hiếm; có thể chế tạo chính xác lá đã chọn trong Bộ sưu tập. Bản sao dùng trong trận có thể nâng sao trong trận đó; không nhập chỉ số nâng vĩnh viễn từ campaign vào PvP. Phần thưởng trận chỉ áp dụng một lần theo biên nhận. Rương Vị Giác tại /chest giữ lịch sử, món ăn và quy tắc hiển thị tại Xem món & tỉ lệ; gói thẻ TCG có màn riêng.",
         ],
       },
       {

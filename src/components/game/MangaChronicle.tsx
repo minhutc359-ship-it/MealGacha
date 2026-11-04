@@ -16,6 +16,7 @@ import { useModeIntroStore } from "../../game/modeIntroState"
 import "../../game/mangaChronicle.css"
 
 interface Props extends MangaContext {
+  unlockedChapterIds?: readonly string[]
   track: MangaTrack
   clearedStages?: readonly string[]
   stars?: Readonly<Record<string, number>>
@@ -162,7 +163,11 @@ function MangaReader({
       document.body.style.overflow = overflow
       if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true })
       if (document.activeElement !== returnFocus)
-        document.querySelector<HTMLElement>("#tcg-main,button[aria-label='Hướng dẫn auto chess'],.chest-help-trigger")?.focus({ preventScroll: true })
+        document
+          .querySelector<HTMLElement>(
+            "#tcg-main,button[aria-label='Hướng dẫn auto chess'],.chest-help-trigger",
+          )
+          ?.focus({ preventScroll: true })
     }
   }, [])
   useEffect(() => {
@@ -485,12 +490,14 @@ export function MangaChronicle({
   choices = {},
   storyEnding,
   story400,
+  unlockedChapterIds,
 }: Props) {
   const chapters = mangaChapters(track)
   const unlocked = new Set(
-    track === "tcg"
-      ? unlockedTcgManga(clearedStages)
-      : unlockedAdventureManga(stars),
+    unlockedChapterIds ??
+      (track === "tcg"
+        ? unlockedTcgManga(clearedStages)
+        : unlockedAdventureManga(stars)),
   )
   const [selected, setSelected] = useState<string | null>(null)
   const trigger = useRef<HTMLButtonElement | null>(null)
