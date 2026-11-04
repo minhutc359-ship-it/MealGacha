@@ -2,6 +2,8 @@
 
 ## P0 trước merge/deploy
 
+- TCG-007 đã kiểm tra bố cục bàn ở 320×568, 390×844, 844×390, 1280×720, 1360×900 bằng iframe viewport trên Chrome thật; cả 16 ô/tay bài/thanh thao tác nằm trong khung. Điện thoại/touch thật vẫn cần nghiệm thu.
+
 - Review trực quan desktop/mobile và thử input touch trên thiết bị thật.
 - Chơi xuyên 8 node, kiểm tra mở khóa Manga và nhận reward sau reload/tab cạnh tranh.
 - Xác nhận Vercel preview dùng đúng SHA của nhánh `game/tactical-tcg`.
@@ -14,6 +16,8 @@
 - Checkpoint trận, import bổ sung dữ liệu cũ, cốt truyện trước/sau và hai ending.
 
 ## Tiếp theo
+
+- TCG-007 đã thay bàn chiến đấu sản phẩm bằng layout toàn màn hình; thẻ đọc lớn, hướng dẫn theo phase, trình diễn đòn đánh và 3 bộ nhập môn + 2 công thức. Cần human balance/playtest cho cả 5 archetype trước nghiệm thu sản phẩm.
 
 - TCG-006 đã thêm: tiếp tục trận từ sảnh, xác nhận thay trận, bảo vệ tab cũ, import/preview/undo, trạng thái quà/thưởng và sửa mở gói/tạo bộ ở môi trường thiếu randomUUID. Kiểm tra browser phần cuối đang tiếp tục; không coi là nghiệm thu thiết bị thật.
 

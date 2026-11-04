@@ -6,6 +6,8 @@ Sản phẩm chỉ gồm Tactical TCG, Manga, Chest và legal. PvP ở `/?tab=pl
 
 Sảnh, bộ bài, bộ sưu tập, mở gói, campaign và hướng dẫn là tính năng của TCG. Root mở sảnh; trận production luôn nhận bộ bài người chơi đã trang bị, không tạo sẵn quân người chơi.
 
+TCG-007: bàn sản phẩm dùng viewport riêng, giữ đủ 16 ô/tay bài/thanh hành động; compact hand phân trang thay cuộn. Thẻ chọn đọc trong inspector/modal, bẫy theo cột và Tuyệt kỹ có nút riêng. Giao chiến trình diễn snapshot sau khi commit kết quả cuối; hiệu ứng không đổi luật/kết quả. Màn đọc luật/nhật ký có thể cuộn khi nội dung dài, bàn chơi chính không cần cuộn.
+
 ## Bộ bài và gói thẻ
 
 - Giữ 181 ID, art và lore của catalog cũ; luật mô tả trên thẻ là luật Tactical đang chạy, không giả định mọi hiệu ứng legacy có cách tính không đổi.
@@ -15,6 +17,7 @@ Sảnh, bộ bài, bộ sưu tập, mở gói, campaign và hướng dẫn là t
 - Base odds: Thường 63%, Hiếm 25%, Sử thi 10%, Huyền thoại 2%; mỗi gói ít nhất Hiếm; gói thứ 8 liên tiếp chưa có Sử thi/Huyền thoại bảo đảm Sử thi. Tỷ lệ hiện trước khi mở.
 - Bản dư thứ 3 trở đi: +5/+15/+40/+100 Tinh Vị. Craft chính xác: 50/140/360/800 theo cùng thứ tự bậc hiếm.
 - Hai vé khởi đầu; quà ngày theo giờ Việt Nam: 1 vé +30 Tinh Vị. Reward trận có biên nhận một lần và một vé; đấu lại không tạo lại phần thưởng đã nhận.
+- Gói nhập môn bộ bài v1 (TCG-007) thêm một lần các bản còn thiếu tới 2 để chơi Đường Than Hồng, Thư Từ Bến Nước, Khu Vườn Bên Bếp. Thêm 3 bộ nếu còn slot, giữ active cũ/max12. Không tặng dư để sinh Tinh Vị. Hai công thức Mâm Chung Năm Vị/Bình Minh Dưới Trăng cần sưu tầm/craft đủ, không cấp quân miễn phí trong trận.
 
 ## Dữ liệu
 

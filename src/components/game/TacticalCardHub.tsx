@@ -21,6 +21,10 @@ import {
 } from "../../game/tacticalTcg/progression"
 import { GameCardView } from "./GameCardView"
 import { Dialog } from "./Dialog"
+import {
+  TACTICAL_DECK_LIBRARY,
+  deckRecipeMissing,
+} from "../../game/tacticalTcg/deckLibrary"
 
 interface HubProps {
   progress: TacticalProgress
@@ -324,6 +328,49 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
           </button>
         ))}
       </div>
+      <details className="tactical-deck-recipes">
+        <summary>
+          Công thức bộ bài · 3 bộ nhập môn và 2 hướng phát triển
+        </summary>
+        <div>
+          {TACTICAL_DECK_LIBRARY.map((template) => {
+            const missing = deckRecipeMissing(
+              template.cards,
+              progress.cardCopies,
+            )
+            return (
+              <article key={template.id}>
+                <small>{template.style}</small>
+                <h2>{template.name}</h2>
+                <p>{template.plan}</p>
+                <p>
+                  <b>Tay đầu:</b> {template.opening}
+                </p>
+                <span>
+                  {missing.length
+                    ? `Thiếu ${missing.reduce((n, m) => n + m.count, 0)} lá · chế tạo ${missing.reduce((n, m) => n + m.cost, 0)} Tinh Vị`
+                    : "Đã đủ thẻ · có thể chơi ngay"}
+                </span>
+                <button
+                  className="tcg-button ghost"
+                  onClick={() => {
+                    setDraft({
+                      id: newTacticalRequestId(),
+                      name: template.name,
+                      cards: [...template.cards],
+                    })
+                    setNotice(
+                      "Đã nạp công thức. Xem bộ bài rồi Lưu & trang bị; thẻ chưa sở hữu không thể vào trận.",
+                    )
+                  }}
+                >
+                  Nạp vào trình sửa bộ
+                </button>
+              </article>
+            )
+          })}
+        </div>
+      </details>
       <div className="tactical-deck-builder">
         <section>
           <div className="tactical-card-filters">

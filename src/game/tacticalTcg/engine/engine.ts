@@ -554,7 +554,10 @@ export function reduceTacticalBattle(
   return state
 }
 
-export function playAutomaticRound(current: TacticalBattleState) {
+export function playAutomaticRound(
+  current: TacticalBattleState,
+  onFrame?: (state: TacticalBattleState) => void,
+) {
   if (["reaction", "ultimate", "round-end"].includes(current.phase))
     return reduceTacticalBattle(current, {
       id: `r${current.round}:end`,
@@ -580,6 +583,7 @@ export function playAutomaticRound(current: TacticalBattleState) {
         })
         if (next !== state) {
           state = next
+          onFrame?.(state)
           played = true
           break
         }
@@ -591,6 +595,7 @@ export function playAutomaticRound(current: TacticalBattleState) {
     id: `r${current.round}:begin`,
     type: "begin-round",
   })
+  onFrame?.(state)
   const order = [...state.units]
     .filter((unit) => !unit.defeated)
     .sort(
@@ -609,12 +614,15 @@ export function playAutomaticRound(current: TacticalBattleState) {
       type: "basic",
       unitId: unit.instanceId,
     })
-    if (state.cardGame && unit.side === "enemy" && state.phase !== "result")
+    onFrame?.(state)
+    if (state.cardGame && unit.side === "enemy" && state.phase !== "result") {
       state = reduceTacticalBattle(state, {
         id: `r${state.round}:enemy-ult:${unit.instanceId}`,
         type: "ultimate",
         unitId: unit.instanceId,
       })
+      onFrame?.(state)
+    }
   }
   return state
 }

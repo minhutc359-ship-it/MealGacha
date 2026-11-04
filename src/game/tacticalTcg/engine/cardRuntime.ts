@@ -344,7 +344,9 @@ export function playCard(
   owner.lastSchool = card.school
   cardLog(
     state,
-    `${action.side === "player" ? "Bạn" : "Địch"} dùng ${card.name} · ${card.cost} Lửa Bếp.`,
+    action.side === "enemy" && card.kind === "trap"
+      ? "Địch gài một Bẫy Hương úp."
+      : `${action.side === "player" ? "Bạn" : "Địch"} dùng ${card.name} · ${card.cost} Lửa Bếp.`,
   )
   return true
 }

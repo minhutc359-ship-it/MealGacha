@@ -18,6 +18,8 @@ import { TACTICAL_CARD_MAP } from "../../game/tacticalTcg/cards"
 import { emptyCardCell } from "../../game/tacticalTcg/engine/cardRuntime"
 import { GameCardView } from "./GameCardView"
 import { Dialog } from "./Dialog"
+import { TacticalTable } from "./TacticalTable"
+import { useAppStore } from "../../store/useAppStore"
 import "../../game/tacticalBattle.css"
 
 const TUTORIAL_KEY = "soul-of-meal.tactical-tcg.battle-tutorial.v1"
@@ -165,6 +167,20 @@ export function TacticalBattleScreen({
     [claimStatus, setClaimStatus] = useState("")
   const battleRef = useRef(battle)
   const commandPending = useRef(false)
+  const presenting = useRef(false)
+  const presentationGeneration = useRef(0)
+  const [animating, setAnimating] = useState(false)
+  const quiet = useAppStore(
+    (s) =>
+      s.user.preferences.reducedMotion ||
+      s.user.preferences.graphicsQuality === "low",
+  )
+  useEffect(
+    () => () => {
+      presentationGeneration.current++
+    },
+    [],
+  )
   const hitTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [visualHits, setVisualHits] = useState<Record<string, string>>({})
   useEffect(
@@ -183,8 +199,14 @@ export function TacticalBattleScreen({
   const updateBattle = async (
     update: (current: TacticalBattleState) => TacticalBattleState,
     replace = false,
+    frames?: TacticalBattleState[],
   ) => {
-    if (commandPending.current || (showReplacement && !replace) || saveConflict)
+    if (
+      commandPending.current ||
+      (presenting.current && !frames) ||
+      (showReplacement && !replace) ||
+      saveConflict
+    )
       return false
     commandPending.current = true
     try {
@@ -213,7 +235,7 @@ export function TacticalBattleScreen({
           if (hitTimer.current) clearTimeout(hitTimer.current)
           hitTimer.current = setTimeout(() => setVisualHits({}), 450)
           battleRef.current = next
-          setBattle(next)
+          setBattle(frames?.[0] ?? next)
           setClaimStatus("")
           onProgress?.()
           return true
@@ -228,6 +250,40 @@ export function TacticalBattleScreen({
       return false
     } finally {
       commandPending.current = false
+    }
+  }
+  const advancePresented = async () => {
+    if (presenting.current || commandPending.current) return
+    const frames: TacticalBattleState[] = []
+    const generation = presentationGeneration.current
+    presenting.current = true
+    setAnimating(true)
+    setSelectedCard(null)
+    try {
+      const ok = await updateBattle(
+        (current) =>
+          playAutomaticRound(current, (frame) => {
+            if (frames[frames.length - 1] !== frame) frames.push(frame)
+          }),
+        false,
+        frames,
+      )
+      if (!ok) return
+      if (
+        !quiet &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        for (const frame of frames) {
+          if (generation !== presentationGeneration.current) return
+          setBattle(frame)
+          await new Promise((resolve) => setTimeout(resolve, 360))
+        }
+      }
+      if (generation === presentationGeneration.current)
+        setBattle(battleRef.current)
+    } finally {
+      presenting.current = false
+      if (generation === presentationGeneration.current) setAnimating(false)
     }
   }
   const loadLatest = () => {
@@ -349,6 +405,107 @@ export function TacticalBattleScreen({
       )
     }
   }
+  if (Boolean(cards))
+    return (
+      <TacticalTable
+        battle={battle}
+        selectedCard={selectedCard}
+        selectedUnit={selected}
+        busy={animating}
+        notice={claimStatus}
+        claimed={!!battle.reward && claimed.includes(battle.reward.id)}
+        trapColumn={trapColumn}
+        onSelectCard={setSelectedCard}
+        onSelectUnit={setSelected}
+        onColumn={setTrapColumn}
+        onPlay={() => playSelected()}
+        onAdvance={advancePresented}
+        onExit={onExit}
+        onCell={(side, cell, unit) => {
+          if (chosenCard && battle.phase === "planning") {
+            playSelected(cell, unit?.instanceId)
+            return
+          }
+          if (unit) setSelected(unit.instanceId)
+          else if (side === "player" && selectedUnit?.side === "player")
+            move(cell.row, cell.column)
+        }}
+        onMulligan={() => {
+          setSelectedCard(null)
+          updateBattle((c) =>
+            reduceTacticalBattle(c, { id: "mulligan", type: "mulligan" }),
+          )
+        }}
+        onUltimate={(unitId) =>
+          updateBattle((c) =>
+            reduceTacticalBattle(c, {
+              id: `ultimate:${c.round}:${unitId}`,
+              type: "ultimate",
+              unitId,
+            }),
+          )
+        }
+        onForfeit={() =>
+          updateBattle((c) =>
+            reduceTacticalBattle(c, {
+              id: `forfeit:${c.round}`,
+              type: "forfeit",
+            }),
+          )
+        }
+        onClaim={claim}
+        onRestart={() => {
+          setSelected(null)
+          setSelectedCard(null)
+          updateBattle(() => initial)
+        }}
+        overlay={
+          <>
+            {showReplacement && (
+              <Dialog
+                title="Bạn còn một trận đang lưu"
+                onClose={() => onExit?.()}
+                dismissible={!!onExit}
+              >
+                <p>
+                  Bắt đầu trận này sẽ thay bản lưu vòng {saved?.round} trước đó.
+                  Bộ sưu tập và thưởng đã nhận vẫn được giữ.
+                </p>
+                <div className="tactical-backup-actions">
+                  {onResumeSaved && (
+                    <button
+                      className="tcg-button ghost"
+                      onClick={onResumeSaved}
+                    >
+                      Tiếp tục trận đã lưu
+                    </button>
+                  )}
+                  <button
+                    className="tcg-button primary"
+                    onClick={async () => {
+                      if (await updateBattle(() => initial, true))
+                        setShowReplacement(false)
+                    }}
+                  >
+                    Bắt đầu trận mới
+                  </button>
+                </div>
+                {claimStatus && <p role="status">{claimStatus}</p>}
+              </Dialog>
+            )}
+            {saveConflict && (
+              <div className="tactical-save-conflict" role="alert">
+                <p>
+                  Trận ở tab này đã cũ. Đọc lại bản lưu để giữ thao tác mới
+                  nhất.
+                </p>
+                <button onClick={loadLatest}>Đọc lại trận mới nhất</button>
+              </div>
+            )}
+          </>
+        }
+      />
+    )
   return (
     <section
       className="tactical-battle"

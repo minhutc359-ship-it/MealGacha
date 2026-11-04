@@ -1,0 +1,12 @@
+{
+  "base": "467312309fd3f0eb0960358478b93422c99d213c",
+  "method": "Chrome managed browser, same-origin iframe, actual DOM geometry after clean preview restart",
+  "physicalDevice": false,
+  "viewports": [
+    {"width":320,"height":568,"scrollWidth":320,"scrollHeight":568,"cells":16,"allInFrame":true,"cardFootersFit":true},
+    {"width":390,"height":844,"scrollWidth":390,"scrollHeight":844,"cells":16,"allInFrame":true,"cardFootersFit":true},
+    {"width":844,"height":390,"scrollWidth":844,"scrollHeight":390,"cells":16,"allInFrame":true,"cardFootersFit":true},
+    {"width":1280,"height":720,"scrollWidth":1280,"scrollHeight":720,"cells":16,"allInFrame":true,"cardFootersFit":true},
+    {"width":1360,"height":900,"scrollWidth":1360,"scrollHeight":900,"cells":16,"allInFrame":true,"cardFootersFit":true}
+  ]
+}

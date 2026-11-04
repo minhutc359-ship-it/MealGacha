@@ -2,6 +2,14 @@
 
 Nhánh: `game/tactical-tcg`.
 
+TCG-007 hiện hành (05/11): `TacticalTable.tsx`/`tacticalTable.css` là view production khi có cardGame; controller giữ save locks/conflict/reward cũ, view preset cũ chỉ còn tương thích fixture/dev. Bàn fixed 100dvh; màn nhỏ dùng 4 lá/trang và modal đọc/dùng thẻ, màn ngang ngắn có nút Đọc & dùng ở tay. Sidebar nền bị ẩn khỏi bàn/keyboard. Modal Tuyệt kỹ liệt kê quân đủ 100 Hương lực. Placement targets và live attack/HP/shield không lấy chỉ số giả.
+
+`playAutomaticRound` có callback snapshot tùy chọn; kết quả cuối được commit trước rồi view trình diễn các snapshot bất biến và khóa thao tác đến hết. Rời bàn/reload đọc kết quả đã lưu, không mất thao tác hoặc chạy đòn hai lần. Quiet/reduced motion bỏ chờ trình diễn; CSS honoring same preferences. Native trap reveal dùng armed→triggeredRound transition; log địch không lộ tên lá úp.
+
+`deckLibrary.ts`: năm recipes 24 lá/max2 hợp lệ; 3 intro có receipt một lần tặng đủ thiếu tới 2 bản và thêm bộ nếu còn slot (max12). Không đổi active/tiền/tiến trình cũ, không đổi tỷ lệ pack. Hai recipe nâng cao thể hiện thiếu bao nhiêu lá/Tinh Vị; chỉ Lưu & trang bị khi sở hữu đủ. Library công thức mặc định gấp lại để editor nằm ngay sau tab bộ bài.
+
+Verification TCG-007: 2,354/179 full, 84 focused, hai types, release32/774/3, build376 PASS. Browser tác vụ thật và 5 iframe viewport PASS; xem evidence/JSON. QA captures chỉ ở `.asset-work`, không commit. Font/large chunk warnings còn; touch/device/human balance/FPS/audio chưa được nhận là PASS. Không merge/deploy.
+
 TCG-006: bản nguồn xây lại từ `e855a67` sau khi phiên browser chọn tệp bị timeout và workspace tạm bị maintenance dọn. Các kiểm tra cuối được chạy lại: 2,349/178 unit, 79 focused, cả hai typecheck, release records và production/package 376 files PASS. Failure full-suite đầu là source assertion cũ đòi `<GameErrorBoundary>` không có props; đã giữ kiểm tra boundary bằng regex/open+close và chạy lại toàn bộ PASS.
 
 `backup.ts` quản lý export cũ/mới, strict preview, so raw snapshot trước khi import/undo, journal/readback/rollback và khôi phục trước migration. Game reload sau import/undo để các store Rương/profile đọc cùng dữ liệu. Recovery panel vẫn dùng được khi Tactical render lỗi; raw recovery export gồm cả prefix Tactical. Snapshot undo chỉ giữ một lần nhập gần nhất. Không merge nhiều thiết bị hoặc cung cấp server authority.
