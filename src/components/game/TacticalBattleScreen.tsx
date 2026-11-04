@@ -20,6 +20,7 @@ import { GameCardView } from "./GameCardView"
 import { Dialog } from "./Dialog"
 import { TacticalTable } from "./TacticalTable"
 import { useAppStore } from "../../store/useAppStore"
+import { tacticalTransition } from "../../game/tacticalTcg/presentation/transitions"
 import "../../game/tacticalBattle.css"
 
 const TUTORIAL_KEY = "soul-of-meal.tactical-tcg.battle-tutorial.v1"
@@ -255,6 +256,7 @@ export function TacticalBattleScreen({
   const advancePresented = async () => {
     if (presenting.current || commandPending.current) return
     const frames: TacticalBattleState[] = []
+    let preceding = battleRef.current
     const generation = presentationGeneration.current
     presenting.current = true
     setAnimating(true)
@@ -276,11 +278,41 @@ export function TacticalBattleScreen({
         for (const frame of frames) {
           if (generation !== presentationGeneration.current) return
           setBattle(frame)
-          await new Promise((resolve) => setTimeout(resolve, 360))
+          const duration = tacticalTransition(preceding, frame)?.duration ?? 120
+          preceding = frame
+          await new Promise((resolve) => setTimeout(resolve, duration))
         }
       }
       if (generation === presentationGeneration.current)
         setBattle(battleRef.current)
+    } finally {
+      presenting.current = false
+      if (generation === presentationGeneration.current) setAnimating(false)
+    }
+  }
+  const presentSingle = async (
+    update: (current: TacticalBattleState) => TacticalBattleState,
+  ) => {
+    if (presenting.current || commandPending.current) return false
+    const before = battleRef.current,
+      generation = presentationGeneration.current
+    presenting.current = true
+    setAnimating(true)
+    try {
+      const ok = await updateBattle(update, false, [])
+      if (
+        ok &&
+        !quiet &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        await new Promise((resolve) =>
+          setTimeout(
+            resolve,
+            tacticalTransition(before, battleRef.current)?.duration ?? 180,
+          ),
+        )
+      }
+      return ok
     } finally {
       presenting.current = false
       if (generation === presentationGeneration.current) setAnimating(false)
@@ -316,24 +348,23 @@ export function TacticalBattleScreen({
     targetId?: string,
   ) => {
     if (selectedCard === null || !chosenCard) return
+    const handIndex = selectedCard
+    setSelectedCard(null)
     const position =
       cell ??
       emptyCardCell(battle, "player", chosenCard.tacticalRole !== "guardian") ??
       undefined
-    if (
-      await updateBattle((current) =>
-        reduceTacticalBattle(current, {
-          id: `card:${current.round}:${current.processedActionIds.length}`,
-          type: "play-card",
-          side: "player",
-          handIndex: selectedCard,
-          cell: position,
-          targetId,
-          column: trapColumn,
-        }),
-      )
+    await presentSingle((current) =>
+      reduceTacticalBattle(current, {
+        id: `card:${current.round}:${current.processedActionIds.length}`,
+        type: "play-card",
+        side: "player",
+        handIndex,
+        cell: position,
+        targetId,
+        column: trapColumn,
+      }),
     )
-      setSelectedCard(null)
   }
   const living = (side: "player" | "enemy") =>
     battle.units.filter((unit) => unit.side === side && !unit.defeated)
@@ -437,7 +468,7 @@ export function TacticalBattleScreen({
           )
         }}
         onUltimate={(unitId) =>
-          updateBattle((c) =>
+          presentSingle((c) =>
             reduceTacticalBattle(c, {
               id: `ultimate:${c.round}:${unitId}`,
               type: "ultimate",
@@ -699,7 +730,11 @@ export function TacticalBattleScreen({
           <span className={activeTrap ? "is-armed" : ""}>
             <i aria-hidden="true">◆</i>
             {activeTrap
-              ? `${activeTrap.cardId ? TACTICAL_CARD_MAP[activeTrap.cardId].name : TRAPS.find((trap) => trap.id === activeTrap.trapId)?.name} · Cột ${activeTrap.column + 1}`
+              ? `${
+                  activeTrap.cardId
+                    ? TACTICAL_CARD_MAP[activeTrap.cardId].name
+                    : TRAPS.find((trap) => trap.id === activeTrap.trapId)?.name
+                } · Cột ${activeTrap.column + 1}`
               : "Chưa gài bẫy"}
           </span>
         </div>
@@ -955,7 +990,13 @@ export function TacticalBattleScreen({
             <strong>{chosenCard ? chosenCard.name : "TAY BÀI CỦA BẠN"}</strong>
             <span>
               {chosenCard
-                ? `${chosenCard.cost} Lửa Bếp · ${chosenCard.kind === "unit" ? "chọn ô bên bạn để triệu hồi" : chosenCard.kind === "spell" ? "chọn mục tiêu hoặc dùng tự động" : `gài ở cột ${trapColumn + 1}`}`
+                ? `${chosenCard.cost} Lửa Bếp · ${
+                    chosenCard.kind === "unit"
+                      ? "chọn ô bên bạn để triệu hồi"
+                      : chosenCard.kind === "spell"
+                        ? "chọn mục tiêu hoặc dùng tự động"
+                        : `gài ở cột ${trapColumn + 1}`
+                  }`
                 : "Chọn một lá để xem kỹ năng và chơi"}
             </span>
             {battle.round === 1 &&

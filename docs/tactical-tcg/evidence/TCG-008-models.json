@@ -1,0 +1,969 @@
+{
+  "base": "d8326dc",
+  "roster": [
+    {
+      "id": "pho-bo",
+      "model": "pho-bo",
+      "sheet": "starter-pho-bo",
+      "animated": true
+    },
+    {
+      "id": "pho-ga",
+      "model": "pho-ga",
+      "sheet": "starter-pho-ga",
+      "animated": true
+    },
+    {
+      "id": "bun-rieu",
+      "model": "bun-rieu",
+      "sheet": "starter-bun-rieu",
+      "animated": true
+    },
+    {
+      "id": "bun-bo-hue",
+      "model": "bun-bo-hue",
+      "sheet": "starter-bun-bo-hue",
+      "animated": true
+    },
+    {
+      "id": "banh-mi",
+      "model": "banh-mi",
+      "sheet": "starter-banh-mi",
+      "animated": true
+    },
+    {
+      "id": "xoi",
+      "model": "xoi",
+      "sheet": "starter-xoi",
+      "animated": true
+    },
+    {
+      "id": "banh-cuon",
+      "model": "banh-cuon",
+      "sheet": "starter-banh-cuon",
+      "animated": true
+    },
+    {
+      "id": "chao-suon",
+      "model": "chao-suon",
+      "sheet": "starter-chao-suon",
+      "animated": true
+    },
+    {
+      "id": "mien-ga",
+      "model": "mien-ga",
+      "sheet": "starter-mien-ga",
+      "animated": true
+    },
+    {
+      "id": "bun-moc",
+      "model": "bun-moc",
+      "sheet": "starter-bun-moc",
+      "animated": true
+    },
+    {
+      "id": "banh-da-cua",
+      "model": "banh-da-cua",
+      "sheet": "starter-banh-da-cua",
+      "animated": true
+    },
+    {
+      "id": "bun-cha",
+      "model": "bun-cha",
+      "sheet": "starter-bun-cha",
+      "animated": true
+    },
+    {
+      "id": "bun-dau",
+      "model": "bun-dau",
+      "sheet": "starter-bun-dau",
+      "animated": true
+    },
+    {
+      "id": "com-tam",
+      "model": "com-tam",
+      "sheet": "starter-com-tam",
+      "animated": true
+    },
+    {
+      "id": "com-ga",
+      "model": "com-ga",
+      "sheet": "starter-com-ga",
+      "animated": true
+    },
+    {
+      "id": "com-rang-dua-bo",
+      "model": "com-rang-dua-bo",
+      "sheet": "starter-com-rang-dua-bo",
+      "animated": true
+    },
+    {
+      "id": "com-nieu",
+      "model": "com-nieu",
+      "sheet": "starter-com-nieu",
+      "animated": true
+    },
+    {
+      "id": "bun-ca",
+      "model": "bun-ca",
+      "sheet": "starter-bun-ca",
+      "animated": true
+    },
+    {
+      "id": "mi-van-than",
+      "model": "mi-van-than",
+      "sheet": "starter-mi-van-than",
+      "animated": true
+    },
+    {
+      "id": "mi-cay",
+      "model": "mi-cay",
+      "sheet": "starter-mi-cay",
+      "animated": true
+    },
+    {
+      "id": "ga-ran",
+      "model": "ga-ran",
+      "sheet": "starter-ga-ran",
+      "animated": true
+    },
+    {
+      "id": "pizza",
+      "model": "pizza",
+      "sheet": "starter-pizza",
+      "animated": true
+    },
+    {
+      "id": "pasta",
+      "model": "pasta",
+      "sheet": "starter-pasta",
+      "animated": true
+    },
+    {
+      "id": "sushi",
+      "model": "sushi",
+      "sheet": "starter-sushi",
+      "animated": true
+    },
+    {
+      "id": "tokbokki",
+      "model": "tokbokki",
+      "sheet": "starter-tokbokki",
+      "animated": true
+    },
+    {
+      "id": "lau-thai",
+      "model": "lau-thai",
+      "sheet": "starter-lau-thai",
+      "animated": true
+    },
+    {
+      "id": "lau-rieu-cua",
+      "model": "lau-rieu-cua",
+      "sheet": "starter-lau-rieu-cua",
+      "animated": true
+    },
+    {
+      "id": "nuong-bbq",
+      "model": "nuong-bbq",
+      "sheet": "starter-nuong-bbq",
+      "animated": true
+    },
+    {
+      "id": "vit-quay",
+      "model": "vit-quay",
+      "sheet": "starter-vit-quay",
+      "animated": true
+    },
+    {
+      "id": "banh-xeo",
+      "model": "banh-xeo",
+      "sheet": "starter-banh-xeo",
+      "animated": true
+    },
+    {
+      "id": "bibimbap",
+      "model": "bibimbap",
+      "sheet": "starter-bibimbap",
+      "animated": true
+    },
+    {
+      "id": "samgyeopsal",
+      "model": "samgyeopsal",
+      "sheet": "starter-samgyeopsal",
+      "animated": true
+    },
+    {
+      "id": "hanwoo-bbq",
+      "model": "hanwoo-bbq",
+      "sheet": "starter-hanwoo-bbq",
+      "animated": true
+    },
+    {
+      "id": "shoyu-ramen",
+      "model": "shoyu-ramen",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "unagi-don",
+      "model": "unagi-don",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "omakase",
+      "model": "omakase",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "lasagna",
+      "model": "lasagna",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "truffle-risotto",
+      "model": "truffle-risotto",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "bistecca-fiorentina",
+      "model": "bistecca-fiorentina",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "croissant",
+      "model": "croissant",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "duck-confit",
+      "model": "duck-confit",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "french-tasting",
+      "model": "french-tasting",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "classic-burger",
+      "model": "classic-burger",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "smoked-brisket",
+      "model": "smoked-brisket",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "xiaolongbao",
+      "model": "xiaolongbao",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "peking-duck",
+      "model": "peking-duck",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "haidilao-hotpot",
+      "model": "haidilao-hotpot",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "pad-thai",
+      "model": "pad-thai",
+      "sheet": "portrait-3",
+      "animated": false
+    },
+    {
+      "id": "tom-yum-goong",
+      "model": "tom-yum-goong",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "mango-sticky-rice",
+      "model": "mango-sticky-rice",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "xoi-xeo",
+      "model": "xoi-xeo",
+      "sheet": "starter-xoi-xeo",
+      "animated": true
+    },
+    {
+      "id": "korean-fried-chicken",
+      "model": "korean-fried-chicken",
+      "sheet": "starter-korean-fried-chicken",
+      "animated": true
+    },
+    {
+      "id": "bingsu",
+      "model": "bingsu",
+      "sheet": "starter-bingsu",
+      "animated": true
+    },
+    {
+      "id": "tonkotsu-ramen",
+      "model": "tonkotsu-ramen",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "carbonara",
+      "model": "carbonara",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "gelato",
+      "model": "gelato",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "mashed-potato",
+      "model": "mashed-potato",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "hot-chocolate",
+      "model": "hot-chocolate",
+      "sheet": "portrait-4",
+      "animated": false
+    },
+    {
+      "id": "cha-ca-la-vong",
+      "model": "cha-ca-la-vong",
+      "sheet": "starter-cha-ca-la-vong",
+      "animated": true
+    },
+    {
+      "id": "bun-thang",
+      "model": "bun-thang",
+      "sheet": "starter-bun-thang",
+      "animated": true
+    },
+    {
+      "id": "com-lang-vong",
+      "model": "com-lang-vong",
+      "sheet": "starter-com-lang-vong",
+      "animated": true
+    },
+    {
+      "id": "ca-phe-trung",
+      "model": "ca-phe-trung",
+      "sheet": "starter-ca-phe-trung",
+      "animated": true
+    },
+    {
+      "id": "cha-ruoi",
+      "model": "cha-ruoi",
+      "sheet": "starter-cha-ruoi",
+      "animated": true
+    },
+    {
+      "id": "banh-com-hang-than",
+      "model": "banh-com-hang-than",
+      "sheet": "starter-banh-com-hang-than",
+      "animated": true
+    },
+    {
+      "id": "jjajangmyeon",
+      "model": "jjajangmyeon",
+      "sheet": "starter-jjajangmyeon",
+      "animated": true
+    },
+    {
+      "id": "kimchi-jjigae",
+      "model": "kimchi-jjigae",
+      "sheet": "starter-kimchi-jjigae",
+      "animated": true
+    },
+    {
+      "id": "hotteok",
+      "model": "hotteok",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "ganjang-gejang",
+      "model": "ganjang-gejang",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "gopchang-gui",
+      "model": "gopchang-gui",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "sundae-guk",
+      "model": "sundae-guk",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "takoyaki",
+      "model": "takoyaki",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "okonomiyaki",
+      "model": "okonomiyaki",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "yakitori",
+      "model": "yakitori",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "tonkatsu",
+      "model": "tonkatsu",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "matcha-parfait",
+      "model": "matcha-parfait",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "taiyaki",
+      "model": "taiyaki",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "som-tam",
+      "model": "som-tam",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "pad-kra-pao",
+      "model": "pad-kra-pao",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "boat-noodles",
+      "model": "boat-noodles",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "green-curry",
+      "model": "green-curry",
+      "sheet": "portrait-5",
+      "animated": false
+    },
+    {
+      "id": "moo-ping",
+      "model": "moo-ping",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "khao-soi",
+      "model": "khao-soi",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "ossobuco",
+      "model": "ossobuco",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "tiramisu",
+      "model": "tiramisu",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "arancini",
+      "model": "arancini",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "saltimbocca",
+      "model": "saltimbocca",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "pappardelle-cinghiale",
+      "model": "pappardelle-cinghiale",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "porchetta",
+      "model": "porchetta",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "roast-turkey",
+      "model": "roast-turkey",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "beef-wellington",
+      "model": "beef-wellington",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "honey-glazed-ham",
+      "model": "honey-glazed-ham",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "gingerbread",
+      "model": "gingerbread",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "christmas-pudding",
+      "model": "christmas-pudding",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "yule-log",
+      "model": "yule-log",
+      "sheet": "portrait-6",
+      "animated": false
+    },
+    {
+      "id": "banh-chung",
+      "model": "banh-chung",
+      "sheet": "starter-banh-chung",
+      "animated": true
+    },
+    {
+      "id": "canh-mang-mien",
+      "model": "canh-mang-mien",
+      "sheet": "starter-canh-mang-mien",
+      "animated": true
+    },
+    {
+      "id": "gio-xao",
+      "model": "gio-xao",
+      "sheet": "starter-gio-xao",
+      "animated": true
+    },
+    {
+      "id": "thit-dong",
+      "model": "thit-dong",
+      "sheet": "starter-thit-dong",
+      "animated": true
+    },
+    {
+      "id": "thit-kho-trung",
+      "model": "thit-kho-trung",
+      "sheet": "starter-thit-kho-trung",
+      "animated": true
+    },
+    {
+      "id": "dua-hanh",
+      "model": "dua-hanh",
+      "sheet": "starter-dua-hanh",
+      "animated": true
+    },
+    {
+      "id": "che-khuc-bach",
+      "model": "che-khuc-bach",
+      "sheet": "starter-che-khuc-bach",
+      "animated": true
+    },
+    {
+      "id": "che-buoi",
+      "model": "che-buoi",
+      "sheet": "starter-che-buoi",
+      "animated": true
+    },
+    {
+      "id": "sua-chua-mit",
+      "model": "sua-chua-mit",
+      "sheet": "portrait-7",
+      "animated": false
+    },
+    {
+      "id": "kem-bo-da-lat",
+      "model": "kem-bo-da-lat",
+      "sheet": "portrait-7",
+      "animated": false
+    },
+    {
+      "id": "nom-sua-xoai",
+      "model": "nom-sua-xoai",
+      "sheet": "portrait-7",
+      "animated": false
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "model": "goi-cuon-tom-thit",
+      "sheet": "starter-goi-cuon-tom-thit",
+      "animated": true
+    },
+    {
+      "id": "banner-tay-bac-goi-rau-don",
+      "model": "banner-tay-bac-goi-rau-don",
+      "sheet": "starter-banner-tay-bac-goi-rau-don",
+      "animated": true
+    },
+    {
+      "id": "banner-tay-bac-com-lam",
+      "model": "banner-tay-bac-com-lam",
+      "sheet": "starter-banner-tay-bac-com-lam",
+      "animated": true
+    },
+    {
+      "id": "banner-tay-bac-thang-co",
+      "model": "banner-tay-bac-thang-co",
+      "sheet": "starter-banner-tay-bac-thang-co",
+      "animated": true
+    },
+    {
+      "id": "banner-tay-bac-thit-trau-gac-bep",
+      "model": "banner-tay-bac-thit-trau-gac-bep",
+      "sheet": "starter-banner-tay-bac-thit-trau-gac-bep",
+      "animated": true
+    },
+    {
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "model": "banner-tay-bac-ga-nuong-mac-khen",
+      "sheet": "starter-banner-tay-bac-ga-nuong-mac-khen",
+      "animated": true
+    },
+    {
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "model": "banner-tay-bac-xoi-ngu-sac",
+      "sheet": "starter-banner-tay-bac-xoi-ngu-sac",
+      "animated": true
+    },
+    {
+      "id": "banh-dau-xanh",
+      "model": "banh-dau-xanh",
+      "sheet": "starter-banh-dau-xanh",
+      "animated": true
+    },
+    {
+      "id": "banh-khuc",
+      "model": "banh-khuc",
+      "sheet": "starter-banh-khuc",
+      "animated": true
+    },
+    {
+      "id": "banh-can",
+      "model": "banh-can",
+      "sheet": "starter-banh-can",
+      "animated": true
+    },
+    {
+      "id": "banh-tom-ho-tay",
+      "model": "banh-tom-ho-tay",
+      "sheet": "starter-banh-tom-ho-tay",
+      "animated": true
+    },
+    {
+      "id": "com-hen",
+      "model": "com-hen",
+      "sheet": "starter-com-hen",
+      "animated": true
+    },
+    {
+      "id": "che-lam",
+      "model": "che-lam",
+      "sheet": "starter-che-lam",
+      "animated": true
+    },
+    {
+      "id": "chao-luon",
+      "model": "chao-luon",
+      "sheet": "starter-chao-luon",
+      "animated": true
+    },
+    {
+      "id": "banh-it-la-gai",
+      "model": "banh-it-la-gai",
+      "sheet": "starter-banh-it-la-gai",
+      "animated": true
+    },
+    {
+      "id": "banh-ram-it",
+      "model": "banh-ram-it",
+      "sheet": "starter-banh-ram-it",
+      "animated": true
+    },
+    {
+      "id": "keo-cu-do",
+      "model": "keo-cu-do",
+      "sheet": "starter-keo-cu-do",
+      "animated": true
+    },
+    {
+      "id": "banh-tet",
+      "model": "banh-tet",
+      "sheet": "starter-banh-tet",
+      "animated": true
+    },
+    {
+      "id": "chef-nhien",
+      "model": "chef-nhien",
+      "sheet": "starter-chef-nhien",
+      "animated": true
+    },
+    {
+      "id": "chef-moc",
+      "model": "chef-moc",
+      "sheet": "starter-chef-moc",
+      "animated": true
+    },
+    {
+      "id": "chef-lien",
+      "model": "chef-lien",
+      "sheet": "starter-chef-lien",
+      "animated": true
+    },
+    {
+      "id": "chef-bach",
+      "model": "chef-bach",
+      "sheet": "starter-chef-bach",
+      "animated": true
+    },
+    {
+      "id": "chef-hai",
+      "model": "chef-hai",
+      "sheet": "starter-chef-hai",
+      "animated": true
+    },
+    {
+      "id": "caravan-scout",
+      "model": "caravan-scout",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-smith",
+      "model": "caravan-smith",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-letter",
+      "model": "caravan-letter",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-ferryman",
+      "model": "caravan-ferryman",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-herbalist",
+      "model": "caravan-herbalist",
+      "sheet": "starter-caravan-herbalist",
+      "animated": true
+    },
+    {
+      "id": "caravan-gardener",
+      "model": "caravan-gardener",
+      "sheet": "starter-caravan-gardener",
+      "animated": true
+    },
+    {
+      "id": "caravan-porter",
+      "model": "caravan-porter",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-cook",
+      "model": "caravan-cook",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-pastry",
+      "model": "caravan-pastry",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "caravan-cartographer",
+      "model": "caravan-cartographer",
+      "sheet": "portrait-9",
+      "animated": false
+    },
+    {
+      "id": "v4-market-host",
+      "model": "v4-market-host",
+      "sheet": "portrait-9",
+      "animated": false
+    }
+  ],
+  "assets": [
+    "/assets/characters/autochess5913/banh-can.webp",
+    "/assets/characters/autochess5913/banh-dau-xanh.webp",
+    "/assets/characters/autochess5913/banh-it-la-gai.webp",
+    "/assets/characters/autochess5913/banh-khuc.webp",
+    "/assets/characters/autochess5913/banh-ram-it.webp",
+    "/assets/characters/autochess5913/banh-tom-ho-tay.webp",
+    "/assets/characters/autochess5913/chao-luon.webp",
+    "/assets/characters/autochess5913/che-lam.webp",
+    "/assets/characters/autochess5913/com-hen.webp",
+    "/assets/characters/autochess5913/keo-cu-do.webp",
+    "/assets/characters/campaign598/aroma-regent-portrait.webp",
+    "/assets/characters/campaign598/aroma-regent.webp",
+    "/assets/characters/campaign599/kiln-knight-portrait.webp",
+    "/assets/characters/campaign599/kiln-knight.webp",
+    "/assets/characters/campaign599/salt-scarab-portrait.webp",
+    "/assets/characters/campaign599/salt-scarab.webp",
+    "/assets/characters/chefs593/chef-bach.webp",
+    "/assets/characters/chefs593/chef-hai-neutral.webp",
+    "/assets/characters/chefs593/chef-hai.webp",
+    "/assets/characters/chefs593/chef-lien-neutral.webp",
+    "/assets/characters/chefs593/chef-lien.webp",
+    "/assets/characters/chefs593/chef-moc-neutral.webp",
+    "/assets/characters/chefs593/chef-moc.webp",
+    "/assets/characters/chefs593/chef-nhien-neutral.webp",
+    "/assets/characters/chefs593/chef-nhien.webp",
+    "/assets/characters/chefs593/ultimate.webp",
+    "/assets/characters/familiar594/banh-xeo-portrait.webp",
+    "/assets/characters/familiar594/banh-xeo.webp",
+    "/assets/characters/familiar594/bun-cha-portrait.webp",
+    "/assets/characters/familiar594/bun-cha.webp",
+    "/assets/characters/familiar594/bun-rieu-portrait.webp",
+    "/assets/characters/familiar594/bun-rieu.webp",
+    "/assets/characters/familiar594/com-ga-portrait.webp",
+    "/assets/characters/familiar594/com-ga.webp",
+    "/assets/characters/familiar594/ultimate.webp",
+    "/assets/characters/korea5923/bingsu.webp",
+    "/assets/characters/korea5923/hanwoo-bbq.webp",
+    "/assets/characters/korea5923/jjajangmyeon.webp",
+    "/assets/characters/korea5923/kimchi-jjigae.webp",
+    "/assets/characters/korea5923/korean-fried-chicken.webp",
+    "/assets/characters/korea5923/samgyeopsal.webp",
+    "/assets/characters/korea5923/ultimate.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-com-lam.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-ga-nuong-mac-khen.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-goi-rau-don.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-thang-co.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-thit-trau-gac-bep.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-xoi-ngu-sac.webp",
+    "/assets/characters/northwest5922/ultimate.webp",
+    "/assets/characters/rare595/banh-chung-portrait.webp",
+    "/assets/characters/rare595/banh-chung.webp",
+    "/assets/characters/rare595/banh-com-hang-than-portrait.webp",
+    "/assets/characters/rare595/banh-com-hang-than.webp",
+    "/assets/characters/rare595/bun-thang-portrait.webp",
+    "/assets/characters/rare595/bun-thang.webp",
+    "/assets/characters/rare595/cha-ca-la-vong-portrait.webp",
+    "/assets/characters/rare595/cha-ca-la-vong.webp",
+    "/assets/characters/rare595/ultimate.webp",
+    "/assets/characters/rare596/ca-phe-trung-portrait.webp",
+    "/assets/characters/rare596/ca-phe-trung.webp",
+    "/assets/characters/rare596/cha-ruoi-portrait.webp",
+    "/assets/characters/rare596/cha-ruoi.webp",
+    "/assets/characters/rare596/com-lang-vong-portrait.webp",
+    "/assets/characters/rare596/com-lang-vong.webp",
+    "/assets/characters/rare596/thit-kho-trung-portrait.webp",
+    "/assets/characters/rare596/thit-kho-trung.webp",
+    "/assets/characters/rare596/ultimate.webp",
+    "/assets/characters/regional5910/banh-tet-portrait.webp",
+    "/assets/characters/regional5910/banh-tet.webp",
+    "/assets/characters/regional5910/bun-bo-hue-portrait.webp",
+    "/assets/characters/regional5910/bun-bo-hue.webp",
+    "/assets/characters/regional5910/bun-ca-portrait.webp",
+    "/assets/characters/regional5910/bun-ca.webp",
+    "/assets/characters/regional5910/che-buoi-portrait.webp",
+    "/assets/characters/regional5910/che-buoi.webp",
+    "/assets/characters/spirits5917/bibimbap.webp",
+    "/assets/characters/spirits5917/lau-rieu-cua.webp",
+    "/assets/characters/spirits5917/nuong-bbq.webp",
+    "/assets/characters/spirits5917/ultimate.webp",
+    "/assets/characters/spirits5917/vit-quay.webp",
+    "/assets/characters/spirits5921/canh-mang-mien.webp",
+    "/assets/characters/spirits5921/che-khuc-bach.webp",
+    "/assets/characters/spirits5921/gio-xao.webp",
+    "/assets/characters/spirits5921/thit-dong.webp",
+    "/assets/characters/spirits5921/ultimate.webp",
+    "/assets/characters/spring5911/caravan-gardener-portrait.webp",
+    "/assets/characters/spring5911/caravan-gardener.webp",
+    "/assets/characters/spring5911/caravan-herbalist-portrait.webp",
+    "/assets/characters/spring5911/caravan-herbalist.webp",
+    "/assets/characters/spring5911/dua-hanh-portrait.webp",
+    "/assets/characters/spring5911/dua-hanh.webp",
+    "/assets/characters/spring5911/xoi-xeo-portrait.webp",
+    "/assets/characters/spring5911/xoi-xeo.webp",
+    "/assets/characters/starters590/banh-cuon.webp",
+    "/assets/characters/starters590/banh-mi.webp",
+    "/assets/characters/starters590/com-tam.webp",
+    "/assets/characters/starters590/goi-cuon-tom-thit.webp",
+    "/assets/characters/starters590/pho-bo.webp",
+    "/assets/characters/starters590/ultimate591.webp",
+    "/assets/characters/starters590/xoi-portrait.webp",
+    "/assets/characters/starters590/xoi.webp",
+    "/assets/characters/tcg5914/ga-ran.webp",
+    "/assets/characters/tcg5914/lau-thai.webp",
+    "/assets/characters/tcg5914/mi-cay.webp",
+    "/assets/characters/tcg5914/mi-van-than.webp",
+    "/assets/characters/tcg5914/pasta.webp",
+    "/assets/characters/tcg5914/pizza.webp",
+    "/assets/characters/tcg5914/sushi.webp",
+    "/assets/characters/tcg5914/tokbokki.webp",
+    "/assets/characters/vietnam5912/banh-da-cua.webp",
+    "/assets/characters/vietnam5912/bun-dau.webp",
+    "/assets/characters/vietnam5912/bun-moc.webp",
+    "/assets/characters/vietnam5912/chao-suon.webp",
+    "/assets/characters/vietnam5912/com-nieu.webp",
+    "/assets/characters/vietnam5912/com-rang-dua-bo.webp",
+    "/assets/characters/vietnam5912/mien-ga.webp",
+    "/assets/characters/vietnam5912/pho-ga.webp",
+    "/assets/rpg/spirit510/portraits-1.webp",
+    "/assets/rpg/spirit510/portraits-2.webp",
+    "/assets/rpg/spirit510/portraits-3.webp",
+    "/assets/rpg/spirit510/portraits-4.webp",
+    "/assets/rpg/spirit510/portraits-5.webp",
+    "/assets/rpg/spirit510/portraits-6.webp",
+    "/assets/rpg/spirit510/portraits-7.webp",
+    "/assets/rpg/spirit510/portraits-8.webp",
+    "/assets/rpg/spirit510/portraits-9.webp",
+    "/assets/tcg/characters/anime/bach.webp",
+    "/assets/tcg/fx/elemental-impacts-v441.webp"
+  ]
+}

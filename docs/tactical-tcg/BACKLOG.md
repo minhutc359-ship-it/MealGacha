@@ -17,6 +17,8 @@
 
 ## Tiếp theo
 
+- TCG-008 đã nối77 atlas đã render và chân dung riêng cho139 unit, renderer/pose/VFX/combo của TCG cũ vào production Tactical.62 unit chưa có atlas nhiều động tác: cần sản xuất/duyệt riêng, không gọi portrait-only là hoàn thiện animation. Cần đo hiệu năng tải/model trên thiết bị thật.
+
 - TCG-007 đã thay bàn chiến đấu sản phẩm bằng layout toàn màn hình; thẻ đọc lớn, hướng dẫn theo phase, trình diễn đòn đánh và 3 bộ nhập môn + 2 công thức. Cần human balance/playtest cho cả 5 archetype trước nghiệm thu sản phẩm.
 
 - TCG-006 đã thêm: tiếp tục trận từ sảnh, xác nhận thay trận, bảo vệ tab cũ, import/preview/undo, trạng thái quà/thưởng và sửa mở gói/tạo bộ ở môi trường thiếu randomUUID. Kiểm tra browser phần cuối đang tiếp tục; không coi là nghiệm thu thiết bị thật.

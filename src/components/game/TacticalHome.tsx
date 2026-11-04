@@ -68,7 +68,7 @@ export function TacticalHome({
         </div>
         <div className="tactical-home-featured" aria-hidden="true">
           {["chef-nhien", "chef-hai"].map((id) => (
-            <GameCardView key={id} card={TACTICAL_CARD_MAP[id]} />
+            <GameCardView spiritArt key={id} card={TACTICAL_CARD_MAP[id]} />
           ))}
         </div>
       </header>
@@ -135,7 +135,12 @@ export function TacticalHome({
               .filter((id) => TACTICAL_CARD_MAP[id])
               .slice(0, 5)
               .map((id) => (
-                <GameCardView key={id} card={TACTICAL_CARD_MAP[id]} compact />
+                <GameCardView
+                  spiritArt
+                  key={id}
+                  card={TACTICAL_CARD_MAP[id]}
+                  compact
+                />
               ))}
           </div>
           <footer>

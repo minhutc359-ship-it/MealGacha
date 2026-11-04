@@ -1,5 +1,7 @@
 # Status
 
+05/11/2026 · TCG-008: thẻ Vị Linh/bộ sưu tập/bộ bài/mở thẻ và quân trên bàn dùng hình nhân vật đã render.139 unit:77 atlas animation,62 chân dung riêng; không mượn model khác. Tái dùng renderer/VFX TCG cũ; attack/hit/fall/ultimate, đòn có nguồn/mục tiêu, số HP/khiên và combo thật đồng bộ contact.2,357 tests/180 files,87 focused, hai types, release và build/package465 files PASS. Browser5 viewport và model/VFX thật PASS giới hạn. Xem evidence TCG-008; device/audio/FPS và62 atlas còn thiếu OPEN. Chưa merge/deploy.
+
 05/11/2026 · TCG-007: màn chiến đấu mới toàn khung, bỏ cuộn trong bàn chính; tay bài/thanh hành động cố định, thẻ lớn/mục tiêu rõ, giao chiến từng bước và hiệu ứng đặt/lật/nâng sao/bẫy. Ba bộ nhập môn chơi ngay + hai công thức phát triển; giữ thẻ/deck/tiền/active cũ. 2,354 tests/179 files, 84 focused, hai types, release và build/package 376 files PASS. Browser desktop và 5 viewport iframe thực PASS giới hạn; chưa phải nghiệm thu điện thoại thật. Xem evidence TCG-007. Chưa merge/deploy.
 
 TCG-006, 04/11/2026: session/recovery implementation and fresh automated checks PASS — 2,349 tests/178 files, 79 focused, both typechecks, release records and 376-file production build. Home resume, checkpoint replacement confirmation, stale-tab guard, daily/claimed reward states, explicit card targets and HTTP/WebView-safe pack/deck IDs are implemented. Backup import has preview/confirm/raw rollback/one undo snapshot and interrupted-restore recovery. Browser follow-up is in progress; see evidence TCG-006. No merge/deploy.

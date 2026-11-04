@@ -1,5 +1,7 @@
 # Test ledger
 
+TCG-008 (05/11), base d8326dc: full180 files/2,357 tests PASS; focused12/87 PASS; production/dev types PASS; release32/774/3 PASS; build/package/guard465files/~108MB PASS.139 unit identity resolution,128-asset exact allowlist closure and unit card SSR without food PASS. Legal command simulations cover summon/upgrade/spell/trap/move/attack/hit/fall/ultimate/real combos and immutable snapshots. Chrome5iframe viewport bounds and loaded models, actual attack/ultimate elemental VFX/deltas PASS; physical device/touch/FPS/audio NOT_RUN. See [TCG-008](evidence/TCG-008.md).
+
 TCG-007 (05/11), base4673123: `pnpm test` 179 files/2,354 tests PASS; production/dev typechecks PASS; focused production11 files/84 PASS; release32/774/3 PASS; build/package/guard376files PASS. Frame callback parity/immutability, five legal distinct recipes, one-time additive grants/full-deck preservation and paid second-copy upgrade with real damage all PASS. Browser operations and five viewport geometry checks recorded in [TCG-007](evidence/TCG-007.md); native devices/touch NOT_RUN.
 
 TCG-006 fresh checks after rebuilding the workspace from `e855a67`: production/dev types PASS; `pnpm verify:production` 10 files/79 tests PASS; `pnpm test` 178 files/2,349 tests PASS; release records 32/774/3 PASS; `pnpm build` and Tactical package/release guard PASS (376 files). No runtime dependencies changed. Browser facts and remaining limits are in [TCG-006 evidence](evidence/TCG-006.md); the table below retains TCG-005's historical verification.

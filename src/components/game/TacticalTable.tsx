@@ -17,6 +17,13 @@ import type {
   TacticalBattleState,
 } from "../../game/tacticalTcg/engine"
 import { Dialog } from "./Dialog"
+import { useAppStore } from "../../store/useAppStore"
+import {
+  tacticalTransition,
+  type TacticalTransition,
+} from "../../game/tacticalTcg/presentation/transitions"
+import { TacticalSpiritActor, TacticalSpiritArt } from "./TacticalSpirit"
+import { TacticalCombatEffects } from "./TacticalCombatEffects"
 import "../../game/tacticalTable.css"
 
 const roles = {
@@ -43,7 +50,11 @@ export function TacticalCardFace({
       className={`table-card-face ${mini ? "is-mini" : ""}`}
       style={{ "--card-color": SCHOOLS[card.school].color } as CSSProperties}
     >
-      <img src={card.art} alt="" />
+      {card.kind === "unit" ? (
+        <TacticalSpiritArt id={card.id} />
+      ) : (
+        <img src={card.art} alt="" />
+      )}
       <b className="table-card-cost" aria-label={`${card.cost} Lửa Bếp`}>
         {card.cost}
       </b>
@@ -109,12 +120,21 @@ export function TacticalTable(p: Props) {
   )
   const inspectCard =
     card ?? (unit?.cardId ? TACTICAL_CARD_MAP[unit.cardId] : null)
-  const [dialog, setDialog] = useState<
-    "guide" | "card" | "log" | "forfeit" | "ultimate" | null
-  >(null)
+  const [dialog, setDialog] =
+    useState<"guide" | "card" | "log" | "forfeit" | "ultimate" | null>(null)
   const [compact, setCompact] = useState(false),
     [page, setPage] = useState(0)
   const [effects, setEffects] = useState<Record<string, string>>({})
+  const [transition, setTransition] = useState<TacticalTransition | null>(null)
+  const [contacted, setContacted] = useState(true)
+  const arena = useRef<HTMLDivElement>(null)
+  const preferenceQuiet = useAppStore(
+    (s) =>
+      s.user.preferences.reducedMotion ||
+      s.user.preferences.graphicsQuality === "low",
+  )
+  const [systemQuiet, setSystemQuiet] = useState(false)
+  const quiet = preferenceQuiet || systemQuiet
   const [reveal, setReveal] = useState<TacticalCard | null>(null)
   const previous = useRef(b),
     revealTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -126,8 +146,18 @@ export function TacticalTable(p: Props) {
     return () => query.removeEventListener("change", sync)
   }, [])
   useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const sync = () => setSystemQuiet(media.matches)
+    sync()
+    media.addEventListener("change", sync)
+    return () => media.removeEventListener("change", sync)
+  }, [])
+  useEffect(() => {
     const old = previous.current,
       next: Record<string, string> = {}
+    const cue = tacticalTransition(old, b)
+    setTransition(cue)
+    setContacted(quiet || !cue?.contact)
     for (const u of b.units) {
       const prior = old.units.find((v) => v.instanceId === u.instanceId)
       if (!prior || (prior.defeated && !u.defeated))
@@ -155,9 +185,22 @@ export function TacticalTable(p: Props) {
     }
     setEffects(next)
     previous.current = b
-    const timer = setTimeout(() => setEffects({}), 650)
-    return () => clearTimeout(timer)
-  }, [b])
+    const impact = setTimeout(
+      () => setContacted(true),
+      quiet ? 0 : (cue?.contact ?? 0),
+    )
+    const timer = setTimeout(
+      () => {
+        setEffects({})
+        setTransition(null)
+      },
+      quiet ? 350 : (cue?.duration ?? 650),
+    )
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(impact)
+    }
+  }, [b, quiet])
   useEffect(
     () => () => {
       if (revealTimer.current) clearTimeout(revealTimer.current)
@@ -172,8 +215,10 @@ export function TacticalTable(p: Props) {
   const alive = (side: BattleSide) =>
     b.units.filter((u) => u.side === side && !u.defeated)
   const ready = alive("player").filter((u) => u.energy >= 100)
+  const actionLabel = transition?.kind === "summon" ? "Triệu hồi" : transition?.kind === "upgrade" ? "Nâng sao" : transition?.kind === "ultimate" ? "Tuyệt kỹ" : transition?.kind === "spell" ? "Thi triển" : transition?.kind === "trap" ? "Gài bẫy" : "Giao chiến"
+  const commanderHp = (side: BattleSide) => !contacted && transition ? transition.before.commanders[side].hp : b.commanders[side].hp
   const hint = p.busy
-    ? "Hai đội đang giao chiến theo thứ tự công. Chờ giải quyết từng đòn."
+    ? `${actionLabel}: chờ hiệu ứng hoàn tất. Đòn đánh và sát thương được giải quyết từng bước.`
     : result
       ? "Nhận thưởng lần đầu hoặc chỉnh bộ bài rồi thử lại."
       : planning
@@ -199,7 +244,7 @@ export function TacticalTable(p: Props) {
       card.kind === "unit" ||
       alive("player").length > 0)
   const stage = p.busy
-    ? "Giao chiến"
+    ? actionLabel
     : planning
       ? "1 · Dàn trận"
       : result
@@ -237,8 +282,13 @@ export function TacticalTable(p: Props) {
           </button>
         </nav>
       </header>
-      <div className="table-arena" role="region" aria-label="Hai sân đấu">
-        <div className="table-commander is-enemy">
+      <div
+        ref={arena}
+        className="table-arena"
+        role="region"
+        aria-label="Hai sân đấu"
+      >
+        <div className="table-commander is-enemy" data-hero="enemy">
           <div>
             <b>☽ ĐỐI THỦ</b>
             <small>
@@ -249,13 +299,13 @@ export function TacticalTable(p: Props) {
           <strong
             aria-label={`Ý chí địch ${b.commanders.enemy.hp} trên ${b.commanders.enemy.maxHp}`}
           >
-            ♥ {b.commanders.enemy.hp}
+            ♥ {commanderHp("enemy")}
             <small>/{b.commanders.enemy.maxHp}</small>
           </strong>
           <meter
             min={0}
             max={b.commanders.enemy.maxHp}
-            value={b.commanders.enemy.hp}
+            value={commanderHp("enemy")}
             aria-label="Ý chí địch"
           />
         </div>
@@ -268,10 +318,24 @@ export function TacticalTable(p: Props) {
             {([0, 1] as const).flatMap((visualRow) =>
               ([0, 1, 2, 3] as const).map((column) => {
                 const row =
-                  side === "enemy" ? ((1 - visualRow) as 0 | 1) : visualRow
-                const u = alive(side).find(
-                  (v) => v.cell.row === row && v.cell.column === column,
-                )
+                  side === "enemy" ? (1 - visualRow) as 0 | 1 : visualRow
+                const u = b.units
+                  .filter(
+                    (u) =>
+                      u.side === side &&
+                      (!u.defeated ||
+                        transition?.deltas.some(
+                          (d) => d.id === u.instanceId && d.fallen,
+                        )),
+                  )
+                  .find((v) => v.cell.row === row && v.cell.column === column)
+                const displayed =
+                  !contacted &&
+                  transition?.before.units.find(
+                    (v) => v.instanceId === u?.instanceId,
+                  )
+                const shownHp = displayed ? displayed.hp : u?.hp
+                const shownShield = displayed ? displayed.shield : u?.shield
                 const target =
                   !!card &&
                   planning &&
@@ -279,38 +343,65 @@ export function TacticalTable(p: Props) {
                   owner.mana >= card.cost &&
                   (card.kind === "unit"
                     ? side === "player" &&
-                      (u
+                      (u && !u.defeated
                         ? u.cardId === card.id && u.star === 1
                         : alive("player").length < 5)
                     : card.kind === "spell" &&
                       !!u &&
+                      !u.defeated &&
                       (card.tacticalEffect === "damage"
                         ? side === "enemy"
                         : card.tacticalEffect === "buff" && side === "player"))
                 const trapped = b.traps.find(
                   (t) => t.armed && t.side === side && t.column === column,
                 )
-                const action =
-                  b.processedActionIds[b.processedActionIds.length - 1] ?? ""
                 return (
                   <button
                     key={`${row}:${column}`}
-                    className={`table-slot ${target ? "is-target" : ""} ${p.selectedUnit === u?.instanceId ? "is-selected" : ""} ${u ? "is-occupied" : "is-empty"} ${u && effects[u.instanceId] ? `fx-${effects[u.instanceId]}` : ""} ${u && action.includes(`basic:${u.instanceId}`) && p.busy ? "is-attacking" : ""}`}
+                    className={`table-slot ${target ? "is-target" : ""} ${
+                      p.selectedUnit === u?.instanceId ? "is-selected" : ""
+                    } ${u ? "is-occupied" : "is-empty"} ${
+                      u?.defeated ? "is-fallen" : ""
+                    } ${
+                      u &&
+                      ["summon", "upgrade", "heal", "ward"].includes(
+                        effects[u.instanceId],
+                      )
+                        ? `fx-${effects[u.instanceId]}`
+                        : ""
+                    }`}
                     data-side={side}
+                    data-unit={u?.instanceId}
                     data-cell={`${row}:${column}`}
                     disabled={
-                      p.busy || (!!card && !target) || (!u && side === "enemy")
+                      p.busy ||
+                      !!u?.defeated ||
+                      (!!card && !target) ||
+                      (!u && side === "enemy")
                     }
                     onClick={() => p.onCell(side, { row, column }, u)}
                     aria-label={
                       u
-                        ? `${side === "enemy" ? "Địch" : "Bạn"}: ${u.name}, công ${u.attack}, máu ${u.hp}/${u.maxHp}, ${u.star} sao${target ? ", mục tiêu hợp lệ" : ""}`
-                        : `${side === "player" ? "Bạn" : "Địch"}: ${row === 0 ? "Tiền tuyến" : "Hậu tuyến"}, cột ${column + 1}${target ? ", triệu hồi được" : ""}`
+                        ? `${
+                            side === "enemy" ? "Địch" : "Bạn"
+                          }: ${u.name}, công ${u.attack}, máu ${u.hp}/${u.maxHp}, ${u.star} sao${
+                            target ? ", mục tiêu hợp lệ" : ""
+                          }`
+                        : `${side === "player" ? "Bạn" : "Địch"}: ${
+                            row === 0 ? "Tiền tuyến" : "Hậu tuyến"
+                          }, cột ${column + 1}${
+                            target ? ", triệu hồi được" : ""
+                          }`
                     }
                   >
                     {u ? (
                       <>
-                        <img src={u.art} alt="" />
+                        <TacticalSpiritActor
+                          unit={u}
+                          transition={transition}
+                          quiet={quiet}
+                          winner={b.winner}
+                        />
                         <span className="table-unit-title">
                           <b>{u.name}</b>
                           <small>
@@ -319,8 +410,8 @@ export function TacticalTable(p: Props) {
                         </span>
                         <span className="table-unit-stats">
                           <b>⚔ {u.attack}</b>
-                          <b>♥ {u.hp}</b>
-                          {u.shield > 0 && <b>◇ {u.shield}</b>}
+                          <b>♥ {shownHp}</b>
+                          {!!shownShield && <b>◇ {shownShield}</b>}
                         </span>
                         <span className="table-unit-energy">
                           <i style={{ width: `${u.energy}%` }} />
@@ -360,7 +451,7 @@ export function TacticalTable(p: Props) {
           <span>TIỀN TUYẾN ĐỐI MẶT · ƯU TIÊN ĐÁNH CÙNG CỘT</span>
           <b>✦</b>
         </div>
-        <div className="table-commander is-player">
+        <div className="table-commander is-player" data-hero="player">
           <div>
             <b>☀ GIAO ƯỚC CỦA BẠN</b>
             <small>
@@ -376,16 +467,21 @@ export function TacticalTable(p: Props) {
             </small>
           </div>
           <strong>
-            ♥ {b.commanders.player.hp}
+            ♥ {commanderHp("player")}
             <small>/{b.commanders.player.maxHp}</small>
           </strong>
           <meter
             min={0}
             max={b.commanders.player.maxHp}
-            value={b.commanders.player.hp}
+            value={commanderHp("player")}
             aria-label="Ý chí của bạn"
           />
         </div>
+        <TacticalCombatEffects
+          transition={transition}
+          arena={arena}
+          quiet={quiet}
+        />
         {reveal && (
           <div className="table-trap-reveal" role="status">
             <span>BẪY HƯƠNG KÍCH HOẠT</span>
@@ -407,9 +503,7 @@ export function TacticalTable(p: Props) {
                   : "Quân địch: chạm để xem, không điều khiển."}
               </p>
             )}
-            <button onClick={() => setDialog("card")}>
-              Phóng to lá bài ↗
-            </button>
+            <button onClick={() => setDialog("card")}>Phóng to lá bài ↗</button>
           </>
         ) : (
           <div className="table-coach">
@@ -543,7 +637,9 @@ export function TacticalTable(p: Props) {
               return (
                 <button
                   key={`${b.round}:${index}:${id}`}
-                  className={`table-hand-card ${p.selectedCard === index ? "is-selected" : ""} ${planning && c.cost <= owner.mana ? "is-playable" : ""}`}
+                  className={`table-hand-card ${
+                    p.selectedCard === index ? "is-selected" : ""
+                  } ${planning && c.cost <= owner.mana ? "is-playable" : ""}`}
                   aria-label={`${c.name}, ${c.cost} Lửa Bếp, ${kind(c)}`}
                   aria-pressed={p.selectedCard === index}
                   disabled={p.busy || result}
@@ -591,7 +687,7 @@ export function TacticalTable(p: Props) {
           onClick={p.onAdvance}
         >
           {p.busy
-            ? "Đang giao chiến…"
+            ? `Đang ${actionLabel.toLocaleLowerCase("vi")}…`
             : planning
               ? "Giao chiến →"
               : "Kết vòng · Rút bài →"}
@@ -605,7 +701,7 @@ export function TacticalTable(p: Props) {
           ⚑
         </button>
       </footer>
-      {result && (
+      {result && (!transition || quiet) && (
         <div className="table-result" role="status">
           <small>
             {b.winner === "player" ? "GIAO ƯỚC ĐƯỢC GIỮ" : "HẸN LẠI BÊN BẾP"}

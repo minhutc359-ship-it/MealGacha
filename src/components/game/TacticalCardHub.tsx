@@ -31,8 +31,7 @@ interface HubProps {
   onProgress: (progress: TacticalProgress) => void
 }
 const normalize = (s: string) =>
-  s
-    .normalize("NFD")
+  s.normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[đĐ]/g, "d")
     .toLowerCase()
@@ -51,7 +50,7 @@ function CardDetail({
   return (
     <Dialog title={card.name} onClose={onClose} wide>
       <div className="tcg-card-detail tactical-card-detail">
-        <GameCardView card={card} count={count} />
+        <GameCardView spiritArt card={card} count={count} />
         <div>
           <span className="tcg-kicker">
             {kindLabel(card.kind)} · {SCHOOLS[card.school].name} ·{" "}
@@ -200,6 +199,7 @@ export function TacticalCollection({ progress, onProgress }: HubProps) {
       <div className="tactical-collection-grid">
         {cards.slice(currentPage * 24, (currentPage + 1) * 24).map((card) => (
           <GameCardView
+            spiritArt
             key={card.id}
             card={card}
             count={owned[card.id] ?? 0}
@@ -395,6 +395,7 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
             {available.map((card) => (
               <div key={card.id}>
                 <GameCardView
+                  spiritArt
                   card={card}
                   count={owned[card.id]}
                   selected={!!counts[card.id]}
@@ -654,7 +655,7 @@ export function TacticalPacks({ progress, onProgress }: HubProps) {
               <article key={`${receipt.id}:${index}`}>
                 {revealed.has(index) ? (
                   <>
-                    <GameCardView card={TACTICAL_CARD_MAP[id]} />
+                    <GameCardView spiritArt card={TACTICAL_CARD_MAP[id]} />
                     {receipt.newCardIds.includes(id) && (
                       <b className="tactical-new-card">MỚI</b>
                     )}

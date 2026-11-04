@@ -33,6 +33,8 @@ TCG-007: bàn sản phẩm dùng viewport riêng, giữ đủ 16 ô/tay bài/tha
 
 ## Battle
 
+TCG-008 visual contract: unit cards use their own rendered spirit portrait, board uses their own authored sprite atlas when available (77) or own static portrait (62). No dish photo/generic borrowed unit. Spell/trap art remains skill art; card IDs/lore/ownership/source files unchanged. Legacy character renderer/shared clock/pose/VFX are reused. Animation, floating numbers, casualty ghosts and combo banners derive authoritative before/after snapshots; contact560ms basic/spell,960ms ultimate. Presentation adds no gameplay damage. Saves commit final automatic outcome before stepped visuals; quiet/reduced motion skips waits and animated VFX. Dist includes exact manifest-backed model assets with existing package/security gates.
+
 Bàn mỗi bên 4×2, tối đa 5 Vị Linh. Engine reducer thuần, action idempotent, target ưu tiên hàng trước cùng cột, rồi hàng trước gần nhất, hàng sau, cuối cùng commander. Các phase: planning, clash, reaction, ultimate, round-end, result.
 
 - Trong trận thẻ bài, chơi bản sao thứ hai lên đúng quân để lên 2 sao (+40% công/HP tối đa), giữ lượng HP đã mất. Không cần sở hữu ba bản để dùng tính năng. Reducer merge 3 bản cũ chỉ còn cho fixture đội hình, không là đường chơi production.
