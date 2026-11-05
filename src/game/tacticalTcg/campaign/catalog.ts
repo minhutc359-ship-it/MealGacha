@@ -1,8 +1,11 @@
 import type { CreateBattleOptions } from "../engine"
 import { TACTICAL_STARTER, TACTICAL_CARD_MAP } from "../cards"
 import { TACTICAL_SCENES } from "./story"
+import { EXPANDED_NODES } from "./expanded"
 
 export interface TacticalCampaignNode {
+  optional?: boolean
+  quest?: "resolve" | "summon" | "spells" | "traps" | "healing" | "diverse" | "swift" | "defeat"
   id: string
   act: 1 | 2 | 3 | 4
   title: string
@@ -105,6 +108,7 @@ export const TACTICAL_CAMPAIGN_NODES: TacticalCampaignNode[] = [
 ]
 
 // Preserve shipped node IDs while giving each encounter its own deck and reward.
+TACTICAL_CAMPAIGN_NODES.push(...EXPANDED_NODES)
 for (const node of TACTICAL_CAMPAIGN_NODES) {
   if (!node.battle) continue
   const additions =
@@ -142,6 +146,7 @@ for (const node of TACTICAL_CAMPAIGN_NODES) {
     node.act === 1 || node.id === "act-2-kiln" || node.id === "act-3-regent"
       ? 1
       : 0
+  if (!node.optional) node.battle.botLevel = node.act <= 2 ? "normal" : "hard"
 }
 
 export function isCampaignNodeAvailable(

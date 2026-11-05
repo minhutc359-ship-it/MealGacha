@@ -1,9 +1,11 @@
+import {
+  DUEL_CARDS as TACTICAL_CARDS,
+  DUEL_CARD_MAP as TACTICAL_CARD_MAP,
+} from "../../game/tacticalTcg/duelCards"
 import { useMemo, useRef, useState } from "react"
 import { RARITIES, SCHOOLS } from "../../game/catalog"
 import type { Deck } from "../../game/types"
 import {
-  TACTICAL_CARDS,
-  TACTICAL_CARD_MAP,
   TACTICAL_STARTER,
   ownedTacticalCards,
   tacticalDeckErrors,
@@ -44,7 +46,7 @@ function CardDetail({
   progress,
   onProgress,
   onClose,
-}: HubProps & { card: TacticalCard; onClose: () => void }) {
+}: HubProps & { card: TacticalCard ; onClose: () => void }) {
   const [notice, setNotice] = useState("")
   const count = ownedTacticalCards(progress.cardCopies)[card.id] ?? 0
   const cost = RARITIES[card.rarity].dust
@@ -108,7 +110,9 @@ export function TacticalCollection({ progress, onProgress }: HubProps) {
       (kind === "all" || c.kind === kind) &&
       (rarity === "all" || c.rarity === rarity) &&
       (!ownedOnly || owned[c.id] > 0) &&
-      normalize(`${c.name} ${c.text}`).includes(normalize(query)),
+      normalize(`${c.name} ${c.legacyName ?? ""} ${c.text} ${c.lore}`).includes(
+        normalize(query),
+      ),
   )
   const currentPage = Math.min(
     page,
@@ -267,7 +271,9 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
         (c) =>
           owned[c.id] > 0 &&
           (kind === "all" || c.kind === kind) &&
-          normalize(c.name).includes(normalize(query)),
+          normalize(`${c.name} ${c.legacyName ?? ""}`).includes(
+            normalize(query),
+          ),
       ).sort((a, b) => a.cost - b.cost),
     [progress.cardCopies, query, kind],
   )
@@ -331,7 +337,7 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
       </div>
       <details className="tactical-deck-recipes">
         <summary>
-          Công thức bộ bài · 3 bộ nhập môn và 5 hướng phát triển
+          Công thức bộ bài · 3 bộ nhập môn và 7 hướng phát triển
         </summary>
         <div>
           {TACTICAL_DECK_LIBRARY.map((template) => {
@@ -347,7 +353,9 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
                 <p>
                   <b>Tay đầu:</b> {template.opening}
                 </p>
-                <p><b>Điểm yếu:</b> {template.weakness}</p>
+                <p>
+                  <b>Điểm yếu:</b> {template.weakness}
+                </p>
                 <span>
                   {missing.length
                     ? `Thiếu ${missing.reduce((n, m) => n + m.count, 0)} lá · chế tạo ${missing.reduce((n, m) => n + m.cost, 0)} Tinh Vị`
@@ -454,18 +462,57 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
             Bẫy
           </p>
           <div
+            className="duel-deck-profile"
+            aria-label="Vai trò và chiến thuật bộ bài"
+          >
+            <p>
+              {(["guardian", "striker", "mage", "support"] as const).map(
+                (role, i) => (
+                  <span key={role}>
+                    {["Hộ vệ", "Đấu sĩ", "Pháp sư", "Trợ thủ"][i]}:{" "}
+                    {
+                      draft.cards.filter(
+                        (id) =>
+                          TACTICAL_CARD_MAP[id]?.kind === "unit" &&
+                          TACTICAL_CARD_MAP[id].tacticalRole === role,
+                      ).length
+                    }{" "}
+                    ·{" "}
+                  </span>
+                ),
+              )}
+            </p>
+            <p>
+              {draft.cards.filter((id) =>
+                TACTICAL_CARD_MAP[id]?.duelTraits?.includes("overwhelm"),
+              ).length >= 2
+                ? "Phá trận: dồn công, dùng Xuyên phá để chuyển sát thương thừa vào chủ tướng."
+                : draft.cards.filter(
+                      (id) => TACTICAL_CARD_MAP[id]?.kind === "trap",
+                    ).length >= 4
+                  ? "Phản chế: giữ Hộ vệ, gài bẫy và đổi quân có lợi trước khi kết liễu."
+                  : draft.cards.filter((id) =>
+                        TACTICAL_CARD_MAP[id]?.duelTraits?.includes("quick"),
+                      ).length >= 2
+                    ? "Tiên phong: dùng Tiên thủ hạ quân yếu để giữ người, ép chủ tướng khi hết Hộ vệ."
+                    : "Giao ước: giữ một Hộ vệ, phối hợp phép và chọn lúc dùng Tuyệt kỹ để giành bàn."}
+            </p>
+          </div>
+          <div
             className="tactical-mana-curve"
             aria-label="Đường cong năng lượng"
           >
             {[1, 2, 3, 4, 5, 6, 7].map((cost) => {
-              const count = draft.cards.filter(
-                (id) => TACTICAL_CARD_MAP[id]?.cost === cost,
+              const count = draft.cards.filter((id) =>
+                cost === 7
+                  ? (TACTICAL_CARD_MAP[id]?.cost ?? 0) >= 7
+                  : TACTICAL_CARD_MAP[id]?.cost === cost,
               ).length
               return (
                 <div key={cost}>
                   <span>{count}</span>
                   <i style={{ height: `${Math.max(3, count * 6)}px` }} />
-                  <small>{cost}</small>
+                  <small>{cost === 7 ? "7+" : cost}</small>
                 </div>
               )
             })}
@@ -669,7 +716,7 @@ export function TacticalPacks({ progress, onProgress }: HubProps) {
                     aria-label={`Lật thẻ ${index + 1}`}
                   >
                     <small>SOUL OF MEAL</small>
-                    <span>契</span>
+                    <span>✦</span>
                     <b>CHẠM ĐỂ ĐÁNH THỨC</b>
                   </button>
                 )}

@@ -4,6 +4,7 @@ import type {
   TacticalBattleState,
 } from "../engine/types"
 import { TACTICAL_CARD_MAP } from "../cards"
+import { isDuel } from "../duelCards"
 import type { School } from "../../types"
 import type { CharacterMotion } from "../../tcgCharacterMotion"
 
@@ -19,7 +20,7 @@ export interface TacticalDelta {
   statuses: ("root" | "freeze" | "burn" | "heal" | "shield")[]
 }
 export interface TacticalTransition {
-  impacts: {id: string; hp: number; shield: number}[]
+  impacts: { id: string ; hp: number ; shield: number }[]
   id: string
   kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "move" | "round" | "reaction" | "negate" | "turn" | "intent"
   targetId?: string
@@ -32,7 +33,7 @@ export interface TacticalTransition {
   contact: number
   duration: number
   deltas: TacticalDelta[]
-  combo: { name: string; detail: string } | null
+  combo: { name: string ; detail: string } | null
   before: TacticalBattleState
 }
 const livingSchools = (s: TacticalBattleState, side: BattleSide) =>
@@ -68,9 +69,19 @@ export function tacticalTransition(
         fallen: !!old && !old.defeated && u.defeated,
         upgraded: !!old && u.star > old.star,
         statuses: [
-          ...((u.rootedUntil ?? 0) >= after.round && (old?.rootedUntil ?? 0) < after.round ? ["root" as const] : []),
-          ...((u.stunnedUntil ?? 0) >= after.round && (old?.stunnedUntil ?? 0) < after.round ? ["freeze" as const] : []),
-          ...(u.burn && (!old?.burn || u.burn.remaining !== old.burn.remaining) || old?.burn && !u.burn && u.hp < old.hp ? ["burn" as const] : []),
+          ...((u.rootedUntil ?? 0) >= after.round &&
+          (old?.rootedUntil ?? 0) < after.round
+            ? ["root" as const]
+            : []),
+          ...((u.stunnedUntil ?? 0) >= after.round &&
+          (old?.stunnedUntil ?? 0) < after.round
+            ? ["freeze" as const]
+            : []),
+          ...((u.burn &&
+            (!old?.burn || u.burn.remaining !== old.burn.remaining)) ||
+          (old?.burn && !u.burn && u.hp < old.hp)
+            ? ["burn" as const]
+            : []),
           ...(old && u.hp > old.hp && !old.defeated ? ["heal" as const] : []),
           ...(old && u.shield > old.shield ? ["shield" as const] : []),
         ],
@@ -78,7 +89,13 @@ export function tacticalTransition(
     })
     .filter(
       (d) =>
-        d.hp || d.shield || d.attack || d.spawned || d.fallen || d.upgraded || d.statuses.length,
+        d.hp ||
+        d.shield ||
+        d.attack ||
+        d.spawned ||
+        d.fallen ||
+        d.upgraded ||
+        d.statuses.length,
     )
   for (const side of ["player", "enemy"] as const) {
     const hp = after.commanders[side].hp - before.commanders[side].hp
@@ -159,10 +176,13 @@ export function tacticalTransition(
   )
     combo = {
       name: "CÔNG THỨC ĐỒNG VỊ",
-      detail: "Hai lá cùng hệ · toàn đội +5 khiên",
+      detail: `Hai lá cùng hệ · toàn đội +${isDuel(after) ? 1 : 5} khiên`,
     }
   else if (livingSchools(before, side) < 3 && livingSchools(after, side) >= 3)
-    combo = { name: "MÂM CHUNG", detail: "Ba hệ cùng bàn · +3 công khi ra đòn" }
+    combo = {
+      name: "MÂM CHUNG",
+      detail: `Ba hệ cùng bàn · +${isDuel(after) ? 1 : 3} công khi ra đòn`,
+    }
   else if (kind === "spell" && owner && owner.spellsThisRound >= 2)
     combo = {
       name: `CHUỖI PHÉP ×${owner.spellsThisRound}`,
@@ -196,8 +216,17 @@ export function tacticalTransition(
     id,
     impacts: [
       ...(action?.impacts ?? []),
-      ...deltas.filter(d => (d.hp < 0 || d.shield < 0) && !action?.impacts?.some(v => v.id === d.id))
-        .map(d => ({id:d.id,hp:Math.max(0,-d.hp),shield:Math.max(0,-d.shield)})),
+      ...deltas
+        .filter(
+          (d) =>
+            (d.hp < 0 || d.shield < 0) &&
+            !action?.impacts?.some((v) => v.id === d.id),
+        )
+        .map((d) => ({
+          id: d.id,
+          hp: Math.max(0, -d.hp),
+          shield: Math.max(0, -d.shield),
+        })),
     ],
     kind,
     side,
@@ -222,7 +251,7 @@ export function tacticalUnitMotion(
   unit: BattleUnit,
   transition: TacticalTransition | null,
   winner: BattleSide | null,
-): { motion: CharacterMotion; delay: number; lead?: "attack" } {
+): { motion: CharacterMotion ; delay: number ; lead?: "attack" } {
   const d = transition?.deltas.find((d) => d.id === unit.instanceId)
   if (d?.fallen)
     return {

@@ -35,11 +35,11 @@ class MemoryStorage {
   }
 }
 describe("Tactical table and varied decks", () => {
-  it("has eight distinct, legal 24-card recipes and differentiated spell/unit choices", () => {
+  it("has ten distinct, legal 24-card recipes and differentiated spell/unit choices", () => {
     expect(
       new Set(TACTICAL_DECK_LIBRARY.map((d) => [...d.cards].sort().join()))
         .size,
-    ).toBe(8)
+    ).toBe(10)
     for (const template of TACTICAL_DECK_LIBRARY)
       expect(tacticalDeckErrors(template.cards)).toEqual([])
     expect(TACTICAL_DECK_LIBRARY.filter((d) => d.free)).toHaveLength(3)

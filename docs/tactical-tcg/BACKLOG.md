@@ -1,34 +1,26 @@
-# Backlog
+# Backlog · after TCG-011/012
 
-## P0 trước merge/deploy
+## Delivered in the final completion batch
 
-- TCG-010 thay16 ô bằng hai hàng tối đa5VịLinh/bên; trận thật và fixture10quân/tay8 đã kiểm tra ở320×568,390×844,844×390,1280×720,1360×900 trên Chrome. Main fields/hand/footer/card aspect đều đạt; điện thoại/touch thật vẫn cần nghiệm thu.
+- Manual TCG with compact stats, Guardian targeting, counters, Tiên thủ/Xuyên phá/Tái sinh/Hộ pháp, real choice spells and8paid native traps. Display text and effective board ATK reflect the actual rules.
+-139portrait display identities; IDs, decks, collection, receipts, saves and original progression preserved additively.
+-10deck archetypes with plan/opening/weakness, role/strategy summary and mana curve;3free intro recipes unchanged, advanced recipes require ownership.
+- Four regions/24reachable journey nodes,23battles including12boss encounters,16optional reward objectives. Original8main story IDs and2endings retained. New boss powers and defeat condition disclosed.
+- Free local Normal/Hard/Extreme bot matches with opponent-deck choice, equal initial resources, unique shuffle and saved difficulty; no online/rank/reward claim.
+- Left commander and face-down trap rail, two5-card rows, actual target forecasts, mobile landscape/dialog fixes, original cultural ornaments, contact VFX/SFX and original regional/boss score integration.
+- Full185files/2,402tests, production17/132, both typechecks, release32/774/3, build/package476files and budget/safety PASS. [Evidence](evidence/TCG-011-012.md).
 
-- Review trực quan desktop/mobile và thử input touch trên thiết bị thật.
-- Chơi xuyên 8 node, kiểm tra mở khóa Manga và nhận reward sau reload/tab cạnh tranh.
-- Xác nhận Vercel preview dùng đúng SHA của nhánh `game/tactical-tcg`.
+## Remaining before product release
 
-## Đã khôi phục trong TCG-005
+- Human playtest ten archetypes against selected boss/deck/difficulty matchups; simulations prove legal routes and termination, not fair win rates. All16optional objectives need subjective challenge review.
+- Target-phone/touch, reduced-motion sensory review, FPS/memory/cold-load and subjective audio/music review. Five cloud-browser viewport checks are not physical-device certification.
+- Release owner verifies the pushed SHA and build in Vercel preview. No master merge/deploy requested by this batch.
+- Existing commercial media clearance remains pending evidence; no newly copied assets or newly recorded voices are claimed.
 
-- Bộ sưu tập 181 lá, inspect/filter/craft, editor và trang bị bộ 24 lá.
-- Gói TCG 5 lá, odds/pity, duplicate Tinh Vị, quà ngày và giữ kết quả mở qua reload.
-- Tay bài/rút bài/Lửa Bếp/triệu hồi/phép/bẫy/nội tại/recipe/nâng sao với AI chơi bài.
-- Checkpoint trận, import bổ sung dữ liệu cũ, cốt truyện trước/sau và hai ending.
+## Optional future scope
 
-## Tiếp theo
+- Real online human PvP needs networking, identity, authoritative server state and matchmaking; the delivered duel lobby is explicitly against bots.
+- Free-roam overworld work belongs to a separate scope; this batch expands the TCG journey map.
+- Additional authored animation poses/unique boss art or newly composed music require separate art/audio production. Splash art remains the owner's preferred battle direction.
 
-- TCG-010 đã hoàn thiện bàn splash art/commander/đặt-lật/đường đạn/trạng thái thật. Tiếp: playtest cân bằng burn4×2 của Vòng Than Phản Công, root/movement/thaw và8archetypes; nghiệm thu cảm quan/touch/FPS. Theo yêu cầu mới của chủ sản phẩm, model nhiều pose không bắt buộc; ưu tiên clarity và gameplay trước việc sản xuất62atlas còn lại.
-
-- TCG-009 đã thay auto combat production bằng lượt chủ động,8 native traps/Lật-Giữ và8 recipes. Tiếp: human balance cho8 archetypes, đánh giá heuristic AI, hoàn thiện các modal-choice/delayed spell abilities còn giữ bản chuyển đổi Tactical; chưa tuyên bố parity mọi hiệu ứng legacy. QA thiết bị/touch/FPS còn mở.
-
-- TCG-008 đã nối77 atlas đã render và chân dung riêng cho139 unit, renderer/pose/VFX/combo của TCG cũ vào production Tactical.62 unit chưa có atlas nhiều động tác: cần sản xuất/duyệt riêng, không gọi portrait-only là hoàn thiện animation. Cần đo hiệu năng tải/model trên thiết bị thật.
-
-- TCG-007 đã thay bàn chiến đấu sản phẩm bằng layout toàn màn hình; thẻ đọc lớn, hướng dẫn theo phase, trình diễn đòn đánh và 3 bộ nhập môn + 2 công thức. Cần human balance/playtest cho cả 5 archetype trước nghiệm thu sản phẩm.
-
-- TCG-006 đã thêm: tiếp tục trận từ sảnh, xác nhận thay trận, bảo vệ tab cũ, import/preview/undo, trạng thái quà/thưởng và sửa mở gói/tạo bộ ở môi trường thiếu randomUUID. Kiểm tra browser phần cuối đang tiếp tục; không coi là nghiệm thu thiết bị thật.
-
-- Tạo VFX/âm thanh riêng cho từng bẫy và từng boss; cần duyệt cảm quan độc lập.
-- Đo cold-load, FPS, memory và thao tác touch trên thiết bị thật trước merge.
-- Thiết kế thêm đội hình/bẫy riêng cho từng node sau khi có dữ liệu playtest cân bằng.
-- Hoàn tất nghiệm thu độc lập luồng backup/restore và touch trên thiết bị thật (UI preview/confirm/rollback/undo đã được triển khai).
-- Online PvP authoritative và reconnect thật, mastery/side story mở rộng; không mô tả phòng AI cục bộ là multiplayer.
+Historical implementation and gates are preserved in task cards and evidence TCG-005…012; current rules are in PRODUCT_CONTRACT.md.

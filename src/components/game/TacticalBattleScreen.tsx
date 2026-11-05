@@ -22,6 +22,10 @@ import { TacticalTable } from "./TacticalTable"
 import { useAppStore } from "../../store/useAppStore"
 import { tacticalTransition } from "../../game/tacticalTcg/presentation/transitions"
 import { enableDirectedBattle } from "../../game/tacticalTcg/engine/directedRules"
+import { upgradeDuelBattle } from "../../game/tacticalTcg/engine/duelRules"
+import { combatCard, duelChoiceCard } from "../../game/tacticalTcg/duelCards"
+import { campaignQuestResult } from "../../game/tacticalTcg/campaign/expanded"
+import { claimCampaignQuest } from "../../game/tacticalTcg/progression/quests"
 import "../../game/tacticalBattle.css"
 
 const TUTORIAL_KEY = "soul-of-meal.tactical-tcg.battle-tutorial.v1"
@@ -81,7 +85,7 @@ function CommanderPanel({
   return (
     <article className="tactical-commander" data-side={side}>
       <span className="tactical-commander__sigil" aria-hidden="true">
-        {player ? "契" : "厄"}
+        {player ? "✦" : "◈"}
       </span>
       <div>
         <small>{player ? "GIAO ƯỚC CỦA BẠN" : "Ý CHÍ KẺ ĐỊCH"}</small>
@@ -136,6 +140,8 @@ export function TacticalBattleScreen({
           rewardCardId: options?.rewardCardId,
           enemyManaPenalty: options?.enemyManaPenalty,
           manual: true,
+          duel: !!options?.deck,
+          botLevel: options?.botLevel ?? "hard",
         }),
       [battleId],
     )
@@ -159,7 +165,7 @@ export function TacticalBattleScreen({
   )
   const [battle, setBattle] = useState<TacticalBattleState>(() => {
       return saved?.battleId === battleId && saved.mode === initial.mode
-        ? enableDirectedBattle(saved)
+        ? enableDirectedBattle(upgradeDuelBattle(saved))
         : initial
     }),
     [selected, setSelected] = useState<string | null>(null),
@@ -193,12 +199,16 @@ export function TacticalBattleScreen({
     [],
   )
   const [selectedCard, setSelectedCard] = useState<number | null>(null)
+  const [choiceIndex, setChoiceIndex] = useState<0 | 1>(0)
   const [attackMode, setAttackMode] = useState<"basic" | "ultimate">("basic")
   const [showLog, setShowLog] = useState(false)
   const cards = battle.cardGame?.sides.player
   const chosenCard =
     selectedCard !== null && cards
-      ? TACTICAL_CARD_MAP[cards.hand[selectedCard]]
+      ? duelChoiceCard(
+          combatCard(battle, cards.hand[selectedCard]),
+          choiceIndex,
+        )
       : null
   const updateBattle = async (
     update: (current: TacticalBattleState) => TacticalBattleState,
@@ -334,7 +344,7 @@ export function TacticalBattleScreen({
         return
       }
       checkpointRef.current = next
-      battleRef.current = enableDirectedBattle(next)
+      battleRef.current = enableDirectedBattle(upgradeDuelBattle(next))
       setBattle(battleRef.current)
       setClaimed(latest.claimedRewardReceiptIds)
       setSelectedCard(null)
@@ -378,7 +388,7 @@ export function TacticalBattleScreen({
     )
   }
   const playSelected = async (
-    cell?: { row: 0 | 1; column: 0 | 1 | 2 | 3 },
+    cell?: { row: 0 | 1 ; column: 0 | 1 | 2 | 3 },
     targetId?: string,
   ) => {
     if (selectedCard === null || !chosenCard) return
@@ -387,6 +397,13 @@ export function TacticalBattleScreen({
     const position =
       cell ??
       emptyCardCell(battle, "player", chosenCard.tacticalRole !== "guardian") ??
+      battle.units.find(
+        (u) =>
+          u.side === "player" &&
+          !u.defeated &&
+          u.cardId === chosenCard.id &&
+          u.star === 1,
+      )?.cell ??
       undefined
     await presentSingle((current) =>
       reduceTacticalBattle(current, {
@@ -394,6 +411,7 @@ export function TacticalBattleScreen({
         type: "play-card",
         side: "player",
         handIndex,
+        choiceIndex: chosenCard.choices ? choiceIndex : undefined,
         cell: position,
         targetId,
         column: trapColumn,
@@ -455,6 +473,12 @@ export function TacticalBattleScreen({
         claimBattleReward(localStorage, battle.reward!, mangaChapterId),
       )
       setClaimed(result.progress.claimedRewardReceiptIds)
+      if (campaignQuestResult(battle)?.complete) {
+        const quest = await withTacticalLock(() =>
+          claimCampaignQuest(localStorage),
+        )
+        setClaimed(quest.progress.claimedRewardReceiptIds)
+      }
       setClaimStatus(
         result.status === "duplicate"
           ? "Phần thưởng này đã được ghi nhận trước đó."
@@ -479,10 +503,33 @@ export function TacticalBattleScreen({
         busy={animating}
         notice={claimStatus}
         claimed={!!battle.reward && claimed.includes(battle.reward.id)}
+        quest={(() => {
+          const q = campaignQuestResult(battle)
+          return q
+            ? {
+                ...q,
+                claimed: claimed.includes(q.id),
+                onClaim: () => {
+                  void withTacticalLock(() => claimCampaignQuest(localStorage))
+                    .then((r) => {
+                      setClaimed(r.progress.claimedRewardReceiptIds)
+                      onProgress?.()
+                    })
+                    .catch((e) => setClaimStatus((e as Error).message))
+                },
+              }
+            : undefined
+        })()}
         trapColumn={trapColumn}
         attackMode={attackMode}
         onAttackMode={setAttackMode}
-        onCommander={() => attackSelected("hero:enemy")}
+        onCommander={() =>
+          chosenCard?.kind === "spell" && chosenCard.tacticalEffect === "damage"
+            ? playSelected(undefined, "hero:enemy")
+            : attackSelected("hero:enemy")
+        }
+        choiceIndex={choiceIndex}
+        onChoice={setChoiceIndex}
         onReact={(reactionId, activate) => {
           void presentSingle((c) =>
             reduceTacticalBattle(c, {
@@ -493,7 +540,10 @@ export function TacticalBattleScreen({
             }),
           )
         }}
-        onSelectCard={setSelectedCard}
+        onSelectCard={(index) => {
+          setSelectedCard(index)
+          setChoiceIndex(0)
+        }}
         onSelectUnit={setSelected}
         onColumn={setTrapColumn}
         onPlay={() => playSelected()}

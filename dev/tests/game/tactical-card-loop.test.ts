@@ -412,64 +412,61 @@ describe("restored Tactical card loop", () => {
   it("all campaign encounters terminate using legal card commands and authored stories", () => {
     const storage = prepare()
     let deck = [...TACTICAL_STARTER]
-    const results = TACTICAL_CAMPAIGN_NODES.filter((n) => n.battle).map(
-      (node) => {
-        expect(TACTICAL_SCENES[node.id].before).toHaveLength(2)
-        const owned = ownedTacticalCards(
-          readTacticalProgress(storage).cardCopies,
+    const results = TACTICAL_CAMPAIGN_NODES.filter(
+      (n) => n.battle && !n.optional,
+    ).map((node) => {
+      expect(TACTICAL_SCENES[node.id].before).toHaveLength(2)
+      const owned = ownedTacticalCards(readTacticalProgress(storage).cardCopies)
+      const improved = [...deck]
+      for (const id of [
+        "chef-hai",
+        "chef-bach",
+        "recipe-scroll",
+        "family-table",
+        "chef-lien",
+      ]) {
+        if (!(owned[id] > 0) || improved.includes(id)) continue
+        const replace = improved.findIndex(
+          (c) =>
+            TACTICAL_CARD_MAP[c].kind === TACTICAL_CARD_MAP[id].kind &&
+            TACTICAL_CARD_MAP[c].cost < TACTICAL_CARD_MAP[id].cost,
         )
-        const improved = [...deck]
-        for (const id of [
-          "chef-hai",
-          "chef-bach",
-          "recipe-scroll",
-          "family-table",
-          "chef-lien",
-        ]) {
-          if (!(owned[id] > 0) || improved.includes(id)) continue
-          const replace = improved.findIndex(
-            (c) =>
-              TACTICAL_CARD_MAP[c].kind === TACTICAL_CARD_MAP[id].kind &&
-              TACTICAL_CARD_MAP[c].cost < TACTICAL_CARD_MAP[id].cost,
-          )
-          if (replace >= 0) improved[replace] = id
-        }
-        expect(tacticalDeckErrors(improved, owned)).toEqual([])
-        const attempts = [deck, improved].flatMap((cards) =>
-          [0, 1, 2, 3, 4, 5].map((strategy) =>
-            playLegalCardMatch(
-              createTacticalBattle({
-                ...node.battle!,
-                battleId: `sim:${node.id}`,
-                nodeId: node.id,
-                deck: cards,
-              }),
-              strategy,
-            ),
+        if (replace >= 0) improved[replace] = id
+      }
+      expect(tacticalDeckErrors(improved, owned)).toEqual([])
+      const attempts = [deck, improved].flatMap((cards) =>
+        [0, 1, 2, 3, 4, 5].map((strategy) =>
+          playLegalCardMatch(
+            createTacticalBattle({
+              ...node.battle!,
+              battleId: `sim:${node.id}`,
+              nodeId: node.id,
+              deck: cards,
+            }),
+            strategy,
           ),
-        )
-        for (const finished of attempts) {
-          expect(finished.phase, node.id).toBe("result")
-          expect(finished.cardGame!.sides.player.mana).toBeGreaterThanOrEqual(0)
-        }
-        const won = attempts.find((s) => s.winner === "player")
-        if (won?.reward)
-          claimBattleReward(storage, won.reward, node.mangaChapterId)
-        if (attempts.slice(6).some((s) => s.winner === "player"))
-          deck = improved
-        if (node.id === "act-3-regent")
-          commitTacticalProgress(storage, {
-            receiptId: "story:act-4-vow",
-            completedNodeId: "act-4-vow",
-            campaignChoice: { nodeId: "act-4-vow", choice: "share" },
-          })
-        return {
-          node: node.id,
-          winner: won?.winner ?? "enemy",
-          outcomes: attempts.map((s) => `${s.winner}:${s.round}`),
-        }
-      },
-    )
+        ),
+      )
+      for (const finished of attempts) {
+        expect(finished.phase, node.id).toBe("result")
+        expect(finished.cardGame!.sides.player.mana).toBeGreaterThanOrEqual(0)
+      }
+      const won = attempts.find((s) => s.winner === "player")
+      if (won?.reward)
+        claimBattleReward(storage, won.reward, node.mangaChapterId)
+      if (attempts.slice(6).some((s) => s.winner === "player")) deck = improved
+      if (node.id === "act-3-regent")
+        commitTacticalProgress(storage, {
+          receiptId: "story:act-4-vow",
+          completedNodeId: "act-4-vow",
+          campaignChoice: { nodeId: "act-4-vow", choice: "share" },
+        })
+      return {
+        node: node.id,
+        winner: won?.winner ?? "enemy",
+        outcomes: attempts.map((s) => `${s.winner}:${s.round}`),
+      }
+    })
     console.info("Campaign legal-command simulation", JSON.stringify(results))
     expect(results.filter((r) => r.winner !== "player")).toEqual([])
     expect(readTacticalProgress(storage).completedCampaignNodes).toHaveLength(8)

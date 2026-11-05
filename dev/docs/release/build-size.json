@@ -3,40 +3,40 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 710000,
   "version": "5.9.23",
-  "bytes": 166712221,
-  "files": 396,
+  "bytes": 116212502,
+  "files": 476,
   "byType": {
     "js": {
-      "files": 31,
-      "bytes": 2437358
+      "files": 30,
+      "bytes": 2333956
     },
     "css": {
-      "files": 5,
-      "bytes": 176626
-    },
-    "wav": {
-      "files": 52,
-      "bytes": 672166
-    },
-    "webp": {
-      "files": 279,
-      "bytes": 161937854
-    },
-    "json": {
       "files": 4,
-      "bytes": 66036
+      "bytes": 351349
     },
     "png": {
       "files": 3,
       "bytes": 164790
     },
+    "webp": {
+      "files": 388,
+      "bytes": 103138712
+    },
     "woff2": {
       "files": 11,
       "bytes": 285956
     },
+    "json": {
+      "files": 16,
+      "bytes": 365128
+    },
     "mp3": {
+      "files": 13,
+      "bytes": 9440084
+    },
+    "svg": {
       "files": 1,
-      "bytes": 843904
+      "bytes": 4902
     },
     "ico": {
       "files": 1,
@@ -44,7 +44,7 @@
     },
     "html": {
       "files": 4,
-      "bytes": 26885
+      "bytes": 26853
     },
     "txt": {
       "files": 4,
@@ -52,85 +52,85 @@
     },
     "webmanifest": {
       "files": 1,
-      "bytes": 951
+      "bytes": 1077
     }
   },
   "groups": {
-    "Application JS/CSS": 2613984,
-    "Other and legal": 149790495,
+    "Application JS/CSS": 2685305,
     "Brand": 229534,
-    "Shared character atlases": 1731768,
+    "Shared character atlases": 54999234,
+    "Other and legal": 28038907,
     "Food art": 7490462,
     "Spirit RPG art/audio/video": 4751008,
-    "TCG art/audio": 104970
+    "TCG art/audio": 18018052
   },
-  "js_gzip": 700718,
-  "css_gzip": 38663,
+  "js_gzip": 674918,
+  "css_gzip": 73885,
   "largest": [
     {
-      "path": "assets/aw2/environments/lantern-street/v1/floor.webp",
-      "bytes": 3239024
+      "path": "assets/tactical-tcg-L_y41-JB.js",
+      "bytes": 1205279
     },
     {
-      "path": "assets/aw2/environments/forgotten-kitchen-yard/v1/floor.webp",
-      "bytes": 3172580
+      "path": "assets/characters/starters590/goi-cuon-tom-thit.webp",
+      "bytes": 1002666
     },
     {
-      "path": "assets/aw2/environments/covenant-village/v2/landscape.webp",
-      "bytes": 3121466
+      "path": "assets/characters/starters590/pho-bo.webp",
+      "bytes": 998102
     },
     {
-      "path": "assets/aw2/environments/kitchen-pantry/v1/floor.webp",
-      "bytes": 2880718
+      "path": "assets/music580/map-garden.mp3",
+      "bytes": 886849
     },
     {
-      "path": "assets/aw2/environments/kitchen-hearth/v2/landscape.webp",
-      "bytes": 2517370
+      "path": "assets/characters/starters590/com-tam.webp",
+      "bytes": 869274
     },
     {
-      "path": "assets/aw2/environments/kitchen-table/v2/landscape.webp",
-      "bytes": 2433468
+      "path": "assets/characters/starters590/banh-mi.webp",
+      "bytes": 866956
     },
     {
-      "path": "assets/aw2/environments/village-tea/v1/floor.webp",
-      "bytes": 2358656
+      "path": "assets/pixi-renderer-Dhg1emiB.js",
+      "bytes": 866879
     },
     {
-      "path": "assets/aw2/moc/ultimate-v1/art.webp",
-      "bytes": 2201524
+      "path": "assets/music580/map-lotus.mp3",
+      "bytes": 864907
     },
     {
-      "path": "assets/aw2/bach/ultimate-v1/art.webp",
-      "bytes": 2200088
+      "path": "assets/characters/autochess5913/banh-tom-ho-tay.webp",
+      "bytes": 856598
     },
     {
-      "path": "assets/aw2/hai/ultimate-v1/art.webp",
-      "bytes": 2132968
+      "path": "assets/music580/mode-chest.mp3",
+      "bytes": 843904
     },
     {
-      "path": "assets/aw2/than/ultimate-v1/art.webp",
-      "bytes": 2103696
+      "path": "assets/characters/starters590/banh-cuon.webp",
+      "bytes": 825628
     },
     {
-      "path": "assets/aw2/environments/covenant-village/v1/floor.webp",
-      "bytes": 2087698
+      "path": "assets/music580/map-tide.mp3",
+      "bytes": 823529
     }
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 1479512,
-    "urls": 27,
+    "bytes": 2214767,
+    "urls": 29,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 10520488
+    "remainingBytes": 9785233
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 153287779
+    "remainingBytes": 203787498
   }
 }

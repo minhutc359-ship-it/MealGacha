@@ -35,6 +35,10 @@ const recipe = (
     "trap-counter": "Chỉ giữ một bẫy; quá nhiều bẫy trên tay sẽ thiếu quân.",
     "memory-return":
       "Bẫy hồi sinh chỉ bắt quân giá tối đa 4; phải chừa ô và chờ lượt sau.",
+    "bronze-breakers":
+      "Sợ khống chế và niêm phong phép tăng công. Dồn hết Lửa vào một quân có thể mất nhịp.",
+    "lantern-tempo":
+      "Tiên thủ không tránh phản đòn nếu chưa hạ được mục tiêu. Cần tính HP và khiên trước khi đánh.",
   } as Record<string, string>)[id],
   free,
   cards: ids.flatMap((card) => [card, card]),
@@ -66,8 +70,8 @@ export const TACTICAL_DECK_LIBRARY = [
     "tide-letters",
     "Thư Từ Bến Nước",
     "Kiểm soát · Rút bài",
-    "Phở và Người đưa thư giữ tay bài; hộ vệ chắn tiền tuyến, phép xử lý địch mạnh.",
-    "Giữ Phở bò/Người đưa thư và một hộ vệ. Dành Lửa cho lượt triệu hồi tiếp theo.",
+    "Bạch Long và Thỏ Đưa Thư giữ tay bài; Hộ vệ bảo vệ chủ tướng, phép xử lý địch mạnh.",
+    "Giữ Bạch Long Sông Ngọc/Thỏ Đưa Thư và một hộ vệ. Dành Lửa cho lượt triệu hồi tiếp theo.",
     true,
     [
       "pho-bo",
@@ -89,7 +93,7 @@ export const TACTICAL_DECK_LIBRARY = [
     "Khu Vườn Bên Bếp",
     "Phòng thủ · Hồi phục",
     "Khiên, hồi Ý chí và quân bền giữ bàn, sau đó tăng công để kết thúc trước Lửa Lớn.",
-    "Giữ Người gánh bếp/Cô hái lá thuốc. Đặt hỗ trợ sau hộ vệ; đừng hồi khi đã đầy máu.",
+    "Giữ Hổ Gánh Nắng/Người hái thuốc. Giữ Hộ vệ còn sống; đừng hồi khi đã đầy máu.",
     true,
     [
       "caravan-herbalist",
@@ -133,7 +137,7 @@ export const TACTICAL_DECK_LIBRARY = [
     "Bình Minh Dưới Trăng",
     "Bảo vệ · Duy trì bàn",
     "Ghép khiên Ngọt vị và hồi phục Thanh vị; nâng sao quân bền để giữ hiệu ứng hỗ trợ.",
-    "Ưu tiên quân rẻ và một lá tạo khiên; để quân hỗ trợ ở hậu tuyến.",
+    "Ưu tiên quân rẻ và một lá tạo khiên; giữ Hộ vệ để Trợ thủ duy trì hiệu ứng.",
     false,
     [
       "chef-moc",
@@ -157,7 +161,7 @@ TACTICAL_DECK_LIBRARY.push(
     "spell-chain",
     "Nhịp Phép Bên Bếp",
     "Liên hoàn · Tài nguyên",
-    "Giữ Xôi xéo để phép thứ hai hồi Lửa; Bún riêu hưởng phép khác hệ. Xen kẽ phép, rút bài và đòn đánh đã tăng sức.",
+    "Giữ Tê Tê Nếp Vàng để phép thứ hai hồi Lửa; Cá Chép Giữ Lửa hưởng phép khác hệ. Xen kẽ phép, rút bài và đòn đánh đã tăng sức.",
     "Giữ quân rẻ và một phép; đừng giữ cả tay chỉ có phép.",
     false,
     [
@@ -217,6 +221,52 @@ TACTICAL_DECK_LIBRARY.push(
       "trap-recall",
       "trap-pantry",
       "v4-warm-towel",
+    ],
+  ),
+)
+TACTICAL_DECK_LIBRARY.push(
+  recipe(
+    "bronze-breakers",
+    "Trống Đồng Phá Trận",
+    "Xuyên phá · Trung tốc",
+    "Hộ vệ giữ bàn, tăng công Sư Tử Lúa Vàng để sát thương thừa đi thẳng vào chủ tướng.",
+    "Giữ Hồ Ly Áo Đồng và một phép tăng công; chờ Lửa để gọi Sư Tử, không giữ toàn quân đắt.",
+    false,
+    [
+      "com-tam",
+      "caravan-smith",
+      "banh-mi",
+      "chef-nhien",
+      "caravan-porter",
+      "caravan-scout",
+      "pho-bo",
+      "seasoning",
+      "v4-two-spices",
+      "spark",
+      "trap-ward",
+      "trap-mirror",
+    ],
+  ),
+  recipe(
+    "lantern-tempo",
+    "Đèn Hội Tiên Phong",
+    "Tiên thủ · Nhịp độ",
+    "Dùng quân Tiên thủ để đổi quân có lợi, rồi đánh chủ tướng khi đã hết Hộ vệ. Nêm vị giúp xoay giữa phòng thủ và sát thương.",
+    "Giữ Long Nhỏ/Thỏ Đưa Thư và phép rẻ. Đọc số phản đòn; Tiên thủ cần đủ sát thương để hạ mục tiêu.",
+    false,
+    [
+      "caravan-scout",
+      "caravan-letter",
+      "banh-mi",
+      "bun-cha",
+      "caravan-pastry",
+      "caravan-herbalist",
+      "caravan-porter",
+      "spark",
+      "v4-crossroads-tea",
+      "v4-two-spices",
+      "trap-lid",
+      "trap-seal",
     ],
   ),
 )

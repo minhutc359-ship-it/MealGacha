@@ -59,10 +59,11 @@ describe("Tactical production UI render", () => {
     expect(maximumButtonDepth(html)).toBe(1)
   })
 
-  it("renders campaign progress and all eight nodes", () => {
+  it("renders four regions and six nodes in the selected region", () => {
     const html = renderToStaticMarkup(createElement(TacticalCampaignScreen))
     expect(html).toContain("tactical-campaign-progress")
-    expect(html.match(/<button/g)).toHaveLength(8)
+    expect(html.match(/<button/g)).toHaveLength(10)
+    expect(html).toContain("24 chặng")
     expect(html).toContain("Con đường Giao Ước")
   })
   it("resumes a saved campaign and shows a clear home/daily state", () => {

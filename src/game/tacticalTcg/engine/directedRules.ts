@@ -1,5 +1,7 @@
 import { TACTICAL_CARD_MAP, type TacticalCard } from "../cards"
 import type { BattleUnit, TacticalBattleState } from "./types"
+import { isDuel } from "../duelCards"
+import { duelTargets } from "./duelRules"
 
 export const DIRECTED_TRAP_TEXT: Record<string, string> = {
   "trap-lid":
@@ -20,6 +22,7 @@ export const DIRECTED_TRAP_TEXT: Record<string, string> = {
     "Sau khi địch triệu hồi quân giá từ 4: hồi 3 Ý chí và rút 2 lá. Lá dư khi tay đầy vào ký ức.",
 }
 export function directedCardText(c: TacticalCard) {
+  if (c.duelRuleVersion === 3) return c.text
   if (DIRECTED_TRAP_TEXT[c.id]) return DIRECTED_TRAP_TEXT[c.id]
   if (c.ability === "reveal-trap")
     return "Lộ danh tính bẫy địch (vẫn còn hiệu lực), rồi rút 1 lá."
@@ -67,6 +70,7 @@ export function directedReadiness(s: TacticalBattleState, u: BattleUnit) {
   return "ready"
 }
 export function directedTargets(s: TacticalBattleState, u: BattleUnit) {
+  if (isDuel(s)) return duelTargets(s, u)
   const side = u.side === "player" ? "enemy" : "player",
     foes = s.units.filter((v) => v.side === side && !v.defeated)
   const front = foes.filter((v) => v.cell.row === 0),

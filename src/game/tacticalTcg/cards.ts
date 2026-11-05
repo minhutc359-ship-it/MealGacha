@@ -3,79 +3,72 @@ import type { GameCard } from "../types"
 import type { TrapId, UnitRole } from "./engine/types"
 import { TACTICAL_CATALOG } from "./catalog"
 
-export type CardEffectKind =
-  | "damage"
-  | "sweep"
-  | "heal"
-  | "draw"
-  | "buff"
-  | "ward"
-  | "revive"
-  | "disarm"
+export type CardEffectKind = "damage" | "sweep" | "heal" | "draw" | "buff" | "ward" | "revive" | "disarm"
 export interface TacticalCard extends GameCard {
+  duelRuleVersion?: 3
+  duelTraits?: ("quick" | "overwhelm" | "regenerate" | "spellshield")[]
+  legacyName?: string
   tacticalEffect: CardEffectKind | null
   tacticalPower: number
   tacticalRole: UnitRole
   tacticalTrap: TrapId | null
 }
 
-const abilityEffects: Partial<
-  Record<NonNullable<GameCard["ability"]>, CardEffectKind>
-> = {
-  wok: "damage",
-  pierce: "damage",
-  desperation: "damage",
-  wash: "damage",
-  starlight: "damage",
-  insight: "draw",
-  revive: "revive",
-  rebloom: "revive",
-  mend: "heal",
-  feast: "heal",
-  "tea-mend": "heal",
-  "steep-heal": "heal",
-  thaw: "heal",
-  dream: "heal",
-  sharp: "buff",
-  diverse: "buff",
-  offering: "buff",
-  "steep-unit": "buff",
-  root: "ward",
-  bulwark: "ward",
-  veil: "ward",
-  moonward: "ward",
-  disarm: "disarm",
-  "reveal-trap": "disarm",
-  unsteep: "disarm",
-}
-export const TACTICAL_UNIT_ABILITIES: Partial<
-  Record<NonNullable<GameCard["ability"]>, string>
-> = {
-  breach: "Vào sân: xóa khiên của địch có nhiều khiên nhất.",
-  duelist: "Đánh mục tiêu đầy máu: +12 sát thương.",
-  execute: "Đánh mục tiêu đã mất máu: +12 sát thương.",
-  triage: "Vào sân: hồi 40 HP cho đồng minh khác mất nhiều máu nhất.",
-  relay:
-    "Phép khác hệ đầu mỗi vòng: đồng minh khác ít máu nhất +6 công và 10 khiên.",
-  testament: "Bị hạ: đồng minh ít máu nhất +6 công và 20 khiên.",
-  thawer: "Vào sân: mọi đồng minh khác +10 Hương lực.",
-  reserve: "Vào sân: rút 2 lá nếu tay đã hết bài.",
-  conductor: "Phép thứ hai mỗi vòng: hồi 1 Lửa Bếp (một lần).",
-  siphon: "Đánh quân địch: chuyển tối đa 12 khiên của mục tiêu sang mình.",
-  ambush: "Vào sân: gây 20 sát thương lên địch đã bị thương ít máu nhất.",
-  spellfire: "Mỗi khi bạn dùng phép: +6 công, tối đa 2 lần/vòng.",
-  scout: "Vào sân: rút 1 lá nếu tay còn không quá 3 lá.",
-  snare: "Vào sân: địch có công cao nhất mất 6 công (không dưới 0).",
-  mender: "Vào sân: mọi đồng minh hồi 20 HP.",
-  bloom: "Chỉ huy được hồi Ý chí: +6 công, tối đa 2 lần/vòng.",
-  host: "Vào sân: mọi đồng minh khác +10 khiên.",
-  pantry: "Bị hạ: hồi 3 Ý chí.",
-  farewell: "Bị hạ: rút 1 lá.",
-  weaver:
-    "Mỗi khi bạn dùng phép: đồng minh ít máu nhất +10 khiên, tối đa 2 lần/vòng.",
-  welcome: "Vào sân: nếu có 3 hệ, mọi đồng minh +6 công.",
-  "season-host": "Sau phép tăng công đầu mỗi vòng: rút 1 lá.",
-}
+const abilityEffects: Partial<Record<NonNullable<GameCard["ability"]>, CardEffectKind>> =
+  {
+    wok: "damage",
+    pierce: "damage",
+    desperation: "damage",
+    wash: "damage",
+    starlight: "damage",
+    insight: "draw",
+    revive: "revive",
+    rebloom: "revive",
+    mend: "heal",
+    feast: "heal",
+    "tea-mend": "heal",
+    "steep-heal": "heal",
+    thaw: "heal",
+    dream: "heal",
+    sharp: "buff",
+    diverse: "buff",
+    offering: "buff",
+    "steep-unit": "buff",
+    root: "ward",
+    bulwark: "ward",
+    veil: "ward",
+    moonward: "ward",
+    disarm: "disarm",
+    "reveal-trap": "disarm",
+    unsteep: "disarm",
+  }
+export const TACTICAL_UNIT_ABILITIES: Partial<Record<NonNullable<GameCard["ability"]>, string>> =
+  {
+    breach: "Vào sân: xóa khiên của địch có nhiều khiên nhất.",
+    duelist: "Đánh mục tiêu đầy máu: +12 sát thương.",
+    execute: "Đánh mục tiêu đã mất máu: +12 sát thương.",
+    triage: "Vào sân: hồi 40 HP cho đồng minh khác mất nhiều máu nhất.",
+    relay:
+      "Phép khác hệ đầu mỗi vòng: đồng minh khác ít máu nhất +6 công và 10 khiên.",
+    testament: "Bị hạ: đồng minh ít máu nhất +6 công và 20 khiên.",
+    thawer: "Vào sân: mọi đồng minh khác +10 Hương lực.",
+    reserve: "Vào sân: rút 2 lá nếu tay đã hết bài.",
+    conductor: "Phép thứ hai mỗi vòng: hồi 1 Lửa Bếp (một lần).",
+    siphon: "Đánh quân địch: chuyển tối đa 12 khiên của mục tiêu sang mình.",
+    ambush: "Vào sân: gây 20 sát thương lên địch đã bị thương ít máu nhất.",
+    spellfire: "Mỗi khi bạn dùng phép: +6 công, tối đa 2 lần/vòng.",
+    scout: "Vào sân: rút 1 lá nếu tay còn không quá 3 lá.",
+    snare: "Vào sân: địch có công cao nhất mất 6 công (không dưới 0).",
+    mender: "Vào sân: mọi đồng minh hồi 20 HP.",
+    bloom: "Chỉ huy được hồi Ý chí: +6 công, tối đa 2 lần/vòng.",
+    host: "Vào sân: mọi đồng minh khác +10 khiên.",
+    pantry: "Bị hạ: hồi 3 Ý chí.",
+    farewell: "Bị hạ: rút 1 lá.",
+    weaver:
+      "Mỗi khi bạn dùng phép: đồng minh ít máu nhất +10 khiên, tối đa 2 lần/vòng.",
+    welcome: "Vào sân: nếu có 3 hệ, mọi đồng minh +6 công.",
+    "season-host": "Sau phép tăng công đầu mỗi vòng: rút 1 lá.",
+  }
 
 function adaptCard(original: GameCard): TacticalCard {
   const effect =
@@ -103,10 +96,16 @@ function adaptCard(original: GameCard): TacticalCard {
   let text = ""
   if (original.kind === "unit") {
     text =
-      `${role === "guardian" ? "Hộ vệ: ưu tiên chắn đòn trong hàng trước. " : ""}` +
+      `${
+        role === "guardian" ? "Hộ vệ: ưu tiên chắn đòn trong hàng trước. " : ""
+      }` +
       `${original.keywords.includes("shield") ? "Vào sân: +10 khiên. " : ""}` +
-      `${original.keywords.includes("rush") ? "Vào sân: +25 Hương lực. " : ""}` +
-      `${original.keywords.includes("drain") ? "Đánh trúng: hồi 1 Ý chí. " : ""}` +
+      `${
+        original.keywords.includes("rush") ? "Vào sân: +25 Hương lực. " : ""
+      }` +
+      `${
+        original.keywords.includes("drain") ? "Đánh trúng: hồi 1 Ý chí. " : ""
+      }` +
       (effect === "draw"
         ? `Vào sân: rút ${Math.min(2, power)} lá. `
         : effect === "heal"

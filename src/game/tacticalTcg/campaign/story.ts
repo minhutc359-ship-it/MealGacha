@@ -8,6 +8,7 @@ export interface CampaignScene {
   after: string[]
   rewardCardId: string
 }
+import { EXPANDED_SCENES } from "./expanded"
 const portrait = (id: string) =>
   `/assets/characters/chefs593/chef-${id}-neutral.webp`
 export const TACTICAL_ACTS = [
@@ -56,7 +57,7 @@ export const TACTICAL_SCENES: Record<string, CampaignScene> = {
     portrait: portrait("hai"),
     art: "tide",
     objective:
-      "Giữ tiền tuyến trước Hương Vương. Boss tăng khiên ở 2/3 và 1/3 sinh lực.",
+      "Hạ Hộ vệ trước khi tấn công chủ tướng Hương Vương. Boss tăng khiên ở 2/3 và 1/3 sinh lực.",
     before: [
       "Kẻ giữ cổng đã bọc mọi ký ức trong muối để chúng không đổi thay. Càng đánh mất sinh lực, hắn càng dựng thêm khiên.",
       "Đặt Hộ vệ ở hàng trước. Đừng dồn hết Bí thuật vào lớp khiên; chờ nhịp phản ứng và Tuyệt kỹ để phá thế thủ.",
@@ -90,7 +91,7 @@ export const TACTICAL_SCENES: Record<string, CampaignScene> = {
     portrait: portrait("bach"),
     art: "harbor",
     objective:
-      "Đặt bẫy theo cột tiền tuyến. Giữ Lửa Bếp cho phép bảo vệ và phản kích.",
+      "Úp bẫy bên cạnh chủ tướng và chọn đúng thời điểm lật. Giữ Lửa Bếp cho phép bảo vệ và phản kích.",
     before: [
       "Kỵ sĩ không ghét con người. Hắn sợ thay đổi: hắn tin ký ức khác nhau sẽ khiến người ta quên mất bản gốc.",
       "Hãy cho hắn thấy một mâm cơm vẫn đứng vững khi có nhiều hương vị. Đọc cột tấn công và đặt Bẫy Hương đúng chỗ.",
@@ -178,3 +179,11 @@ export const CAMPAIGN_ENDINGS = {
     text: "Bạn trao mỗi gia đình một trang sách. Những cách nấu khác nhau được đặt cạnh nhau, không lời kể nào bị gạch bỏ. Vô Danh mang một chiếc bát đi qua từng nhà, học lại tên mình qua những người ông từng nấu cho.",
   },
 }
+
+Object.assign(TACTICAL_SCENES, EXPANDED_SCENES)
+
+for (const scene of Object.values(TACTICAL_SCENES))
+  if (scene.after.length < 2)
+    scene.after.push(
+      "Một chỗ ngồi mới được kê bên bếp. Câu chuyện này còn được kể tiếp bằng những lời hẹn bạn sẽ giữ trên đường về.",
+    )

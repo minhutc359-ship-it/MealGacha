@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
 import {
-  TACTICAL_CARDS,
-  TACTICAL_CARD_MAP,
-  ownedTacticalCards,
-} from "../../game/tacticalTcg/cards"
+  DUEL_CARDS as TACTICAL_CARDS,
+  DUEL_CARD_MAP as TACTICAL_CARD_MAP,
+} from "../../game/tacticalTcg/duelCards"
+import { Link } from "react-router-dom"
+import { ownedTacticalCards } from "../../game/tacticalTcg/cards"
 import { TACTICAL_CAMPAIGN_NODES } from "../../game/tacticalTcg/campaign"
 import { TACTICAL_SCENES } from "../../game/tacticalTcg/campaign/story"
 import {
@@ -64,7 +64,9 @@ export function TacticalHome({
               Học cách chơi
             </button>
           </div>
-          <span>TCG 24 lá · Dàn trận 4×2 · Bí thuật · Bẫy Hương</span>
+          <span>
+            TCG 24 lá · Hộ vệ · Bí thuật · Bẫy úp · 24 chặng hành trình
+          </span>
         </div>
         <div className="tactical-home-featured" aria-hidden="true">
           {["chef-nhien", "chef-hai"].map((id) => (
@@ -112,7 +114,7 @@ export function TacticalHome({
         <button onClick={() => go("campaign")}>
           <strong>
             {progress.completedCampaignNodes.length}
-            <small>/8</small>
+            <small>/{TACTICAL_CAMPAIGN_NODES.length}</small>
           </strong>
           <span>Nút cốt truyện</span>
         </button>
@@ -196,7 +198,7 @@ export function TacticalHome({
         <li>
           <b>03</b>
           <strong>Đánh thức ký ức</strong>
-          <p>Dùng Lửa Bếp, chọn vị trí, thắng trận và mở câu chuyện.</p>
+          <p>Dùng Lửa Bếp, chọn mục tiêu, thắng trận và mở câu chuyện.</p>
         </li>
       </ol>
     </section>
@@ -235,8 +237,8 @@ export function TacticalGuide({ onPlay }: { onPlay: () => void }) {
           ],
           [
             "04",
-            "Bốn cột, hai hàng",
-            "Tối đa 5 Vị Linh, đổi vị trí 1 lần/vòng. Chọn quân rồi chọn mục tiêu sáng. Hộ vệ tiền tuyến chắn đòn; Pháp sư nhắm được hậu tuyến khi hết Hộ vệ. Không còn quân địch mới đánh được Chỉ huy.",
+            "Vai trò và Hộ vệ",
+            "Tối đa 5 Vị Linh. Còn Hộ vệ phải đánh Hộ vệ trước; hết Hộ vệ có thể đánh trực tiếp chủ tướng hoặc chọn quân bất kỳ. Hai quân phản đòn; Tiên thủ hạ mục tiêu thì tránh phản đòn, Tuyệt kỹ không nhận phản đòn.",
           ],
           [
             "05",
@@ -251,12 +253,12 @@ export function TacticalGuide({ onPlay }: { onPlay: () => void }) {
           [
             "07",
             "Giữ 30 Ý chí",
-            "Thắng khi Ý chí địch về 0. Khi không còn quân chắn, sát thương Chỉ huy bằng sát thương quân chia 10, làm tròn lên. Từ vòng 8, Lửa Lớn gây áp lực; hết bộ thì chịu kiệt sức tăng dần.",
+            "Công 3 gây 3 sát thương lên quân hoặc chủ tướng: cùng một thang số. Khiên tối đa 3; hồi máu không vượt HP tối đa. Hạ chủ tướng còn 0 HP để thắng. Từ vòng 8 có Lửa Lớn; hết bộ chịu kiệt sức tăng dần.",
           ],
           [
             "08",
             "Thưởng, thẻ mới và câu chuyện",
-            "Mỗi trận có biên nhận một lần. Campaign mở tuần tự, có đối thoại trước/sau, thưởng thẻ riêng, vé và Manga. PvP hiện là thử nghiệm AI cục bộ, không xếp hạng hay thưởng campaign.",
+            "24 nút hành trình, 12 trận boss và 16 mốc thử thách. Thưởng trận và mốc thử thách chỉ nhận một lần; giữ thẻ, vé và Manga đã mở. Đấu tự do có bot Normal/Hard/Extreme, không phải người chơi online và không cấp thưởng campaign.",
           ],
         ].map(([n, title, text]) => (
           <article key={n}>

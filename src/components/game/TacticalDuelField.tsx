@@ -19,6 +19,16 @@ import {
 import type { TacticalTransition } from "../../game/tacticalTcg/presentation/transitions"
 import { CharacterPortrait } from "./CharacterPortrait"
 import { TacticalSpiritArt } from "./TacticalSpirit"
+import {
+  DUEL_ROLE_NAMES,
+  DUEL_TRAITS,
+  combatCard,
+  isDuel,
+} from "../../game/tacticalTcg/duelCards"
+import { duelBonus } from "../../game/tacticalTcg/engine/duelRules"
+import { emptyCardCell } from "../../game/tacticalTcg/engine/cardRuntime"
+import { duelAttackPreview } from "../../game/tacticalTcg/presentation/duelPreview"
+import { DuelCulture } from "./DuelCulture"
 
 export function DuelCommander({
   battle: b,
@@ -85,22 +95,24 @@ export function DuelCommander({
       <p className="duel-commander-speech" role="status">
         “{speech}”
       </p>
-      {trap && (
+      {
         <button
-          key={trap.instanceId}
-          className="duel-trap-back"
+          key={trap?.instanceId ?? "empty-trap"}
+          className={`duel-trap-back ${trap ? "is-armed" : "is-vacant"}`}
           onClick={onTrap}
           data-trap={side}
           aria-label={
-            side === "player" || trap.revealed
-              ? `Bẫy đang gài: ${TACTICAL_CARD_MAP[trap.cardId ?? ""]?.name ?? "Bẫy Hương"}`
-              : "Bẫy úp địch, chưa lộ danh tính"
+            trap
+              ? side === "player" || trap.revealed
+                ? `Bẫy đang gài: ${TACTICAL_CARD_MAP[trap.cardId ?? ""]?.name ?? "Bẫy Hương"}`
+                : "Bẫy úp địch, chưa lộ danh tính"
+              : "Ô bẫy riêng · chọn thẻ bẫy rồi Gài bẫy"
           }
         >
-          <b>◇</b>
-          <small>{trap.revealed ? "ĐÃ LỘ" : "ÚP"}</small>
+          <DuelCulture kind="drum" />
+          <small>{trap ? (trap.revealed ? "ĐÃ LỘ" : "BẪY ÚP") : "Ô BẪY"}</small>
         </button>
-      )}
+      }
       <strong
         aria-label={`${
           side === "player" ? "Bạn" : "Địch"
@@ -131,6 +143,7 @@ export function TacticalDuelField({
   contacted,
   effects,
   onCell,
+  ultimate = false,
 }: {
   battle: TacticalBattleState
   side: BattleSide
@@ -143,19 +156,14 @@ export function TacticalDuelField({
   contacted: boolean
   effects: Record<string, string>
   onCell: (side: BattleSide, cell: BoardCell, unit?: BattleUnit) => void
+  ultimate?: boolean
 }) {
   const fallen =
     transition?.deltas.filter((d) => d.fallen).map((d) => d.id) ?? []
   const units = duelUnits(b, side, fallen)
+  const bonus = isDuel(b) ? duelBonus(b, side) : 0
   const owner = b.cardGame!.sides.player
   const placing = side === "player" && planning && card?.kind === "unit"
-  const moving =
-    side === "player" && planning && !card && selected?.side === "player"
-  const canMove =
-    moving &&
-    b.cardGame!.movedRound !== b.round &&
-    (selected.rootedUntil ?? 0) < b.round &&
-    (selected.stunnedUntil ?? 0) < b.round
   return (
     <div
       className={`table-field table-field--${side} duel-field`}
@@ -171,7 +179,7 @@ export function TacticalDuelField({
         style={{ "--duel-count": Math.max(1, units.length) } as CSSProperties}
       >
         {units.map((u) => {
-          const c = u.cardId ? TACTICAL_CARD_MAP[u.cardId] : null
+          const c = u.cardId ? combatCard(b, u.cardId) : null
           const displayed =
             !contacted &&
             transition?.before.units.find((v) => v.instanceId === u.instanceId)
@@ -193,6 +201,10 @@ export function TacticalDuelField({
                   ? side === "enemy"
                   : card.tacticalEffect === "buff" && side === "player"))
           const target = cardTarget || targets.includes(u.instanceId)
+          const preview =
+            !card && selected && targets.includes(u.instanceId)
+              ? duelAttackPreview(b, selected, u.instanceId, ultimate)
+              : null
           const source =
             transition?.sourceId === u.instanceId &&
             ["attack", "ultimate"].includes(transition.kind)
@@ -217,23 +229,38 @@ export function TacticalDuelField({
               data-unit={u.instanceId}
               data-cell={`${u.cell.row}:${u.cell.column}`}
               data-status={status.map((s) => s.kind).join(" ")}
+              title={
+                preview
+                  ? `${preview.text} · Bẫy úp có thể thay đổi kết quả.`
+                  : c?.duelTraits?.map((t) => DUEL_TRAITS[t].text).join(" ")
+              }
               disabled={busy || u.defeated || (!!card && !target)}
               onClick={() => onCell(side, u.cell, u)}
               aria-label={`${
                 side === "enemy" ? "Địch" : "Bạn"
-              }: ${u.name}, công ${u.attack}, máu ${shown.hp}/${u.maxHp}, ${
-                u.cell.row === 0 ? "tiền tuyến" : "hậu tuyến"
+              }: ${u.name}, công ${u.attack + bonus}, máu ${shown.hp}/${u.maxHp}, ${
+                DUEL_ROLE_NAMES[u.role]
               }, ${status.map((s) => s.label).join(", ")}${
                 target ? ", mục tiêu hợp lệ" : ""
               }`}
             >
               <TacticalSpiritArt id={u.cardId ?? u.id} />
               <span className="duel-unit-position">
-                {u.cell.row === 0 ? "TIỀN" : "HẬU"} <i>{"★".repeat(u.star)}</i>
+                {DUEL_ROLE_NAMES[u.role]}{" "}
+                <i>{u.star > 1 ? "★".repeat(u.star) : ""}</i>
               </span>
+              {!!c?.duelTraits?.length && (
+                <span className="duel-unit-traits">
+                  {c.duelTraits.map((t) => (
+                    <i key={t} title={DUEL_TRAITS[t].text}>
+                      {DUEL_TRAITS[t].name}
+                    </i>
+                  ))}
+                </span>
+              )}
               <span className="duel-unit-name">{u.name}</span>
               <span className="duel-unit-stats">
-                <b>⚔ {u.attack}</b>
+                <b title={bonus ? `Công gốc ${u.attack} + ${bonus} Cộng hưởng` : "Công hiện tại"}>⚔ {u.attack + bonus}</b>
                 <b>♥ {shown.hp}</b>
                 {shown.shield > 0 && <b>◇ {shown.shield}</b>}
               </span>
@@ -276,6 +303,19 @@ export function TacticalDuelField({
               {status.some((s) => s.kind === "burn") && (
                 <span className="duel-burn-aura" aria-hidden="true" />
               )}
+              {preview && (
+                <span className="duel-target-preview">
+                  −{preview.hp} HP
+                  {preview.shield ? ` · −${preview.shield}◇` : ""}
+                  <small>
+                    {preview.counter
+                      ? `Nhận ${preview.counter} HP phản đòn`
+                      : preview.counterShield
+                        ? `Mất ${preview.counterShield}◇ phản đòn`
+                        : "Không mất HP"}
+                  </small>
+                </span>
+              )}
             </button>
           )
         })}
@@ -287,39 +327,25 @@ export function TacticalDuelField({
           </p>
         )}
       </div>
-      {(placing || moving) && (
-        <div
-          className="duel-placement"
-          aria-label={
-            placing ? "Chọn tuyến triệu hồi" : "Đổi tuyến một lần mỗi vòng"
-          }
-        >
-          {([0, 1] as const).map((row) => {
-            const cell = duelPlacement(
-              b,
-              row,
-              moving ? selected?.instanceId : undefined,
-            )
-            const disabled =
-              busy ||
-              !cell ||
-              (placing
-                ? owner.mana < card!.cost ||
-                  units.filter((u) => !u.defeated).length >= 5
-                : !canMove || selected?.cell.row === row)
-            return (
+      {placing &&
+        (() => {
+          const cell = emptyCardCell(b, "player")
+          return (
+            <div className="duel-placement" aria-label="Triệu hồi Vị Linh">
               <button
-                key={row}
-                disabled={disabled}
+                disabled={
+                  busy ||
+                  !cell ||
+                  owner.mana < card!.cost ||
+                  units.filter((u) => !u.defeated).length >= 5
+                }
                 onClick={() => cell && onCell("player", cell)}
               >
-                {placing ? "+ Gọi" : "↔ Sang"}{" "}
-                {row === 0 ? "tiền tuyến" : "hậu tuyến"}
+                + Gọi Vị Linh · {card!.cost} Lửa
               </button>
-            )
-          })}
-        </div>
-      )}
+            </div>
+          )
+        })()}
     </div>
   )
 }

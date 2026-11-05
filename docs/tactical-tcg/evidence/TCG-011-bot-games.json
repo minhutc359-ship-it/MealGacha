@@ -1,0 +1,182 @@
+[
+  {
+    "level": "normal",
+    "deck": "ember-road",
+    "winner": "player",
+    "round": 7
+  },
+  {
+    "level": "normal",
+    "deck": "tide-letters",
+    "winner": "player",
+    "round": 7
+  },
+  {
+    "level": "normal",
+    "deck": "hearth-garden",
+    "winner": "player",
+    "round": 5
+  },
+  {
+    "level": "normal",
+    "deck": "five-hosts",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "normal",
+    "deck": "moon-garden",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "normal",
+    "deck": "spell-chain",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "normal",
+    "deck": "trap-counter",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "normal",
+    "deck": "memory-return",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "normal",
+    "deck": "bronze-breakers",
+    "winner": "player",
+    "round": 5
+  },
+  {
+    "level": "normal",
+    "deck": "lantern-tempo",
+    "winner": "player",
+    "round": 5
+  },
+  {
+    "level": "hard",
+    "deck": "ember-road",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "hard",
+    "deck": "tide-letters",
+    "winner": "player",
+    "round": 7
+  },
+  {
+    "level": "hard",
+    "deck": "hearth-garden",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "hard",
+    "deck": "five-hosts",
+    "winner": "player",
+    "round": 9
+  },
+  {
+    "level": "hard",
+    "deck": "moon-garden",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "hard",
+    "deck": "spell-chain",
+    "winner": "player",
+    "round": 7
+  },
+  {
+    "level": "hard",
+    "deck": "trap-counter",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "hard",
+    "deck": "memory-return",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "hard",
+    "deck": "bronze-breakers",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "hard",
+    "deck": "lantern-tempo",
+    "winner": "player",
+    "round": 5
+  },
+  {
+    "level": "extreme",
+    "deck": "ember-road",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "extreme",
+    "deck": "tide-letters",
+    "winner": "player",
+    "round": 7
+  },
+  {
+    "level": "extreme",
+    "deck": "hearth-garden",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "extreme",
+    "deck": "five-hosts",
+    "winner": "player",
+    "round": 9
+  },
+  {
+    "level": "extreme",
+    "deck": "moon-garden",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "extreme",
+    "deck": "spell-chain",
+    "winner": "player",
+    "round": 7
+  },
+  {
+    "level": "extreme",
+    "deck": "trap-counter",
+    "winner": "player",
+    "round": 8
+  },
+  {
+    "level": "extreme",
+    "deck": "memory-return",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "extreme",
+    "deck": "bronze-breakers",
+    "winner": "player",
+    "round": 6
+  },
+  {
+    "level": "extreme",
+    "deck": "lantern-tempo",
+    "winner": "player",
+    "round": 5
+  }
+]

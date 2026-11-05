@@ -55,12 +55,15 @@ for (const required of [
   "legal/terms.html",
   "legal/rights.html",
   "assets/music580/mode-chest.mp3",
+  // Soundtrack-room selections; these are score files, not retired gameplay.
+  "assets/music580/mode-adventure.mp3",
+  "assets/music580/mode-autochess.mp3",
+  "assets/music580/boss.mp3",
 ])
   assert.ok(files.includes(required), `missing ${required}`)
 for (const forbidden of [
   /^assets\/autochess\//,
   /^assets\/manga591[56]\/adventure\//,
-  /^assets\/music580\/mode-(?:adventure|autochess)\.mp3$/,
 ])
   assert.deepEqual(
     files.filter((file) => forbidden.test(file)),

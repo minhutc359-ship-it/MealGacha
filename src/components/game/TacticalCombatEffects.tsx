@@ -10,8 +10,9 @@ import { tacticalSpiritModel } from "../../game/tacticalTcg/presentation/models"
 import { TACTICAL_CARD_MAP } from "../../game/tacticalTcg/cards"
 import { BattleVfxCanvas } from "./BattleVfxCanvas"
 import { TacticalSpiritArt } from "./TacticalSpirit"
+import { DUEL_CARD_MAP } from "../../game/tacticalTcg/duelCards"
 
-type Point = { x: number; y: number; size: number }
+type Point = { x: number ; y: number ; size: number }
 export function TacticalCombatEffects({
   transition: t,
   arena,
@@ -37,8 +38,12 @@ export function TacticalCombatEffects({
               : el
           ).getBoundingClientRect()
           next[el.dataset.unit ?? `hero:${el.dataset.hero}`] = {
-            x: r.left - bounds.left + r.width / 2,
-            y: r.top - bounds.top + r.height / 2,
+            x: root.closest("[data-rotated=true]")
+              ? r.top - bounds.top + r.height / 2
+              : r.left - bounds.left + r.width / 2,
+            y: root.closest("[data-rotated=true]")
+              ? bounds.right - r.left - r.width / 2
+              : r.top - bounds.top + r.height / 2,
             size: Math.min(r.width, r.height),
           }
         })
@@ -69,7 +74,7 @@ export function TacticalCombatEffects({
       })),
   ]
   const source = anchors[t.sourceId] ?? anchors[`hero:${t.side}`]
-  const card = t.cardId ? TACTICAL_CARD_MAP[t.cardId] : null
+  const card = t.cardId ? DUEL_CARD_MAP[t.cardId] : null
   const cues = deltas.flatMap((d) => {
     const point = anchors[d.id]
     if (!point) return []
@@ -187,7 +192,7 @@ export function TacticalCombatEffects({
           role="status"
         >
           <span className="directed-trap-sigil" aria-hidden="true">
-            {t.kind === "negate" ? "封" : t.kind === "turn" ? "✦" : "◇"}
+            {t.kind === "negate" ? "×" : t.kind === "turn" ? "✦" : "◇"}
           </span>
           <span>
             <strong>

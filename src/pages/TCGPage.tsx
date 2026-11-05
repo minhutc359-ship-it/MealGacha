@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
 import { TacticalBattleScreen } from "../components/game/TacticalBattleScreen"
 import { TacticalCampaignScreen } from "../components/game/TacticalCampaignScreen"
+import { TACTICAL_CAMPAIGN_NODES } from "../game/tacticalTcg/campaign"
 import { TacticalHome, TacticalGuide } from "../components/game/TacticalHome"
 import { BrandMark } from "../components/layout/BrandMark"
 import { LegalLinks } from "../legal/LegalLinks"
@@ -21,6 +22,14 @@ import "../game/tcg.css"
 import "../game/tacticalBattle.css"
 import "../game/tacticalHub.css"
 import { ensureTacticalDeckLibrary } from "../game/tacticalTcg/deckLibrary"
+import { TACTICAL_DECK_LIBRARY } from "../game/tacticalTcg/deckLibrary"
+import { TacticalBotLobby } from "../components/game/TacticalBotLobby"
+import {
+  useGameAudio,
+  useGameMusic,
+  AudioControls,
+} from "../components/game/GameAudio"
+import { newTacticalRequestId } from "../game/tacticalTcg/progression/cardEconomy"
 
 const MangaChronicle = lazy(() =>
   import("../components/game/MangaChronicle").then((module) => ({
@@ -49,6 +58,7 @@ const TacticalBackupPanel = lazy(() =>
 )
 const NAV = [
   { id: "home", name: "Sảnh", icon: "⌂" },
+  { id: "bots", name: "Đấu tự do", icon: "⚔" },
   { id: "campaign", name: "Hành trình", icon: "◇" },
   { id: "decks", name: "Bộ bài", icon: "▱" },
   { id: "collection", name: "Bộ sưu tập", icon: "▤" },
@@ -66,16 +76,21 @@ const MANGA_UNLOCKS: Record<string, string[]> = {
 }
 
 export function TCGPage() {
+  useGameAudio()
+  useGameMusic("mode-tcg", 1)
   const preferences = useAppStore((state) => state.user.preferences)
   const updatePreference = useAppStore((state) => state.updatePreference)
   const [params, setParams] = useSearchParams()
+  const matchSeed = [...(params.get("match") ?? "practice")].reduce((seed, c) => (Math.imul(seed, 31) + c.charCodeAt(0)) >>> 0, 101)
   const requested = params.get("tab") ?? "home"
   const tab =
-    requested === "play"
-      ? "battle"
-      : [...NAV.map((n) => n.id), "battle"].includes(requested)
-        ? requested
-        : "home"
+    params.get("queue") === "pvp" && !params.has("bot") && !params.has("resume")
+      ? "bots"
+      : requested === "play"
+        ? "battle"
+        : [...NAV.map((n) => n.id), "battle"].includes(requested)
+          ? requested
+          : "home"
   const [progress, setProgress] = useState<TacticalProgress>(() =>
     ensureTacticalDeckLibrary(localStorage),
   )
@@ -115,6 +130,12 @@ export function TCGPage() {
               tab: "battle",
               resume: saved.battleId,
               ...(saved.mode === "pvp" ? { queue: "pvp" } : {}),
+              ...(saved.mode === "pvp"
+                ? {
+                    bot: saved.cardGame?.botLevel ?? "hard",
+                    match: saved.battleId,
+                  }
+                : {}),
             },
       )
       window.scrollTo({ top: 0 })
@@ -186,7 +207,8 @@ export function TCGPage() {
           <strong>{activeDeck?.name}</strong>
           <small>
             {activeDeck?.cards.length}/24 lá ·{" "}
-            {progress.completedCampaignNodes.length}/8 chặng
+            {progress.completedCampaignNodes.length}/
+            {TACTICAL_CAMPAIGN_NODES.length} chặng
           </small>
         </div>
       </aside>
@@ -285,20 +307,45 @@ export function TCGPage() {
               <>
                 {tab === "battle" && (
                   <TacticalBattleScreen
-                    key={`${activeDeck.id}:${params.get("queue") ?? "solo"}:${params.get("resume") ?? ""}`}
+                    key={`${activeDeck.id}:${params.get("queue") ?? "solo"}:${params.get("resume") ?? ""}:${params.get("match") ?? ""}`}
                     options={{
                       battleId:
                         params.has("resume") &&
                         progress.checkpoint?.nodeId === null
                           ? progress.checkpoint.battleId
-                          : `practice:${activeDeck.id}:v2`,
+                          : (params.get("match") ??
+                            `practice:${activeDeck.id}:v3`),
                       mode: params.get("queue") === "pvp" ? "pvp" : "campaign",
                       deck: activeDeck.cards,
-                      seed: 101,
+                      seed: params.get("queue") === "pvp" ? matchSeed : 101,
+                      botLevel:
+                        params.get("bot") === "normal"
+                          ? "normal"
+                          : params.get("bot") === "extreme"
+                            ? "extreme"
+                            : "hard",
+                      enemyDeck:
+                        TACTICAL_DECK_LIBRARY.find(
+                          (d) => d.id === params.get("opponent"),
+                        )?.cards ?? TACTICAL_DECK_LIBRARY[1].cards,
                     }}
                     onProgress={refresh}
                     onResumeSaved={resume}
                     onExit={() => go("home")}
+                  />
+                )}
+                {tab === "bots" && (
+                  <TacticalBotLobby
+                    deckName={activeDeck.name}
+                    onStart={(level, opponent) =>
+                      setParams({
+                        tab: "battle",
+                        queue: "pvp",
+                        bot: level,
+                        opponent,
+                        match: `bot:${newTacticalRequestId()}`,
+                      })
+                    }
                   />
                 )}
                 {tab === "campaign" && (
@@ -390,6 +437,14 @@ export function TCGPage() {
                     </button>
                   </article>
                 </div>
+                <article>
+                  <h2>Nhạc & hiệu ứng âm thanh</h2>
+                  <p>
+                    Nhạc gốc theo vùng và thủ lĩnh. Bắt đầu sau thao tác của
+                    bạn; chỉnh nhạc và hiệu ứng độc lập.
+                  </p>
+                  <AudioControls />
+                </article>
                 <LegalLinks />
                 <Link to="/chest">Rương Vị Giác ↗</Link>
               </section>
