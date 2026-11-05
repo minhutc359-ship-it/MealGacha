@@ -1,11 +1,5 @@
 export type BattleSide = "player" | "enemy"
-export type BattlePhase =
-  | "planning"
-  | "clash"
-  | "reaction"
-  | "ultimate"
-  | "round-end"
-  | "result"
+export type BattlePhase = "planning" | "clash" | "reaction" | "ultimate" | "round-end" | "result"
 export type BattleMode = "campaign" | "pvp"
 export type UnitRole = "guardian" | "striker" | "support" | "mage"
 export type TrapId = "bamboo-guard" | "steam-counter" | "warm-broth"
@@ -25,6 +19,8 @@ export interface UnitDefinition {
   art: string
 }
 export interface BattleUnit extends UnitDefinition {
+  summonedRound?: number
+  stunnedUntil?: number
   cardId?: string
   triggers?: Record<string, number>
   instanceId: string
@@ -52,6 +48,7 @@ export interface BattleLogEntry {
   text: string
 }
 export interface BattleTrap {
+  revealed?: boolean
   cardId?: string
   instanceId: string
   trapId: TrapId
@@ -97,6 +94,12 @@ export interface CardCombatant {
   recipeRound: number
 }
 export interface TacticalCardGame {
+  directed?: {
+    version: 2
+    turn: BattleSide
+    pending: DirectedReaction | null
+    event: DirectedEvent | null
+  }
   sides: Record<BattleSide, CardCombatant>
   nextUnit: number
   rewardCardId: string
@@ -146,29 +149,30 @@ interface BasicAction {
   id: string
   type: "basic"
   unitId: string
+  targetId?: string
 }
 interface UltimateAction {
   id: string
   type: "ultimate"
   unitId: string
+  targetId?: string
 }
 interface EndRoundAction {
   id: string
   type: "end-round"
 }
-export type TacticalBattleAction =
-  | MoveAction
-  | MergeAction
-  | PlaceTrapAction
-  | BeginRoundAction
-  | BasicAction
-  | UltimateAction
-  | EndRoundAction
-  | PlayCardAction
-  | MulliganAction
-  | ForfeitAction
+export type TacticalBattleAction = {
+  id: string
+  type: "end-turn" | "enemy-step"
+} | {
+  id: string
+  type: "react"
+  reactionId: string
+  activate: boolean
+} | MoveAction | MergeAction | PlaceTrapAction | BeginRoundAction | BasicAction | UltimateAction | EndRoundAction | PlayCardAction | MulliganAction | ForfeitAction
 
 export interface CreateBattleOptions {
+  manual?: boolean
   battleId: string
   mode?: BattleMode
   nodeId?: string | null
@@ -191,4 +195,24 @@ export interface CreateBattleOptions {
     definitionId: string
     title: string
   }
+}
+
+export type DirectedIntent = PlayCardAction | BasicAction | UltimateAction
+export interface DirectedReaction {
+  id: string
+  trapInstanceId: string
+  stage: "before" | "after"
+  action: DirectedIntent
+  cardId: string | null
+  affectedUnitId: string | null
+}
+export interface DirectedEvent {
+  id: string
+  kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "reaction" | "negate" | "turn" | "intent" | "move"
+  side: BattleSide
+  sourceId: string
+  targetId?: string
+  cardId: string | null
+  trapCardId?: string
+  note?: string
 }

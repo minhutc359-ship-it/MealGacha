@@ -3,6 +3,8 @@ import { SCHOOLS, RARITIES } from "../../game/catalog"
 import { foodSpirit } from "../../game/flavorSpirits"
 import type { GameCard } from "../../game/types"
 import { TacticalSpiritArt } from "./TacticalSpirit"
+import { TACTICAL_CARD_MAP } from "../../game/tacticalTcg/cards"
+import { directedCardText } from "../../game/tacticalTcg/engine/directedRules"
 
 interface Props {
   card: GameCard
@@ -76,7 +78,7 @@ export function GameCardView({
           <span>{RARITIES[card.rarity].name}</span>
         </span>
         <strong>{card.name}</strong>
-        <span className="tcg-card-text">{card.text}</span>
+        <span className="tcg-card-text">{spiritArt&&TACTICAL_CARD_MAP[card.id]?directedCardText(TACTICAL_CARD_MAP[card.id]):card.text}</span>
         <span className="tcg-card-footer">
           {card.kind === "unit" ? (
             <>

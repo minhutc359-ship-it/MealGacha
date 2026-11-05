@@ -72,14 +72,17 @@ export function TacticalCombatEffects({
     ]
   })
   const modelId = t.cardId ? tacticalSpiritModel(t.cardId)?.id : undefined
+  const destination = t.targetId ? anchors[t.targetId] : null
+  const dx = destination && source ? destination.x - source.x : 0,
+    dy = destination && source ? destination.y - source.y : 0
+  const trap = t.trapCardId ? TACTICAL_CARD_MAP[t.trapCardId] : null
   return (
     <div
       className="tactical-combat-effects"
       data-action={t.kind}
       data-contact={t.contact}
-      aria-hidden="true"
     >
-      {source && (
+      {source && cues.length > 0 && !["intent", "turn"].includes(t.kind) && (
         <BattleVfxCanvas
           source={source}
           sourceId={modelId}
@@ -90,6 +93,61 @@ export function TacticalCombatEffects({
           stamp={t.id}
           quiet={quiet}
         />
+      )}
+      {!quiet &&
+        source &&
+        destination &&
+        ["attack", "ultimate", "spell"].includes(t.kind) && (
+          <span
+            aria-hidden="true"
+            className="directed-attack-line"
+            style={{
+              left: source.x,
+              top: source.y,
+              width: Math.hypot(dx, dy),
+              transform: `rotate(${Math.atan2(dy, dx)}rad)`,
+              animationDuration: `${t.contact}ms`,
+            }}
+          />
+        )}
+      {!quiet &&
+        t.deltas
+          .filter((d) => d.hp < 0 || d.shield < 0)
+          .map((d) => {
+            const p = anchors[d.id]
+            return p ? (
+              <i
+                key={`ring:${d.id}`}
+                aria-hidden="true"
+                className="directed-impact-ring"
+                style={
+                  {
+                    left: p.x,
+                    top: p.y,
+                    "--contact": `${t.contact}ms`,
+                  } as CSSProperties
+                }
+              />
+            ) : null
+          })}
+      {(["turn", "reaction", "negate"].includes(t.kind) || trap) && (
+        <div
+          key={t.id}
+          className={`directed-event-banner ${
+            t.kind === "negate" ? "is-negate" : ""
+          }`}
+          role="status"
+        >
+          <span className="directed-trap-sigil" aria-hidden="true">
+            {t.kind === "negate" ? "封" : t.kind === "turn" ? "✦" : "◇"}
+          </span>
+          <span>
+            <strong>
+              {t.note ?? (trap ? "BẪY HƯƠNG KÍCH HOẠT" : "ĐỔI NHỊP")}
+            </strong>
+            {trap && <small>{trap.name}</small>}
+          </span>
+        </div>
       )}
       {t.deltas
         .filter((d) => !d.spawned && (d.hp || d.shield || d.attack))
@@ -106,6 +164,7 @@ export function TacticalCombatEffects({
           return (
             <b
               key={d.id}
+              aria-hidden="true"
               className={`tactical-delta ${
                 d.hp < 0 || d.shield < 0 ? "is-damage" : "is-support"
               }`}

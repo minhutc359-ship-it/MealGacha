@@ -6,7 +6,7 @@ Sản phẩm chỉ gồm Tactical TCG, Manga, Chest và legal. PvP ở `/?tab=pl
 
 Sảnh, bộ bài, bộ sưu tập, mở gói, campaign và hướng dẫn là tính năng của TCG. Root mở sảnh; trận production luôn nhận bộ bài người chơi đã trang bị, không tạo sẵn quân người chơi.
 
-TCG-007: bàn sản phẩm dùng viewport riêng, giữ đủ 16 ô/tay bài/thanh hành động; compact hand phân trang thay cuộn. Thẻ chọn đọc trong inspector/modal, bẫy theo cột và Tuyệt kỹ có nút riêng. Giao chiến trình diễn snapshot sau khi commit kết quả cuối; hiệu ứng không đổi luật/kết quả. Màn đọc luật/nhật ký có thể cuộn khi nội dung dài, bàn chơi chính không cần cuộn.
+TCG-009: bàn sản phẩm giữ viewport16 ô/tay bài/thanh hành động, compact hand phân trang và inspector/modal. Người chơi chọn đòn/mục tiêu, xen kẽ bài và Tuyệt kỹ. Kết lượt mới đến AI; mỗi hành động AI lưu trước hiệu ứng và dừng khi cần quyết định bẫy. Màn đọc thẻ/luật/nhật ký có thể cuộn; bàn chính không cần cuộn. Hiệu ứng không tự tăng sát thương.
 
 ## Bộ bài và gói thẻ
 
@@ -33,17 +33,25 @@ TCG-007: bàn sản phẩm dùng viewport riêng, giữ đủ 16 ô/tay bài/tha
 
 ## Battle
 
+Current TCG-009 supersedes the old automatic combat/trap rules below: production uses additive `cardGame.directed.version=2` with manual player/enemy turns and persisted reaction intent. Legacy automatic helpers are retained only for existing fixtures/dev compatibility.
+
+- Choose front guardians first; without guardians, mages can select rear targets, other roles clear front first. Commander is targetable only when no enemy unit remains. One basic/unit/round; ultimates require100 energy and may follow a basic. New summons wait except rush. Freeze blocks attacks/ultimates; thaw never refunds a spent attack.
+- Eight native traps retain separate functions: lid blocks commander hit; mirror blocks/reflects commander damage cap4; embers12 to ready enemies before attack; root20/freeze after summon cost>=3; seal negates cost>=2 spell with full card/mana cost and no passive/recipe; ward20 shield all before unit hit; recall exact fallen cost<=4 with20HP, no entry/fresh attack; pantry3 commander heal/draw2 after cost>=4 summon. Tactical-scaled powers differ from legacy balance. Each side has one global trap slot, replacing the old column restriction.
+- Before/after reaction windows persist action/slot IDs; player activates or holds without timeout, reload resumes. Enemy traps activate automatically. Reveal preserves a trap; disarm removes it. Commands, including enemy-step IDs, are idempotent. Each enemy step saves before presentation; after AI ends its turn, increase round/draw/refill mana/+20 energy. Unmount and stale-tab guards remain.
+- New attack trails/impact rings/trap-negation sigils/readiness/freeze/turn banners augment authored models and old VFX. Actual HP/shield changes wait for contact. Quiet/reduced motion skips animated waits. No new artwork or fabricated unique poses.
+- Eight deck recipes now include three advanced strategies: Nhịp Phép Bên Bếp, Bàn Cờ Úp Hương, Ký Ức Chưa Tắt. All have plans/openings/weaknesses. The three free intro receipts/grants and existing saved decks remain unchanged; five advanced recipes require owned cards.
+
 TCG-008 visual contract: unit cards use their own rendered spirit portrait, board uses their own authored sprite atlas when available (77) or own static portrait (62). No dish photo/generic borrowed unit. Spell/trap art remains skill art; card IDs/lore/ownership/source files unchanged. Legacy character renderer/shared clock/pose/VFX are reused. Animation, floating numbers, casualty ghosts and combo banners derive authoritative before/after snapshots; contact560ms basic/spell,960ms ultimate. Presentation adds no gameplay damage. Saves commit final automatic outcome before stepped visuals; quiet/reduced motion skips waits and animated VFX. Dist includes exact manifest-backed model assets with existing package/security gates.
 
 Bàn mỗi bên 4×2, tối đa 5 Vị Linh. Engine reducer thuần, action idempotent, target ưu tiên hàng trước cùng cột, rồi hàng trước gần nhất, hàng sau, cuối cùng commander. Các phase: planning, clash, reaction, ultimate, round-end, result.
 
 - Trong trận thẻ bài, chơi bản sao thứ hai lên đúng quân để lên 2 sao (+40% công/HP tối đa), giữ lượng HP đã mất. Không cần sở hữu ba bản để dùng tính năng. Reducer merge 3 bản cũ chỉ còn cho fixture đội hình, không là đường chơi production.
-- Mỗi bên chỉ có một bẫy đang kích hoạt. Mành Tre tạo 20 khiên, Hơi Nóng phản 12 sát thương, Nước Dùng hồi tối đa 18 khi mục tiêu còn không quá nửa sinh lực.
-- Sau clash, cửa sổ reaction giữ trận mở để dùng Tuyệt kỹ trước khi kết thúc vòng.
+- Legacy fixture-only traps: Mành Tre20 khiên, Hơi Nóng12 phản, Nước Dùng18 hồi; production uses eight native traps above.
+- Production permits manual ultimates in the player's turn; legacy fixtures retain their after-clash reaction phase.
 - Boss campaign có Pha 1/2/3 theo ngưỡng sinh lực 100%/66%/33%; Pha 2 và 3 tăng khiên, sức đánh, năng lượng và ghi log hiển thị.
 - Chỉ huy có 30 Ý chí; sân trống chưa kết thúc trận. Đòn vào Chỉ huy gây sát thương quân chia 10, làm tròn lên. Thắng khi Ý chí địch về 0. Hết bộ chịu kiệt sức; Lửa Lớn từ vòng 8 kết thúc thế kéo dài.
-- Traps phải được rút và trả giá Lửa Bếp; không có nút gài bẫy miễn phí trong trận TCG.
-- Quân tự đánh một lần/vòng, có nội tại và mục tiêu xác định. Hòa công luân phiên ưu tiên hai phe theo vòng.
+- Traps phải được rút và trả Lửa Bếp; không có nút gài miễn phí. Global trap slot is inspectable; hidden enemy identity stays hidden until reveal/activation.
+- Production attacks are manually chosen once/unit/round. Legacy fixture auto-combat keeps its alternating attack-order tie rule.
 - Công thức Đồng Vị: hai lá liên tiếp cùng hệ trong một vòng → +5 khiên toàn đội, tối đa một lần/vòng. Mâm Chung từ ba hệ → +3 công; mốc bốn cùng trait → +6 công thay cho +3.
 
 ## Cốt truyện

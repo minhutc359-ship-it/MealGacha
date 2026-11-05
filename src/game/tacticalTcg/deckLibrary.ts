@@ -22,6 +22,20 @@ const recipe = (
   style,
   plan,
   opening,
+  weakness: ({
+    "ember-road": "Dễ cạn tay; cần chọn đúng nhịp tăng công và đánh.",
+    "tide-letters":
+      "Rút quá nhiều làm đầy tay và nhanh cạn bộ; bảo vệ nguồn rút.",
+    "hearth-garden": "Thiếu áp lực kết thúc, dễ chịu Lửa Lớn hoặc phá khiên.",
+    "five-hosts": "Chủ lực đắt, dễ mất nhịp nếu tay đầu chỉ có Đầu bếp.",
+    "moon-garden":
+      "Phụ thuộc quân hỗ trợ; khóa quân hoặc dọn bàn sẽ phá chuỗi.",
+    "spell-chain":
+      "Phép bị Niêm Phong không kích nội tại. Cần giữ nguồn Lửa và quân liên hoàn.",
+    "trap-counter": "Chỉ giữ một bẫy; quá nhiều bẫy trên tay sẽ thiếu quân.",
+    "memory-return":
+      "Bẫy hồi sinh chỉ bắt quân giá tối đa 4; phải chừa ô và chờ lượt sau.",
+  } as Record<string, string>)[id],
   free,
   cards: ids.flatMap((card) => [card, card]),
 })
@@ -137,6 +151,75 @@ export const TACTICAL_DECK_LIBRARY = [
     ],
   ),
 ]
+// Advanced directed-TCG recipes do not alter the existing intro receipt or owned decks.
+TACTICAL_DECK_LIBRARY.push(
+  recipe(
+    "spell-chain",
+    "Nhịp Phép Bên Bếp",
+    "Liên hoàn · Tài nguyên",
+    "Giữ Xôi xéo để phép thứ hai hồi Lửa; Bún riêu hưởng phép khác hệ. Xen kẽ phép, rút bài và đòn đánh đã tăng sức.",
+    "Giữ quân rẻ và một phép; đừng giữ cả tay chỉ có phép.",
+    false,
+    [
+      "bun-rieu",
+      "xoi-xeo",
+      "banh-tet",
+      "pho-bo",
+      "banh-mi",
+      "caravan-letter",
+      "chef-nhien",
+      "seasoning",
+      "spark",
+      "recipe-scroll",
+      "trap-seal",
+      "v45-uncover",
+    ],
+  ),
+  recipe(
+    "trap-counter",
+    "Bàn Cờ Úp Hương",
+    "Phản chế · Thăm dò",
+    "Niêm Phong bắt phép, Dây Lá bắt quân lớn, Gương Nước đảo đòn. Nếm Trước chỉ lộ danh tính; Lật Khăn mới gỡ bẫy.",
+    "Giữ một quân rẻ và một bẫy phù hợp; tránh tay đầu toàn bẫy.",
+    false,
+    [
+      "pho-bo",
+      "banh-mi",
+      "caravan-herbalist",
+      "caravan-ferryman",
+      "cha-ca-la-vong",
+      "bun-bo-hue",
+      "trap-lid",
+      "trap-mirror",
+      "trap-root",
+      "trap-seal",
+      "v45-taste",
+      "v45-uncover",
+    ],
+  ),
+  recipe(
+    "memory-return",
+    "Ký Ức Chưa Tắt",
+    "Khi bị hạ · Hồi sinh",
+    "Trao đổi quân có hiệu ứng khi bị hạ; Lá Thư giữ quân then chốt, Giỏ Hương bù tay bài. Chừa ô để nối đội hình.",
+    "Giữ hộ vệ rẻ và nguồn rút/hồi; chỉ giữ hồi sinh khi có quân chơi trước.",
+    false,
+    [
+      "banh-tet",
+      "banh-chung",
+      "caravan-cook",
+      "caravan-pastry",
+      "caravan-letter",
+      "caravan-porter",
+      "goi-cuon-tom-thit",
+      "rebloom",
+      "herb",
+      "trap-recall",
+      "trap-pantry",
+      "v4-warm-towel",
+    ],
+  ),
+)
 export function deckRecipeMissing(
   cards: string[],
   copies: Record<string, number>,

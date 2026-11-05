@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -24,6 +25,12 @@ import {
 } from "../../game/tacticalTcg/presentation/transitions"
 import { TacticalSpiritActor, TacticalSpiritArt } from "./TacticalSpirit"
 import { TacticalCombatEffects } from "./TacticalCombatEffects"
+import {
+  directedCardText,
+  directedReadiness,
+  directedTargets,
+} from "../../game/tacticalTcg/engine/directedRules"
+import "../../game/directedTable.css"
 import "../../game/tacticalTable.css"
 
 const roles = {
@@ -63,7 +70,7 @@ export function TacticalCardFace({
           {kind(card)} · {SCHOOLS[card.school].name}
         </small>
         <strong>{card.name}</strong>
-        {!mini && <p>{card.text}</p>}
+        {!mini && <p>{directedCardText(card)}</p>}
         <footer>
           {card.kind === "unit" ? (
             <>
@@ -86,6 +93,10 @@ export function TacticalCardFace({
   )
 }
 interface Props {
+  attackMode?: "basic" | "ultimate"
+  onAttackMode?: (mode: "basic" | "ultimate") => void
+  onCommander?: () => void
+  onReact?: (id: string, activate: boolean) => void
   battle: TacticalBattleState
   selectedCard: number | null
   selectedUnit: string | null
@@ -121,7 +132,9 @@ export function TacticalTable(p: Props) {
   const inspectCard =
     card ?? (unit?.cardId ? TACTICAL_CARD_MAP[unit.cardId] : null)
   const [dialog, setDialog] =
-    useState<"guide" | "card" | "log" | "forfeit" | "ultimate" | null>(null)
+    useState<"guide" | "card" | "log" | "forfeit" | "ultimate" | "traps" | null>(
+      null,
+    )
   const [compact, setCompact] = useState(false),
     [page, setPage] = useState(0)
   const [effects, setEffects] = useState<Record<string, string>>({})
@@ -152,7 +165,7 @@ export function TacticalTable(p: Props) {
     media.addEventListener("change", sync)
     return () => media.removeEventListener("change", sync)
   }, [])
-  useEffect(() => {
+  useLayoutEffect(() => {
     const old = previous.current,
       next: Record<string, string> = {}
     const cue = tacticalTransition(old, b)
@@ -210,51 +223,121 @@ export function TacticalTable(p: Props) {
   const perPage = compact ? 4 : 8,
     pages = Math.max(1, Math.ceil(owner.hand.length / perPage)),
     currentPage = Math.min(page, pages - 1)
-  const planning = b.phase === "planning",
+  const directed = b.cardGame!.directed,
+    pending = directed?.pending,
+    ownTurn = !directed || directed.turn === "player"
+  const planning = b.phase === "planning" && ownTurn,
     result = b.phase === "result"
   const alive = (side: BattleSide) =>
     b.units.filter((u) => u.side === side && !u.defeated)
-  const ready = alive("player").filter((u) => u.energy >= 100)
-  const actionLabel = transition?.kind === "summon" ? "Triệu hồi" : transition?.kind === "upgrade" ? "Nâng sao" : transition?.kind === "ultimate" ? "Tuyệt kỹ" : transition?.kind === "spell" ? "Thi triển" : transition?.kind === "trap" ? "Gài bẫy" : "Giao chiến"
-  const commanderHp = (side: BattleSide) => !contacted && transition ? transition.before.commanders[side].hp : b.commanders[side].hp
+  const ready = alive("player").filter(
+    (u) =>
+      u.energy >= 100 &&
+      (!directed ||
+        !["stunned", "summoning"].includes(directedReadiness(b, u))),
+  )
+  const attackReady =
+    !!directed &&
+    planning &&
+    !p.busy &&
+    !card &&
+    unit?.side === "player" &&
+    (p.attackMode === "ultimate"
+      ? unit.energy >= 100 &&
+        !["stunned", "summoning"].includes(directedReadiness(b, unit))
+      : directedReadiness(b, unit) === "ready")
+  const attackTargets = attackReady ? directedTargets(b, unit!) : []
+  const actionLabel =
+    transition?.kind === "summon"
+      ? "Triệu hồi"
+      : transition?.kind === "upgrade"
+        ? "Nâng sao"
+        : transition?.kind === "ultimate"
+          ? "Tuyệt kỹ"
+          : transition?.kind === "spell"
+            ? "Thi triển"
+            : transition?.kind === "trap"
+              ? "Gài bẫy"
+              : transition?.kind === "negate"
+                ? "Phản chế"
+                : transition?.kind === "reaction"
+                  ? "Phản ứng bẫy"
+                  : transition?.kind === "turn"
+                    ? "Chuyển lượt"
+                    : "Tấn công"
+  const commanderHp = (side: BattleSide) =>
+    !contacted && transition
+      ? transition.before.commanders[side].hp
+      : b.commanders[side].hp
   const hint = p.busy
     ? `${actionLabel}: chờ hiệu ứng hoàn tất. Đòn đánh và sát thương được giải quyết từng bước.`
-    : result
-      ? "Nhận thưởng lần đầu hoặc chỉnh bộ bài rồi thử lại."
-      : planning
-        ? card
-          ? card.kind === "unit"
-            ? "Chọn ô sáng bên bạn. Chồng đúng quân trùng lá để lên 2 sao."
-            : card.kind === "trap"
-              ? "Chọn cột, sau đó Gài bẫy. Bẫy lật khi được kích hoạt."
-              : card.tacticalEffect === "damage"
-                ? "Chọn quân địch sáng viền, hoặc dùng tự chọn mục tiêu."
-                : card.tacticalEffect === "buff"
-                  ? "Chọn đồng minh sáng viền để tăng chỉ số."
-                  : "Hiệu ứng diện rộng: nhấn Dùng thẻ để xác nhận."
-          : "Chọn lá → chọn ô/mục tiêu → Giao chiến. Mỗi vòng đổi vị trí một lần."
-        : "Đủ 100 Hương lực: dùng Tuyệt kỹ, rồi Kết vòng để rút bài và hồi Lửa."
+    : pending
+      ? "Chọn lật bẫy hoặc giữ cho hành động sau. Không có đếm ngược."
+      : directed && !ownTurn
+        ? "Đối thủ đang hành động; bẫy hợp lệ sẽ mở cửa sổ phản ứng."
+        : directed && !card && unit?.side === "player"
+          ? attackReady
+            ? `Chọn mục tiêu sáng để ${
+                p.attackMode === "ultimate" ? "tung Tuyệt kỹ" : "tấn công"
+              }.`
+            : directedReadiness(b, unit) === "stunned"
+              ? "Quân đang đóng băng, chưa thể đánh hoặc dùng Tuyệt kỹ."
+              : directedReadiness(b, unit) === "summoning"
+                ? "Quân vừa vào sân: chờ lượt sau, trừ Xung kích."
+                : "Quân đã đánh. Chọn quân khác hoặc dùng Tuyệt kỹ nếu đủ Hương lực."
+          : result
+            ? "Nhận thưởng lần đầu hoặc chỉnh bộ bài rồi thử lại."
+            : planning
+              ? card
+                ? card.kind === "unit"
+                  ? "Chọn ô sáng bên bạn. Chồng đúng quân trùng lá để lên 2 sao."
+                  : card.kind === "trap"
+                    ? directed
+                      ? "Úp vào ô bẫy riêng. Khi đủ điều kiện, bạn chọn Lật hoặc Giữ; gài mới thay bẫy cũ."
+                      : "Chọn cột, sau đó Gài bẫy."
+                    : card.tacticalEffect === "damage"
+                      ? "Chọn quân địch sáng viền, hoặc dùng tự chọn mục tiêu."
+                      : card.tacticalEffect === "buff"
+                        ? "Chọn đồng minh sáng viền để tăng chỉ số."
+                        : "Hiệu ứng diện rộng: nhấn Dùng thẻ để xác nhận."
+                : directed
+                  ? "Chơi bài → chọn quân → chọn mục tiêu. Kết lượt khi đã sẵn sàng."
+                  : "Chọn lá → chọn ô/mục tiêu → Giao chiến."
+              : "Đủ 100 Hương lực: dùng Tuyệt kỹ, rồi Kết vòng để rút bài và hồi Lửa."
   const canPlay =
     !!card &&
     planning &&
     !p.busy &&
     card.cost <= owner.mana &&
-    (card.kind !== "unit" || alive("player").length < 5) &&
+    (card.kind !== "unit" ||
+      alive("player").length < 5 ||
+      alive("player").some((u) => u.cardId === card.id && u.star === 1)) &&
     (card.tacticalEffect !== "buff" ||
       card.kind === "unit" ||
       alive("player").length > 0)
   const stage = p.busy
     ? actionLabel
-    : planning
-      ? "1 · Dàn trận"
-      : result
+    : directed
+      ? result
         ? "Kết quả"
-        : "3 · Tuyệt kỹ / Kết vòng"
+        : pending
+          ? "Phản ứng bẫy"
+          : ownTurn
+            ? "Lượt của bạn"
+            : "Lượt đối thủ"
+      : planning
+        ? "1 · Dàn trận"
+        : result
+          ? "Kết quả"
+          : "3 · Tuyệt kỹ / Kết vòng"
   return (
     <section
       className="tcg-table"
       aria-label="Bàn Linh Chiến 4 x 2"
       data-phase={b.phase}
+      data-turn={directed?.turn}
+      data-action-id={directed?.event?.id}
+      data-transition-id={transition?.id}
       aria-busy={p.busy}
       onKeyDown={(e) => {
         if (e.key === "Escape") {
@@ -302,6 +385,18 @@ export function TacticalTable(p: Props) {
             ♥ {commanderHp("enemy")}
             <small>/{b.commanders.enemy.maxHp}</small>
           </strong>
+          {directed && (
+            <button
+              className={`table-commander-target ${
+                attackTargets.includes("hero:enemy") ? "is-target" : ""
+              }`}
+              disabled={!attackTargets.includes("hero:enemy")}
+              onClick={p.onCommander}
+              aria-label="Tấn công Chỉ huy địch"
+            >
+              ⚔ Chỉ huy
+            </button>
+          )}
           <meter
             min={0}
             max={b.commanders.enemy.maxHp}
@@ -336,7 +431,7 @@ export function TacticalTable(p: Props) {
                   )
                 const shownHp = displayed ? displayed.hp : u?.hp
                 const shownShield = displayed ? displayed.shield : u?.shield
-                const target =
+                const cardTarget =
                   !!card &&
                   planning &&
                   !p.busy &&
@@ -352,8 +447,15 @@ export function TacticalTable(p: Props) {
                       (card.tacticalEffect === "damage"
                         ? side === "enemy"
                         : card.tacticalEffect === "buff" && side === "player"))
+                const target =
+                  cardTarget || (!!u && attackTargets.includes(u.instanceId))
+                const readiness = u && directed ? directedReadiness(b, u) : null
                 const trapped = b.traps.find(
-                  (t) => t.armed && t.side === side && t.column === column,
+                  (t) =>
+                    !directed &&
+                    t.armed &&
+                    t.side === side &&
+                    t.column === column,
                 )
                 return (
                   <button
@@ -361,8 +463,8 @@ export function TacticalTable(p: Props) {
                     className={`table-slot ${target ? "is-target" : ""} ${
                       p.selectedUnit === u?.instanceId ? "is-selected" : ""
                     } ${u ? "is-occupied" : "is-empty"} ${
-                      u?.defeated ? "is-fallen" : ""
-                    } ${
+                      readiness ? `is-${readiness}` : ""
+                    } ${u?.defeated ? "is-fallen" : ""} ${
                       u &&
                       ["summon", "upgrade", "heal", "ward"].includes(
                         effects[u.instanceId],
@@ -408,6 +510,17 @@ export function TacticalTable(p: Props) {
                             {"★".repeat(u.star)} · {roles[u.role]}
                           </small>
                         </span>
+                        {directed && (
+                          <span className="table-readiness">
+                            {readiness === "ready"
+                              ? "✦ Sẵn sàng"
+                              : readiness === "stunned"
+                                ? "❄ Đóng băng"
+                                : readiness === "summoning"
+                                  ? "◷ Vừa gọi"
+                                  : "✓ Đã đánh"}
+                          </span>
+                        )}
                         <span className="table-unit-stats">
                           <b>⚔ {u.attack}</b>
                           <b>♥ {shownHp}</b>
@@ -448,7 +561,11 @@ export function TacticalTable(p: Props) {
           </div>
         ))}
         <div className="table-divider">
-          <span>TIỀN TUYẾN ĐỐI MẶT · ƯU TIÊN ĐÁNH CÙNG CỘT</span>
+          <span>
+            {directed
+              ? "HỘ VỆ CHẮN ĐÒN · PHÁP SƯ NHẮM HẬU TUYẾN KHI HẾT HỘ VỆ"
+              : "TIỀN TUYẾN ĐỐI MẶT · ƯU TIÊN ĐÁNH CÙNG CỘT"}
+          </span>
           <b>✦</b>
         </div>
         <div className="table-commander is-player" data-hero="player">
@@ -512,8 +629,12 @@ export function TacticalTable(p: Props) {
             <p>{hint}</p>
             <ol>
               <li>Dùng Lửa để triệu hồi / chơi phép.</li>
-              <li>Giao chiến: quân tự đánh, công cao đi trước.</li>
-              <li>100 Hương lực → Tuyệt kỹ; Kết vòng rút 1 lá.</li>
+              <li>
+                {directed
+                  ? "Chọn quân → chọn mục tiêu sáng để đánh."
+                  : "Giao chiến: quân tự đánh, công cao đi trước."}
+              </li>
+              <li>100 Hương lực → Tuyệt kỹ; kết lượt để nhường đối thủ.</li>
             </ol>
             <p>Thắng khi Ý chí địch về 0. Sân trống chưa thua.</p>
           </div>
@@ -522,7 +643,7 @@ export function TacticalTable(p: Props) {
           {card ? (
             <>
               <p>{hint}</p>
-              {card.kind === "trap" && (
+              {card.kind === "trap" && !directed && (
                 <div className="table-trap-columns" aria-label="Cột đặt bẫy">
                   {([0, 1, 2, 3] as const).map((c) => (
                     <button
@@ -552,13 +673,35 @@ export function TacticalTable(p: Props) {
               <button onClick={() => p.onSelectCard(null)}>Bỏ chọn</button>
             </>
           ) : unit && unit.side === "player" ? (
-            <button
-              className="table-primary"
-              disabled={p.busy || unit.energy < 100 || planning || result}
-              onClick={() => p.onUltimate(unit.instanceId)}
-            >
-              ✦ Tuyệt kỹ · {unit.energy}/100
-            </button>
+            <>
+              {directed && (
+                <button
+                  aria-pressed={p.attackMode !== "ultimate"}
+                  disabled={!planning || p.busy}
+                  onClick={() => p.onAttackMode?.("basic")}
+                >
+                  ⚔ Chọn đòn đánh · {unit.attack} công
+                </button>
+              )}
+              <button
+                className="table-primary"
+                aria-pressed={p.attackMode === "ultimate"}
+                disabled={
+                  p.busy ||
+                  unit.energy < 100 ||
+                  (directed
+                    ? !planning ||
+                      ["stunned", "summoning"].includes(
+                        directedReadiness(b, unit),
+                      )
+                    : planning) ||
+                  result
+                }
+                onClick={() => p.onUltimate(unit.instanceId)}
+              >
+                ✦ Tuyệt kỹ · {unit.energy}/100
+              </button>
+            </>
           ) : (
             <button onClick={() => setDialog("guide")}>
               Xem luật và cách chọn mục tiêu
@@ -674,23 +817,36 @@ export function TacticalTable(p: Props) {
         <div className="table-ultimates">
           {ready.length > 0 && (
             <button
-              disabled={planning || result || p.busy}
+              disabled={(directed ? !planning : planning) || result || p.busy}
               onClick={() => setDialog("ultimate")}
             >
               ✦ Tuyệt kỹ · {ready.length}
             </button>
           )}
+          {directed && (
+            <button
+              onClick={() => setDialog("traps")}
+              aria-label="Xem bẫy đang gài"
+            >
+              ◇ Bẫy{" "}
+              {b.traps.some((t) => t.side === "player" && t.armed) ? "●" : "○"}
+            </button>
+          )}
         </div>
         <button
           className="table-primary table-next"
-          disabled={p.busy || result}
+          disabled={p.busy || result || !ownTurn || !!pending}
           onClick={p.onAdvance}
         >
           {p.busy
             ? `Đang ${actionLabel.toLocaleLowerCase("vi")}…`
-            : planning
-              ? "Giao chiến →"
-              : "Kết vòng · Rút bài →"}
+            : directed
+              ? ownTurn
+                ? "Kết lượt →"
+                : "Đối thủ đang chơi…"
+              : planning
+                ? "Giao chiến →"
+                : "Kết vòng · Rút bài →"}
         </button>
         <button
           className="table-surrender"
@@ -740,7 +896,56 @@ export function TacticalTable(p: Props) {
           {p.notice && <p>{p.notice}</p>}
         </div>
       )}
-      {dialog && (
+      {pending && (
+        <Dialog
+          title="Bẫy Hương · Chọn phản ứng"
+          onClose={() => {}}
+          dismissible={false}
+          wide
+        >
+          <div className="directed-reaction" data-reaction-id={pending.id}>
+            <div>
+              <small>ĐỐI THỦ ĐÃ CÔNG BỐ</small>
+              <h3>
+                {pending.cardId
+                  ? TACTICAL_CARD_MAP[pending.cardId]?.name
+                  : "Đòn tấn công"}
+              </h3>
+              <p>
+                {pending.stage === "before"
+                  ? "Hành động đang chờ giải quyết. Bạn có thể phản chế ngay."
+                  : "Hành động đã xảy ra. Bẫy có thể phản ứng với kết quả này."}
+              </p>
+            </div>
+            {(() => {
+              const t = b.traps.find(
+                  (t) => t.instanceId === pending.trapInstanceId,
+                ),
+                c = t?.cardId ? TACTICAL_CARD_MAP[t.cardId] : null
+              return c ? <TacticalCardFace card={c} /> : null
+            })()}
+            <div className="directed-reaction-actions">
+              <button
+                className="table-primary"
+                disabled={p.busy}
+                onClick={() => p.onReact?.(pending.id, true)}
+              >
+                ✦ Lật bẫy
+              </button>
+              <button
+                disabled={p.busy}
+                onClick={() => p.onReact?.(pending.id, false)}
+              >
+                Giữ bẫy cho lần sau
+              </button>
+            </div>
+            <small>
+              Không có đếm ngược. Tải lại vẫn chờ đúng quyết định này.
+            </small>
+          </div>
+        </Dialog>
+      )}
+      {dialog && !pending && (
         <Dialog
           title={
             dialog === "guide"
@@ -751,14 +956,16 @@ export function TacticalTable(p: Props) {
                   ? "Nhật ký & ký ức"
                   : dialog === "forfeit"
                     ? "Rời cuộc giao ước?"
-                    : (inspectCard?.name ?? "Lá bài")
+                    : dialog === "traps"
+                      ? "Ô Bẫy Hương"
+                      : (inspectCard?.name ?? "Lá bài")
           }
           onClose={() => setDialog(null)}
         >
           {dialog === "card" && inspectCard && (
             <div className="table-enlarged">
               <TacticalCardFace card={inspectCard} />
-              {card?.kind === "trap" && (
+              {card?.kind === "trap" && !directed && (
                 <div className="table-trap-columns">
                   {([0, 1, 2, 3] as const).map((c) => (
                     <button
@@ -804,17 +1011,21 @@ export function TacticalTable(p: Props) {
                 được đặt lên quân khác.
               </li>
               <li>
-                <b>Giao chiến:</b> hai đội tự đánh một lần/quân/vòng, công cao
-                trước. Cùng cột → tiền tuyến gần nhất → hậu tuyến → Chỉ huy. Hòa
-                công đổi bên ưu tiên theo vòng.
+                <b>Tấn công:</b> trong lượt bạn, chọn quân rồi chọn mục tiêu
+                sáng. Mỗi quân đánh thường một lần/vòng. Hộ vệ tiền tuyến phải
+                bị xử lý trước; Pháp sư có thể nhắm hậu tuyến khi không còn Hộ
+                vệ. Không còn quân địch mới đánh được Chỉ huy.
               </li>
               <li>
-                <b>Tuyệt kỹ:</b> sau giao chiến, chọn quân đủ 100 Hương lực. Kết
-                vòng rút 1 thẻ, tăng giới hạn Lửa 1 và hồi đầy (tối đa 10).
+                <b>Nhịp lượt:</b> xen kẽ chơi bài, tấn công và Tuyệt kỹ đủ 100
+                Hương lực. Quân mới đợi lượt sau trừ Xung kích. Kết lượt để AI
+                hành động; hết lượt AI mới rút bài, tăng/hồi Lửa và +20 Hương
+                lực.
               </li>
               <li>
-                <b>Bẫy úp:</b> chọn cột trước khi gài; lật khi đòn đánh kích
-                hoạt. Mỗi bên giữ một bẫy.
+                <b>Bẫy úp:</b> mỗi bên giữ một bẫy riêng, gài mới thay bẫy cũ.
+                Tám lá có tám chức năng; chọn Lật hoặc Giữ khi đủ điều kiện. Lộ
+                bẫy chỉ cho biết danh tính; gỡ bẫy loại bỏ nó.
               </li>
               <li>
                 <b>Thắng:</b> hạ 30 Ý chí địch. Đòn vào Chỉ huy = công/10 làm
@@ -826,6 +1037,31 @@ export function TacticalTable(p: Props) {
                 một lần.
               </li>
             </ol>
+          )}
+          {dialog === "traps" && (
+            <div className="directed-trap-library">
+              {(["player", "enemy"] as const).map((side) => {
+                const t = b.traps.find((t) => t.side === side && t.armed),
+                  c =
+                    t?.cardId && (side === "player" || t.revealed)
+                      ? TACTICAL_CARD_MAP[t.cardId]
+                      : null
+                return (
+                  <article key={side}>
+                    <h3>{side === "player" ? "Bẫy của bạn" : "Bẫy đối thủ"}</h3>
+                    {c ? (
+                      <TacticalCardFace card={c} />
+                    ) : (
+                      <p>
+                        {t
+                          ? "◇ Bẫy đang úp · chưa lộ danh tính"
+                          : "Chưa gài bẫy"}
+                      </p>
+                    )}
+                  </article>
+                )
+              })}
+            </div>
           )}
           {dialog === "log" && (
             <>

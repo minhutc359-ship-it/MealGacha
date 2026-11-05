@@ -17,6 +17,8 @@
 
 ## Tiếp theo
 
+- TCG-009 đã thay auto combat production bằng lượt chủ động,8 native traps/Lật-Giữ và8 recipes. Tiếp: human balance cho8 archetypes, đánh giá heuristic AI, hoàn thiện các modal-choice/delayed spell abilities còn giữ bản chuyển đổi Tactical; chưa tuyên bố parity mọi hiệu ứng legacy. Tiếp tục62 atlas còn thiếu và QA thiết bị/touch/FPS.
+
 - TCG-008 đã nối77 atlas đã render và chân dung riêng cho139 unit, renderer/pose/VFX/combo của TCG cũ vào production Tactical.62 unit chưa có atlas nhiều động tác: cần sản xuất/duyệt riêng, không gọi portrait-only là hoàn thiện animation. Cần đo hiệu năng tải/model trên thiết bị thật.
 
 - TCG-007 đã thay bàn chiến đấu sản phẩm bằng layout toàn màn hình; thẻ đọc lớn, hướng dẫn theo phase, trình diễn đòn đánh và 3 bộ nhập môn + 2 công thức. Cần human balance/playtest cho cả 5 archetype trước nghiệm thu sản phẩm.

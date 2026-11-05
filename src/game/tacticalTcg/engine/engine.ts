@@ -1,5 +1,7 @@
 import { TACTICAL_UNIT_MAP } from "./catalog"
 import { TACTICAL_CARD_MAP } from "../cards"
+import { enableDirectedBattle } from "./directedRules"
+import { reduceDirectedBattle } from "./directed"
 import {
   cardLog,
   createCardGame,
@@ -118,7 +120,7 @@ export function createTacticalBattle(
     : null
   if (options.boss && !bossUnit)
     throw Error(`Boss is missing from formation: ${options.boss.definitionId}`)
-  return {
+  const battle: TacticalBattleState = {
     schemaVersion: 1,
     battleId: options.battleId,
     mode: options.mode ?? "campaign",
@@ -143,6 +145,7 @@ export function createTacticalBattle(
     reward: null,
     cardGame,
   }
+  return options.manual ? enableDirectedBattle(battle) : battle
 }
 
 const trapName = (trapId: BattleTrap["trapId"]) =>
@@ -295,8 +298,9 @@ function deal(
   attacker: BattleUnit,
   power: number,
   label: string,
+  targetId?: string,
 ) {
-  const target = findTarget(state, attacker)
+  const target = targetId ? state.units.find(u=>u.instanceId===targetId&&!u.defeated)??null : findTarget(state, attacker)
   const bonus = activeTraitBonus(state, attacker.side).attack
   const ability = attacker.cardId
     ? TACTICAL_CARD_MAP[attacker.cardId].ability
@@ -314,7 +318,7 @@ function deal(
       target.shield -= stolen
       attacker.shield += stolen
     }
-    const trap = matchingTrap(state, target)
+    const trap = state.cardGame?.directed ? undefined : matchingTrap(state, target)
     if (trap) triggerTrap(state, trap, attacker, target, "before")
     const absorbed = Math.min(target.shield, damage)
     target.shield -= absorbed
@@ -378,6 +382,10 @@ export function reduceTacticalBattle(
   current: TacticalBattleState,
   action: TacticalBattleAction,
 ) {
+  return current.cardGame?.directed ? reduceDirectedBattle(current,action,reduceCoreBattle,finish) : reduceCoreBattle(current,action)
+}
+function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleAction) {
+  if(["end-turn","enemy-step","react"].includes(action.type))return current
   if (current.processedActionIds.includes(action.id)) return current
   if (current.phase === "result") return current
   const state = clone(current)
@@ -486,23 +494,23 @@ export function reduceTacticalBattle(
       state.phase = "clash"
       break
     case "basic":
-      if (!unit || !["clash", "reaction"].includes(state.phase)) return current
+      if (!unit || !["clash", "reaction", ...(state.cardGame?.directed ? ["planning"] : [])].includes(state.phase)) return current
       if (state.cardGame?.attacks[unit.instanceId] === state.round)
         return current
       if (state.cardGame) state.cardGame.attacks[unit.instanceId] = state.round
-      deal(state, unit, unit.attack, "đánh")
-      state.phase = "reaction"
+      deal(state, unit, unit.attack, "đánh", action.targetId)
+      state.phase = state.cardGame?.directed ? "planning" : "reaction"
       break
     case "ultimate":
       if (
         !unit ||
         unit.energy < 100 ||
-        !["reaction", "ultimate"].includes(state.phase)
+        !["reaction", "ultimate", ...(state.cardGame?.directed ? ["planning"] : [])].includes(state.phase)
       )
         return current
       unit.energy = 0
-      deal(state, unit, unit.ultimatePower, "tung tuyệt kỹ vào")
-      state.phase = "ultimate"
+      deal(state, unit, unit.ultimatePower, "tung tuyệt kỹ vào", action.targetId)
+      state.phase = state.cardGame?.directed ? "planning" : "ultimate"
       break
     case "end-round":
       if (state.phase === "planning") return current

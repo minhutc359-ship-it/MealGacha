@@ -19,7 +19,10 @@ export interface TacticalDelta {
 }
 export interface TacticalTransition {
   id: string
-  kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "move" | "round"
+  kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "move" | "round" | "reaction" | "negate" | "turn" | "intent"
+  targetId?: string
+  trapCardId?: string
+  note?: string
   side: BattleSide
   sourceId: string
   cardId: string | null
@@ -43,6 +46,8 @@ export function tacticalTransition(
   if (before === after || before.battleId !== after.battleId) return null
   const id = after.processedActionIds[after.processedActionIds.length - 1]
   if (!id || before.processedActionIds.includes(id)) return null
+  const explicit = after.cardGame?.directed?.event
+  const action = explicit?.id === id ? explicit : null
   const source = before.units.find(
     (u) =>
       id.endsWith(`:${u.instanceId}`) ||
@@ -101,29 +106,37 @@ export function tacticalTransition(
     (t) => !before.traps.some((old) => old.instanceId === t.instanceId),
   )
   const side =
-    source?.side ?? changedOwner ?? born?.side ?? trap?.side ?? "player"
+    action?.side ??
+    source?.side ??
+    changedOwner ??
+    born?.side ??
+    trap?.side ??
+    "player"
   const oldOwner = before.cardGame?.sides[side],
     owner = after.cardGame?.sides[side]
   const spentSpell = owner?.discard
     .slice(oldOwner?.discard.length ?? 0)
     .find((card) => TACTICAL_CARD_MAP[card]?.kind === "spell")
-  const kind: TacticalTransition["kind"] = /:basic:/.test(id)
-    ? "attack"
-    : /(?:ultimate:|enemy-ult:)/.test(id)
-      ? "ultimate"
-      : spentSpell
-        ? "spell"
-        : born
-          ? deltas.find((d) => d.id === born.instanceId)?.upgraded
-            ? "upgrade"
-            : "summon"
-          : trap
-            ? "trap"
-            : id.startsWith("move:")
-              ? "move"
-              : "round"
-  const cardId =
-    source?.cardId ?? spentSpell ?? born?.cardId ?? trap?.cardId ?? null
+  const kind: TacticalTransition["kind"] =
+    action?.kind ??
+    (/:basic:/.test(id)
+      ? "attack"
+      : /(?:ultimate:|enemy-ult:)/.test(id)
+        ? "ultimate"
+        : spentSpell
+          ? "spell"
+          : born
+            ? deltas.find((d) => d.id === born.instanceId)?.upgraded
+              ? "upgrade"
+              : "summon"
+            : trap
+              ? "trap"
+              : id.startsWith("move:")
+                ? "move"
+                : "round")
+  const cardId = action
+    ? action.cardId
+    : (source?.cardId ?? spentSpell ?? born?.cardId ?? trap?.cardId ?? null)
   const school = cardId
     ? (TACTICAL_CARD_MAP[cardId]?.school ?? "hearth")
     : "hearth"
@@ -143,8 +156,7 @@ export function tacticalTransition(
   else if (kind === "spell" && owner && owner.spellsThisRound >= 2)
     combo = {
       name: `CHUỖI PHÉP ×${owner.spellsThisRound}`,
-      detail:
-        "Nội tại phép kích hoạt theo Vị Linh đang có trên sân",
+      detail: "Nội tại phép kích hoạt theo Vị Linh đang có trên sân",
     }
   const contact =
     kind === "ultimate"
@@ -153,7 +165,9 @@ export function tacticalTransition(
         ? 560
         : kind === "summon"
           ? 180
-          : 0
+          : ["reaction", "negate"].includes(kind)
+            ? 380
+            : 0
   const duration =
     kind === "ultimate"
       ? 2400
@@ -165,12 +179,21 @@ export function tacticalTransition(
             ? 650
             : kind === "move"
               ? 600
-              : 180
+              : ["turn", "reaction", "negate"].includes(kind)
+                ? 1500
+                : 180
   return {
     id,
     kind,
     side,
-    sourceId: source?.instanceId ?? born?.instanceId ?? `hero:${side}`,
+    sourceId:
+      action?.sourceId ??
+      source?.instanceId ??
+      born?.instanceId ??
+      `hero:${side}`,
+    targetId: action?.targetId,
+    trapCardId: action?.trapCardId,
+    note: action?.note,
     cardId,
     school,
     contact,
@@ -202,6 +225,8 @@ export function tacticalUnitMotion(
     return { motion: "attack", delay: 0 }
   if (transition?.sourceId === unit.instanceId && transition.kind === "move")
     return { motion: "walk", delay: 0 }
+  if (transition?.sourceId === unit.instanceId && transition.kind === "intent")
+    return { motion: "channel", delay: 0 }
   if (d && (d.hp < 0 || d.shield < 0))
     return { motion: "hit", delay: transition?.contact ?? 0 }
   if (d?.upgraded) return { motion: "cast", delay: 0 }

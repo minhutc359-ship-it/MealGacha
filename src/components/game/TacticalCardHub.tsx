@@ -20,6 +20,7 @@ import {
   type TacticalProgress,
 } from "../../game/tacticalTcg/progression"
 import { GameCardView } from "./GameCardView"
+import { directedCardText } from "../../game/tacticalTcg/engine/directedRules"
 import { Dialog } from "./Dialog"
 import {
   TACTICAL_DECK_LIBRARY,
@@ -57,7 +58,7 @@ function CardDetail({
             {RARITIES[card.rarity].name}
           </span>
           <h3>Khả năng trên bàn Linh Chiến</h3>
-          <p>{card.text}</p>
+          <p>{directedCardText(card)}</p>
           <blockquote>“{card.lore}”</blockquote>
           <p>
             Sở hữu <b>{count}/2 bản</b> · dùng trong mọi bộ bài đã lưu.
@@ -330,7 +331,7 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
       </div>
       <details className="tactical-deck-recipes">
         <summary>
-          Công thức bộ bài · 3 bộ nhập môn và 2 hướng phát triển
+          Công thức bộ bài · 3 bộ nhập môn và 5 hướng phát triển
         </summary>
         <div>
           {TACTICAL_DECK_LIBRARY.map((template) => {
@@ -346,6 +347,7 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
                 <p>
                   <b>Tay đầu:</b> {template.opening}
                 </p>
+                <p><b>Điểm yếu:</b> {template.weakness}</p>
                 <span>
                   {missing.length
                     ? `Thiếu ${missing.reduce((n, m) => n + m.count, 0)} lá · chế tạo ${missing.reduce((n, m) => n + m.cost, 0)} Tinh Vị`

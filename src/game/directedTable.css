@@ -1,0 +1,27 @@
+.tcg-table[data-turn] .table-commander-target{margin-left:auto;font-size:10px;padding:3px 8px;white-space:nowrap}
+.tcg-table[data-turn] .table-commander-target.is-target{border-color:#f5d88a;box-shadow:0 0 16px #edc97066}
+.table-readiness{position:absolute;right:4px;top:7px;font-size:8px;color:#b3e8d0;text-shadow:0 1px 3px #001b20;z-index:2;max-width:45%;text-align:right}
+.tcg-table[data-turn] .table-unit-title{right:44%}
+.table-slot.is-ready[data-side=player]{border-bottom-color:#bbd8a5!important}
+.table-slot.is-exhausted .tactical-spirit-actor{filter:saturate(.65) brightness(.82)}
+.table-slot.is-summoning .table-readiness{color:#e3c58c}
+.table-slot.is-stunned .tactical-spirit-actor{filter:saturate(.4) drop-shadow(0 0 10px #8bd8ef)}
+.table-slot.is-stunned::before{content:"❄";position:absolute;inset:0;display:grid;place-items:center;z-index:2;font-size:40px;color:#a6e7f76b;pointer-events:none}
+.table-slot.is-target .tactical-spirit-actor{filter:drop-shadow(0 0 6px #f5dd8d)}
+.directed-reaction{display:grid;grid-template-columns:1fr minmax(140px,220px);gap:15px;align-items:center;max-width:660px;margin:auto}
+.directed-reaction h3{font:700 26px Georgia,serif;color:#24493c;margin:10px 0}.directed-reaction p{font-size:14px;line-height:1.7}.directed-reaction small{font-size:11px}
+.directed-reaction-actions{display:flex;gap:10px;grid-column:1/-1}.directed-reaction-actions button{flex:1;padding:13px;border:1px solid #8b9c7d;border-radius:8px;font-weight:700;cursor:pointer}.directed-reaction-actions .table-primary{background:#d6b86e;color:#1e362c}
+.directed-reaction>.table-card-face{animation:directed-reveal .5s ease-out}.directed-reaction>small{grid-column:1/-1;color:#526e5c}
+.directed-trap-library{display:grid;grid-template-columns:1fr 1fr;gap:20px}.directed-trap-library .table-card-face{max-width:260px;margin:auto}.directed-trap-library h3{font-size:16px}
+.directed-event-banner{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);max-width:85%;width:max-content;display:flex;gap:10px;align-items:center;border-block:1px solid #f4d38c;background:linear-gradient(90deg,transparent,#143739f5 15%,#143739f5 85%,transparent);padding:13px 32px;color:#fff0b9;animation:directed-banner 1.5s both}
+.directed-event-banner strong{font:700 clamp(15px,2vw,24px) Georgia,serif}.directed-event-banner small{display:block;font-size:11px;margin-top:4px}.directed-event-banner.is-negate{border-color:#c3a8ec;color:#e7d8ff;background:linear-gradient(90deg,transparent,#302444f5 15%,#302444f5 85%,transparent)}
+.directed-trap-sigil{font-size:42px;animation:directed-sigil 1.2s both;display:block}.directed-attack-line{position:absolute;height:2px;transform-origin:0 50%;background:linear-gradient(90deg,transparent,#f3db91);box-shadow:0 0 8px #f1d18a;animation:directed-path 560ms both}.directed-attack-line::after{content:"◆";position:absolute;right:-5px;top:-8px;color:#fff1b8;font-size:14px}
+.directed-impact-ring{position:absolute;width:80px;height:80px;border:2px solid #ffe8a8;border-radius:50%;transform:translate(-50%,-50%);animation:directed-impact 500ms var(--contact) both}
+@keyframes directed-reveal{from{transform:perspective(600px) rotateY(70deg) scale(.8);opacity:0}to{transform:none;opacity:1}}
+@keyframes directed-banner{0%{opacity:0;translate:0 12px}15%,75%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -10px}}
+@keyframes directed-sigil{0%{scale:.3;rotate:-60deg;opacity:0}30%,65%{scale:1;rotate:0deg;opacity:1}100%{scale:1.25;opacity:0}}
+@keyframes directed-path{0%,25%{opacity:0;scale:0 1}60%{opacity:1;scale:1 1}100%{opacity:0}}
+@keyframes directed-impact{0%{opacity:1;scale:.3}100%{opacity:0;scale:1.6}}
+@media(max-width:780px){.tcg-table[data-turn] .table-unit-title{right:4px}.tcg-table[data-turn] .table-unit-title>b{font-size:9px}.table-readiness{top:auto;bottom:26px;font-size:7px;max-width:none;right:3px}.tcg-table[data-turn] .table-commander-target{font-size:8px;padding:3px}.tcg-table[data-turn] .table-command{gap:5px;padding-inline:6px}.tcg-table[data-turn] .table-next{min-width:120px;flex:1}.tcg-table[data-turn] .table-ultimates{max-width:86px;flex-shrink:0}.tcg-table[data-turn] .table-ultimates button{font-size:9px;padding:4px}.directed-reaction{grid-template-columns:1fr}.directed-reaction>.table-card-face{max-width:210px;justify-self:center}.directed-reaction h3{font-size:21px}.directed-trap-library{grid-template-columns:1fr}.directed-event-banner{padding:10px 18px}}
+@media(max-height:540px){.directed-reaction{grid-template-columns:1fr 170px}.directed-reaction>.table-card-face>img{max-height:70px}.directed-reaction h3{font-size:18px}.directed-reaction p{font-size:12px}.directed-reaction-actions button{padding:9px}.table-readiness{bottom:24px;top:auto;font-size:7px}}
+@media(prefers-reduced-motion:reduce){.directed-reaction>.table-card-face,.directed-event-banner,.directed-trap-sigil,.directed-attack-line,.directed-impact-ring{animation:none}.directed-attack-line,.directed-impact-ring{display:none}}

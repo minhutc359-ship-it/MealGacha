@@ -21,6 +21,7 @@ import { Dialog } from "./Dialog"
 import { TacticalTable } from "./TacticalTable"
 import { useAppStore } from "../../store/useAppStore"
 import { tacticalTransition } from "../../game/tacticalTcg/presentation/transitions"
+import { enableDirectedBattle } from "../../game/tacticalTcg/engine/directedRules"
 import "../../game/tacticalBattle.css"
 
 const TUTORIAL_KEY = "soul-of-meal.tactical-tcg.battle-tutorial.v1"
@@ -134,6 +135,7 @@ export function TacticalBattleScreen({
           enemyDeck: options?.enemyDeck,
           rewardCardId: options?.rewardCardId,
           enemyManaPenalty: options?.enemyManaPenalty,
+          manual: true,
         }),
       [battleId],
     )
@@ -157,7 +159,7 @@ export function TacticalBattleScreen({
   )
   const [battle, setBattle] = useState<TacticalBattleState>(() => {
       return saved?.battleId === battleId && saved.mode === initial.mode
-        ? saved
+        ? enableDirectedBattle(saved)
         : initial
     }),
     [selected, setSelected] = useState<string | null>(null),
@@ -191,6 +193,7 @@ export function TacticalBattleScreen({
     [],
   )
   const [selectedCard, setSelectedCard] = useState<number | null>(null)
+  const [attackMode, setAttackMode] = useState<"basic" | "ultimate">("basic")
   const [showLog, setShowLog] = useState(false)
   const cards = battle.cardGame?.sides.player
   const chosenCard =
@@ -331,8 +334,8 @@ export function TacticalBattleScreen({
         return
       }
       checkpointRef.current = next
-      battleRef.current = next
-      setBattle(next)
+      battleRef.current = enableDirectedBattle(next)
+      setBattle(battleRef.current)
       setClaimed(latest.claimedRewardReceiptIds)
       setSelectedCard(null)
       setSelected(null)
@@ -342,6 +345,37 @@ export function TacticalBattleScreen({
     } catch (e) {
       setClaimStatus((e as Error).message)
     }
+  }
+  useEffect(() => {
+    const d = battle.cardGame?.directed
+    if (
+      !d ||
+      d.turn !== "enemy" ||
+      d.pending ||
+      battle.winner ||
+      animating ||
+      showReplacement ||
+      showTutorial ||
+      saveConflict
+    )
+      return
+    void presentSingle((c) =>
+      reduceTacticalBattle(c, {
+        id: `enemy-step:${c.round}:${c.processedActionIds.length}`,
+        type: "enemy-step",
+      }),
+    )
+  }, [battle, animating, showReplacement, showTutorial, saveConflict])
+  const attackSelected = (targetId: string) => {
+    if (!selected) return
+    void presentSingle((c) =>
+      reduceTacticalBattle(c, {
+        id: `chosen:${c.round}:${c.processedActionIds.length}`,
+        type: attackMode,
+        unitId: selected,
+        targetId,
+      }),
+    )
   }
   const playSelected = async (
     cell?: { row: 0 | 1; column: 0 | 1 | 2 | 3 },
@@ -446,19 +480,53 @@ export function TacticalBattleScreen({
         notice={claimStatus}
         claimed={!!battle.reward && claimed.includes(battle.reward.id)}
         trapColumn={trapColumn}
+        attackMode={attackMode}
+        onAttackMode={setAttackMode}
+        onCommander={() => attackSelected("hero:enemy")}
+        onReact={(reactionId, activate) => {
+          void presentSingle((c) =>
+            reduceTacticalBattle(c, {
+              id: `react:${reactionId}:${activate}`,
+              type: "react",
+              reactionId,
+              activate,
+            }),
+          )
+        }}
         onSelectCard={setSelectedCard}
         onSelectUnit={setSelected}
         onColumn={setTrapColumn}
         onPlay={() => playSelected()}
-        onAdvance={advancePresented}
+        onAdvance={() => {
+          setSelectedCard(null)
+          return battle.cardGame?.directed
+            ? presentSingle((c) =>
+                reduceTacticalBattle(c, {
+                  id: `end-turn:${c.round}:${c.processedActionIds.length}`,
+                  type: "end-turn",
+                }),
+              )
+            : advancePresented()
+        }}
         onExit={onExit}
         onCell={(side, cell, unit) => {
           if (chosenCard && battle.phase === "planning") {
             playSelected(cell, unit?.instanceId)
             return
           }
-          if (unit) setSelected(unit.instanceId)
-          else if (side === "player" && selectedUnit?.side === "player")
+          if (
+            battle.cardGame?.directed &&
+            side === "enemy" &&
+            unit &&
+            selectedUnit?.side === "player"
+          ) {
+            attackSelected(unit.instanceId)
+            return
+          }
+          if (unit) {
+            setSelected(unit.instanceId)
+            setAttackMode("basic")
+          } else if (side === "player" && selectedUnit?.side === "player")
             move(cell.row, cell.column)
         }}
         onMulligan={() => {
@@ -467,15 +535,21 @@ export function TacticalBattleScreen({
             reduceTacticalBattle(c, { id: "mulligan", type: "mulligan" }),
           )
         }}
-        onUltimate={(unitId) =>
-          presentSingle((c) =>
+        onUltimate={(unitId) => {
+          if (battle.cardGame?.directed) {
+            setSelected(unitId)
+            setSelectedCard(null)
+            setAttackMode("ultimate")
+            return
+          }
+          void presentSingle((c) =>
             reduceTacticalBattle(c, {
               id: `ultimate:${c.round}:${unitId}`,
               type: "ultimate",
               unitId,
             }),
           )
-        }
+        }}
         onForfeit={() =>
           updateBattle((c) =>
             reduceTacticalBattle(c, {
@@ -492,6 +566,40 @@ export function TacticalBattleScreen({
         }}
         overlay={
           <>
+            {showTutorial &&
+              !showReplacement &&
+              !saveConflict &&
+              !battle.cardGame?.directed?.pending && (
+                <Dialog
+                  title="TCG chủ động · Lời hẹn bên bếp"
+                  onClose={closeTutorial}
+                >
+                  <ol className="table-rules">
+                    <li>
+                      Chơi bài rồi chọn quân và mục tiêu sáng để đánh. Có thể
+                      xen kẽ chơi bài với tấn công.
+                    </li>
+                    <li>
+                      Quân mới chờ lượt sau, trừ Xung kích. Mỗi quân đánh thường
+                      1 lần/vòng.
+                    </li>
+                    <li>
+                      Úp một bẫy; khi đủ điều kiện, chọn Lật hoặc Giữ. Tuyệt kỹ
+                      cần 100 Hương lực và chọn mục tiêu.
+                    </li>
+                    <li>
+                      Kết lượt để đối thủ hành động; bẫy sẽ dừng đúng lúc để bạn
+                      phản ứng.
+                    </li>
+                  </ol>
+                  <button
+                    className="tcg-button primary"
+                    onClick={closeTutorial}
+                  >
+                    Vào bàn chơi
+                  </button>
+                </Dialog>
+              )}
             {showReplacement && (
               <Dialog
                 title="Bạn còn một trận đang lưu"
