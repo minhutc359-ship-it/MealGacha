@@ -31,7 +31,11 @@ export function TacticalCombatEffects({
       root
         .querySelectorAll<HTMLElement>("[data-unit], [data-hero]")
         .forEach((el) => {
-          const r = el.getBoundingClientRect()
+          const r = (
+            el.dataset.hero
+              ? (el.querySelector(".duel-commander-avatar") ?? el)
+              : el
+          ).getBoundingClientRect()
           next[el.dataset.unit ?? `hero:${el.dataset.hero}`] = {
             x: r.left - bounds.left + r.width / 2,
             y: r.top - bounds.top + r.height / 2,
@@ -46,15 +50,33 @@ export function TacticalCombatEffects({
     return () => observer.disconnect()
   }, [t, arena])
   if (!t) return null
+  const deltas = [
+    ...t.deltas,
+    ...t.impacts
+      .filter((hit) => !t.deltas.some((d) => d.id === hit.id))
+      .map((hit) => ({
+        id: hit.id,
+        side:
+          t.before.units.find((u) => u.instanceId === hit.id)?.side ??
+          (hit.id === "hero:enemy" ? "enemy" as const : "player" as const),
+        hp: 0,
+        shield: 0,
+        attack: 0,
+        spawned: false,
+        fallen: false,
+        upgraded: false,
+        statuses: [],
+      })),
+  ]
   const source = anchors[t.sourceId] ?? anchors[`hero:${t.side}`]
   const card = t.cardId ? TACTICAL_CARD_MAP[t.cardId] : null
-  const cues = t.deltas.flatMap((d) => {
+  const cues = deltas.flatMap((d) => {
     const point = anchors[d.id]
     if (!point) return []
-    const kind: EffectCue["kind"] = d.spawned
-      ? "summon"
-      : d.hp < 0 || d.shield < 0
-        ? "strike"
+    const kind: EffectCue["kind"] = t.impacts.some((hit) => hit.id === d.id)
+      ? "strike"
+      : d.spawned
+        ? "summon"
         : d.hp > 0
           ? "heal"
           : d.shield > 0
@@ -111,25 +133,51 @@ export function TacticalCombatEffects({
           />
         )}
       {!quiet &&
-        t.deltas
-          .filter((d) => d.hp < 0 || d.shield < 0)
-          .map((d) => {
-            const p = anchors[d.id]
-            return p ? (
-              <i
-                key={`ring:${d.id}`}
-                aria-hidden="true"
-                className="directed-impact-ring"
-                style={
-                  {
-                    left: p.x,
-                    top: p.y,
-                    "--contact": `${t.contact}ms`,
-                  } as CSSProperties
-                }
-              />
-            ) : null
-          })}
+        t.impacts.map((d) => {
+          const p = anchors[d.id]
+          return p ? (
+            <i
+              key={`ring:${d.id}`}
+              aria-hidden="true"
+              className="directed-impact-ring"
+              style={
+                {
+                  left: p.x,
+                  top: p.y,
+                  "--contact": `${t.contact}ms`,
+                } as CSSProperties
+              }
+            />
+          ) : null
+        })}
+      {t.deltas.flatMap((d) => {
+        const point = anchors[d.id]
+        if (!point) return []
+        return d.statuses.map((status, i) => (
+          <span
+            key={`${d.id}:${status}`}
+            aria-hidden="true"
+            className={`duel-status-pulse is-${status}`}
+            style={
+              {
+                left: point.x + i * 8,
+                top: point.y,
+                "--contact": `${quiet ? 0 : t.contact}ms`,
+              } as CSSProperties
+            }
+          >
+            {status === "heal"
+              ? "✚"
+              : status === "burn"
+                ? "♨"
+                : status === "shield"
+                  ? "◇"
+                  : status === "root"
+                    ? "⌁"
+                    : "❄"}
+          </span>
+        ))
+      })}
       {(["turn", "reaction", "negate"].includes(t.kind) || trap) && (
         <div
           key={t.id}
@@ -149,14 +197,26 @@ export function TacticalCombatEffects({
           </span>
         </div>
       )}
-      {t.deltas
-        .filter((d) => !d.spawned && (d.hp || d.shield || d.attack))
+      {deltas
+        .filter(
+          (d) =>
+            (!d.spawned || t.impacts.some((hit) => hit.id === d.id)) &&
+            (d.hp ||
+              d.shield ||
+              d.attack ||
+              t.impacts.some((hit) => hit.id === d.id)),
+        )
         .map((d) => {
           const p = anchors[d.id]
           if (!p) return null
+          const hit = t.impacts.find((hit) => hit.id === d.id)
+          const healed = d.spawned ? 0 : d.hp + (hit?.hp ?? 0),
+            ward = d.spawned ? 0 : d.shield + (hit?.shield ?? 0)
           const values = [
-            d.hp ? `${d.hp > 0 ? "+" : ""}${d.hp} ♥` : "",
-            d.shield ? `${d.shield > 0 ? "+" : ""}${d.shield} ◇` : "",
+            hit?.hp ? `−${hit.hp} ♥` : "",
+            hit?.shield ? `−${hit.shield} ◇` : "",
+            healed > 0 ? `+${healed} ♥` : "",
+            ward > 0 ? `+${ward} ◇` : "",
             d.attack > 0 ? `+${d.attack} ⚔` : "",
           ]
             .filter(Boolean)
@@ -165,9 +225,7 @@ export function TacticalCombatEffects({
             <b
               key={d.id}
               aria-hidden="true"
-              className={`tactical-delta ${
-                d.hp < 0 || d.shield < 0 ? "is-damage" : "is-support"
-              }`}
+              className={`tactical-delta ${hit ? "is-damage" : "is-support"}`}
               style={
                 {
                   left: p.x,
@@ -190,6 +248,19 @@ export function TacticalCombatEffects({
             <strong>{card.name}</strong>
             <b>Bùng nổ Hương lực</b>
           </span>
+        </div>
+      )}
+      {card && ["summon", "upgrade", "spell"].includes(t.kind) && (
+        <div className="duel-action-callout" role="status">
+          <small>
+            {t.side === "player" ? "ĐỒNG MINH" : "ĐỐI THỦ"} ·{" "}
+            {t.kind === "summon"
+              ? "TRIỆU HỒI"
+              : t.kind === "upgrade"
+                ? "NÂNG SAO"
+                : "BÍ THUẬT"}
+          </small>
+          <strong>{card.name}</strong>
         </div>
       )}
       {t.combo && (

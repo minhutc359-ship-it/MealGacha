@@ -1,4 +1,5 @@
-.tactical-spirit-portrait{display:block;background-repeat:no-repeat;background-color:#213d3d;overflow:hidden}
+.tactical-spirit-portrait{display:block;position:relative;background-color:#213d3d;overflow:hidden;container-type:size}
+.spirit-portrait-crop{display:block;position:absolute;left:50%;top:50%;width:max(100cqw,100cqh);height:max(100cqw,100cqh);transform:translate(-50%,-50%);background-repeat:no-repeat}
 .table-card-face>.tactical-spirit-portrait{width:100%;aspect-ratio:1.35}
 .table-card-face.is-mini>.tactical-spirit-portrait{aspect-ratio:auto;height:44%}
 .tcg-card-art>.tactical-spirit-portrait{position:absolute;inset:0}

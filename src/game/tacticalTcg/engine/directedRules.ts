@@ -7,9 +7,9 @@ export const DIRECTED_TRAP_TEXT: Record<string, string> = {
   "trap-mirror":
     "Khi địch tấn công: chặn đòn, phản lên Chỉ huy địch sát thương bằng công kẻ đánh/10 làm tròn lên, tối đa 4.",
   "trap-embers":
-    "Trước đòn đánh địch: gây 12 sát thương lên mọi quân địch chưa đánh vòng này. Hủy đòn nếu kẻ đánh bị hạ.",
+    "Trước đòn đánh địch: gây 12 sát thương và Thiêu đốt mọi quân địch chưa đánh vòng này (4 sát thương cuối vòng, 2 lần; không cộng dồn). Hủy đòn nếu kẻ đánh bị hạ.",
   "trap-root":
-    "Sau khi địch triệu hồi quân giá từ 3: gây 20 sát thương, đóng băng đến hết lượt kế tiếp của quân đó. Hiệu ứng vào sân đã giải quyết.",
+    "Sau khi địch triệu hồi quân giá từ 3: gây 20 sát thương, trói chân và khống chế đến hết vòng kế tiếp: không di chuyển, đánh hoặc dùng Tuyệt kỹ. Hiệu ứng vào sân đã giải quyết.",
   "trap-seal":
     "Khi địch dùng phép giá từ 2: vô hiệu phép. Địch mất lá và Lửa; phép không kích nội tại hoặc công thức.",
   "trap-ward":
@@ -26,7 +26,7 @@ export function directedCardText(c: TacticalCard) {
   if (c.ability === "disarm")
     return "Gỡ bẫy địch, đưa vào ký ức và rút 1 lá. Không kích bẫy."
   if (c.ability === "thaw")
-    return `Giải đóng băng đồng minh; hồi ${c.tacticalPower} Ý chí và ${c.tacticalPower * 5} HP mỗi quân. Không hoàn đòn đã đánh.`
+    return `Giải trói chân/khống chế đồng minh; hồi ${c.tacticalPower} Ý chí và ${c.tacticalPower * 5} HP mỗi quân. Không hoàn đòn đã đánh.`
   if (c.ability === "thawer")
     return (
       "Vào sân: giải đóng băng đồng minh khác và cho họ +10 Hương lực. " +

@@ -16,8 +16,10 @@ export interface TacticalDelta {
   spawned: boolean
   fallen: boolean
   upgraded: boolean
+  statuses: ("root" | "freeze" | "burn" | "heal" | "shield")[]
 }
 export interface TacticalTransition {
+  impacts: {id: string; hp: number; shield: number}[]
   id: string
   kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "move" | "round" | "reaction" | "negate" | "turn" | "intent"
   targetId?: string
@@ -65,11 +67,18 @@ export function tacticalTransition(
         spawned: !old || !!(old.defeated && !u.defeated),
         fallen: !!old && !old.defeated && u.defeated,
         upgraded: !!old && u.star > old.star,
+        statuses: [
+          ...((u.rootedUntil ?? 0) >= after.round && (old?.rootedUntil ?? 0) < after.round ? ["root" as const] : []),
+          ...((u.stunnedUntil ?? 0) >= after.round && (old?.stunnedUntil ?? 0) < after.round ? ["freeze" as const] : []),
+          ...(u.burn && (!old?.burn || u.burn.remaining !== old.burn.remaining) || old?.burn && !u.burn && u.hp < old.hp ? ["burn" as const] : []),
+          ...(old && u.hp > old.hp && !old.defeated ? ["heal" as const] : []),
+          ...(old && u.shield > old.shield ? ["shield" as const] : []),
+        ],
       }
     })
     .filter(
       (d) =>
-        d.hp || d.shield || d.attack || d.spawned || d.fallen || d.upgraded,
+        d.hp || d.shield || d.attack || d.spawned || d.fallen || d.upgraded || d.statuses.length,
     )
   for (const side of ["player", "enemy"] as const) {
     const hp = after.commanders[side].hp - before.commanders[side].hp
@@ -83,6 +92,7 @@ export function tacticalTransition(
         spawned: false,
         fallen: false,
         upgraded: false,
+        statuses: hp > 0 ? ["heal"] : [],
       })
   }
   const changedOwner =
@@ -184,6 +194,11 @@ export function tacticalTransition(
                 : 180
   return {
     id,
+    impacts: [
+      ...(action?.impacts ?? []),
+      ...deltas.filter(d => (d.hp < 0 || d.shield < 0) && !action?.impacts?.some(v => v.id === d.id))
+        .map(d => ({id:d.id,hp:Math.max(0,-d.hp),shield:Math.max(0,-d.shield)})),
+    ],
     kind,
     side,
     sourceId:

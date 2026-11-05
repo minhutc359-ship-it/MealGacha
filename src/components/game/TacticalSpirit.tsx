@@ -26,7 +26,8 @@ export function TacticalSpiritArt({
       className={`tactical-spirit-portrait ${className}`}
       data-spirit={id}
       aria-hidden="true"
-      style={
+    >
+      <span className="spirit-portrait-crop" style={
         art
           ? {
               backgroundImage: `url("${art.path}")`,
@@ -34,8 +35,7 @@ export function TacticalSpiritArt({
               backgroundPosition: `${((art.cell % art.columns) * 100) / Math.max(1, art.columns - 1)}% ${(Math.floor(art.cell / art.columns) * 100) / Math.max(1, art.columns - 1)}%`,
             } as CSSProperties
           : undefined
-      }
-    >
+      } />
       {!art && "✦"}
     </span>
   )

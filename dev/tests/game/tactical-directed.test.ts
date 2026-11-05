@@ -19,6 +19,7 @@ import {
 import { validTacticalCheckpoint } from "@/game/tacticalTcg/progression/checkpoint"
 import { emptyCardCell } from "@/game/tacticalTcg/engine/cardRuntime"
 import { TACTICAL_DECK_LIBRARY } from "@/game/tacticalTcg/deckLibrary"
+import { tacticalTransition } from "@/game/tacticalTcg/presentation/transitions"
 const unit = (
   id: string,
   side: "player" | "enemy",
@@ -97,6 +98,77 @@ function react(s: TacticalBattleState, activate = true) {
   })
 }
 describe("Directed TCG and native trap decisions", () => {
+  it("reports the actual hit through a newly granted ward even when net shield rises", () => {
+    const s=fixture()
+    s.traps=[{instanceId:"enemy-ward",cardId:"trap-ward",trapId:"bamboo-guard",side:"enemy",column:0,armed:true,triggeredRound:null}]
+    const n=reduceTacticalBattle(s,{id:"ward-and-hit",type:"basic",unitId:s.units[0].instanceId,targetId:s.units[1].instanceId})
+    expect(n.units[1].shield).toBeGreaterThan(s.units[1].shield)
+    const impact=n.cardGame!.directed!.event!.impacts!.find(hit=>hit.id===s.units[1].instanceId)!
+    expect(impact).toEqual({id:s.units[1].instanceId,hp:0,shield:6})
+    expect(tacticalTransition(s,n)?.impacts).toContainEqual(impact)
+    expect(validTacticalCheckpoint(JSON.parse(JSON.stringify(n)))).toBe(true)
+    const bad=structuredClone(n);bad.cardGame!.directed!.event!.impacts![0].shield=-1
+    expect(validTacticalCheckpoint(bad)).toBe(false)
+  })
+  it("embers apply a saved two-tick burn, absorb shield first and never tick twice on replay", () => {
+    let s = fixture("trap-embers")
+    s.units[1].hp = s.units[1].maxHp = 80
+    s = react(attack(end(s)))
+    expect(s.units[1].burn).toEqual({damage:4,remaining:2})
+    expect(s.units[1].hp).toBe(68)
+    s.units[1].shield = 6
+    const tick = (state: TacticalBattleState, id: string) => {
+      state = JSON.parse(JSON.stringify(state))
+      state.cardGame!.directed!.turn = "enemy"
+      state.cardGame!.sides.enemy.hand = []
+      for (const u of state.units) { state.cardGame!.attacks[u.instanceId] = state.round; u.energy = 0 }
+      return reduceTacticalBattle(state, {id,type:"enemy-step"})
+    }
+    s = tick(s, "burn-tick-one")
+    expect(s.units[1].hp).toBe(68)
+    expect(s.units[1].shield).toBe(2)
+    expect(s.units[1].burn).toEqual({damage:4,remaining:1})
+    expect(validTacticalCheckpoint(s)).toBe(true)
+    const reload = JSON.parse(JSON.stringify(s))
+    expect(reduceTacticalBattle(reload,{id:"burn-tick-one",type:"enemy-step"})).toBe(reload)
+    s = tick(s, "burn-tick-two")
+    expect(s.units[1].hp).toBe(66)
+    expect(s.units[1].shield).toBe(0)
+    expect(s.units[1].burn).toBeUndefined()
+    expect(validTacticalCheckpoint(s)).toBe(true)
+    expect(tick(s,"after-burn").units[1].hp).toBe(66)
+  })
+  it("burn deaths record one grave entry and clear statuses before revival", () => {
+    let s = fixture()
+    const u = s.units[0]
+    u.hp = 3; u.burn = {damage:4,remaining:1}; u.rootedUntil = s.round + 1
+    s.cardGame!.directed!.turn = "enemy"
+    for(const v of s.units) s.cardGame!.attacks[v.instanceId] = s.round
+    s = reduceTacticalBattle(s,{id:"lethal-burn",type:"enemy-step"})
+    expect(s.units[0].defeated).toBe(true)
+    expect(s.cardGame!.sides.player.discard.filter(c=>c===u.cardId)).toHaveLength(1)
+    expect(s.units[0].burn).toBeUndefined()
+    expect(s.units[0].rootedUntil).toBeUndefined()
+    expect(validTacticalCheckpoint(s)).toBe(true)
+  })
+  it("root prevents movement, thaw clears both control markers without refunding actions", () => {
+    let s = fixture()
+    const u = s.units[0]
+    u.rootedUntil = s.round + 1; u.stunnedUntil = s.round + 1
+    s.cardGame!.attacks[u.instanceId] = s.round
+    const move = {id:"rooted-move",type:"move" as const,unitId:u.instanceId,cell:{row:1 as const,column:0 as const}}
+    expect(reduceTacticalBattle(s,move)).toBe(s)
+    s.cardGame!.sides.player.hand=["v4-warm-towel"]
+    s = reduceTacticalBattle(s,{id:"cleanse-root",type:"play-card",side:"player",handIndex:0})
+    expect(s.units[0].rootedUntil).toBe(0)
+    expect(s.units[0].stunnedUntil).toBe(0)
+    expect(directedReadiness(s,s.units[0])).toBe("exhausted")
+    expect(reduceTacticalBattle(s,move).units[0].cell.row).toBe(1)
+    for (const invalid of [{rootedUntil:s.round+2},{burn:{damage:400,remaining:1}},{burn:{damage:4,remaining:3}}]) {
+      const bad=structuredClone(s);Object.assign(bad.units[0],invalid)
+      expect(validTacticalCheckpoint(bad)).toBe(false)
+    }
+  })
   it("reviving a unit does not repeat its entry draw or grant an immediate attack",()=>{
     let s=fixture();s.units[0]=unit("pho-bo","player");s.units[0].hp=0;s.units[0].defeated=true
     const c=TACTICAL_CARDS.find(c=>c.kind==="spell"&&c.tacticalEffect==="revive")!

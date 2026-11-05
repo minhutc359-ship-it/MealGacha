@@ -21,6 +21,8 @@ export interface UnitDefinition {
 export interface BattleUnit extends UnitDefinition {
   summonedRound?: number
   stunnedUntil?: number
+  rootedUntil?: number
+  burn?: { damage: number; remaining: number }
   cardId?: string
   triggers?: Record<string, number>
   instanceId: string
@@ -207,6 +209,7 @@ export interface DirectedReaction {
   affectedUnitId: string | null
 }
 export interface DirectedEvent {
+  impacts?: {id: string; hp: number; shield: number}[]
   id: string
   kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "reaction" | "negate" | "turn" | "intent" | "move"
   side: BattleSide

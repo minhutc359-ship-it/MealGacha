@@ -2,7 +2,7 @@
 
 ## P0 trước merge/deploy
 
-- TCG-007 đã kiểm tra bố cục bàn ở 320×568, 390×844, 844×390, 1280×720, 1360×900 bằng iframe viewport trên Chrome thật; cả 16 ô/tay bài/thanh thao tác nằm trong khung. Điện thoại/touch thật vẫn cần nghiệm thu.
+- TCG-010 thay16 ô bằng hai hàng tối đa5VịLinh/bên; trận thật và fixture10quân/tay8 đã kiểm tra ở320×568,390×844,844×390,1280×720,1360×900 trên Chrome. Main fields/hand/footer/card aspect đều đạt; điện thoại/touch thật vẫn cần nghiệm thu.
 
 - Review trực quan desktop/mobile và thử input touch trên thiết bị thật.
 - Chơi xuyên 8 node, kiểm tra mở khóa Manga và nhận reward sau reload/tab cạnh tranh.
@@ -17,7 +17,9 @@
 
 ## Tiếp theo
 
-- TCG-009 đã thay auto combat production bằng lượt chủ động,8 native traps/Lật-Giữ và8 recipes. Tiếp: human balance cho8 archetypes, đánh giá heuristic AI, hoàn thiện các modal-choice/delayed spell abilities còn giữ bản chuyển đổi Tactical; chưa tuyên bố parity mọi hiệu ứng legacy. Tiếp tục62 atlas còn thiếu và QA thiết bị/touch/FPS.
+- TCG-010 đã hoàn thiện bàn splash art/commander/đặt-lật/đường đạn/trạng thái thật. Tiếp: playtest cân bằng burn4×2 của Vòng Than Phản Công, root/movement/thaw và8archetypes; nghiệm thu cảm quan/touch/FPS. Theo yêu cầu mới của chủ sản phẩm, model nhiều pose không bắt buộc; ưu tiên clarity và gameplay trước việc sản xuất62atlas còn lại.
+
+- TCG-009 đã thay auto combat production bằng lượt chủ động,8 native traps/Lật-Giữ và8 recipes. Tiếp: human balance cho8 archetypes, đánh giá heuristic AI, hoàn thiện các modal-choice/delayed spell abilities còn giữ bản chuyển đổi Tactical; chưa tuyên bố parity mọi hiệu ứng legacy. QA thiết bị/touch/FPS còn mở.
 
 - TCG-008 đã nối77 atlas đã render và chân dung riêng cho139 unit, renderer/pose/VFX/combo của TCG cũ vào production Tactical.62 unit chưa có atlas nhiều động tác: cần sản xuất/duyệt riêng, không gọi portrait-only là hoàn thiện animation. Cần đo hiệu năng tải/model trên thiết bị thật.
 

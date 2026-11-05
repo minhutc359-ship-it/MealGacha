@@ -15,6 +15,8 @@ export function validDirectedState(s: TacticalBattleState) {
   if (!record(d) || d.version !== 2 || !["player", "enemy"].includes(d.turn))
     return false
   for (const u of s.units) {
+    if (u.rootedUntil !== undefined && (!integer(u.rootedUntil) || u.rootedUntil > s.round + 1)) return false
+    if (u.burn !== undefined && (!record(u.burn) || u.burn.damage !== 4 || ![1, 2].includes(u.burn.remaining) || u.defeated)) return false
     if (
       u.summonedRound !== undefined &&
       (!integer(u.summonedRound) || u.summonedRound > s.round)
@@ -33,6 +35,7 @@ export function validDirectedState(s: TacticalBattleState) {
   )
     return false
   const e = d.event
+  if (e?.impacts !== undefined && (!Array.isArray(e.impacts) || e.impacts.length > s.units.length + 2 || e.impacts.some(v => !record(v) || typeof v.id !== "string" || !(v.id === "hero:player" || v.id === "hero:enemy" || s.units.some(u => u.instanceId === v.id)) || !integer(v.hp) || !integer(v.shield)) || new Set(e.impacts.map(v => v.id)).size !== e.impacts.length)) return false
   if (
     e !== null &&
     (!record(e) ||

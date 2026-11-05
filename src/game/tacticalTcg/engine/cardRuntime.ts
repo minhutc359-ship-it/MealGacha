@@ -356,6 +356,11 @@ export function recordFallenCards(
   state: TacticalBattleState,
 ) {
   if (!state.cardGame) return
+  for (const u of state.units.filter(u => u.defeated)) {
+    delete u.burn
+    delete u.rootedUntil
+    delete u.stunnedUntil
+  }
   for (const u of state.units)
     if (
       u.cardId &&
