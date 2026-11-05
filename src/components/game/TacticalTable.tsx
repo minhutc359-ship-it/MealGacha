@@ -7,10 +7,7 @@ import {
   type ReactNode,
 } from "react"
 import { SCHOOLS, RARITIES } from "../../game/catalog"
-import {
-  TACTICAL_CARD_MAP,
-  type TacticalCard,
-} from "../../game/tacticalTcg/cards"
+import { type TacticalCard } from "../../game/tacticalTcg/cards"
 import type {
   BattleUnit,
   BoardCell,
@@ -26,6 +23,18 @@ import {
 import { TacticalSpiritArt } from "./TacticalSpirit"
 import { DuelCommander, TacticalDuelField } from "./TacticalDuelField"
 import { duelStatuses } from "../../game/tacticalTcg/presentation/duel"
+import {
+  DUEL_CARD_MAP,
+  combatCard,
+  duelChoiceCard,
+} from "../../game/tacticalTcg/duelCards"
+import { useDuelViewport } from "../../game/tacticalTcg/presentation/duelViewport"
+import { duelSounds } from "../../game/tacticalTcg/presentation/duelAudio"
+import { useGameMusic } from "./GameAudio"
+import { gameAudio } from "../../infrastructure/audio/gameAudio"
+import { DuelCulture } from "./DuelCulture"
+import { TACTICAL_CAMPAIGN_NODES } from "../../game/tacticalTcg/campaign"
+import { DUEL_BOSSES } from "../../game/tacticalTcg/engine/duelBosses"
 import { TacticalCombatEffects } from "./TacticalCombatEffects"
 import {
   directedCardText,
@@ -36,6 +45,7 @@ import "../../game/directedTable.css"
 import "../../game/tacticalTable.css"
 import "../../game/duelTable.css"
 
+const TACTICAL_CARD_MAP = DUEL_CARD_MAP
 const kind = (card: TacticalCard) =>
   card.kind === "unit"
     ? "Vị Linh"
@@ -90,6 +100,14 @@ export function TacticalCardFace({
   )
 }
 interface Props {
+  choiceIndex?: 0 | 1
+  onChoice?: (index: 0 | 1) => void
+  quest?: {
+    label: string
+    complete: boolean
+    claimed: boolean
+    onClaim: () => void
+  }
   attackMode?: "basic" | "ultimate"
   onAttackMode?: (mode: "basic" | "ultimate") => void
   onCommander?: () => void
@@ -117,17 +135,39 @@ interface Props {
 }
 export function TacticalTable(p: Props) {
   const { battle: b } = p
+  const viewport = useDuelViewport()
+  const prefs = useAppStore((s) => s.user.preferences)
+  const updatePreference = useAppStore((s) => s.updatePreference)
+  const region = String(
+    TACTICAL_CAMPAIGN_NODES.find((n) => n.id === b.nodeId)?.act ?? 1,
+  )
+  const bossUnit = b.units.find((u) => u.instanceId === b.boss?.unitId)
+  const bossTell = DUEL_BOSSES.find((v) => v.id === bossUnit?.id)?.tell
+  useGameMusic(
+    b.boss || b.commanders.player.hp <= 8
+      ? "boss"
+      : region === "2"
+        ? "map-harbor"
+        : region === "3"
+          ? "map-garden"
+          : region === "4"
+            ? "map-lotus"
+            : "mode-tcg",
+    20,
+  )
   const owner = b.cardGame!.sides.player,
     enemy = b.cardGame!.sides.enemy
   const card =
     p.selectedCard === null
       ? null
-      : TACTICAL_CARD_MAP[owner.hand[p.selectedCard]]
+      : duelChoiceCard(
+          combatCard(b, owner.hand[p.selectedCard]),
+          p.choiceIndex ?? 0,
+        )
   const unit = b.units.find(
     (u) => u.instanceId === p.selectedUnit && !u.defeated,
   )
-  const inspectCard =
-    card ?? (unit?.cardId ? TACTICAL_CARD_MAP[unit.cardId] : null)
+  const inspectCard = card ?? (unit?.cardId ? combatCard(b, unit.cardId) : null)
   const [dialog, setDialog] =
     useState<"guide" | "card" | "log" | "forfeit" | "ultimate" | "traps" | null>(
       null,
@@ -137,6 +177,13 @@ export function TacticalTable(p: Props) {
   const [effects, setEffects] = useState<Record<string, string>>({})
   const [transition, setTransition] = useState<TacticalTransition | null>(null)
   const [contacted, setContacted] = useState(true)
+  useEffect(() => {
+    if (transition)
+      duelSounds(transition).forEach((s) => gameAudio.play(s.cue, s.delay))
+  }, [transition?.id])
+  useEffect(() => {
+    if (b.winner) gameAudio.play(b.winner === "player" ? "victory" : "defeat")
+  }, [b.winner])
   const arena = useRef<HTMLDivElement>(null)
   const preferenceQuiet = useAppStore(
     (s) =>
@@ -189,7 +236,7 @@ export function TacticalTable(p: Props) {
         ),
     )
     if (trap?.cardId) {
-      setReveal(TACTICAL_CARD_MAP[trap.cardId])
+      setReveal(combatCard(b, trap.cardId))
       if (revealTimer.current) clearTimeout(revealTimer.current)
       revealTimer.current = setTimeout(() => setReveal(null), 1200)
     }
@@ -287,7 +334,7 @@ export function TacticalTable(p: Props) {
             : planning
               ? card
                 ? card.kind === "unit"
-                  ? "Chọn Gọi tiền tuyến/hậu tuyến. Chọn đúng quân trùng lá để lên 2 sao."
+                  ? "Gọi Vị Linh từ tay bài. Chọn quân trùng lá để thức tỉnh lên 2 sao."
                   : card.kind === "trap"
                     ? directed
                       ? "Úp vào ô bẫy riêng. Khi đủ điều kiện, bạn chọn Lật hoặc Giữ; gài mới thay bẫy cũ."
@@ -298,7 +345,8 @@ export function TacticalTable(p: Props) {
                         ? "Chọn đồng minh sáng viền để tăng chỉ số."
                         : "Hiệu ứng diện rộng: nhấn Dùng thẻ để xác nhận."
                 : directed
-                  ? "Chơi bài → chọn quân → chọn mục tiêu. Kết lượt khi đã sẵn sàng."
+                  ? (bossTell ??
+                    "Chơi bài → chọn quân → chọn mục tiêu. Kết lượt khi đã sẵn sàng.")
                   : "Chọn lá → chọn ô/mục tiêu → Giao chiến."
               : "Đủ 100 Hương lực: dùng Tuyệt kỹ, rồi Kết vòng để rút bài và hồi Lửa."
   const canPlay =
@@ -329,7 +377,26 @@ export function TacticalTable(p: Props) {
           : "3 · Tuyệt kỹ / Kết vòng"
   return (
     <section
-      className="tcg-table is-duel"
+      className={`tcg-table is-duel is-final ${
+        viewport.short ? "is-short" : ""
+      } ${viewport.narrow ? "is-narrow" : ""} ${
+        viewport.rotated ? "is-rotated" : ""
+      }`}
+      style={
+        {
+          ...viewport.style,
+          "--duel-board": `url("/assets/tcg/boards/${
+            region === "2"
+              ? "ember"
+              : region === "3"
+                ? "grove"
+                : region === "4"
+                  ? "sugar"
+                  : "hearth"
+          }-v441.webp")`,
+        } as CSSProperties
+      }
+      data-rotated={viewport.rotated}
       aria-label="Bàn Linh Chiến TCG · 5 Vị Linh mỗi bên"
       data-phase={b.phase}
       data-turn={directed?.turn}
@@ -351,7 +418,7 @@ export function TacticalTable(p: Props) {
         <div>
           <small>SOUL OF MEAL · LINH CHIẾN</small>
           <strong>
-            Vòng {b.round} <i> / </i> {stage}
+            Vòng {b.round} <i> / </i> {stage}{b.mode === "pvp" ? ` · ${(b.cardGame?.botLevel ?? "hard").toUpperCase()}` : ""}
           </strong>
         </div>
         <nav>
@@ -361,6 +428,19 @@ export function TacticalTable(p: Props) {
           <button onClick={() => setDialog("log")}>
             ☷ <span>Nhật ký</span>
           </button>
+          <button
+            aria-label={prefs.soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+            onClick={() =>
+              updatePreference("soundEnabled", !prefs.soundEnabled)
+            }
+          >
+            {prefs.soundEnabled ? "♫" : "♪"}
+          </button>
+          {viewport.mobile && (
+            <button onClick={viewport.toggle} aria-label="Đổi hướng bàn đấu">
+              {viewport.wide ? "Dọc" : "Ngang"}
+            </button>
+          )}
         </nav>
       </header>
       <div
@@ -369,14 +449,85 @@ export function TacticalTable(p: Props) {
         role="region"
         aria-label="Hai sân đấu"
       >
-        <DuelCommander battle={b} side="enemy" hp={commanderHp("enemy")} target={attackTargets.includes("hero:enemy")} onTarget={p.onCommander} onTrap={() => setDialog("traps")}
-          speech={directed?.turn === "enemy" ? (transition?.cardId ? `${TACTICAL_CARD_MAP[transition.cardId]?.name ?? "Vị Linh"}, hành động!` : "Đến lượt ta. Hãy giữ thế trận!") : "Ta đang chờ nước đi của ngươi."} />
-        {(["enemy", "player"] as const).map(side => <TacticalDuelField key={side}
-          battle={b} side={side} card={card} selected={unit} targets={attackTargets} busy={p.busy}
-          planning={planning} transition={transition} contacted={contacted} effects={effects} onCell={p.onCell} />)}
-        <div className="table-divider"><span>{pending ? "BẪY CHỜ PHẢN ỨNG" : attackReady ? "CHỌN MỤC TIÊU SÁNG VIỀN" : ownTurn ? "LƯỢT CỦA BẠN" : "LƯỢT ĐỐI THỦ"}</span><b>✦</b><span>HỘ VỆ CHẮN ĐÒN · 5 VỊ LINH MỖI BÊN</span></div>
-        <DuelCommander battle={b} side="player" hp={commanderHp("player")} onTrap={() => setDialog("traps")}
-          speech={card ? `${card.name} — chọn cách triển khai.` : unit?.side === "player" ? `${unit.name}, ${attackReady ? "chọn mục tiêu!" : "giữ vị trí."}` : ownTurn ? "Cùng nhau giữ lửa. Bạn ra lệnh!" : "Quan sát đối thủ, chờ thời cơ lật bẫy."} />
+        <div className="duel-cultural-background">
+          <DuelCulture kind="drum" />
+          <DuelCulture kind="lotus" />
+          <DuelCulture kind="rice" />
+        </div>
+        <DuelCommander
+          battle={b}
+          side="enemy"
+          hp={commanderHp("enemy")}
+          target={
+            attackTargets.includes("hero:enemy") ||
+            (!!card &&
+              card.kind === "spell" &&
+              card.tacticalEffect === "damage" &&
+              planning &&
+              !p.busy &&
+              owner.mana >= card.cost)
+          }
+          onTarget={p.onCommander}
+          onTrap={() => setDialog("traps")}
+          speech={
+            directed?.turn === "enemy"
+              ? transition?.cardId
+                ? `${TACTICAL_CARD_MAP[transition.cardId]?.name ?? "Vị Linh"}, hành động!`
+                : "Đến lượt ta. Hãy giữ thế trận!"
+              : "Ta đang chờ nước đi của ngươi."
+          }
+        />
+        {(["enemy", "player"] as const).map((side) => (
+          <TacticalDuelField
+            key={side}
+            battle={b}
+            side={side}
+            card={card}
+            selected={unit}
+            targets={attackTargets}
+            busy={p.busy}
+            ultimate={p.attackMode === "ultimate"}
+            planning={planning}
+            transition={transition}
+            contacted={contacted}
+            effects={effects}
+            onCell={p.onCell}
+          />
+        ))}
+        <div className="table-divider" title={bossTell}>
+          <span>
+            {pending
+              ? "BẪY CHỜ PHẢN ỨNG"
+              : attackReady
+                ? "CHỌN MỤC TIÊU SÁNG VIỀN"
+                : ownTurn
+                  ? "LƯỢT CỦA BẠN"
+                  : "LƯỢT ĐỐI THỦ"}
+          </span>
+          <b>✦</b>
+          <span>
+            {b.boss
+              ? `HẠ ${b.boss.title.toLocaleUpperCase("vi")} HOẶC CHỦ TƯỚNG ĐỂ THẮNG`
+              : "HỘ VỆ BẢO VỆ CHỦ TƯỚNG · CÔNG = SÁT THƯƠNG"}
+          </span>
+        </div>
+        <DuelCommander
+          battle={b}
+          side="player"
+          hp={commanderHp("player")}
+          onTrap={() => setDialog("traps")}
+          speech={
+            card
+              ? `${card.name} — chọn cách triển khai.`
+              : unit?.side === "player"
+                ? `${unit.name}, ${
+                    attackReady ? "chọn mục tiêu!" : "giữ vị trí."
+                  }`
+                : ownTurn
+                  ? "Cùng nhau giữ lửa. Bạn ra lệnh!"
+                  : "Quan sát đối thủ, chờ thời cơ lật bẫy."
+          }
+        />
         <TacticalCombatEffects
           transition={transition}
           arena={arena}
@@ -399,16 +550,22 @@ export function TacticalTable(p: Props) {
                 <b>Trên sân:</b> {unit.attack} công · {unit.hp}/{unit.maxHp} HP
                 · {unit.shield} khiên · {unit.energy}/100 Hương lực.{" "}
                 {unit.side === "player"
-                  ? "Chọn nút đổi tuyến bên dưới sân (1 lần/vòng); trói chân hoặc khống chế ngăn di chuyển."
+                  ? "Hộ vệ chắn chủ tướng; chọn quân rồi mục tiêu để đánh. Di chuột hoặc chạm Đọc thẻ để xem kỹ năng."
                   : "Quân địch: chạm để xem, không điều khiển."}
               </p>
             )}
-            {unit && !card && <p className="duel-status-description">{duelStatuses(b, unit).map(s => s.label).join(" · ") || "Không có trạng thái bất lợi"}</p>}
+            {unit && !card && (
+              <p className="duel-status-description">
+                {duelStatuses(b, unit)
+                  .map((s) => s.label)
+                  .join(" · ") || "Không có trạng thái bất lợi"}
+              </p>
+            )}
             <button onClick={() => setDialog("card")}>Phóng to lá bài ↗</button>
           </>
         ) : (
           <div className="table-coach">
-            <span>契</span>
+            <DuelCulture kind="drum" />
             <h2>{planning ? "Bàn ăn chờ bạn" : "Giữ nhịp Tuyệt kỹ"}</h2>
             <p>{hint}</p>
             <ol>
@@ -448,7 +605,7 @@ export function TacticalTable(p: Props) {
                 {card.cost > owner.mana
                   ? `Cần ${card.cost} Lửa · đang có ${owner.mana}`
                   : card.kind === "unit"
-                    ? "Triệu hồi tự chọn tuyến"
+                    ? "Gọi Vị Linh"
                     : card.kind === "trap"
                       ? "Gài bẫy"
                       : "Dùng thẻ"}{" "}
@@ -500,6 +657,19 @@ export function TacticalTable(p: Props) {
         </p>
         {inspectCard && (
           <button onClick={() => setDialog("card")}>Đọc thẻ</button>
+        )}
+        {card?.choices && (
+          <div className="duel-spell-choices" aria-label="Chọn cách Nêm vị">
+            {card.choices.map((choice, index) => (
+              <button
+                key={index}
+                aria-pressed={(p.choiceIndex ?? 0) === index}
+                onClick={() => p.onChoice?.(index as 0 | 1)}
+              >
+                {choice.label}
+              </button>
+            ))}
+          </div>
         )}
         {card && (
           <button
@@ -555,7 +725,17 @@ export function TacticalTable(p: Props) {
             </div>
           )}
         </header>
-        <div className="table-hand" style={{"--hand-count": Math.max(1, Math.min(perPage, owner.hand.length - currentPage * perPage))} as CSSProperties}>
+        <div
+          className="table-hand"
+          style={
+            {
+              "--hand-count": Math.max(
+                1,
+                Math.min(perPage, owner.hand.length - currentPage * perPage),
+              ),
+            } as CSSProperties
+          }
+        >
           {owner.hand
             .slice(currentPage * perPage, (currentPage + 1) * perPage)
             .map((id, i) => {
@@ -650,7 +830,9 @@ export function TacticalTable(p: Props) {
           <p>
             Vòng {b.round} ·{" "}
             {b.winner === "player"
-              ? "Ý chí đối thủ đã cạn."
+              ? b.boss && bossUnit?.defeated
+                ? "Boss đã được khuất phục."
+                : "Ý chí đối thủ đã cạn."
               : "Đổi tay đầu, giữ quân chắn và thử một bộ bài khác."}
           </p>
           {b.reward && b.reward.tinhVi > 0 && (
@@ -665,6 +847,21 @@ export function TacticalTable(p: Props) {
             </p>
           )}
           <div>
+            {p.quest && (
+              <div className="duel-quest-result">
+                <b>
+                  {p.quest.complete ? "✓ Thử thách đạt" : "Thử thách còn mở"}
+                </b>
+                <p>{p.quest.label}</p>
+                {p.quest.complete && (
+                  <button disabled={p.quest.claimed} onClick={p.quest.onClaim}>
+                    {p.quest.claimed
+                      ? "Đã nhận mốc thử thách"
+                      : "Nhận +20 Tinh Vị thử thách"}
+                  </button>
+                )}
+              </div>
+            )}
             {b.reward && b.reward.tinhVi > 0 && (
               <button
                 className="table-primary"
@@ -749,7 +946,13 @@ export function TacticalTable(p: Props) {
           {dialog === "card" && inspectCard && (
             <div className="table-enlarged">
               <TacticalCardFace card={inspectCard} />
-              {unit && !card && <p>{duelStatuses(b, unit).map(s => s.label).join(" · ") || "Không có trạng thái bất lợi"}</p>}
+              {unit && !card && (
+                <p>
+                  {duelStatuses(b, unit)
+                    .map((s) => s.label)
+                    .join(" · ") || "Không có trạng thái bất lợi"}
+                </p>
+              )}
               {card?.kind === "trap" && !directed && (
                 <div className="table-trap-columns">
                   {([0, 1, 2, 3] as const).map((c) => (
@@ -774,7 +977,7 @@ export function TacticalTable(p: Props) {
                   }}
                 >
                   {card.kind === "unit"
-                    ? "Triệu hồi tự chọn tuyến"
+                    ? "Gọi Vị Linh"
                     : card.kind === "trap"
                       ? "Gài bẫy"
                       : "Dùng thẻ"}{" "}
@@ -786,10 +989,16 @@ export function TacticalTable(p: Props) {
           )}
           {dialog === "guide" && (
             <ol className="table-rules">
+              {b.boss && (
+                <li>
+                  <b>Thử thách boss:</b> Hạ boss hoặc đưa chủ tướng địch về 0
+                  HP. {bossTell ?? "Boss đổi pha và nhận khiên khi mất HP."}
+                </li>
+              )}
               <li>
-                <b>Dàn trận:</b> chọn thẻ trên tay, trả đúng Lửa, chọn Gọi tiền
-                tuyến/hậu tuyến hoặc mục tiêu sáng. Mỗi bên tối đa 5 Vị Linh,
-                hiển thị thành một hàng bài; nhãn TIỀN/HẬU giữ rõ vị trí chiến thuật.
+                <b>Gọi Vị Linh:</b> chọn lá trên tay, trả Lửa và gọi lên sân.
+                Mỗi bên tối đa 5 quân, vai trò quyết định cách bảo vệ và phối
+                hợp.
               </li>
               <li>
                 <b>Nâng sao:</b> chơi bản sao thứ hai lên đúng quân 1 sao: +40%
@@ -798,9 +1007,10 @@ export function TacticalTable(p: Props) {
               </li>
               <li>
                 <b>Tấn công:</b> trong lượt bạn, chọn quân rồi chọn mục tiêu
-                sáng. Mỗi quân đánh thường một lần/vòng. Hộ vệ tiền tuyến phải
-                bị xử lý trước; Pháp sư có thể nhắm hậu tuyến khi không còn Hộ
-                vệ. Không còn quân địch mới đánh được Chỉ huy.
+                sáng. Mỗi quân đánh thường một lần/vòng. Còn Hộ vệ phải đánh Hộ
+                vệ trước; hết Hộ vệ có thể đánh chủ tướng hoặc quân bất kỳ. Hai
+                quân trao đổi sát thương; Tiên thủ hạ mục tiêu sẽ tránh phản
+                đòn. Tuyệt kỹ không nhận phản đòn.
               </li>
               <li>
                 <b>Nhịp lượt:</b> xen kẽ chơi bài, tấn công và Tuyệt kỹ đủ 100
@@ -814,20 +1024,21 @@ export function TacticalTable(p: Props) {
                 bẫy chỉ cho biết danh tính; gỡ bẫy loại bỏ nó.
               </li>
               <li>
-                <b>Trạng thái:</b> Trói chân ngăn đổi tuyến. Khống chế ngăn cả
-                di chuyển, đánh và Tuyệt kỹ đến hết vòng ghi trên thẻ. Khăn Ấm
-                và Vị Linh giải khống chế không hoàn đòn đã dùng. Thiêu đốt từ
-                bẫy Than Hồng gây 4 sát thương cuối mỗi vòng trong 2 lần, đi qua
-                khiên trước, không cộng dồn. Hồi sinh xóa các trạng thái cũ.
+                <b>Trạng thái:</b> Dây Lá trói chân và khống chế, ngăn đánh và
+                Tuyệt kỹ đến hết vòng ghi trên thẻ. Khăn Ấm và Vị Linh giải
+                khống chế không hoàn đòn đã dùng. Thiêu đốt từ bẫy Than Hồng gây
+                1 sát thương cuối mỗi vòng trong 2 lần, đi qua khiên trước,
+                không cộng dồn. Hồi sinh xóa các trạng thái cũ.
               </li>
               <li>
-                <b>Thắng:</b> hạ 30 Ý chí địch. Đòn vào Chỉ huy = công/10 làm
-                tròn lên. Hết bộ chịu kiệt sức; từ vòng 8 có Lửa Lớn.
+                <b>Thắng:</b> hạ 30 HP địch. Đòn vào chủ tướng bằng công ghi
+                trên thẻ: công 3 gây 3 HP lên cả quân lẫn chủ tướng. Hết bộ chịu
+                kiệt sức; từ vòng 8 có Lửa Lớn.
               </li>
               <li>
-                <b>Cộng hưởng:</b> 3 hệ cho Mâm Chung +3 công; 4 quân cùng trait
-                cho +6 thay +3. Hai lá liên tiếp cùng hệ mỗi vòng tạo +5 khiên
-                một lần.
+                <b>Cộng hưởng:</b> 3 hệ cho Mâm Chung +1 công; 4 quân cùng hệ
+                cho +2 thay +1. Hai lá liên tiếp cùng hệ mỗi vòng tạo +1 khiên
+                một lần. Khiên mỗi quân tối đa 3.
               </li>
             </ol>
           )}

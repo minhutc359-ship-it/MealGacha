@@ -37,7 +37,12 @@ export function duelUnits(
     .sort((a, b) => a.cell.row - b.cell.row || a.cell.column - b.cell.column)
 }
 export function duelStatuses(s: TacticalBattleState, u: BattleUnit) {
-  const statuses: { kind: string; label: string }[] = []
+  const statuses: { kind: string ; label: string }[] = []
+  if (u.spellShield)
+    statuses.push({
+      kind: "spellshield",
+      label: "Hộ pháp · chặn một phép/bẫy gây hại",
+    })
   if ((u.rootedUntil ?? 0) >= s.round)
     statuses.push({
       kind: "root",

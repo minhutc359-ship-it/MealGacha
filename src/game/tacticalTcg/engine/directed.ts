@@ -1,5 +1,15 @@
 import { TACTICAL_CARD_MAP } from "../cards"
 import {
+  combatCard,
+  combatValue,
+  duelTrait,
+  isDuel,
+  duelChoiceCard,
+} from "../duelCards"
+import { protectDuelSpell } from "./duelRules"
+import { duelEnemyAction } from "./duelBot"
+import { resolveDuelBossRound } from "./duelBosses"
+import {
   cardLog,
   drawCards,
   emptyCardCell,
@@ -51,26 +61,34 @@ function hurt(u: BattleUnit, n: number) {
   u.hp = Math.max(0, u.hp - n + shield)
   u.defeated = u.hp === 0
 }
-function damageImpacts(before: TacticalBattleState, after: TacticalBattleState): NonNullable<DirectedEvent["impacts"]> {
+function damageImpacts(
+  before: TacticalBattleState,
+  after: TacticalBattleState,
+): NonNullable<DirectedEvent["impacts"]> {
   return [
-    ...after.units.flatMap(u => {
-      const old = before.units.find(v => v.instanceId === u.instanceId)
+    ...after.units.flatMap((u) => {
+      const old = before.units.find((v) => v.instanceId === u.instanceId)
       const hp = old ? Math.max(0, old.hp - u.hp) : 0
       const shield = old ? Math.max(0, old.shield - u.shield) : 0
-      return hp || shield ? [{id:u.instanceId,hp,shield}] : []
+      return hp || shield ? [{ id: u.instanceId, hp, shield }] : []
     }),
-    ...(["player", "enemy"] as const).flatMap(side => {
-      const hp = Math.max(0, before.commanders[side].hp - after.commanders[side].hp)
-      return hp ? [{id:`hero:${side}`,hp,shield:0}] : []
+    ...(["player", "enemy"] as const).flatMap((side) => {
+      const hp = Math.max(
+        0,
+        before.commanders[side].hp - after.commanders[side].hp,
+      )
+      return hp ? [{ id: `hero:${side}`, hp, shield: 0 }] : []
     }),
   ]
 }
-function combineImpacts(...groups: (DirectedEvent["impacts"])[]) {
+function combineImpacts(...groups: DirectedEvent["impacts"][]) {
   const result: NonNullable<DirectedEvent["impacts"]> = []
-  for (const impact of groups.flatMap(g => g ?? [])) {
-    const found = result.find(v => v.id === impact.id)
-    if (found) { found.hp += impact.hp; found.shield += impact.shield }
-    else result.push({...impact})
+  for (const impact of groups.flatMap((g) => g ?? [])) {
+    const found = result.find((v) => v.id === impact.id)
+    if (found) {
+      found.hp += impact.hp
+      found.shield += impact.shield
+    } else result.push({ ...impact })
   }
   return result
 }
@@ -80,6 +98,12 @@ function settle(
   finish: Finish,
 ) {
   recordFallenCards(before, s)
+  if (s.cardGame?.stats)
+    for (const side of ["player", "enemy"] as const)
+      s.cardGame.stats[side].healing += Math.max(
+        0,
+        s.commanders[side].hp - before.commanders[side].hp,
+      )
   for (const side of ["player", "enemy"] as const)
     if (s.commanders[side].hp > before.commanders[side].hp)
       for (const u of living(s, side).filter(
@@ -88,7 +112,7 @@ function settle(
         const key = `bloom:${s.round}`
         u.triggers ??= {}
         if ((u.triggers[key] ?? 0) < 2) {
-          u.attack += 6
+          u.attack += combatValue(s, 6, 1)
           u.triggers[key] = (u.triggers[key] ?? 0) + 1
         }
       }
@@ -178,7 +202,9 @@ function applyTrap(
       s.commanders[foe].hp = Math.max(
         0,
         s.commanders[foe].hp -
-          Math.min(4, Math.max(1, Math.ceil((source?.attack ?? 0) / 10))),
+          (isDuel(s)
+            ? Math.min(3, source?.attack ?? 0)
+            : Math.min(4, Math.max(1, Math.ceil((source?.attack ?? 0) / 10)))),
       )
       blocked = true
       break
@@ -186,8 +212,9 @@ function applyTrap(
       for (const u of living(s, foe).filter(
         (u) => s.cardGame!.attacks[u.instanceId] !== s.round,
       )) {
-        hurt(u, 12)
-        if (!u.defeated) u.burn = {damage: 4, remaining: 2}
+        if (protectDuelSpell(s, u)) continue
+        hurt(u, combatValue(s, 12, 2))
+        if (!u.defeated) u.burn = { damage: combatValue(s, 4, 1), remaining: 2 }
       }
       blocked = !!source?.defeated
       break
@@ -195,11 +222,12 @@ function applyTrap(
       blocked = true
       break
     case "trap-ward":
-      for (const u of living(s, owner)) u.shield += 20
+      for (const u of living(s, owner)) u.shield += combatValue(s, 20, 2)
       break
     case "trap-root":
       if (target) {
-        hurt(target, 20)
+        if (protectDuelSpell(s, target)) break
+        hurt(target, combatValue(s, 20, 2))
         target.stunnedUntil = s.round + 1
         target.rootedUntil = s.round + 1
       }
@@ -216,7 +244,7 @@ function applyTrap(
         if (cell && index >= 0) {
           grave.splice(index, 1)
           target.cell = cell
-          target.hp = Math.min(20, target.maxHp)
+          target.hp = Math.min(combatValue(s, 20, 2), target.maxHp)
           target.defeated = false
           target.shield = 0
           target.energy = 0
@@ -224,6 +252,7 @@ function applyTrap(
           delete target.burn
           delete target.rootedUntil
           delete target.stunnedUntil
+          target.spellShield = duelTrait(s, target, "spellshield")
           s.cardGame!.attacks[target.instanceId] = s.round
         }
       }
@@ -354,11 +383,21 @@ function resolve(
     delete u.burn
     delete u.rootedUntil
     delete u.stunnedUntil
+    u.spellShield = duelTrait(n, u, "spellshield")
     n.cardGame!.attacks[u.instanceId] = n.round
   }
-  const ability = cardId ? TACTICAL_CARD_MAP[cardId].ability : null
+  const ability = cardId
+    ? duelChoiceCard(
+        combatCard(n, cardId),
+        a.type === "play-card" ? (a.choiceIndex ?? 0) : 0,
+      ).ability
+    : null
   if (ability === "thaw" || (born && ability === "thawer"))
-    for (const u of living(n, side)) { u.stunnedUntil = 0; u.rootedUntil = 0 }
+    for (const u of living(n, side)) {
+      u.stunnedUntil = 0
+      u.rootedUntil = 0
+      if (isDuel(n)) delete u.burn
+    }
   if (a.type === "play-card" && ability === "reveal-trap")
     for (const t of before.traps.filter((t) => t.side !== side && t.armed)) {
       const restored = n.traps.find((v) => v.instanceId === t.instanceId)!
@@ -406,7 +445,10 @@ function resolve(
         trapCardId: r.trapCardId,
         targetId: after.affectedUnitId ?? undefined,
         note: "BẪY HƯƠNG KÍCH HOẠT",
-        impacts: combineImpacts(n.cardGame!.directed!.event?.impacts, r.impacts),
+        impacts: combineImpacts(
+          n.cardGame!.directed!.event?.impacts,
+          r.impacts,
+        ),
       })
     }
   }
@@ -416,9 +458,15 @@ export function directedEnemyAction(
   s: TacticalBattleState,
   core: Core,
 ): DirectedIntent | null {
+  if (isDuel(s))
+    return duelEnemyAction(
+      s,
+      (a) => legal(s, a, core),
+      (state, a) => core(state, a),
+    )
   const allies = living(s, "enemy"),
     foes = living(s, "player")
-  const choices: Array<{ action: DirectedIntent; score: number }> = []
+  const choices: Array<{ action: DirectedIntent ; score: number }> = []
   s.cardGame!.sides.enemy.hand.forEach((id, handIndex) => {
     const c = TACTICAL_CARD_MAP[id],
       same = allies.find((u) => u.cardId === id && u.star === 1)
@@ -537,7 +585,10 @@ export function reduceDirectedBattle(
         trapCardId,
         targetId: p.affectedUnitId ?? undefined,
         note: blocked ? "PHẢN CHẾ" : "BẪY HƯƠNG KÍCH HOẠT",
-        impacts: combineImpacts(trapImpacts, p.stage === "before" && !blocked ? prior?.impacts : undefined),
+        impacts: combineImpacts(
+          trapImpacts,
+          p.stage === "before" && !blocked ? prior?.impacts : undefined,
+        ),
       })
     else if (prior && p.stage === "before") event(n, prior)
     else
@@ -571,20 +622,32 @@ export function reduceDirectedBattle(
     if (d.turn !== "enemy" || current.phase !== "planning") return current
     const intent = directedEnemyAction(current, core)
     if (intent) {
-      const next=resolve(current,intent,core,finish)
-      if(next!==current){remember(next,a.id);const last=next.cardGame!.directed!.event;if(last)event(next,last)}
+      const next = resolve(current, intent, core, finish)
+      if (next !== current) {
+        remember(next, a.id)
+        const last = next.cardGame!.directed!.event
+        if (last) event(next, last)
+      }
       return next
     }
     const before = structuredClone(current)
     before.phase = "round-end"
-    for (const u of before.units.filter(u => !u.defeated && u.burn)) {
+    if (isDuel(before)) resolveDuelBossRound(before)
+    for (const u of before.units.filter((u) => !u.defeated && u.burn)) {
       const damage = u.burn!.damage
       hurt(u, damage)
       u.burn!.remaining -= 1
       if (!u.burn!.remaining || u.defeated) delete u.burn
-      cardLog(before, `Thiêu đốt: ${u.name} chịu ${damage} sát thương cuối vòng.`)
+      cardLog(
+        before,
+        `Thiêu đốt: ${u.name} chịu ${damage} sát thương cuối vòng.`,
+      )
     }
     recordFallenCards(current, before)
+    for (const u of before.units.filter(
+      (u) => !u.defeated && duelTrait(before, u, "regenerate"),
+    ))
+      u.hp = Math.min(u.maxHp, u.hp + 1)
     const n = core(before, { id: a.id, type: "end-round" })
     n.cardGame!.directed!.turn = "player"
     event(n, {
@@ -605,8 +668,13 @@ export function reduceDirectedBattle(
   )
     return current
   if (a.type === "move") {
-    const u = current.units.find(u => u.instanceId === a.unitId)
-    if (!u || (u.rootedUntil ?? 0) >= current.round || (u.stunnedUntil ?? 0) >= current.round) return current
+    const u = current.units.find((u) => u.instanceId === a.unitId)
+    if (
+      !u ||
+      (u.rootedUntil ?? 0) >= current.round ||
+      (u.stunnedUntil ?? 0) >= current.round
+    )
+      return current
   }
   const n = core(current, a)
   if (n !== current)

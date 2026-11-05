@@ -1,61 +1,62 @@
-# Product contract
+# Product contract · TCG-011/012
 
-## Bề mặt
+Current production contract, 05/11/2026. This supersedes the scaled combat/front–rear rules in TCG-005…010 evidence, which remains historical. Delivery branch: `game/tactical-tcg`; no master merge or deployment.
 
-Sản phẩm chỉ gồm Tactical TCG, Manga, Chest và legal. PvP ở `/?tab=play&queue=pvp` là phòng thử nghiệm cục bộ, không xếp hạng và không cấp thưởng PvE.
+## Surfaces and ownership
 
-Sảnh, bộ bài, bộ sưu tập, mở gói, campaign và hướng dẫn là tính năng của TCG. Root mở sảnh; trận production luôn nhận bộ bài người chơi đã trang bị, không tạo sẵn quân người chơi.
+Root is the TCG lobby. Production includes collection, deck editor, packs, campaign, Manga, Chest and legal pages. Every production match uses the equipped owned 24-card deck: at most two copies per ID and at least eight units. The player starts with an empty field, four cards and three Lửa Bếp. Three introductory recipes remain additive exact-once grants; seven advanced recipes require owned/crafted cards. No economic reset or published gacha-rate change.
 
-TCG-010 thay trình bày16 ô bằng hai hàng bài đối diện, tối đa5 Vị Linh mỗi bên; tọa độ checkpoint cũ vẫn giữ để xét Tiền/Hậu tuyến. Chọn tuyến qua2 nút khi gọi/di chuyển, chồng bản sao lên đúng quân để nâng sao. Splash art của đúng Vị Linh được crop trong bề mặt vuông, không kéo méo; không cần model hoạt họa trên bàn. Chủ tướng có chân dung/Ý chí/Lửa/lời chỉ huy và bẫy úp riêng. Tay compact phân trang4, desktop8, inspector/modal để đọc rõ. Người chơi chọn đòn/mục tiêu, xen kẽ bài và Tuyệt kỹ. Kết lượt mới đến AI; mỗi hành động AI lưu trước hiệu ứng và dừng khi cần quyết định bẫy. Màn đọc thẻ/luật/nhật ký có thể cuộn; bàn chính không cần cuộn. FX đặt/lật/đánh/đường đạn/khống chế/hồi phục theo kết quả engine, không tự tăng sát thương. Metadata impacts bổ sung ghi riêng sát thương HP/khiên sau bẫy, tránh mất dấu đòn khi cấp khiên rồi bị đánh trong cùng hành động.
+`/?tab=bots` is free local bot opposition, also reached by old PvP links. It is not networked human PvP: no ranking, entry fee, PvE rewards or server matchmaking. Choose Normal/Hard/Extreme and one of ten opponent deck recipes. Both sides start with three mana and follow the same card costs, legal targets, hand/field limits and draw rules. Normal chooses seeded legal actions; Hard evaluates the current public board; Extreme adds one public basic-attack reply lookahead. Neither reads unseen player hand identities or unrevealed trap identity. A new duel gets a unique match ID; a saved duel resumes its recorded deck, difficulty and action ledger.
 
-TCG-010 trạng thái thật: Dây Lá Giữ Chân vẫn gây20 damage/khống chế đến hết vòng kế, thêm marker Trói chân và chặn di chuyển. Khăn Ấm/thawer giải cả hai marker, không trả đòn đã dùng. Vòng Than Phản Công vẫn gây12 lên địch chưa đánh và thêm Thiêu đốt4×2 lần cuối vòng; khiên hấp thụ trước, áp lại thay thời hạn thay vì cộng dồn. Tick chỉ khi AI hết hành động, trước rút bài/vòng mới; replay command không tick lại. Hạ quân ghi ký ức/nội tại một lần; hồi sinh xóa trạng thái cũ. Checkpoint cũ không có các trường này vẫn đọc được. Đây là thay đổi cân bằng bẫy cần playtest, không áp vào legacy auto fixture.
+## Combat rules
 
-## Bộ bài và gói thẻ
+- Production opts into additive `cardGame.rulesVersion = 3`; directed turn protocol remains version2. Old checkpoints convert once without deleting cards, receipts, currency, deck, hand, attacks or a pending trap decision. Damage/HP/shields convert to the new scale, preserving unit HP ratio. Original IDs and eight story unlock IDs remain unchanged. Legacy auto/dev fixtures keep their prior rules.
+- Original small catalog ATK/HP values are used: ATK3 causes3 damage before shields/bonuses to either unit or commander. Commander max HP is30. No divide-by-ten rule remains in production.
+- Two opposing card rows, maximum five living units per side. Internal4×2 coordinates exist only to read old saves. Placement uses the first free cell; there are no positional attack advantages or front/rear controls.
+- Any living **Hộ vệ**, anywhere in saved coordinates, gates attacks: attack a Guardian first. With no Guardian, units may attack the commander directly or choose any enemy unit. Targeted damaging spells may bypass Guardians.
+- Each unit attacks normally once per round. A normal unit attack exchanges damage simultaneously, including a killed defender's counter. A stunned defender cannot counter. Tiên thủ prevents a counter only when its initial strike kills; Xuyên phá sends damage exceeding target HP+shield into the commander. Tái sinh heals1HP at round end while alive. Hộ pháp absorbs the first damaging/control spell or trap aimed at that unit, then disappears.
+- New summons wait until the next round, except Xung kích. Play a second copy onto the matching1-star unit for a paid2-star upgrade (+40% ATK/maxHP, preserving missing HP). No third owned copy is required.
+- At100 Hương lực, select an ultimate and target. Ultimates do not receive a counter. Playing cards, attacks and ultimates may be interleaved in the player's turn. End turn lets the bot act stepwise; after its turn, draw, refill/increase mana up to10 and add20energy. Empty-deck fatigue and Lửa Lớn from round8 prevent indefinite stalls.
+- Three living schools grant +1 attack; four living units of one school grant +2 instead. Two consecutive same-school cards in a round grant1team shield once. Each unit holds at most3shield. Shield absorbs damage before HP.
+- Twenty-two existing unit abilities use the small scale. Choice spells expose two actual reducer choices with one shared card/mana cost; damage, sweep, healing, draw, buff, ward, revive, reveal, disarm and cleanse match card text. Revive does not replay entry effects or grant an immediate attack; cleanse also removes burn without refunding attacks.
 
-- Giữ 181 ID, art và lore của catalog cũ; luật mô tả trên thẻ là luật Tactical đang chạy, không giả định mọi hiệu ứng legacy có cách tính không đổi.
-- Bộ 24 lá, tối đa 2 bản mỗi lá đã sở hữu, ít nhất 8 Vị Linh. Bộ cũ chưa đủ 24 giữ nguyên để sửa; tài khoản được thêm bộ hợp lệ có Nhiên và Bẫy Hương.
-- Tay đầu 4 lá, đổi tay một lần trước khi chơi thẻ. Đầu vòng mới rút 1, tăng giới hạn Lửa Bếp từ 3 đến tối đa 10 và hồi đầy. Tay tối đa 8; lá dư vào ký ức.
-- Mở gói riêng trong TCG theo yêu cầu chủ sản phẩm ngày 04/11: 5 lá/1 vé hoặc 80 Tinh Vị. Đây là thay đổi so với master plan cũ chỉ mở combat card bằng campaign/craft. Không có thanh toán.
-- Base odds: Thường 63%, Hiếm 25%, Sử thi 10%, Huyền thoại 2%; mỗi gói ít nhất Hiếm; gói thứ 8 liên tiếp chưa có Sử thi/Huyền thoại bảo đảm Sử thi. Tỷ lệ hiện trước khi mở.
-- Bản dư thứ 3 trở đi: +5/+15/+40/+100 Tinh Vị. Craft chính xác: 50/140/360/800 theo cùng thứ tự bậc hiếm.
-- Hai vé khởi đầu; quà ngày theo giờ Việt Nam: 1 vé +30 Tinh Vị. Reward trận có biên nhận một lần và một vé; đấu lại không tạo lại phần thưởng đã nhận.
-- Gói nhập môn bộ bài v1 (TCG-007) thêm một lần các bản còn thiếu tới 2 để chơi Đường Than Hồng, Thư Từ Bến Nước, Khu Vườn Bên Bếp. Thêm 3 bộ nếu còn slot, giữ active cũ/max12. Không tặng dư để sinh Tinh Vị. Hai công thức Mâm Chung Năm Vị/Bình Minh Dưới Trăng cần sưu tầm/craft đủ, không cấp quân miễn phí trong trận.
+## Eight native traps
 
-## Dữ liệu
+One face-down slot per side, beside its commander at the left. Pay a drawn trap's cost; a replacement discards the previous one. Enemy identity stays hidden until reveal/activation. Reveal preserves the trap; disarm removes it. A valid player reaction persists until Activate/Hold, including across reload; it has no timeout. Enemy traps activate automatically.
 
-- Migration chạy trước khi tải Tactical UI, giữ raw backup và rollback khi lỗi.
-- Catalog canonical nối alias TCG, Chest, Auto Chess và 12 Vị Linh AW2 để bảo toàn dữ liệu cũ.
-- `soul-of-meal.tactical-tcg.progress.v1` lưu Tinh Vị, thẻ, nút campaign, Manga và receipt đã nhận.
-- Mỗi reward receipt chỉ commit một lần; ghi có journal, readback, rollback và kiểm tra thay đổi từ tab khác.
-- Chest mới tạo receipt `chest:<reward-id>`: bản đầu cấp collectible canonical, bản trùng đổi thành Tinh Vị theo độ hiếm. Reward Chest cũ vẫn được giữ nguyên; tiến trình trước thời điểm migration không bị phát lại.
-- Không chuyển power bonus/rating cũ sang PvP.
-- Collection, deck, TCG ticket/dust cũ giữ trong profile gốc và được khôi phục bổ sung một lần. Không xóa raw save gốc.
-- Trận TCG lưu checkpoint trước khi UI cập nhật; checkpoint hỏng bị từ chối, giữ raw bytes. Mở/craft/lưu bộ/checkpoint trong browser dùng Web Locks khi có; fallback optimistic check không phải khóa nhiều thiết bị.
-- TCG-006: sảnh tiếp tục đúng trận đang lưu; đổi trận chưa xong cần xác nhận. Checkpoint chỉ ghi nếu khớp bản component đã đọc, tab cũ phải đọc lại. Backup JSON có preview/confirm, giữ raw bản trước để hoàn tác một lần, journal/readback/rollback và recovery trước migration. Nhập/hoàn tác tải lại game; không phải cloud save hoặc cộng gộp tiến trình.
+| Trap | Production effect |
+| --- | --- |
+| Nắp Nồi | Block the complete commander attack; attacker still spends its action/energy. |
+| Gương | Block attack, reflect attacker ATK to enemy commander, capped3. |
+| Than Hồng | Before attack, damage2 and burn1×2 on unspent enemy attackers; killing the source cancels the strike. No stacking. |
+| Dây Lá | After enemy summon costing3+, damage2 and control through the following round; Hộ pháp blocks both. |
+| Phong Ấn | Cancel enemy spell costing2+; consume card/mana without spell passives/recipe. |
+| Mâm Khiên | Before an attack on an ally, all allies gain2shield, capped3, then resolve attack. |
+| Hồi Ức | After an attack kills an allied cost≤4 unit, restore that actual casualty at up to2HP without entry effects or fresh attack. |
+| Kho Lương | After enemy summon costing4+, heal commander3 and draw2; overflow hand cards go to discard. |
 
-## Battle
+All burn/death/discard/reward/action effects are idempotent. Checkpoint validation checks versioned burn, stats, choices, pending source/target and replay ledger. Migrated pending attacks may finish their original valid target even if Guardian rules changed.
 
-Current TCG-010 retains TCG-009 directed turns and supersedes the old automatic combat/trap rules below: production uses additive `cardGame.directed.version=2` with manual player/enemy turns and persisted reaction intent. Legacy automatic helpers are retained only for existing fixtures/dev compatibility.
+## Journey and rewards
 
-- Choose front guardians first; without guardians, mages can select rear targets, other roles clear front first. Commander is targetable only when no enemy unit remains. One basic/unit/round; ultimates require100 energy and may follow a basic. New summons wait except rush. Freeze blocks attacks/ultimates; thaw never refunds a spent attack.
-- Eight native traps retain separate functions: lid blocks commander hit; mirror blocks/reflects commander damage cap4; embers12 plus non-stacking4×2burn to ready enemies before attack; root20/root/control after summon cost>=3; seal negates cost>=2 spell with full card/mana cost and no passive/recipe; ward20 shield all before unit hit; recall exact fallen cost<=4 with20HP, no entry/fresh attack; pantry3 commander heal/draw2 after cost>=4 summon. Tactical-scaled powers differ from legacy balance. Each side has one global trap slot, replacing the old column restriction.
-- Before/after reaction windows persist action/slot IDs; player activates or holds without timeout, reload resumes. Enemy traps activate automatically. Reveal preserves a trap; disarm removes it. Commands, including enemy-step IDs, are idempotent. Each enemy step saves before presentation; after AI ends its turn, increase round/draw/refill mana/+20 energy. Unmount and stale-tab guards remain.
-- Attack trails/impact rings/trap-negation sigils/readiness/control/turn banners augment splash-art cards and old VFX. Actual HP/shield changes wait for contact. Quiet/reduced motion skips animated waits. No new artwork or fabricated unique poses.
-- Eight deck recipes now include three advanced strategies: Nhịp Phép Bên Bếp, Bàn Cờ Úp Hương, Ký Ức Chưa Tắt. All have plans/openings/weaknesses. The three free intro receipts/grants and existing saved decks remain unchanged; five advanced recipes require owned cards.
+Four regions contain six nodes each: **24 reachable nodes,23 battles including12 boss encounters, one original story-choice node,16 optional quest objectives**. Eight original story IDs, two endings, Manga links and first-win rewards remain. Optional routes branch from the original path and never gate its ending. Existing owned art illustrates eight new named boss identities with distinct telegraphed round powers, not eight newly rendered models.
 
-TCG-010 visual contract replaces TCG-008's animated battlefield actors with each unit's own rendered splash portrait. The retained resolver covers77 authored atlases/62 own static portraits for compatibility, with the same exact manifest-backed asset/package/security gates. No dish photo/generic borrowed unit. Spell/trap art remains skill art; card IDs/lore/ownership/source files unchanged. Shared old VFX, authoritative deltas/impacts, casualty ghosts and real combo banners remain; contact560ms basic/spell,960ms ultimate. Presentation adds no gameplay damage. Saves commit each manual/AI action before its visual playback; quiet/reduced motion skips waits and animated VFX.
+Bosses are Guardians and change phase at66%/33%HP, gaining shield/attack/energy. They wait their initial summon round. Win a boss encounter by defeating the named boss **or** reducing its commander to0HP. Other battles require commander defeat. New powers are ward, drain, burn, sweep, freeze, extra draw and regeneration; the story, rules dialog, board tooltip and idle hint disclose their intent.
 
-Tọa độ engine vẫn4×2 mỗi bên để đọc save cũ, tối đa5 Vị Linh; UI chỉ hiện hai hàng bài đối diện. Engine reducer thuần, action idempotent. Target production theo Hộ vệ/Pháp sư/tiền-hậu tuyến như trên; ưu tiên cùng cột/gần nhất chỉ còn trong auto fixture. Các phase lưu được: planning, clash, reaction, ultimate, round-end, result.
+Every optional route has before/after scenes, a reward card and an extra20TinhVị challenge: surviving HP, summons, spells, traps, actual commander healing, living-school variety, speed or defeated enemies. Claim reads the saved winning checkpoint and its actual counters, then writes `quest:v1:<node>` once. A missed objective may be replayed; winning the story never requires all optional objectives. PvP/bot matches cannot claim these rewards.
 
-- Trong trận thẻ bài, chơi bản sao thứ hai lên đúng quân để lên 2 sao (+40% công/HP tối đa), giữ lượng HP đã mất. Không cần sở hữu ba bản để dùng tính năng. Reducer merge 3 bản cũ chỉ còn cho fixture đội hình, không là đường chơi production.
-- Legacy fixture-only traps: Mành Tre20 khiên, Hơi Nóng12 phản, Nước Dùng18 hồi; production uses eight native traps above.
-- Production permits manual ultimates in the player's turn; legacy fixtures retain their after-clash reaction phase.
-- Boss campaign có Pha 1/2/3 theo ngưỡng sinh lực 100%/66%/33%; Pha 2 và 3 tăng khiên, sức đánh, năng lượng và ghi log hiển thị.
-- Chỉ huy có 30 Ý chí; sân trống chưa kết thúc trận. Đòn vào Chỉ huy gây sát thương quân chia 10, làm tròn lên. Thắng khi Ý chí địch về 0. Hết bộ chịu kiệt sức; Lửa Lớn từ vòng 8 kết thúc thế kéo dài.
-- Traps phải được rút và trả Lửa Bếp; không có nút gài miễn phí. Global trap slot is inspectable; hidden enemy identity stays hidden until reveal/activation.
-- Production attacks are manually chosen once/unit/round. Legacy fixture auto-combat keeps its alternating attack-order tie rule.
-- Công thức Đồng Vị: hai lá liên tiếp cùng hệ trong một vòng → +5 khiên toàn đội, tối đa một lần/vòng. Mâm Chung từ ba hệ → +3 công; mốc bốn cùng trait → +6 công thay cho +3.
+## Art, presentation and audio
 
-## Cốt truyện
+139 immutable unit IDs have unique Vietnamese display names matching owned splash identities; old dish names remain searchable recipe/lore aliases. Collection, deck editor, opening cards and battlefield share these names and small-scale rules. Existing own portrait resolver/assets are retained; unit visuals do not use food photographs. Spell/trap art remains skill art.
 
-Bốn hồi: Làng Giao Ước → Phố Đèn Giữ Vị → Sân Bếp Trăm Nhà → Bếp Vô Danh. Mục tiêu là tìm lại tên những người trong công thức bị Sương Nhạt xóa và mời Vô Danh trở lại bàn ăn. Tất cả tám nút có mục tiêu/cảnh trước-sau, lời hẹn ở nút 7 mở một trong hai đoạn kết. Manga dùng artwork cũ, được nối đúng chương bằng tiến trình Tactical; không tuyên bố đã vẽ lại trang truyện.
+The table has a left commander/trap rail, two five-card rows, proportional cards, hand pagination on compact screens, selected-card reading/choices, target forecasts, role/status labels and a large end-turn action. Narrow portrait phones default to a rotated landscape table and can toggle portrait. Modal dialogs rotate and center with it. The outer lobby regains ordinary orientation when leaving battle.
+
+The existing VFX canvas and authoritative hit metadata drive placement, flip, attack/projectile, ultimate, shield, heal, death, burn/control and combo effects. Forecasts use the same pure damage resolver; hidden traps may alter the announced outcome. Actual HP/shield numbers wait for contact. Saves commit before effects; reduced motion removes animated waits. Renderer effects never cause gameplay damage. Rotation adjusts projectile anchors into local board coordinates.
+
+Original inline drum/lotus/rice ornaments and Vietnamese village/wharf/pottery/lantern hospitality stories supply cultural hints. No Chinese UI glyphs or copied external game art/audio are introduced. Runeterra informs readable deck/keyword interactions, not a copied screen or ruleset.
+
+Original music580 tracks are packaged for lobby, regions, boss pressure and the soundtrack room. Existing mixer owns gesture unlock, gain/mute controls, priority, visibility/unmount cleanup and SFX limits. Combat cues schedule around the authoritative contact point; no claimed new voice recordings or composed soundtrack. Commercial rights clearance remains the pre-existing separate release gate.
+
+## Boundaries
+
+Offline/local account and save constraints remain. Deterministic legal-game simulations and browser viewport checks provide implementation evidence, not human win-rate balance, physical-phone/touch/FPS certification or listening-quality review. No online human PvP or free-roam overworld expansion is claimed: this delivery expands the TCG journey map requested in the active TCG scope.

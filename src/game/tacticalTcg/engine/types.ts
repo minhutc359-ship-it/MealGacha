@@ -19,10 +19,11 @@ export interface UnitDefinition {
   art: string
 }
 export interface BattleUnit extends UnitDefinition {
+  spellShield?: boolean
   summonedRound?: number
   stunnedUntil?: number
   rootedUntil?: number
-  burn?: { damage: number; remaining: number }
+  burn?: { damage: number ; remaining: number }
   cardId?: string
   triggers?: Record<string, number>
   instanceId: string
@@ -96,6 +97,15 @@ export interface CardCombatant {
   recipeRound: number
 }
 export interface TacticalCardGame {
+  rulesVersion?: 3
+  botLevel?: "normal" | "hard" | "extreme"
+  stats?: Record<BattleSide, {
+    spells: number
+    traps: number
+    summons: number
+    kills: number
+    healing: number
+  }>
   directed?: {
     version: 2
     turn: BattleSide
@@ -109,6 +119,7 @@ export interface TacticalCardGame {
   attacks: Record<string, number>
 }
 interface PlayCardAction {
+  choiceIndex?: 0 | 1
   id: string
   type: "play-card"
   side: BattleSide
@@ -174,6 +185,8 @@ export type TacticalBattleAction = {
 } | MoveAction | MergeAction | PlaceTrapAction | BeginRoundAction | BasicAction | UltimateAction | EndRoundAction | PlayCardAction | MulliganAction | ForfeitAction
 
 export interface CreateBattleOptions {
+  duel?: boolean
+  botLevel?: "normal" | "hard" | "extreme"
   manual?: boolean
   battleId: string
   mode?: BattleMode
@@ -201,6 +214,7 @@ export interface CreateBattleOptions {
 
 export type DirectedIntent = PlayCardAction | BasicAction | UltimateAction
 export interface DirectedReaction {
+  legacyTarget?: true
   id: string
   trapInstanceId: string
   stage: "before" | "after"
@@ -209,7 +223,7 @@ export interface DirectedReaction {
   affectedUnitId: string | null
 }
 export interface DirectedEvent {
-  impacts?: {id: string; hp: number; shield: number}[]
+  impacts?: { id: string ; hp: number ; shield: number }[]
   id: string
   kind: "attack" | "ultimate" | "summon" | "upgrade" | "spell" | "trap" | "reaction" | "negate" | "turn" | "intent" | "move"
   side: BattleSide

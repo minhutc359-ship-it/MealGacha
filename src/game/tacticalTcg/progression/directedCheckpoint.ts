@@ -10,13 +10,45 @@ const card = (id: unknown) =>
   typeof id === "string" &&
   Object.prototype.hasOwnProperty.call(TACTICAL_CARD_MAP, id)
 export function validDirectedState(s: TacticalBattleState) {
+  const game = s.cardGame
+  if (game?.rulesVersion !== undefined && game.rulesVersion !== 3) return false
+  if (
+    game?.botLevel !== undefined &&
+    !["normal", "hard", "extreme"].includes(game.botLevel)
+  )
+    return false
+  if (game?.stats !== undefined) {
+    if (!record(game.stats)) return false
+    for (const side of ["player", "enemy"] as const)
+      if (
+        !record(game.stats[side]) ||
+        !["spells", "traps", "summons", "kills", "healing"].every((k) =>
+          integer((game.stats![side] as any)[k]),
+        )
+      )
+        return false
+  }
   const d = s.cardGame?.directed
   if (d === undefined) return true
   if (!record(d) || d.version !== 2 || !["player", "enemy"].includes(d.turn))
     return false
   for (const u of s.units) {
-    if (u.rootedUntil !== undefined && (!integer(u.rootedUntil) || u.rootedUntil > s.round + 1)) return false
-    if (u.burn !== undefined && (!record(u.burn) || u.burn.damage !== 4 || ![1, 2].includes(u.burn.remaining) || u.defeated)) return false
+    if (game?.rulesVersion === 3 && u.shield > 3) return false
+    if (u.spellShield !== undefined && typeof u.spellShield !== "boolean")
+      return false
+    if (
+      u.rootedUntil !== undefined &&
+      (!integer(u.rootedUntil) || u.rootedUntil > s.round + 1)
+    )
+      return false
+    if (
+      u.burn !== undefined &&
+      (!record(u.burn) ||
+        u.burn.damage !== (game?.rulesVersion === 3 ? 1 : 4) ||
+        ![1, 2].includes(u.burn.remaining) ||
+        u.defeated)
+    )
+      return false
     if (
       u.summonedRound !== undefined &&
       (!integer(u.summonedRound) || u.summonedRound > s.round)
@@ -35,7 +67,25 @@ export function validDirectedState(s: TacticalBattleState) {
   )
     return false
   const e = d.event
-  if (e?.impacts !== undefined && (!Array.isArray(e.impacts) || e.impacts.length > s.units.length + 2 || e.impacts.some(v => !record(v) || typeof v.id !== "string" || !(v.id === "hero:player" || v.id === "hero:enemy" || s.units.some(u => u.instanceId === v.id)) || !integer(v.hp) || !integer(v.shield)) || new Set(e.impacts.map(v => v.id)).size !== e.impacts.length)) return false
+  if (
+    e?.impacts !== undefined &&
+    (!Array.isArray(e.impacts) ||
+      e.impacts.length > s.units.length + 2 ||
+      e.impacts.some(
+        (v) =>
+          !record(v) ||
+          typeof v.id !== "string" ||
+          !(
+            v.id === "hero:player" ||
+            v.id === "hero:enemy" ||
+            s.units.some((u) => u.instanceId === v.id)
+          ) ||
+          !integer(v.hp) ||
+          !integer(v.shield),
+      ) ||
+      new Set(e.impacts.map((v) => v.id)).size !== e.impacts.length)
+  )
+    return false
   if (
     e !== null &&
     (!record(e) ||
@@ -82,6 +132,7 @@ export function validDirectedState(s: TacticalBattleState) {
   )
   if (!t?.cardId || !card(t.cardId)) return false
   const a = p.action
+  if (p.legacyTarget !== undefined && p.legacyTarget !== true) return false
   if (
     typeof a.id !== "string" ||
     !a.id ||
@@ -91,6 +142,13 @@ export function validDirectedState(s: TacticalBattleState) {
   )
     return false
   if (a.type === "play-card") {
+    if (
+      a.choiceIndex !== undefined &&
+      (![0, 1].includes(a.choiceIndex) ||
+        !p.cardId ||
+        !TACTICAL_CARD_MAP[p.cardId].choices?.[a.choiceIndex])
+    )
+      return false
     if (a.side !== "enemy" || !integer(a.handIndex) || !p.cardId) return false
     const c = TACTICAL_CARD_MAP[p.cardId]
     if (
@@ -138,7 +196,16 @@ export function validDirectedState(s: TacticalBattleState) {
     const readiness = directedReadiness(s, source)
     return (
       !source.defeated &&
-      directedTargets(s, source).includes(a.targetId) &&
+      (directedTargets(s, source).includes(a.targetId) ||
+        (p.legacyTarget === true &&
+          s.cardGame?.rulesVersion === 3 &&
+          (a.targetId === "hero:player" ||
+            s.units.some(
+              (u) =>
+                u.instanceId === a.targetId &&
+                u.side === "player" &&
+                !u.defeated,
+            )))) &&
       p.affectedUnitId === a.targetId &&
       !["stunned", "summoning"].includes(readiness) &&
       (a.type === "basic" ? readiness === "ready" : source.energy >= 100) &&

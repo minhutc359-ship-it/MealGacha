@@ -1,4 +1,6 @@
 import { SCHOOLS } from "../../catalog"
+import { combatCard, combatValue, duelChoiceCard, isDuel } from "../duelCards"
+import { protectDuelSpell } from "./duelRules"
 import {
   TACTICAL_CARD_MAP,
   TACTICAL_STARTER,
@@ -11,6 +13,7 @@ import type {
   CreateBattleOptions,
   TacticalBattleAction,
   TacticalBattleState,
+  TacticalCardGame,
 } from "./types"
 
 export function seededShuffle(cards: readonly string[], seed: number) {
@@ -23,7 +26,9 @@ export function seededShuffle(cards: readonly string[], seed: number) {
   }
   return result
 }
-export function createCardGame(options: CreateBattleOptions) {
+export function createCardGame(
+  options: CreateBattleOptions,
+): TacticalCardGame | undefined {
   if (!options.deck) return undefined
   const errors = tacticalDeckErrors(options.deck)
   if (errors.length) throw Error(errors[0])
@@ -82,12 +87,14 @@ export function drawCards(
       )
       cardLog(
         state,
-        `${side === "player" ? "Bạn" : "Địch"} kiệt sức: -${owner.fatigue} Ý chí.`,
+        `${
+          side === "player" ? "Bạn" : "Địch"
+        } kiệt sức: -${owner.fatigue} Ý chí.`,
       )
     } else if (owner.hand.length < 8) owner.hand.push(id)
     else {
       owner.discard.push(id)
-      cardLog(state, `Tay đầy: ${TACTICAL_CARD_MAP[id].name} vào ký ức.`)
+      cardLog(state, `Tay đầy: ${combatCard(state, id).name} vào ký ức.`)
     }
   }
 }
@@ -122,8 +129,15 @@ export function playCard(
   if (!state.cardGame || state.phase !== "planning") return false
   const owner = state.cardGame.sides[action.side]
   const id = owner.hand[action.handIndex]
-  const card = TACTICAL_CARD_MAP[id]
-  if (!Number.isInteger(action.handIndex) || !card || owner.mana < card.cost)
+  const original = combatCard(state, id)
+  if (!Number.isInteger(action.handIndex) || !original) return false
+  const card = duelChoiceCard(original, action.choiceIndex ?? 0)
+  if (owner.mana < card.cost) return false
+  if (
+    isDuel(state) &&
+    action.choiceIndex !== undefined &&
+    !card.choices?.[action.choiceIndex]
+  )
     return false
   owner.mana -= card.cost
   const allies = state.units.filter(
@@ -181,19 +195,22 @@ export function playCard(
         hp: card.health,
         maxHp: card.health,
         attack: card.attack,
-        ultimatePower: Math.max(18, card.attack * 2),
+        ultimatePower: Math.max(isDuel(state) ? 3 : 18, card.attack * 2),
         energy: card.keywords.includes("rush") ? 25 : 0,
         shield:
-          (card.keywords.includes("shield") ? 10 : 0) +
+          (card.keywords.includes("shield") ? combatValue(state, 10, 1) : 0) +
           (allies.some(
             (u) =>
               u.cardId && TACTICAL_CARD_MAP[u.cardId].school === card.school,
           )
-            ? 5
+            ? combatValue(state, 5, 1)
             : 0),
         defeated: false,
+        spellShield:
+          isDuel(state) && !!card.duelTraits?.includes("spellshield"),
       } as TacticalBattleState["units"][number]
       state.units.push(summoned)
+      if (state.cardGame.stats) state.cardGame.stats[action.side].summons++
       if (card.tacticalEffect === "draw")
         drawCards(state, action.side, Math.min(2, card.tacticalPower))
       if (card.tacticalEffect === "heal")
@@ -213,6 +230,7 @@ export function playCard(
       trap.armed = false
       if (trap.cardId) owner.discard.push(trap.cardId)
     }
+    if (state.cardGame.stats) state.cardGame.stats[action.side].traps++
     state.traps.push({
       instanceId: action.id,
       cardId: id,
@@ -224,12 +242,15 @@ export function playCard(
     })
   } else {
     const p = card.tacticalPower
-    if (action.targetId && !enemy && !ally) return false
+    const heroTarget =
+      isDuel(state) && action.targetId === `hero:${otherSide(action.side)}`
+    if (action.targetId && !enemy && !ally && !heroTarget) return false
     if (card.tacticalEffect === "buff" && !ally) return false
     if (
       card.tacticalEffect === "damage" &&
       (enemies.length || action.targetId) &&
-      !enemy
+      !enemy &&
+      !heroTarget
     )
       return false
     if (
@@ -254,12 +275,15 @@ export function playCard(
     owner.hand.splice(action.handIndex, 1)
     switch (card.tacticalEffect) {
       case "damage": {
-        if (enemy) {
-          const absorbed = Math.min(enemy.shield, p * 10)
+        if (enemy && !protectDuelSpell(state, enemy)) {
+          const absorbed = Math.min(enemy.shield, combatValue(state, p * 10, p))
           enemy.shield -= absorbed
-          enemy.hp = Math.max(0, enemy.hp - p * 10 + absorbed)
+          enemy.hp = Math.max(
+            0,
+            enemy.hp - combatValue(state, p * 10, p) + absorbed,
+          )
           enemy.defeated = enemy.hp === 0
-        } else
+        } else if (!enemy)
           state.commanders[otherSide(action.side)].hp = Math.max(
             0,
             state.commanders[otherSide(action.side)].hp - p,
@@ -268,9 +292,18 @@ export function playCard(
       }
       case "sweep":
         for (const u of enemies) {
-          const absorbed = Math.min(u.shield, p * 6)
+          if (protectDuelSpell(state, u)) continue
+          const absorbed = Math.min(
+            u.shield,
+            combatValue(state, p * 6, Math.max(1, Math.ceil(p * 0.6))),
+          )
           u.shield -= absorbed
-          u.hp = Math.max(0, u.hp - p * 6 + absorbed)
+          u.hp = Math.max(
+            0,
+            u.hp -
+              combatValue(state, p * 6, Math.max(1, Math.ceil(p * 0.6))) +
+              absorbed,
+          )
           u.defeated = u.hp === 0
         }
         break
@@ -279,18 +312,22 @@ export function playCard(
           30,
           state.commanders[action.side].hp + p,
         )
-        for (const u of allies) u.hp = Math.min(u.maxHp, u.hp + p * 5)
+        for (const u of allies)
+          u.hp = Math.min(
+            u.maxHp,
+            u.hp + combatValue(state, p * 5, Math.ceil(p / 2)),
+          )
         break
       case "draw":
         drawCards(state, action.side, Math.min(3, p))
         break
       case "buff":
-        ally!.attack += p * 5
-        ally!.maxHp += p * 8
-        ally!.hp += p * 8
+        ally!.attack += combatValue(state, p * 5, Math.ceil(p / 2))
+        ally!.maxHp += combatValue(state, p * 8, p)
+        ally!.hp += combatValue(state, p * 8, p)
         break
       case "ward":
-        for (const u of allies) u.shield += p * 10
+        for (const u of allies) u.shield += combatValue(state, p * 10, p)
         break
       case "revive": {
         const fallen = [...state.units]
@@ -327,6 +364,7 @@ export function playCard(
     }
     owner.discard.push(id)
     owner.spellsThisRound++
+    if (state.cardGame.stats) state.cardGame.stats[action.side].spells++
     resolveSpellPassives(state, action.side, card)
   }
   owner.mulliganUsed = true
@@ -334,11 +372,13 @@ export function playCard(
     for (const unit of state.units.filter(
       (u) => !u.defeated && u.side === action.side,
     ))
-      unit.shield += 5
+      unit.shield += combatValue(state, 5, 1)
     owner.recipeRound = state.round
     cardLog(
       state,
-      "Công thức Đồng Vị: hai lá liên tiếp cùng hệ, toàn đội +5 khiên.",
+      `Công thức Đồng Vị: hai lá liên tiếp cùng hệ, toàn đội +${combatValue(state, 5, 1)} khiên (tối đa ${
+        isDuel(state) ? 3 : "không giới hạn"
+      }).`,
     )
   }
   owner.lastSchool = card.school
@@ -346,7 +386,9 @@ export function playCard(
     state,
     action.side === "enemy" && card.kind === "trap"
       ? "Địch gài một Bẫy Hương úp."
-      : `${action.side === "player" ? "Bạn" : "Địch"} dùng ${card.name} · ${card.cost} Lửa Bếp.`,
+      : `${
+          action.side === "player" ? "Bạn" : "Địch"
+        } dùng ${card.name} · ${card.cost} Lửa Bếp.`,
   )
   return true
 }
@@ -356,10 +398,18 @@ export function recordFallenCards(
   state: TacticalBattleState,
 ) {
   if (!state.cardGame) return
-  for (const u of state.units.filter(u => u.defeated)) {
+  if (isDuel(state))
+    for (const u of state.units) u.shield = Math.min(3, u.shield)
+  for (const u of state.units.filter((u) => u.defeated)) {
+    if (
+      state.cardGame.stats &&
+      before.units.some((v) => v.instanceId === u.instanceId && !v.defeated)
+    )
+      state.cardGame.stats[otherSide(u.side)].kills++
     delete u.burn
     delete u.rootedUntil
     delete u.stunnedUntil
+    u.spellShield = false
   }
   for (const u of state.units)
     if (
@@ -382,8 +432,8 @@ export function recordFallenCards(
           .filter((v) => v.side === u.side && !v.defeated)
           .sort((a, b) => a.hp - b.hp)[0]
         if (ally) {
-          ally.attack += 6
-          ally.shield += 20
+          ally.attack += combatValue(state, 6, 1)
+          ally.shield += combatValue(state, 20, 2)
         }
       }
     }
@@ -401,7 +451,7 @@ function resolveEntryAbility(
   state: TacticalBattleState,
   unit: TacticalBattleState["units"][number],
 ) {
-  const card = TACTICAL_CARD_MAP[unit.cardId!],
+  const card = combatCard(state, unit.cardId!),
     allies = state.units.filter((u) => u.side === unit.side && !u.defeated),
     enemies = state.units.filter((u) => u.side !== unit.side && !u.defeated)
   const others = allies.filter((u) => u !== unit)
@@ -415,7 +465,8 @@ function resolveEntryAbility(
       const ally = [...others].sort(
         (a, b) => b.maxHp - b.hp - (a.maxHp - a.hp),
       )[0]
-      if (ally) ally.hp = Math.min(ally.maxHp, ally.hp + 40)
+      if (ally)
+        ally.hp = Math.min(ally.maxHp, ally.hp + combatValue(state, 40, 4))
       break
     }
     case "thawer":
@@ -434,23 +485,25 @@ function resolveEntryAbility(
         .filter((u) => u.hp < u.maxHp)
         .sort((a, b) => a.hp - b.hp)[0]
       if (enemy) {
-        const absorbed = Math.min(20, enemy.shield)
+        const absorbed = Math.min(combatValue(state, 20, 2), enemy.shield)
         enemy.shield -= absorbed
-        enemy.hp = Math.max(0, enemy.hp - 20 + absorbed)
+        enemy.hp = Math.max(0, enemy.hp - combatValue(state, 20, 2) + absorbed)
         enemy.defeated = enemy.hp === 0
       }
       break
     }
     case "snare": {
       const enemy = [...enemies].sort((a, b) => b.attack - a.attack)[0]
-      if (enemy) enemy.attack = Math.max(0, enemy.attack - 6)
+      if (enemy)
+        enemy.attack = Math.max(0, enemy.attack - combatValue(state, 6, 1))
       break
     }
     case "mender":
-      for (const ally of allies) ally.hp = Math.min(ally.maxHp, ally.hp + 20)
+      for (const ally of allies)
+        ally.hp = Math.min(ally.maxHp, ally.hp + combatValue(state, 20, 2))
       break
     case "host":
-      for (const ally of others) ally.shield += 10
+      for (const ally of others) ally.shield += combatValue(state, 10, 1)
       break
     case "welcome":
       if (
@@ -458,14 +511,14 @@ function resolveEntryAbility(
           allies.map((u) => u.cardId && TACTICAL_CARD_MAP[u.cardId].school),
         ).size >= 3
       )
-        for (const ally of allies) ally.attack += 6
+        for (const ally of allies) ally.attack += combatValue(state, 6, 1)
       break
   }
 }
 function resolveSpellPassives(
   state: TacticalBattleState,
   side: BattleSide,
-  card: (typeof TACTICAL_CARD_MAP)[string],
+  card: typeof TACTICAL_CARD_MAP[string],
 ) {
   const allies = state.units.filter(
     (u) => u.side === side && !u.defeated && u.cardId,
@@ -478,16 +531,20 @@ function resolveSpellPassives(
     unit.triggers ??= {}
     const limit = ability === "spellfire" || ability === "weaver" ? 2 : 1
     if ((unit.triggers[key] ?? 0) >= limit) continue
-    if (ability === "spellfire") unit.attack += 6
+    if (ability === "spellfire") unit.attack += combatValue(state, 6, 1)
     else if (ability === "weaver")
-      [...allies].sort((a, b) => a.hp - b.hp)[0].shield += 10
+      [...allies].sort((a, b) => a.hp - b.hp)[0].shield += combatValue(
+        state,
+        10,
+        1,
+      )
     else if (ability === "relay" && source.school !== card.school) {
       const ally = allies
         .filter((u) => u !== unit)
         .sort((a, b) => a.hp - b.hp)[0]
       if (!ally) continue
-      ally.attack += 6
-      ally.shield += 10
+      ally.attack += combatValue(state, 6, 1)
+      ally.shield += combatValue(state, 10, 1)
     } else if (ability === "conductor" && cards.spellsThisRound === 2)
       cards.mana = Math.min(cards.maxMana, cards.mana + 1)
     else if (ability === "season-host" && card.tacticalEffect === "buff")

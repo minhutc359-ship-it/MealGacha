@@ -10,6 +10,14 @@ import type { BattleUnit } from "../engine/types"
 import { ELEMENTAL_IMPACTS } from "../../visualPack"
 
 const aliases: Record<string, string> = {
+  "boss-lantern-fox": "banh-mi",
+  "boss-river-dragon": "pho-bo",
+  "boss-kiln-phoenix": "banh-xeo",
+  "boss-bronze-lion": "com-tam",
+  "boss-lotus-rabbit": "banh-cuon",
+  "boss-night-owl": "caravan-pastry",
+  "boss-village-turtle": "banh-chung",
+  "boss-five-kirin": "com-lang-vong",
   nhien: "chef-nhien",
   hai: "chef-hai",
   moc: "chef-moc",

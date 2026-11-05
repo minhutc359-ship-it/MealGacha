@@ -19,9 +19,8 @@ export function TacticalBackupPanel({
 }) {
   const [text, setText] = useState("")
   const [preview, setPreview] = useState<TacticalBackupPreview | null>(null)
-  const [undo, setUndo] = useState<ReturnType<
-    typeof tacticalRestoreSnapshot
-  > | null>(null)
+  const [undo, setUndo] =
+    useState<ReturnType<typeof tacticalRestoreSnapshot> | null>(null)
   const [notice, setNotice] = useState("")
   const [busy, setBusy] = useState(false)
   const pending = useRef(false)
@@ -191,7 +190,7 @@ export function TacticalBackupPanel({
                   <tr>
                     <th>Chặng cốt truyện</th>
                     <td>
-                      {preview.currentNodes} → {preview.nodes}/8
+                      {preview.currentNodes} → {preview.nodes}/24
                     </td>
                   </tr>
                   <tr>

@@ -12,7 +12,7 @@ describe("Tactical production package", () => {
     ["legal/privacy.html", true],
     ["assets/brand/icon-512.png", true],
     ["assets/music580/mode-chest.mp3", true],
-    ["assets/music580/mode-autochess.mp3", false],
+    ["assets/music580/mode-autochess.mp3", true],
     ["assets/tcg/characters/anime/bach.webp", true],
     ["assets/manga5915/tcg/moon.webp", true],
     ["assets/manga5915/adventure/moon.webp", false],

@@ -1,0 +1,140 @@
+[
+  {
+    "node": "act-1-hearth",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": null
+  },
+  {
+    "node": "act-1-salt-gate",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": null
+  },
+  {
+    "node": "act-2-kiln",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": null
+  },
+  {
+    "node": "act-2-knight",
+    "deck": "ember-road",
+    "round": 3,
+    "quest": null
+  },
+  {
+    "node": "act-3-cloud",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": null
+  },
+  {
+    "node": "act-3-regent",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": null
+  },
+  {
+    "node": "act-4-last-table",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": null
+  },
+  {
+    "node": "side-market-names",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": true
+  },
+  {
+    "node": "side-fox-lantern",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": false
+  },
+  {
+    "node": "side-bamboo-wharf",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": true
+  },
+  {
+    "node": "side-river-vow",
+    "deck": "ember-road",
+    "round": 3,
+    "quest": true
+  },
+  {
+    "node": "side-pottery-road",
+    "deck": "ember-road",
+    "round": 10,
+    "quest": true
+  },
+  {
+    "node": "side-phoenix-kiln",
+    "deck": "ember-road",
+    "round": 4,
+    "quest": false
+  },
+  {
+    "node": "side-drum-procession",
+    "deck": "ember-road",
+    "round": 6,
+    "quest": false
+  },
+  {
+    "node": "side-bronze-lion",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": false
+  },
+  {
+    "node": "side-lost-lotus",
+    "deck": "tide-letters",
+    "round": 6,
+    "quest": false
+  },
+  {
+    "node": "side-moon-rabbit",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": true
+  },
+  {
+    "node": "side-lantern-night",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": true
+  },
+  {
+    "node": "side-night-owl",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": true
+  },
+  {
+    "node": "side-promise-wharf",
+    "deck": "ember-road",
+    "round": 5,
+    "quest": true
+  },
+  {
+    "node": "side-village-turtle",
+    "deck": "hearth-garden",
+    "round": 5,
+    "quest": false
+  },
+  {
+    "node": "side-returning-table",
+    "deck": "ember-road",
+    "round": 6,
+    "quest": true
+  },
+  {
+    "node": "side-five-kirin",
+    "deck": "spell-chain",
+    "round": 4,
+    "quest": true
+  }
+]

@@ -39,6 +39,17 @@ const exactFiles = new Set<string>([
   "assets/brand/soul-of-meal.webp",
   "assets/music580/mode-chest.mp3",
   "assets/music580/mode-tcg.mp3",
+  "assets/music580/mode-autochess.mp3",
+  "assets/music580/mode-adventure.mp3",
+  "assets/music580/map-lantern.mp3",
+  "assets/music580/map-harbor.mp3",
+  "assets/music580/map-garden.mp3",
+  "assets/music580/map-tide.mp3",
+  "assets/music580/map-tea.mp3",
+  "assets/music580/map-salt.mp3",
+  "assets/music580/map-lotus.mp3",
+  "assets/music580/map-aroma.mp3",
+  "assets/music580/boss.mp3",
 ])
 function safeRelativePath(value: string) {
   const normalized = value.split("\\").join("/"),

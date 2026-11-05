@@ -1,12 +1,10 @@
 // Development-only full-board fixture. Never reads or writes the player's checkpoint.
 import React, { useState } from "react"
+import { DUEL_CARD_MAP as TACTICAL_CARD_MAP } from "../src/game/tacticalTcg/duelCards"
 import { createRoot } from "react-dom/client"
 import "../src/game/tcg.css"
 import { TacticalTable } from "../src/components/game/TacticalTable"
-import {
-  TACTICAL_CARD_MAP,
-  TACTICAL_STARTER,
-} from "../src/game/tacticalTcg/cards"
+import { TACTICAL_STARTER } from "../src/game/tacticalTcg/cards"
 import {
   createTacticalBattle,
   reduceTacticalBattle,
@@ -16,6 +14,7 @@ function initial() {
   const s = createTacticalBattle({
     battleId: "qa:ten-card-duel",
     manual: true,
+    duel: true,
     deck: TACTICAL_STARTER,
     seed: 15,
   })
@@ -39,7 +38,7 @@ function initial() {
       maxHp: c.health,
       hp: c.health,
       attack: c.attack,
-      ultimatePower: Math.max(18, c.attack * 2),
+      ultimatePower: Math.max(3, c.attack * 2),
       instanceId: `qa:${i}`,
       side: i < 5 ? "player" : "enemy",
       cell: { row: i % 5 < 3 ? 0 : 1, column: ((i % 5) % 3) as 0 | 1 | 2 },
@@ -51,8 +50,8 @@ function initial() {
   })
   s.units[0].rootedUntil = 4
   s.units[0].stunnedUntil = 4
-  s.units[6].burn = { damage: 4, remaining: 2 }
-  s.units[2].hp -= 12
+  s.units[6].burn = { damage: 1, remaining: 2 }
+  s.units[2].hp = Math.max(1, s.units[2].hp - 2)
   s.cardGame!.sides.player.hand = [
     "herb",
     "spark",

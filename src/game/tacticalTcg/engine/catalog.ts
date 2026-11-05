@@ -1,4 +1,5 @@
 import type { UnitDefinition } from "./types"
+import { DUEL_BOSS_UNITS } from "./duelBosses"
 
 export const TACTICAL_UNITS: UnitDefinition[] = [
   {
@@ -93,6 +94,7 @@ export const TACTICAL_UNITS: UnitDefinition[] = [
   },
 ]
 
+TACTICAL_UNITS.push(...DUEL_BOSS_UNITS)
 export const TACTICAL_UNIT_MAP = new Map(
   TACTICAL_UNITS.map((unit) => [unit.id, unit]),
 )

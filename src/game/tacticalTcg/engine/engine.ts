@@ -1,5 +1,7 @@
 import { TACTICAL_UNIT_MAP } from "./catalog"
 import { TACTICAL_CARD_MAP } from "../cards"
+import { isDuel, combatValue, duelTrait } from "../duelCards"
+import { duelStrike, upgradeDuelBattle } from "./duelRules"
 import { enableDirectedBattle } from "./directedRules"
 import { reduceDirectedBattle } from "./directed"
 import {
@@ -145,7 +147,9 @@ export function createTacticalBattle(
     reward: null,
     cardGame,
   }
-  return options.manual ? enableDirectedBattle(battle) : battle
+  if (cardGame) cardGame.botLevel = options.botLevel ?? "hard"
+  const prepared = options.duel ? upgradeDuelBattle(battle) : battle
+  return options.manual ? enableDirectedBattle(prepared) : prepared
 }
 
 const trapName = (trapId: BattleTrap["trapId"]) =>
@@ -224,10 +228,16 @@ function advanceBossPhase(state: TacticalBattleState, target: BattleUnit) {
         ? 2
         : 1
   while (state.boss.phase < desired) {
-    state.boss.phase = (state.boss.phase + 1) as 2 | 3
-    const shield = state.boss.phase === 2 ? 12 : 18
+    state.boss.phase = ((state.boss.phase + 1) as 2 | 3)
+    const shield = isDuel(state)
+      ? state.boss.phase === 2
+        ? 2
+        : 3
+      : state.boss.phase === 2
+        ? 12
+        : 18
     target.shield += shield
-    target.attack += 4
+    target.attack += combatValue(state, 4, 1)
     target.energy = Math.min(100, target.energy + 20)
     reactionLog(
       state,
@@ -300,7 +310,15 @@ function deal(
   label: string,
   targetId?: string,
 ) {
-  const target = targetId ? state.units.find(u=>u.instanceId===targetId&&!u.defeated)??null : findTarget(state, attacker)
+  if (isDuel(state)) {
+    duelStrike(state, attacker, power, targetId, label.includes("tuyệt kỹ"))
+    for (const u of state.units) advanceBossPhase(state, u)
+    return
+  }
+  const target = targetId
+    ? (state.units.find((u) => u.instanceId === targetId && !u.defeated) ??
+      null)
+    : findTarget(state, attacker)
   const bonus = activeTraitBonus(state, attacker.side).attack
   const ability = attacker.cardId
     ? TACTICAL_CARD_MAP[attacker.cardId].ability
@@ -318,7 +336,9 @@ function deal(
       target.shield -= stolen
       attacker.shield += stolen
     }
-    const trap = state.cardGame?.directed ? undefined : matchingTrap(state, target)
+    const trap = state.cardGame?.directed
+      ? undefined
+      : matchingTrap(state, target)
     if (trap) triggerTrap(state, trap, attacker, target, "before")
     const absorbed = Math.min(target.shield, damage)
     target.shield -= absorbed
@@ -355,7 +375,15 @@ function deal(
 function finish(state: TacticalBattleState) {
   const living = (side: BattleSide) =>
     state.units.some((unit) => unit.side === side && !unit.defeated)
-  if ((!state.cardGame && !living("enemy")) || state.commanders.enemy.hp === 0)
+  if (
+    (!state.cardGame && !living("enemy")) ||
+    state.commanders.enemy.hp === 0 ||
+    (isDuel(state) &&
+      !!state.boss &&
+      state.units.some(
+        (u) => u.instanceId === state.boss!.unitId && u.defeated,
+      ))
+  )
     state.winner = "player"
   else if (
     (!state.cardGame && !living("player")) ||
@@ -382,10 +410,15 @@ export function reduceTacticalBattle(
   current: TacticalBattleState,
   action: TacticalBattleAction,
 ) {
-  return current.cardGame?.directed ? reduceDirectedBattle(current,action,reduceCoreBattle,finish) : reduceCoreBattle(current,action)
+  return current.cardGame?.directed
+    ? reduceDirectedBattle(current, action, reduceCoreBattle, finish)
+    : reduceCoreBattle(current, action)
 }
-function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleAction) {
-  if(["end-turn","enemy-step","react"].includes(action.type))return current
+function reduceCoreBattle(
+  current: TacticalBattleState,
+  action: TacticalBattleAction,
+) {
+  if (["end-turn", "enemy-step", "react"].includes(action.type)) return current
   if (current.processedActionIds.includes(action.id)) return current
   if (current.phase === "result") return current
   const state = clone(current)
@@ -456,7 +489,7 @@ function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleActio
         copies[0]!.star === 3
       )
         return current
-      copies[0]!.star = Math.min(3, copies[0]!.star + 1) as 1 | 2 | 3
+      copies[0]!.star = (Math.min(3, copies[0]!.star + 1) as 1 | 2 | 3)
       copies[0]!.attack += copies[0]!.attack
       copies[0]!.maxHp += copies[0]!.maxHp
       copies[0]!.hp = copies[0]!.maxHp
@@ -494,7 +527,15 @@ function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleActio
       state.phase = "clash"
       break
     case "basic":
-      if (!unit || !["clash", "reaction", ...(state.cardGame?.directed ? ["planning"] : [])].includes(state.phase)) return current
+      if (
+        !unit ||
+        ![
+          "clash",
+          "reaction",
+          ...(state.cardGame?.directed ? ["planning"] : []),
+        ].includes(state.phase)
+      )
+        return current
       if (state.cardGame?.attacks[unit.instanceId] === state.round)
         return current
       if (state.cardGame) state.cardGame.attacks[unit.instanceId] = state.round
@@ -505,11 +546,21 @@ function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleActio
       if (
         !unit ||
         unit.energy < 100 ||
-        !["reaction", "ultimate", ...(state.cardGame?.directed ? ["planning"] : [])].includes(state.phase)
+        ![
+          "reaction",
+          "ultimate",
+          ...(state.cardGame?.directed ? ["planning"] : []),
+        ].includes(state.phase)
       )
         return current
       unit.energy = 0
-      deal(state, unit, unit.ultimatePower, "tung tuyệt kỹ vào", action.targetId)
+      deal(
+        state,
+        unit,
+        unit.ultimatePower,
+        "tung tuyệt kỹ vào",
+        action.targetId,
+      )
       state.phase = state.cardGame?.directed ? "planning" : "ultimate"
       break
     case "end-round":
@@ -539,6 +590,9 @@ function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleActio
   if (state.cardGame)
     for (const side of ["player", "enemy"] as const) {
       if (state.commanders[side].hp <= current.commanders[side].hp) continue
+      if (state.cardGame.stats)
+        state.cardGame.stats[side].healing +=
+          state.commanders[side].hp - current.commanders[side].hp
       for (const ally of state.units.filter(
         (u) =>
           !u.defeated &&
@@ -549,7 +603,7 @@ function reduceCoreBattle(current:TacticalBattleState,action:TacticalBattleActio
         const key = `bloom:${state.round}`
         ally.triggers ??= {}
         if ((ally.triggers[key] ?? 0) < 2) {
-          ally.attack += 6
+          ally.attack += combatValue(state, 6, 1)
           ally.triggers[key] = (ally.triggers[key] ?? 0) + 1
         }
       }
