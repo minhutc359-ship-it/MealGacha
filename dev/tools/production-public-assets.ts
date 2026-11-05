@@ -2,6 +2,7 @@ import { createHash } from "node:crypto"
 import { lstat, readFile, readdir } from "node:fs/promises"
 import { join, posix } from "node:path"
 import type { Plugin, ResolvedConfig } from "vite"
+import modelAssets from "../../src/game/tacticalTcg/presentation/model-assets.json"
 export const PRODUCTION_PUBLIC_MANIFEST =
   "assets/production-public-manifest.json"
 export const PRODUCTION_CORE_PUBLIC_FILES = [
@@ -32,6 +33,7 @@ const allowedExtensions = new Set([
   "woff2",
 ])
 const exactFiles = new Set<string>([
+  ...modelAssets.map((path) => path.replace(/^\//, "")),
   ...PRODUCTION_CORE_PUBLIC_FILES,
   "assets/brand/apple-touch-icon.png",
   "assets/brand/soul-of-meal.webp",

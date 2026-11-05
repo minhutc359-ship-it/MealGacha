@@ -3,7 +3,7 @@
 Nguồn sự thật triển khai cho bề mặt production hiện tại.
 
 - `/`: sảnh TCG, bộ đang trang bị, tiến trình truyện, quà ngày và hướng dẫn vòng chơi.
-- `/?tab=battle`: trận 4×2 dùng bộ bài đã trang bị; sân người chơi trống, tay đầu bốn lá và 3 Lửa Bếp.
+- `/?tab=battle`: TCG chủ động, hai hàng bài đối diện tối đa 5 Vị Linh mỗi bên, dùng bộ bài đã trang bị; sân người chơi trống, tay đầu bốn lá và 3 Lửa Bếp. Splash art riêng, chủ tướng ra lệnh, chọn Tiền/Hậu tuyến khi triệu hồi.
 - `/?tab=decks`: xây, lưu và trang bị bộ 24 lá (tối đa 2 bản, ít nhất 8 Vị Linh).
 - `/?tab=collection`: toàn bộ 181 thẻ cũ, tìm/lọc, đọc luật mới và craft chính xác.
 - `/?tab=packs`: mở gói 5 lá, lật từng lá, tỷ lệ/bảo đảm và bản dư → Tinh Vị.

@@ -1,0 +1,232 @@
+{
+  "normalLayouts": [
+    {
+      "distorted": 0,
+      "empty": 0,
+      "h": 568,
+      "outside": [],
+      "ratios": [
+        0.69,
+        0.69,
+        0.69,
+        0.69,
+        0.69
+      ],
+      "units": 5,
+      "w": 320
+    },
+    {
+      "distorted": 0,
+      "empty": 0,
+      "h": 844,
+      "outside": [],
+      "ratios": [
+        0.69,
+        0.69,
+        0.69,
+        0.69,
+        0.69
+      ],
+      "units": 5,
+      "w": 390
+    },
+    {
+      "distorted": 0,
+      "empty": 0,
+      "h": 390,
+      "outside": [],
+      "ratios": [
+        0.69,
+        0.69,
+        0.69,
+        0.69,
+        0.69
+      ],
+      "units": 5,
+      "w": 844
+    },
+    {
+      "distorted": 0,
+      "empty": 0,
+      "h": 720,
+      "outside": [],
+      "ratios": [
+        0.69,
+        0.69,
+        0.69,
+        0.69,
+        0.69
+      ],
+      "units": 5,
+      "w": 1280
+    },
+    {
+      "distorted": 0,
+      "empty": 0,
+      "h": 900,
+      "outside": [],
+      "ratios": [
+        0.69,
+        0.69,
+        0.69,
+        0.69,
+        0.69
+      ],
+      "units": 5,
+      "w": 1360
+    }
+  ],
+  "fullBoardFixtureLayouts": [
+    {
+      "distorted": 0,
+      "h": 568,
+      "hand": 4,
+      "outside": [],
+      "ratioErrors": 0,
+      "units": 10,
+      "w": 320
+    },
+    {
+      "distorted": 0,
+      "h": 844,
+      "hand": 4,
+      "outside": [],
+      "ratioErrors": 0,
+      "units": 10,
+      "w": 390
+    },
+    {
+      "distorted": 0,
+      "h": 390,
+      "hand": 4,
+      "outside": [],
+      "ratioErrors": 0,
+      "units": 10,
+      "w": 844
+    },
+    {
+      "distorted": 0,
+      "h": 720,
+      "hand": 8,
+      "outside": [],
+      "ratioErrors": 0,
+      "units": 10,
+      "w": 1280
+    },
+    {
+      "distorted": 0,
+      "h": 900,
+      "hand": 8,
+      "outside": [],
+      "ratioErrors": 0,
+      "units": 10,
+      "w": 1360
+    }
+  ],
+  "attack": {
+    "acting": 1,
+    "action": "attack",
+    "beam": 1,
+    "hits": 1,
+    "numbers": [
+      "−9 ◇"
+    ]
+  },
+  "earlierWardAttack": {
+    "acting": 1,
+    "beam": 1,
+    "busy": "true",
+    "fx": "attack",
+    "hits": 0
+  },
+  "resume": {
+    "before": {
+      "action": "chosen:5:41",
+      "mana": "♨ 5/7LỬA BẾP",
+      "units": [
+        {
+          "cell": "0:0",
+          "id": "enemy:card:1",
+          "text": "⚔ 6♥ 50◇ 15"
+        },
+        {
+          "cell": "1:0",
+          "id": "enemy:card:2",
+          "text": "⚔ 9♥ 42◇ 30"
+        },
+        {
+          "cell": "1:1",
+          "id": "enemy:card:6",
+          "text": "⚔ 24♥ 60◇ 25"
+        },
+        {
+          "cell": "0:1",
+          "id": "player:card:5",
+          "text": "⚔ 6♥ 30◇ 5"
+        },
+        {
+          "cell": "1:0",
+          "id": "player:card:4",
+          "text": "⚔ 6♥ 30"
+        },
+        {
+          "cell": "1:1",
+          "id": "player:card:7",
+          "text": "⚔ 12♥ 30◇ 10"
+        }
+      ]
+    },
+    "after": {
+      "action": "chosen:5:41",
+      "mana": "♨ 5/7LỬA BẾP",
+      "units": [
+        {
+          "cell": "0:0",
+          "id": "enemy:card:1",
+          "text": "⚔ 6♥ 50◇ 15"
+        },
+        {
+          "cell": "1:0",
+          "id": "enemy:card:2",
+          "text": "⚔ 9♥ 42◇ 30"
+        },
+        {
+          "cell": "1:1",
+          "id": "enemy:card:6",
+          "text": "⚔ 24♥ 60◇ 25"
+        },
+        {
+          "cell": "0:1",
+          "id": "player:card:5",
+          "text": "⚔ 6♥ 30◇ 5"
+        },
+        {
+          "cell": "1:0",
+          "id": "player:card:4",
+          "text": "⚔ 6♥ 30"
+        },
+        {
+          "cell": "1:1",
+          "id": "player:card:7",
+          "text": "⚔ 12♥ 30◇ 10"
+        }
+      ]
+    }
+  },
+  "heal": {
+    "before": 29,
+    "after": 30,
+    "pulse": "duel-status-pulse is-heal"
+  },
+  "summon": {
+    "card": "caravan-pastry",
+    "cell": "1:1",
+    "cost": 2,
+    "beforeMana": 7,
+    "afterMana": 5,
+    "combo": "MÂM CHUNG"
+  },
+  "base": "a268940a6e1bb02a3c5e62327c46611db416ac55",
+  "branch": "game/tactical-tcg",
+  "note": "Normal layouts use a real persisted match. Full-board fixture is development-only, never writes account/checkpoint. earlierWardAttack was observed before the fix: the final regression test now separately checks a 6-shield hit through a newly granted 20-shield ward. No physical-device or FPS claims."
+}

@@ -344,7 +344,9 @@ export function playCard(
   owner.lastSchool = card.school
   cardLog(
     state,
-    `${action.side === "player" ? "Bạn" : "Địch"} dùng ${card.name} · ${card.cost} Lửa Bếp.`,
+    action.side === "enemy" && card.kind === "trap"
+      ? "Địch gài một Bẫy Hương úp."
+      : `${action.side === "player" ? "Bạn" : "Địch"} dùng ${card.name} · ${card.cost} Lửa Bếp.`,
   )
   return true
 }
@@ -354,6 +356,11 @@ export function recordFallenCards(
   state: TacticalBattleState,
 ) {
   if (!state.cardGame) return
+  for (const u of state.units.filter(u => u.defeated)) {
+    delete u.burn
+    delete u.rootedUntil
+    delete u.stunnedUntil
+  }
   for (const u of state.units)
     if (
       u.cardId &&

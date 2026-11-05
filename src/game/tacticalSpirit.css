@@ -1,0 +1,26 @@
+.tactical-spirit-portrait{display:block;position:relative;background-color:#213d3d;overflow:hidden;container-type:size}
+.spirit-portrait-crop{display:block;position:absolute;left:50%;top:50%;width:max(100cqw,100cqh);height:max(100cqw,100cqh);transform:translate(-50%,-50%);background-repeat:no-repeat}
+.table-card-face>.tactical-spirit-portrait{width:100%;aspect-ratio:1.35}
+.table-card-face.is-mini>.tactical-spirit-portrait{aspect-ratio:auto;height:44%}
+.tcg-card-art>.tactical-spirit-portrait{position:absolute;inset:0}
+.tactical-spirit-actor{position:absolute;inset:0 -10% 2px;display:block;pointer-events:none}
+.tactical-spirit-actor>.tactical-spirit-portrait{position:absolute;inset:0 15%;opacity:.6;mask-image:linear-gradient(#000 70%,transparent)}
+.tactical-spirit-actor:has(.is-loaded)>.tactical-spirit-portrait{visibility:hidden}
+.table-slot.is-occupied{background:radial-gradient(ellipse at 50% 80%,#b4d8a62e,transparent 68%),linear-gradient(145deg,#244748,#102c30)!important}
+.table-slot.is-occupied::after{background:linear-gradient(#09212680,transparent 30%,transparent 70%,#061e24c9)}
+.tactical-combat-effects{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+.tactical-delta{position:absolute;white-space:nowrap;color:#ffe4b3;text-shadow:0 2px 3px #000,0 0 7px #000;font-size:clamp(13px,1.6vw,22px);transform:translate(-50%,-50%);animation:tactical-number 760ms var(--contact) both}
+.tactical-delta.is-support{color:#b9ffd3}
+.tactical-ultimate-cutin{position:absolute;top:3%;left:25%;width:50%;display:flex;align-items:center;gap:12px;background:linear-gradient(100deg,#123333ed,#11262bf0);border-block:1px solid #f6d78a;box-shadow:0 0 24px #efbd6344;animation:tactical-cutin 2.4s both;overflow:hidden}
+.tactical-ultimate-cutin>.tactical-spirit-portrait{width:90px;aspect-ratio:1;flex-shrink:0}
+.tactical-ultimate-cutin>span{display:grid;gap:5px;padding:8px}.tactical-ultimate-cutin small{font-size:9px;color:#dcc89a;letter-spacing:.12em}.tactical-ultimate-cutin strong{font:700 21px Georgia,serif}.tactical-ultimate-cutin b{font-size:12px;color:#f6d78a}
+.tactical-combo{position:absolute;bottom:12%;left:50%;transform:translateX(-50%);max-width:90%;width:max-content;display:grid;gap:5px;padding:9px 18px;border:1px solid #efd486;border-radius:7px;background:#183c30f5;text-align:center;box-shadow:0 0 25px #e8cc5b44;animation:tactical-combo 1.3s both}
+.tactical-combo strong{color:#f8dc8a;font-size:14px}.tactical-combo span{font-size:11px;color:#daecd1}
+.table-slot.is-fallen .table-unit-title,.table-slot.is-fallen .table-unit-stats,.table-slot.is-fallen .table-unit-energy{opacity:.55}
+@keyframes tactical-number{0%{opacity:0;transform:translate(-50%,0) scale(.6)}18%,65%{opacity:1}100%{opacity:0;transform:translate(-50%,-60px) scale(1.06)}}
+@keyframes tactical-cutin{0%{opacity:0;transform:translateX(-30px)}15%,60%{opacity:1;transform:none}100%{opacity:0;transform:translateX(35px)}}
+@keyframes tactical-combo{0%{opacity:0;scale:.8}20%,75%{opacity:1;scale:1}100%{opacity:0}}
+@media(max-height:780px){.table-inspector>.table-card-face>.tactical-spirit-portrait{max-height:125px}}
+@media(max-width:780px){.tactical-ultimate-cutin{left:8%;width:84%}.tactical-ultimate-cutin>.tactical-spirit-portrait{width:60px}.tactical-ultimate-cutin strong{font-size:16px}.table-card-face.is-mini>.tactical-spirit-portrait{height:42%}}
+@media(max-height:540px){.tactical-ultimate-cutin{top:10%;left:15%;width:70%}.tactical-ultimate-cutin>.tactical-spirit-portrait{width:55px}.table-card-face.is-mini>.tactical-spirit-portrait{height:42%}}
+@media(prefers-reduced-motion:reduce){.tactical-delta{animation:none;opacity:1}.tactical-ultimate-cutin,.tactical-combo{animation:none}}

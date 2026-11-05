@@ -20,15 +20,19 @@ import {
   type TacticalProgress,
 } from "../../game/tacticalTcg/progression"
 import { GameCardView } from "./GameCardView"
+import { directedCardText } from "../../game/tacticalTcg/engine/directedRules"
 import { Dialog } from "./Dialog"
+import {
+  TACTICAL_DECK_LIBRARY,
+  deckRecipeMissing,
+} from "../../game/tacticalTcg/deckLibrary"
 
 interface HubProps {
   progress: TacticalProgress
   onProgress: (progress: TacticalProgress) => void
 }
 const normalize = (s: string) =>
-  s
-    .normalize("NFD")
+  s.normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[đĐ]/g, "d")
     .toLowerCase()
@@ -47,14 +51,14 @@ function CardDetail({
   return (
     <Dialog title={card.name} onClose={onClose} wide>
       <div className="tcg-card-detail tactical-card-detail">
-        <GameCardView card={card} count={count} />
+        <GameCardView spiritArt card={card} count={count} />
         <div>
           <span className="tcg-kicker">
             {kindLabel(card.kind)} · {SCHOOLS[card.school].name} ·{" "}
             {RARITIES[card.rarity].name}
           </span>
           <h3>Khả năng trên bàn Linh Chiến</h3>
-          <p>{card.text}</p>
+          <p>{directedCardText(card)}</p>
           <blockquote>“{card.lore}”</blockquote>
           <p>
             Sở hữu <b>{count}/2 bản</b> · dùng trong mọi bộ bài đã lưu.
@@ -196,6 +200,7 @@ export function TacticalCollection({ progress, onProgress }: HubProps) {
       <div className="tactical-collection-grid">
         {cards.slice(currentPage * 24, (currentPage + 1) * 24).map((card) => (
           <GameCardView
+            spiritArt
             key={card.id}
             card={card}
             count={owned[card.id] ?? 0}
@@ -324,6 +329,50 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
           </button>
         ))}
       </div>
+      <details className="tactical-deck-recipes">
+        <summary>
+          Công thức bộ bài · 3 bộ nhập môn và 5 hướng phát triển
+        </summary>
+        <div>
+          {TACTICAL_DECK_LIBRARY.map((template) => {
+            const missing = deckRecipeMissing(
+              template.cards,
+              progress.cardCopies,
+            )
+            return (
+              <article key={template.id}>
+                <small>{template.style}</small>
+                <h2>{template.name}</h2>
+                <p>{template.plan}</p>
+                <p>
+                  <b>Tay đầu:</b> {template.opening}
+                </p>
+                <p><b>Điểm yếu:</b> {template.weakness}</p>
+                <span>
+                  {missing.length
+                    ? `Thiếu ${missing.reduce((n, m) => n + m.count, 0)} lá · chế tạo ${missing.reduce((n, m) => n + m.cost, 0)} Tinh Vị`
+                    : "Đã đủ thẻ · có thể chơi ngay"}
+                </span>
+                <button
+                  className="tcg-button ghost"
+                  onClick={() => {
+                    setDraft({
+                      id: newTacticalRequestId(),
+                      name: template.name,
+                      cards: [...template.cards],
+                    })
+                    setNotice(
+                      "Đã nạp công thức. Xem bộ bài rồi Lưu & trang bị; thẻ chưa sở hữu không thể vào trận.",
+                    )
+                  }}
+                >
+                  Nạp vào trình sửa bộ
+                </button>
+              </article>
+            )
+          })}
+        </div>
+      </details>
       <div className="tactical-deck-builder">
         <section>
           <div className="tactical-card-filters">
@@ -348,6 +397,7 @@ export function TacticalDeckBuilder({ progress, onProgress }: HubProps) {
             {available.map((card) => (
               <div key={card.id}>
                 <GameCardView
+                  spiritArt
                   card={card}
                   count={owned[card.id]}
                   selected={!!counts[card.id]}
@@ -607,7 +657,7 @@ export function TacticalPacks({ progress, onProgress }: HubProps) {
               <article key={`${receipt.id}:${index}`}>
                 {revealed.has(index) ? (
                   <>
-                    <GameCardView card={TACTICAL_CARD_MAP[id]} />
+                    <GameCardView spiritArt card={TACTICAL_CARD_MAP[id]} />
                     {receipt.newCardIds.includes(id) && (
                       <b className="tactical-new-card">MỚI</b>
                     )}

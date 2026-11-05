@@ -1,0 +1,529 @@
+{
+  "layouts": [
+    {
+      "food": 0,
+      "h": 568,
+      "models": 2,
+      "outside": 0,
+      "slots": 16,
+      "w": 320
+    },
+    {
+      "food": 0,
+      "h": 844,
+      "models": 2,
+      "outside": 0,
+      "slots": 16,
+      "w": 390
+    },
+    {
+      "food": 0,
+      "h": 390,
+      "models": 2,
+      "outside": 0,
+      "slots": 16,
+      "w": 844
+    },
+    {
+      "food": 0,
+      "h": 720,
+      "models": 2,
+      "outside": 0,
+      "slots": 16,
+      "w": 1280
+    },
+    {
+      "food": 0,
+      "h": 900,
+      "models": 2,
+      "outside": 0,
+      "slots": 16,
+      "w": 1360
+    }
+  ],
+  "reaction": {
+    "before": "r3:basic:enemy:card:2|card:1:1|before",
+    "afterReload": "r3:basic:enemy:card:2|card:1:1|before",
+    "hpBeforeReload": "♥ 30/30",
+    "hpAfterReload": "♥ 30/30",
+    "afterHold": "r3:basic:enemy:card:1|card:1:1|before",
+    "hpAfterHold": "♥ 29/30",
+    "hpAfterBlock": "29/30"
+  },
+  "samples": [
+    {
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "action": "turn",
+      "banner": "✦LƯỢT ĐỐI THỦ",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "action": "summon",
+      "beam": 0,
+      "busy": "false",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "action": "turn",
+      "banner": "✦VÒNG 2 · LƯỢT CỦA BẠN",
+      "beam": 0,
+      "busy": "true",
+      "phase": "planning",
+      "turn": "player"
+    },
+    {
+      "action": "turn",
+      "banner": "✦VÒNG 2 · LƯỢT CỦA BẠN",
+      "beam": 0,
+      "busy": "false",
+      "phase": "planning",
+      "turn": "player"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [],
+      "motions": [
+        "idle",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "turn": "player"
+    },
+    {
+      "beam": 0,
+      "busy": "false",
+      "delta": [],
+      "motions": [
+        "idle",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "turn": "player"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [],
+      "fx": "turn",
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+12 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+12 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+12 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "complete"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-20 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-20 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-20 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "complete"
+    },
+    {
+      "beam": 0,
+      "busy": "false",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "complete"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [],
+      "fx": "turn",
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [],
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-20 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-20 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-20 ♥"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [
+        "+10 ◇",
+        "+10 ◇"
+      ],
+      "fx": "spell",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [],
+      "fx": "trap",
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-6 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-4 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "windup"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-4 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "flight"
+    },
+    {
+      "beam": 1,
+      "busy": "true",
+      "delta": [
+        "-4 ♥"
+      ],
+      "fx": "attack",
+      "phase": "planning",
+      "turn": "enemy",
+      "vfx": "impact"
+    },
+    {
+      "beam": 0,
+      "busy": "true",
+      "delta": [],
+      "fx": "turn",
+      "phase": "planning",
+      "turn": "player"
+    },
+    {
+      "beam": 0,
+      "busy": "false",
+      "delta": [],
+      "fx": "turn",
+      "phase": "planning",
+      "turn": "player"
+    },
+    {
+      "action": "negate",
+      "banner": "封PHẢN CHẾNắp Nồi Bật Lửa",
+      "busy": "true",
+      "hp": "♥ 29/30",
+      "phase": "planning",
+      "turn": "enemy"
+    },
+    {
+      "action": "turn",
+      "banner": "✦VÒNG 4 · LƯỢT CỦA BẠN",
+      "busy": "true",
+      "hp": "♥ 29/30",
+      "phase": "planning",
+      "turn": "player"
+    },
+    {
+      "action": "turn",
+      "banner": "✦VÒNG 4 · LƯỢT CỦA BẠN",
+      "busy": "false",
+      "hp": "♥ 29/30",
+      "phase": "planning",
+      "turn": "player"
+    }
+  ]
+}

@@ -17,8 +17,8 @@ function kindFor(cue: Placed, attack: boolean): VfxKind {
   if (cue.kind === "summon") return "summon"
   return attack || cue.kind === "strike" ? "slash" : "projectile"
 }
-export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp, quiet }: {
-  source: VfxPoint; sourceId?:string; cues: Placed[]; school: School; action: string; stamp: string; quiet: boolean
+export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp, quiet, contactMs }: {
+  source: VfxPoint; sourceId?:string; cues: Placed[]; school: School; action: string; stamp: string; quiet: boolean; contactMs?: number
 }) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const timeline = useRef({ stamp: "", start: 0, hiddenAt: null as number | null })
@@ -31,7 +31,7 @@ export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp,
     let width = 1, height = 1
     if (timeline.current.stamp !== stamp) timeline.current = { stamp, start: performance.now(), hiddenAt: null }
     const clock = timeline.current
-    const contact = ["attack", "play"].includes(action) ? TCG_IMPACT_MS : 140
+    const contact = contactMs ?? (["attack", "play"].includes(action) ? TCG_IMPACT_MS : 140)
     let unsubscribe = () => {}
     const draw = (now: number) => {
       ctx.clearRect(0, 0, width, height)
@@ -69,6 +69,6 @@ export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp,
     unsubscribe=subscribeCharacterClock(draw,true)
     document.addEventListener("visibilitychange",visibility)
     return ()=>{texture?.release();customTexture?.release();observer.disconnect();unsubscribe();document.removeEventListener("visibilitychange",visibility)}
-  },[source,sourceId,cues,school,action,stamp,quiet])
+  },[source,sourceId,cues,school,action,stamp,quiet,contactMs])
   return quiet ? null : <canvas ref={canvas} className="tcg-battle-vfx-canvas" data-vfx="elemental" aria-hidden="true" />
 }

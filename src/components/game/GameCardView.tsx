@@ -2,6 +2,9 @@ import type { CSSProperties } from "react"
 import { SCHOOLS, RARITIES } from "../../game/catalog"
 import { foodSpirit } from "../../game/flavorSpirits"
 import type { GameCard } from "../../game/types"
+import { TacticalSpiritArt } from "./TacticalSpirit"
+import { TACTICAL_CARD_MAP } from "../../game/tacticalTcg/cards"
+import { directedCardText } from "../../game/tacticalTcg/engine/directedRules"
 
 interface Props {
   card: GameCard
@@ -14,6 +17,7 @@ interface Props {
   cost?: number
   playable?: boolean
   disabled?: boolean
+  spiritArt?: boolean
 }
 export function GameCardView({
   card,
@@ -26,11 +30,20 @@ export function GameCardView({
   disabled,
   cost = card.cost,
   playable,
+  spiritArt = false,
 }: Props) {
   const content = (
     <>
-      <span className={`tcg-card-art ${card.art?.startsWith("/assets/food/") ? "is-food-art" : "is-character-art"}`}>
-        {card.art ? (
+      <span
+        className={`tcg-card-art ${
+          !spiritArt && card.art?.startsWith("/assets/food/")
+            ? "is-food-art"
+            : "is-character-art"
+        }`}
+      >
+        {spiritArt && card.kind === "unit" ? (
+          <TacticalSpiritArt id={card.id} />
+        ) : card.art ? (
           <img
             src={card.art}
             alt=""
@@ -54,14 +67,18 @@ export function GameCardView({
       <span className="tcg-card-body">
         <span className="tcg-card-eyebrow">
           {card.kind === "unit"
-            ? foodSpirit(card)
-              ? "MÓN ĂN · ẤN VỊ"
-              : "ĐỒNG MINH"
-            : card.kind === "trap" ? "BẪY HƯƠNG" : "BÍ THUẬT"}{" "}
+            ? spiritArt
+              ? "VỊ LINH"
+              : foodSpirit(card)
+                ? "MÓN ĂN · ẤN VỊ"
+                : "ĐỒNG MINH"
+            : card.kind === "trap"
+              ? "BẪY HƯƠNG"
+              : "BÍ THUẬT"}{" "}
           <span>{RARITIES[card.rarity].name}</span>
         </span>
         <strong>{card.name}</strong>
-        <span className="tcg-card-text">{card.text}</span>
+        <span className="tcg-card-text">{spiritArt&&TACTICAL_CARD_MAP[card.id]?directedCardText(TACTICAL_CARD_MAP[card.id]):card.text}</span>
         <span className="tcg-card-footer">
           {card.kind === "unit" ? (
             <>
@@ -69,7 +86,9 @@ export function GameCardView({
               <b title="Máu">♥ {card.health}</b>
             </>
           ) : (
-            <span>{card.kind === "trap" ? "◇ Bẫy · úp trước" : "✧ Phép thuật"}</span>
+            <span>
+              {card.kind === "trap" ? "◇ Bẫy · úp trước" : "✧ Phép thuật"}
+            </span>
           )}
           <span>{SCHOOLS[card.school].name}</span>
         </span>

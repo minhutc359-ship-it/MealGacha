@@ -1,0 +1,346 @@
+{
+  "layouts": [
+    {
+      "foodImages": 0,
+      "h": 568,
+      "models": 3,
+      "outside": 0,
+      "slots": 16,
+      "w": 320
+    },
+    {
+      "foodImages": 0,
+      "h": 844,
+      "models": 3,
+      "outside": 0,
+      "slots": 16,
+      "w": 390
+    },
+    {
+      "foodImages": 0,
+      "h": 390,
+      "models": 3,
+      "outside": 0,
+      "slots": 16,
+      "w": 844
+    },
+    {
+      "foodImages": 0,
+      "h": 720,
+      "models": 3,
+      "outside": 0,
+      "slots": 16,
+      "w": 1280
+    },
+    {
+      "foodImages": 0,
+      "h": 900,
+      "models": 3,
+      "outside": 0,
+      "slots": 16,
+      "w": 1360
+    }
+  ],
+  "combat": [
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "summon",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "windup",
+      "texture": "ready"
+    },
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "summon",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "flight",
+      "texture": "ready"
+    },
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "summon",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "impact",
+      "texture": "ready"
+    },
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "summon",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "complete",
+      "texture": "ready"
+    },
+    {
+      "action": "spell",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "hit",
+        "idle"
+      ],
+      "numbers": [
+        "-20 ♥"
+      ],
+      "phase": "windup",
+      "texture": "ready"
+    },
+    {
+      "busy": "false",
+      "motions": [
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": []
+    },
+    {
+      "action": "trap",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "impact",
+      "texture": "ready"
+    },
+    {
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": []
+    },
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "summon",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "windup",
+      "texture": "ready"
+    },
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "summon",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "flight",
+      "texture": "ready"
+    },
+    {
+      "action": "summon",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "summon",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "impact",
+      "texture": "ready"
+    },
+    {
+      "action": "round",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "idle",
+        "idle"
+      ],
+      "numbers": [],
+      "phase": "impact",
+      "texture": "ready"
+    },
+    {
+      "action": "attack",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "hit",
+        "attack"
+      ],
+      "numbers": [
+        "-2 ♥ · -4 ◇"
+      ],
+      "phase": "windup",
+      "texture": "ready"
+    },
+    {
+      "action": "attack",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "hit",
+        "attack"
+      ],
+      "numbers": [
+        "-2 ♥ · -4 ◇"
+      ],
+      "phase": "flight",
+      "texture": "ready"
+    },
+    {
+      "action": "attack",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "hit",
+        "attack"
+      ],
+      "numbers": [
+        "-2 ♥ · -4 ◇"
+      ],
+      "phase": "impact",
+      "texture": "ready"
+    },
+    {
+      "action": "attack",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "attack",
+        "hit"
+      ],
+      "numbers": [
+        "-6 ♥"
+      ],
+      "phase": "windup",
+      "texture": "ready"
+    },
+    {
+      "action": "attack",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "attack",
+        "hit"
+      ],
+      "numbers": [
+        "-6 ♥"
+      ],
+      "phase": "flight",
+      "texture": "ready"
+    },
+    {
+      "action": "ultimate",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "ultimate",
+        "hit"
+      ],
+      "numbers": [
+        "-18 ♥"
+      ],
+      "phase": "windup",
+      "texture": "ready"
+    },
+    {
+      "action": "ultimate",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "ultimate",
+        "hit"
+      ],
+      "numbers": [
+        "-18 ♥"
+      ],
+      "phase": "flight",
+      "texture": "ready"
+    },
+    {
+      "action": "ultimate",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "ultimate",
+        "hit"
+      ],
+      "numbers": [
+        "-18 ♥"
+      ],
+      "phase": "impact",
+      "texture": "ready"
+    },
+    {
+      "action": "ultimate",
+      "busy": "true",
+      "motions": [
+        "idle",
+        "idle",
+        "ultimate",
+        "hit"
+      ],
+      "numbers": [
+        "-18 ♥"
+      ],
+      "phase": "complete",
+      "texture": "ready"
+    },
+    {
+      "action": "ultimate",
+      "busy": "false",
+      "motions": [
+        "idle",
+        "idle",
+        "ultimate",
+        "hit"
+      ],
+      "numbers": [
+        "-18 ♥"
+      ],
+      "phase": "complete",
+      "texture": "ready"
+    }
+  ]
+}

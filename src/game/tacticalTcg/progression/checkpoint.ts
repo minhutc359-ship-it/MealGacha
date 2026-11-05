@@ -1,4 +1,5 @@
 import { TACTICAL_CARD_MAP } from "../cards"
+import { validDirectedState } from "./directedCheckpoint"
 import type { TacticalBattleState } from "../engine/types"
 const record = (v: unknown): v is Record<string, unknown> =>
   !!v && typeof v === "object" && !Array.isArray(v)
@@ -168,5 +169,5 @@ export function validTacticalCheckpoint(
     )
       return false
   }
-  return true
+  return validDirectedState(battle)
 }

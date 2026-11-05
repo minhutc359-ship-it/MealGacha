@@ -20,6 +20,7 @@ import { useAppStore } from "../store/useAppStore"
 import "../game/tcg.css"
 import "../game/tacticalBattle.css"
 import "../game/tacticalHub.css"
+import { ensureTacticalDeckLibrary } from "../game/tacticalTcg/deckLibrary"
 
 const MangaChronicle = lazy(() =>
   import("../components/game/MangaChronicle").then((module) => ({
@@ -76,7 +77,7 @@ export function TCGPage() {
         ? requested
         : "home"
   const [progress, setProgress] = useState<TacticalProgress>(() =>
-    ensureTacticalAccount(localStorage),
+    ensureTacticalDeckLibrary(localStorage),
   )
   const [notice, setNotice] = useState("")
   const activeDeck =

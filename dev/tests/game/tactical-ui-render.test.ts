@@ -96,7 +96,7 @@ describe("Tactical production UI render", () => {
         resumeNodeId: "act-1-hearth",
       }),
     )
-    expect(campaign).toContain("Linh Chiến 4×2")
+    expect(campaign).toContain("Bàn Linh Chiến TCG · 5 Vị Linh mỗi bên")
     expect(campaign).toContain("Tay bài của bạn")
   })
   it("makes backup import and its paste alternative reachable", () => {
@@ -114,7 +114,9 @@ describe("Tactical production UI render", () => {
         options: { battleId: "deck-ui", deck: TACTICAL_STARTER },
       }),
     )
-    expect(html.match(/class="tactical-cell is-empty/g)).toHaveLength(16)
+    expect(html.match(/class="table-slot[^\"]*is-empty/g) ?? []).toHaveLength(0)
+    expect(html).toContain("duel-card-row")
+    expect(html).toContain("duel-commander-avatar")
     expect(html).toContain("Tay bài của bạn")
     expect(html).toContain("LỬA BẾP")
     expect(html).toContain("Đổi tay đầu")

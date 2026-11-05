@@ -68,7 +68,7 @@ export function TacticalHome({
         </div>
         <div className="tactical-home-featured" aria-hidden="true">
           {["chef-nhien", "chef-hai"].map((id) => (
-            <GameCardView key={id} card={TACTICAL_CARD_MAP[id]} />
+            <GameCardView spiritArt key={id} card={TACTICAL_CARD_MAP[id]} />
           ))}
         </div>
       </header>
@@ -135,7 +135,12 @@ export function TacticalHome({
               .filter((id) => TACTICAL_CARD_MAP[id])
               .slice(0, 5)
               .map((id) => (
-                <GameCardView key={id} card={TACTICAL_CARD_MAP[id]} compact />
+                <GameCardView
+                  spiritArt
+                  key={id}
+                  card={TACTICAL_CARD_MAP[id]}
+                  compact
+                />
               ))}
           </div>
           <footer>
@@ -231,17 +236,17 @@ export function TacticalGuide({ onPlay }: { onPlay: () => void }) {
           [
             "04",
             "Bốn cột, hai hàng",
-            "Tiền tuyến chịu đòn trước; Hậu tuyến giữ các lá hỗ trợ. Tối đa 5 Vị Linh. Mỗi vòng đổi vị trí 1 lần. Đánh cùng cột trước, rồi tiền tuyến gần nhất, hậu tuyến, cuối cùng Chỉ huy.",
+            "Tối đa 5 Vị Linh, đổi vị trí 1 lần/vòng. Chọn quân rồi chọn mục tiêu sáng. Hộ vệ tiền tuyến chắn đòn; Pháp sư nhắm được hậu tuyến khi hết Hộ vệ. Không còn quân địch mới đánh được Chỉ huy.",
           ],
           [
             "05",
             "Bẫy và bản sao",
-            "Muốn gài bẫy phải có lá Bẫy Hương trên tay. Chọn cột rồi Dùng thẻ. Chồng bản sao lên đúng Vị Linh để lên 2 sao (+40% chỉ số), giữ lượng máu đã mất.",
+            "Tám bẫy có tám chức năng riêng. Úp một bẫy; khi đủ điều kiện bạn chọn Lật hoặc Giữ, không đếm ngược. Gài mới thay bẫy cũ. Chồng bản sao đúng Vị Linh để lên 2 sao (+40%), giữ HP đã mất.",
           ],
           [
             "06",
-            "Khóa đội hình, giữ nhịp Tuyệt kỹ",
-            "Nhấn Giao chiến để cả hai đội đánh theo thứ tự. Sau đó, khi đủ 100 Hương lực, dùng Tuyệt kỹ của quân bạn hoặc Kết thúc vòng. Trống sân chưa thua: bạn vẫn có thể gọi Vị Linh mới.",
+            "Chủ động chọn nhịp tấn công",
+            "Xen kẽ chơi bài, đánh thường và Tuyệt kỹ đủ 100 Hương lực. Mỗi quân đánh thường 1 lần/vòng. Quân mới chờ lượt sau trừ Xung kích. Kết lượt để AI hành động; hết lượt AI mới rút bài, hồi Lửa và tăng Hương lực.",
           ],
           [
             "07",
